@@ -1,0 +1,47 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "airbnb-typescript",
+    "plugin:jest/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:testing-library/react",
+    "plugin:prettier/recommended"
+  ],
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "jest",
+    "jest-dom",
+    "prettier"
+  ],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "jest": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "project": "**/tsconfig.json"
+  },
+  "ignorePatterns": [
+    "jest.config.js",
+    "webpack.*"
+  ],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ]
+  }
+}
