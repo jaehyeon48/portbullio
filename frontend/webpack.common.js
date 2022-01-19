@@ -11,7 +11,9 @@ export default {
 	resolve: {
 		extensions: ['.wasm', '.ts', '.tsx', '.mjs', '.cjs', '.js', '.json'],
 		alias: {
-			'@src': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src')
+			'@src': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src'),
+			'@components': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'components'),
+			'@assets': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'assets')
 		}
 	},
 	module: {
