@@ -16,6 +16,9 @@
       ],
       "@hooks/*": [
         "src/hooks/*"
+      ],
+      "@types": [
+        "src/types/index.ts"
       ]
     }
   }
