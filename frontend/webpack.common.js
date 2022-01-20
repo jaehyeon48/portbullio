@@ -13,7 +13,8 @@ export default {
 		alias: {
 			'@src': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src'),
 			'@components': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'components'),
-			'@assets': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'assets')
+			'@assets': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'assets'),
+			'@constants': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'constants')
 		}
 	},
 	module: {
