@@ -43,6 +43,7 @@
         "devDependencies": true
       }
     ],
-    "import/prefer-default-export": "off"
+    "import/prefer-default-export": "off",
+    "@typescript-eslint/no-use-before-define": "off"
   }
 }
