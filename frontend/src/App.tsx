@@ -1,7 +1,7 @@
 import { ReactElement } from 'react';
 import { ThemeProvider } from 'styled-components';
-import { CSSReset, GlobalFonts, GlobalStyles } from '@components/Styles';
-import { lightTheme, darkTheme } from '@constants/Theme';
+import * as Global from '@styles/Global';
+import { lightTheme, darkTheme } from '@src/styles/Theme';
 import useThemeMode from '@hooks/Theme';
 
 function App(): ReactElement {
@@ -10,9 +10,9 @@ function App(): ReactElement {
 
 	return (
 		<ThemeProvider theme={theme}>
-			<CSSReset />
-			<GlobalFonts />
-			<GlobalStyles />
+			<Global.CSSReset />
+			<Global.GlobalFonts />
+			<Global.GlobalStyles />
 			<p>Hello, world!</p>
 		</ThemeProvider>
 	);
