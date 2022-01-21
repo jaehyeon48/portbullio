@@ -12,7 +12,7 @@ test('Navbar layout test on light theme', () => {
 	);
 
 	const navbarContainer = screen.getByRole('complementary');
-	const mainLogoImg = screen.getByAltText('main logo');
+	const mainLogoImg = screen.getByAltText(`main logo light`);
 	const navbarIcons = screen.getAllByLabelText('icon');
 
 	expect(navbarContainer).toHaveStyle(`background-color: ${lightTheme.navbar.bgColor}`);
@@ -28,7 +28,7 @@ test('Navbar layout test on dark theme', () => {
 	);
 
 	const navbarContainer = screen.getByRole('complementary');
-	const mainLogoImg = screen.getByAltText('main logo');
+	const mainLogoImg = screen.getByAltText('main logo dark');
 	const navbarIcons = screen.getAllByLabelText('icon');
 
 	expect(navbarContainer).toHaveStyle(`background-color: ${darkTheme.navbar.bgColor}`);
