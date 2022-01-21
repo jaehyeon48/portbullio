@@ -10,6 +10,7 @@ export default {
 		'@constants': '<rootDir>/src/constants/index.ts',
 		'@types': '<rootDir>/src/types/index.ts',
 		'@styles(.*)$': '<rootDir>/src/styles$1',
-		'@hooks(.*)$': '<rootDir>/src/hooks$1'
+		'@hooks(.*)$': '<rootDir>/src/hooks$1',
+		'@api(.*)$': '<rootDir>/src/api$1'
 	}
 };
