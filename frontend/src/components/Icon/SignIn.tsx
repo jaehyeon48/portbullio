@@ -3,7 +3,7 @@ import { IconProps } from '@types';
 
 export default function SignIn({ width = 40, height = 40, fill = 'primary' }: IconProps) {
 	return (
-		<SVG width={width} height={height} viewBox="0 0 40 40" fill={fill}>
+		<SVG width={width} height={height} viewBox="0 0 40 40" fill={fill} ariaLabel="icon">
 			<path
 				fillRule="evenodd"
 				clipRule="evenodd"
