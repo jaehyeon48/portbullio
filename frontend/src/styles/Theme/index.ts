@@ -11,6 +11,10 @@ export const lightTheme: DefaultTheme = {
 	base: {
 		bgColor: '#F8F9FA',
 		textColor: '#000'
+	},
+	navbar: {
+		bgColor: '#FFF',
+		textColor: '#000'
 	}
 };
 
@@ -19,6 +23,10 @@ export const darkTheme: DefaultTheme = {
 	colors,
 	base: {
 		bgColor: '#1A1C34',
+		textColor: '#FFF'
+	},
+	navbar: {
+		bgColor: '#222338',
 		textColor: '#FFF'
 	}
 };

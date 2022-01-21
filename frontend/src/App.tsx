@@ -3,6 +3,7 @@ import { ThemeProvider } from 'styled-components';
 import * as Global from '@styles/Global';
 import { lightTheme, darkTheme } from '@src/styles/Theme';
 import useThemeMode from '@hooks/Theme';
+import Navbar from '@components/Navbar';
 
 function App(): ReactElement {
 	const [themeMode] = useThemeMode();
@@ -13,6 +14,7 @@ function App(): ReactElement {
 			<Global.CSSReset />
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />
+			<Navbar />
 			<p>Hello, world!</p>
 		</ThemeProvider>
 	);

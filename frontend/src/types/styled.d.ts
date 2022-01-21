@@ -9,5 +9,9 @@ declare module 'styled-components' {
 			bgColor: string;
 			textColor: string;
 		};
+		navbar: {
+			bgColor: string;
+			textColor: string;
+		};
 	}
 }
