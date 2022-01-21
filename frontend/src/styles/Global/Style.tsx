@@ -6,4 +6,8 @@ export default createGlobalStyle`
     background-color: ${({ theme }) => theme.base.bgColor};
     color: ${({ theme }) => theme.base.textColor};
   }
+
+  #root {
+    display: flex;
+  }
 `;
