@@ -18,7 +18,8 @@ export default {
 			'@styles': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'styles'),
 			'@hooks': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'hooks'),
 			'@types': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'types', 'index.ts'),
-			'@api': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'api')
+			'@api': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'api'),
+			'@utils': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'utils')
 		}
 	},
 	module: {
