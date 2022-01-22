@@ -48,6 +48,7 @@
     "@typescript-eslint/no-use-before-define": "off",
     "no-restricted-exports": "off",
     "react/require-default-props": "off",
-    "@typescript-eslint/no-empty-interface": "off"
+    "@typescript-eslint/no-empty-interface": "off",
+    "func-names": "off"
   }
 }
