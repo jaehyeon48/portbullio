@@ -11,8 +11,8 @@
       "@assets/*": [
         "src/assets/*"
       ],
-      "@constants/*": [
-        "src/constants/*"
+      "@constants": [
+        "src/constants/index.ts"
       ],
       "@styles/*": [
         "src/styles/*"
