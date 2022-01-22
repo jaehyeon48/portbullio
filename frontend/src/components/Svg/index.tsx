@@ -1,6 +1,6 @@
 import { SVGProps } from 'react';
 import styled from 'styled-components';
-import { Colors } from '@types';
+import { getColor } from '@utils';
 
 interface Props {
 	width: number;
@@ -20,7 +20,7 @@ interface SvgStyleProps {
 const Svg = styled.svg<SvgStyleProps>`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
-	fill: ${({ fill, theme }) => theme.colors[fill as keyof Colors] ?? fill};
+	fill: ${({ fill, theme }) => getColor(theme, fill) ?? fill};
 `;
 
 export default function SVG({ width, height, fill, viewBox, children, ariaLabel }: Props) {

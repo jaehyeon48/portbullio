@@ -1,8 +1,10 @@
 export type Theme = 'light' | 'dark';
 
-export interface Colors {
+export interface GlobalColors {
 	primary: string;
 }
+
+export interface ThemeColors {}
 
 export interface IconProps {
 	width?: number;

@@ -1,16 +1,20 @@
 import { DefaultTheme } from 'styled-components';
-import { Colors } from '@types';
+import { GlobalColors, ThemeColors } from '@types';
 
-const colors: Colors = {
+const globalColors: GlobalColors = {
 	primary: '#12B886'
 };
 
+const lightThemeColors: ThemeColors = {};
+const darkThemeColors: ThemeColors = {};
+
 export const lightTheme: DefaultTheme = {
 	currentTheme: 'light',
-	colors,
+	globalColors,
 	base: {
 		bgColor: '#F8F9FA',
-		textColor: '#000'
+		textColor: '#000',
+		colors: lightThemeColors
 	},
 	navbar: {
 		bgColor: '#FFF',
@@ -20,10 +24,11 @@ export const lightTheme: DefaultTheme = {
 
 export const darkTheme: DefaultTheme = {
 	currentTheme: 'dark',
-	colors,
+	globalColors,
 	base: {
 		bgColor: '#1A1C34',
-		textColor: '#FFF'
+		textColor: '#FFF',
+		colors: darkThemeColors
 	},
 	navbar: {
 		bgColor: '#222338',
