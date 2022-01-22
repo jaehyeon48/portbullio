@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { flexMixin } from '@src/styles/mixins';
+import { navbarWidth } from '@constants';
 
 export const Container = styled.aside`
 	display: flex;
@@ -7,7 +8,7 @@ export const Container = styled.aside`
 	position: sticky;
 	top: 0;
 	background-color: ${({ theme }) => theme.navbar.bgColor};
-	width: 86px;
+	width: ${navbarWidth}px;
 	height: 100vh;
 `;
 
