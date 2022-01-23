@@ -14,5 +14,9 @@ declare module 'styled-components' {
 			bgColor: string;
 			textColor: string;
 		};
+		card: {
+			bgColor: string;
+			boxShadow: string;
+		};
 	}
 }

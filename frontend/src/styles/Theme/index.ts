@@ -19,6 +19,10 @@ export const lightTheme: DefaultTheme = {
 	navbar: {
 		bgColor: '#FFF',
 		textColor: '#000'
+	},
+	card: {
+		bgColor: '#FFF',
+		boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.1)'
 	}
 };
 
@@ -33,5 +37,9 @@ export const darkTheme: DefaultTheme = {
 	navbar: {
 		bgColor: '#222338',
 		textColor: '#FFF'
+	},
+	card: {
+		bgColor: '#26273B',
+		boxShadow: 'none'
 	}
 };
