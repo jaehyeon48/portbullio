@@ -1,6 +1,6 @@
 import { useTheme } from 'styled-components';
-import mainLogoLight from '@assets/images/navbar_main_logo_light.png';
-import mainLogoDark from '@assets/images/navbar_main_logo_dark.png';
+import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
+import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
 import * as Nav from './style';
 
