@@ -6,3 +6,4 @@ export { default as CoinsOnHand } from './CoinsOnHand';
 export { default as Settings } from './Settings';
 export { default as SignIn } from './SignIn';
 export { default as SignOut } from './SignOut';
+export { default as Times } from './Times';
