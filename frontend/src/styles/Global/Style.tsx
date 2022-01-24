@@ -11,4 +11,9 @@ export default createGlobalStyle`
   #root {
     ${flexMixin}
   }
+
+  #modal-root {
+    position:absolute;
+    z-index: 999;
+  }
 `;
