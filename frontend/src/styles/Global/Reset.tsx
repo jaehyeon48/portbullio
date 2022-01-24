@@ -34,5 +34,6 @@ export default createGlobalStyle`
   }
   dialog {
     display: block;
+    border: none;
   }
 `;
