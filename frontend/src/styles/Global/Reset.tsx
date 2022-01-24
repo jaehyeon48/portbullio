@@ -32,4 +32,7 @@ export default createGlobalStyle`
   #root {
     isolation: isolate;
   }
+  dialog {
+    display: block;
+  }
 `;
