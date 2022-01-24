@@ -18,5 +18,8 @@ declare module 'styled-components' {
 			bgColor: string;
 			boxShadow: string;
 		};
+		modal: {
+			backdropBgColor: string;
+		};
 	}
 }
