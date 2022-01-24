@@ -23,6 +23,9 @@ export const lightTheme: DefaultTheme = {
 	card: {
 		bgColor: '#FFF',
 		boxShadow: '0px 0px 7px rgba(0, 0, 0, 0.1)'
+	},
+	modal: {
+		backdropBgColor: 'rgba(28, 35, 41, 0.25)'
 	}
 };
 
@@ -41,5 +44,8 @@ export const darkTheme: DefaultTheme = {
 	card: {
 		bgColor: '#26273B',
 		boxShadow: 'none'
+	},
+	modal: {
+		backdropBgColor: 'rgba(120, 122, 124, 0.35)'
 	}
 };
