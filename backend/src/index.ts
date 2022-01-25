@@ -1,18 +1,19 @@
 import express from 'express';
 import config from '@config';
-import loaders from '@loaders';
+import loaders, { logger } from '@loaders';
 
 async function startServer() {
 	const app = express();
 	await loaders({ app });
 
-	app.listen(config.port, () => {
-		console.log(`
-    ################################################
-    🚀  Server listening on port: ${config.port} 🚀
-    ################################################
-    `);
-	});
+	app
+		.listen(config.port, () => {
+			logger.info(`### Server listening on port: ${config.port} ###`);
+		})
+		.on('error', err => {
+			logger.error(err);
+			process.exit(1);
+		});
 }
 
 startServer();
