@@ -10,3 +10,12 @@
 - Recoil
 - TypeScript
 - styled-components
+
+### Backend
+
+- Node.js
+- Express.js
+- TypeScript
+- Prisma
+- MySQL
+- AWS
