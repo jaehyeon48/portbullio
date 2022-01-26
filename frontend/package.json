@@ -1,5 +1,5 @@
 {
-  "name": "Portbullio frontend",
+  "name": "portbullio-frontend",
   "version": "1.0.0",
   "description": "A stock portfolio management service",
   "main": "src/index.tsx",
