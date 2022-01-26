@@ -28,3 +28,14 @@ export const Bottom = styled.div`
 	${flexMixin}
 	height: 10%;
 `;
+
+export const IconWrapper = styled.div`
+	${flexMixin}
+	cursor: pointer;
+
+	& > p {
+		font-size: 0.7em;
+		margin-top: 0.4em;
+		color: ${({ theme }) => theme.navbar.textColor};
+	}
+`;
