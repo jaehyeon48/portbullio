@@ -14,8 +14,13 @@ const breakPoints: BreakPoints = {
 	laptop: '1536px' // 1536x864
 };
 
-const lightThemeColors: ThemeColors = {};
-const darkThemeColors: ThemeColors = {};
+const lightThemeColors: ThemeColors = {
+	gray: '#ADB5BD'
+};
+
+const darkThemeColors: ThemeColors = {
+	gray: '#CED4DA'
+};
 
 export const lightTheme: DefaultTheme = {
 	currentTheme: 'light',

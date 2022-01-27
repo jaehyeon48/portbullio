@@ -12,7 +12,9 @@ export interface BreakPoints {
 	laptop: string;
 }
 
-export interface ThemeColors {}
+export interface ThemeColors {
+	gray: string;
+}
 
 export interface IconProps {
 	width?: number;
