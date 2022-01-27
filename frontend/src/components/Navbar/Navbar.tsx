@@ -2,6 +2,8 @@ import { useTheme } from 'styled-components';
 import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
+import Button from '@components/Button';
+import { navbarIconMixin } from '@styles/mixins';
 import * as Nav from './style';
 import NavbarLink from './NavbarLink';
 
@@ -47,10 +49,10 @@ export default function Navbar() {
 				</NavbarLink>
 			</Nav.Middle>
 			<Nav.Bottom alignItems="center" justifyContent="center">
-				<button type="button">
+				<Button type="button" flex flexDirection="column" alignItems="center" css={navbarIconMixin}>
 					<Icon.SignIn />
 					<p>로그인</p>
-				</button>
+				</Button>
 			</Nav.Bottom>
 		</Nav.Container>
 	);
