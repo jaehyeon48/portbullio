@@ -1,9 +1,11 @@
 import { ReactElement } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import * as Global from '@styles/Global';
 import { lightTheme, darkTheme } from '@src/styles/Theme';
 import useThemeMode from '@hooks/Theme';
 import Navbar from '@components/Navbar';
+import HomePage from '@src/pages/Home';
 
 function App(): ReactElement {
 	const [themeMode] = useThemeMode();
@@ -15,7 +17,9 @@ function App(): ReactElement {
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />
 			<Navbar />
-			<p>Hello, world!</p>
+			<Routes>
+				<Route path="/" element={<HomePage />} />
+			</Routes>
 		</ThemeProvider>
 	);
 }
