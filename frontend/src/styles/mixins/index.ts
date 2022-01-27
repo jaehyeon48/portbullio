@@ -1,1 +1,1 @@
-export { default as flexMixin } from './flexMixin';
+export * from './flexMixin';

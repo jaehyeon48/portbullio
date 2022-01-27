@@ -36,13 +36,13 @@ type JustifyContentOptions =
 	| 'stretch'
 	| 'unset';
 
-interface FlexProps {
+export interface FlexProps {
 	flexDirection?: FlexDirectionOptions;
 	alignItems?: AlginItemsOptions;
 	justifyContent?: JustifyContentOptions;
 }
 
-export default css<FlexProps>`
+export const flexMixin = css<FlexProps>`
 	display: flex;
 	flex-direction: ${({ flexDirection }) => flexDirection ?? 'row'};
 	align-items: ${({ alignItems }) => alignItems ?? 'normal'};
