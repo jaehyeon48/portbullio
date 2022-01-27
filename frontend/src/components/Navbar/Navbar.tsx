@@ -24,10 +24,6 @@ export default function Navbar() {
 			</Nav.Top>
 			<Nav.Middle flexDirection="column" alignItems="center" justifyContent="space-evenly">
 				<NavbarIconWrapper>
-					<Icon.Home />
-					<p>홈</p>
-				</NavbarIconWrapper>
-				<NavbarIconWrapper>
 					<Icon.Dashboard />
 					<p>대시보드</p>
 				</NavbarIconWrapper>
