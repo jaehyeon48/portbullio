@@ -1,9 +1,9 @@
-import SVG from '@components/Svg';
+import SVG from '@components/SVG';
 import { IconProps } from '@types';
 
 export default function SignOut({ width = 40, height = 40, fill = 'primary' }: IconProps) {
 	return (
-		<SVG width={width} height={height} viewBox="0 0 40 40" fill={fill} ariaLabel="icon">
+		<SVG width={width} height={height} viewBox="0 0 40 40" fill={fill} aria-label="icon">
 			<path
 				fillRule="evenodd"
 				clipRule="evenodd"
