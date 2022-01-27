@@ -3,7 +3,7 @@ import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
 import * as Nav from './style';
-import NavbarIconWrapper from './NavbarIconWrapper';
+import NavbarLink from './NavbarLink';
 
 const navbarLogoWidth = 76;
 const navbarLogoHeight = 50;
@@ -15,40 +15,42 @@ export default function Navbar() {
 	return (
 		<Nav.Container>
 			<Nav.Top alignItems="center" justifyContent="center">
-				<img
-					src={logoSrc}
-					alt={`main logo ${currentTheme}`}
-					width={navbarLogoWidth}
-					height={navbarLogoHeight}
-				/>
+				<NavbarLink to="/">
+					<img
+						src={logoSrc}
+						alt={`main logo ${currentTheme}`}
+						width={navbarLogoWidth}
+						height={navbarLogoHeight}
+					/>
+				</NavbarLink>
 			</Nav.Top>
 			<Nav.Middle flexDirection="column" alignItems="center" justifyContent="space-evenly">
-				<NavbarIconWrapper>
+				<NavbarLink to="/dashboard">
 					<Icon.Dashboard />
 					<p>대시보드</p>
-				</NavbarIconWrapper>
-				<NavbarIconWrapper>
+				</NavbarLink>
+				<NavbarLink to="/portfolios">
 					<Icon.List />
 					<p>내 포트폴리오</p>
-				</NavbarIconWrapper>
-				<NavbarIconWrapper>
+				</NavbarLink>
+				<NavbarLink to="/cash">
 					<Icon.Coins />
 					<p>현금</p>
-				</NavbarIconWrapper>
-				<NavbarIconWrapper>
+				</NavbarLink>
+				<NavbarLink to="/dividend">
 					<Icon.CoinsOnHand />
 					<p>배당</p>
-				</NavbarIconWrapper>
-				<NavbarIconWrapper>
+				</NavbarLink>
+				<NavbarLink to="/settings">
 					<Icon.Settings />
 					<p>설정</p>
-				</NavbarIconWrapper>
+				</NavbarLink>
 			</Nav.Middle>
 			<Nav.Bottom alignItems="center" justifyContent="center">
-				<NavbarIconWrapper>
+				<button type="button">
 					<Icon.SignIn />
 					<p>로그인</p>
-				</NavbarIconWrapper>
+				</button>
 			</Nav.Bottom>
 		</Nav.Container>
 	);

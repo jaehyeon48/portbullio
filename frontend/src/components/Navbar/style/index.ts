@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { flexMixin } from '@src/styles/mixins';
 import { navbarWidth } from '@constants';
 
@@ -33,15 +34,30 @@ export const Bottom = styled.div`
 	height: 12%;
 `;
 
-export const IconWrapper = styled.div`
+export const NavLinkWrapper = styled(NavLink)`
 	${flexMixin}
-	cursor: pointer;
+	flex-direction: column;
+	align-items: center;
 	transform: scale(0.9);
+	text-decoration: none;
 
 	& > p {
 		margin-top: 0.4em;
 		font-size: 12px;
 		color: ${({ theme }) => theme.navbar.textColor};
+	}
+
+	& > svg {
+		fill: ${({ theme }) => theme.base.colors.gray};
+	}
+
+	&.active {
+		& > p {
+			color: ${({ theme }) => theme.globalColors.primary};
+		}
+		& > svg {
+			fill: ${({ theme }) => theme.globalColors.primary};
+		}
 	}
 
 	@media screen and (max-width: ${({ theme }) => theme.breakPoints.laptop}) {
