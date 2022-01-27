@@ -5,7 +5,7 @@ import Card from '../Card';
 test('Card component layout on light theme', () => {
 	render(
 		<CustomWrapper theme={lightTheme}>
-			<Card width="123px" height="456px" ariaLabel="card component test">
+			<Card width="123px" height="456px" aria-label="card component test">
 				<div />
 			</Card>
 		</CustomWrapper>
@@ -21,7 +21,7 @@ test('Card component layout on light theme', () => {
 test('Card component layout on dark theme', () => {
 	render(
 		<CustomWrapper theme={darkTheme}>
-			<Card ariaLabel="card component test">
+			<Card aria-label="card component test">
 				<div />
 			</Card>
 		</CustomWrapper>

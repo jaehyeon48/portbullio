@@ -1,17 +1,18 @@
-import { ReactNode } from 'react';
-import Card from './style';
+import styled from 'styled-components';
 
-interface Props {
-	width?: string;
-	height?: string;
-	ariaLabel?: string;
-	children: ReactNode;
+interface CardStyleProps {
+	width?: string | number;
+	height?: string | number;
 }
 
-export default function ({ children, width, height, ariaLabel }: Props) {
-	return (
-		<Card _width={width} _height={height} aria-label={ariaLabel}>
-			{children}
-		</Card>
-	);
-}
+const Card = styled.div<CardStyleProps>`
+	position: relative;
+	background-color: ${({ theme }) => theme.card.bgColor};
+	color: ${({ theme }) => theme.base.textColor};
+	border-radius: 8px;
+	box-shadow: ${({ theme }) => theme.card.boxShadow};
+	width: ${({ width }) => width ?? '100%'};
+	height: ${({ height }) => height ?? '100%'};
+`;
+
+export default Card;
