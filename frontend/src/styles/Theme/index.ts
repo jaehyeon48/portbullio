@@ -1,8 +1,17 @@
 import { DefaultTheme } from 'styled-components';
-import { GlobalColors, ThemeColors } from '@types';
+import { BreakPoints, GlobalColors, ThemeColors } from '@types';
 
 const globalColors: GlobalColors = {
 	primary: '#12B886'
+};
+
+// 해상도 break point는 https://gs.statcounter.com/screen-resolution-stats/ 참조하였음.
+const breakPoints: BreakPoints = {
+	mobile: '414px', // 414x736
+	mobileLandscape: '640px', // 640x360(360x640)
+	tablet: '810px', // 810x1080
+	tabletLandscape: '1280px', // 1280x800(800x1280)
+	laptop: '1536px' // 1536x864
 };
 
 const lightThemeColors: ThemeColors = {};
@@ -11,6 +20,7 @@ const darkThemeColors: ThemeColors = {};
 export const lightTheme: DefaultTheme = {
 	currentTheme: 'light',
 	globalColors,
+	breakPoints,
 	base: {
 		bgColor: '#F8F9FA',
 		textColor: '#000',
@@ -32,6 +42,7 @@ export const lightTheme: DefaultTheme = {
 export const darkTheme: DefaultTheme = {
 	currentTheme: 'dark',
 	globalColors,
+	breakPoints,
 	base: {
 		bgColor: '#1A1C34',
 		textColor: '#FFF',

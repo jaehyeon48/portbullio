@@ -1,9 +1,10 @@
 import 'styled-components';
-import { Theme, GlobalColors, ThemeColors } from '@types';
+import { Theme, BreakPoints, GlobalColors, ThemeColors } from '@types';
 
 declare module 'styled-components' {
 	export interface DefaultTheme {
 		currentTheme: Theme;
+		breakPoints: BreakPoints;
 		globalColors: GlobalColors;
 		base: {
 			bgColor: string;
