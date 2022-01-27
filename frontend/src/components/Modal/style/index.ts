@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Card from '@components/Card/style';
+import Card from '@components/Card';
 import { flexMixin } from '@styles/mixins';
 
 export const ModalBackdrop = styled.div`
