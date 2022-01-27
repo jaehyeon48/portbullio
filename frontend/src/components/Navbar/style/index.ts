@@ -13,29 +13,46 @@ export const Container = styled.aside`
 `;
 
 export const Top = styled.div`
+	position: relative;
 	${flexMixin}
-	height: 10%;
-	margin: 0.5em 0 0;
+	height: 13%;
+
+	& > img {
+		position: absolute;
+		top: 24px;
+	}
 `;
 
 export const Middle = styled.div`
 	${flexMixin}
-	height: 80%;
-	margin: 6em 0;
+	height: 85%;
 `;
 
 export const Bottom = styled.div`
 	${flexMixin}
-	height: 10%;
+	height: 12%;
 `;
 
 export const IconWrapper = styled.div`
 	${flexMixin}
 	cursor: pointer;
+	transform: scale(0.9);
 
 	& > p {
-		font-size: 0.7em;
 		margin-top: 0.4em;
+		font-size: 12px;
 		color: ${({ theme }) => theme.navbar.textColor};
+	}
+
+	@media screen and (max-width: ${({ theme }) => theme.breakPoints.laptop}) {
+		& > svg {
+			transform: scale(0.85);
+		}
+	}
+
+	@media screen and (max-width: ${({ theme }) => theme.breakPoints.tabletLandscape}) {
+		& > svg {
+			transform: scale(0.8);
+		}
 	}
 `;
