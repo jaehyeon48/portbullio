@@ -20,6 +20,8 @@ export default function Modal({ children, closeFunction }: Props) {
 				<CloseButtonWrap>
 					<Button
 						type="button"
+						width="auto"
+						height="auto"
 						aria-label="Close modal button"
 						onClick={e => closeFunction(e, false)}
 					>

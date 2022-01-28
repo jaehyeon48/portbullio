@@ -20,5 +20,12 @@ export const ModalContentWrap = styled(Card)`
 
 export const CloseButtonWrap = styled.div`
 	position: relative;
+	padding: 1.3em 0;
 	width: 100%;
+
+	& > button {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
 `;
