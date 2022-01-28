@@ -1,9 +1,8 @@
 import { useState, SyntheticEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
+import { useTheme } from 'styled-components';
 import AppProviders from '@components/AppProviders';
 import Modal from '@components/Modal';
-import useThemeMode from '@hooks/Theme';
-import { lightTheme, darkTheme } from '@styles/Theme';
 
 type OpenModalFn = (e: SyntheticEvent, children: ReactNode) => void;
 type SetterFn = (e: SyntheticEvent) => void;
@@ -18,8 +17,7 @@ interface UseModalReturnType {
 export function useModal(): UseModalReturnType {
 	const modalRootElem = document.getElementById('modal-root') as Element;
 	const [isOpen, setIsOpen] = useState(false);
-	const [themeMode] = useThemeMode();
-	const theme = themeMode === 'light' ? lightTheme : darkTheme;
+	const theme = useTheme();
 
 	const closeModal = (e: SyntheticEvent) => {
 		e.stopPropagation();
