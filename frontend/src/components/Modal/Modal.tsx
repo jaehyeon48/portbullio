@@ -1,5 +1,6 @@
 import { ReactNode, SyntheticEvent } from 'react';
 import { Times } from '@components/Icon';
+import Button from '@components/Button';
 import { ModalBackdrop, ModalContentWrap, CloseButtonWrap } from './style';
 
 interface Props {
@@ -17,9 +18,9 @@ export default function Modal({ children, closeFunction }: Props) {
 		>
 			<ModalContentWrap as="dialog" width="fit-content" height="fit-content" aria-label="Modal">
 				<CloseButtonWrap>
-					<button type="button" aria-label="Close modal button" onClick={closeFunction}>
+					<Button type="button" aria-label="Close modal button" onClick={closeFunction}>
 						<Times />
-					</button>
+					</Button>
 				</CloseButtonWrap>
 				{children}
 			</ModalContentWrap>
