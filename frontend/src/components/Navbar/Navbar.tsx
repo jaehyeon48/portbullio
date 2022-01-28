@@ -1,8 +1,11 @@
+import { SyntheticEvent } from 'react';
 import { useTheme } from 'styled-components';
 import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
 import Button from '@components/Button';
+import AuthPage from '@pages/Auth';
+import { useModal } from '@hooks/Modal';
 import { navbarIconMixin } from '@styles/mixins';
 import * as Nav from './style';
 import NavbarLink from './NavbarLink';
@@ -11,8 +14,13 @@ const navbarLogoWidth = 76;
 const navbarLogoHeight = 50;
 
 export default function Navbar() {
+	const { openModal } = useModal();
 	const { currentTheme } = useTheme();
 	const logoSrc = currentTheme === 'light' ? mainLogoLight : mainLogoDark;
+
+	function handleOpenModal(e: SyntheticEvent) {
+		openModal(e, <AuthPage />);
+	}
 
 	return (
 		<Nav.Container>
@@ -49,7 +57,14 @@ export default function Navbar() {
 				</NavbarLink>
 			</Nav.Middle>
 			<Nav.Bottom alignItems="center" justifyContent="center">
-				<Button type="button" flex flexDirection="column" alignItems="center" css={navbarIconMixin}>
+				<Button
+					type="button"
+					flex
+					flexDirection="column"
+					alignItems="center"
+					css={navbarIconMixin}
+					onClick={handleOpenModal}
+				>
 					<Icon.SignIn />
 					<p>로그인</p>
 				</Button>
