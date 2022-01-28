@@ -5,7 +5,7 @@ import { ModalBackdrop, ModalContentWrap, CloseButtonWrap } from './style';
 
 interface Props {
 	children: ReactNode;
-	closeFunction: (e: SyntheticEvent) => void;
+	closeFunction: (e: SyntheticEvent, stopBubble?: boolean) => void;
 }
 
 export default function Modal({ children, closeFunction }: Props) {
@@ -18,7 +18,11 @@ export default function Modal({ children, closeFunction }: Props) {
 		>
 			<ModalContentWrap as="dialog" width="fit-content" height="fit-content" aria-label="Modal">
 				<CloseButtonWrap>
-					<Button type="button" aria-label="Close modal button" onClick={closeFunction}>
+					<Button
+						type="button"
+						aria-label="Close modal button"
+						onClick={e => closeFunction(e, false)}
+					>
 						<Times />
 					</Button>
 				</CloseButtonWrap>
