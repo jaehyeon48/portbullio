@@ -10,5 +10,6 @@ if (envFound.error) {
 }
 
 export default {
-	port: Number(process.env.PORT)
+	port: Number(process.env.PORT),
+	origin: process.env.ORIGIN
 };
