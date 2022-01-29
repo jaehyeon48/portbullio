@@ -14,7 +14,8 @@ export default merge(common, {
 		port: 8080,
 		hot: true,
 		compress: true,
-		open: true
+		open: true,
+		https: true
 	},
 	plugins: [
 		new DotenvWebpackPlugin({
