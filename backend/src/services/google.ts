@@ -32,7 +32,7 @@ export async function getAccessToken(code: string): Promise<string> {
 		return accessToken as string;
 	} catch (error) {
 		const err = error as AxiosError;
-		logger.error(`${err.response?.status}: ${err.response?.data}`);
+		logger.error(`${err.response?.status}: ${JSON.stringify(err.response?.data)}`);
 		throw err;
 	}
 }
@@ -46,7 +46,7 @@ export async function getUserProfile(accessToken: string): Promise<GoogleUserPro
 		return data;
 	} catch (error) {
 		const err = error as AxiosError;
-		logger.error(`${err.response?.status}: ${err.response?.data}`);
+		logger.error(`${err.response?.status}: ${JSON.stringify(err.response?.data)}`);
 		throw err;
 	}
 }
