@@ -17,7 +17,7 @@
       "@types": [
         "src/types.ts"
       ],
-      "@services*": [
+      "@services/*": [
         "src/services/*"
       ],
     }
