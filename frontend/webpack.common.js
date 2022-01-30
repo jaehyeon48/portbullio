@@ -25,7 +25,8 @@ export default {
 			'@hooks': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'hooks'),
 			'@types': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'types', 'index.ts'),
 			'@api': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'api'),
-			'@utils': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'utils')
+			'@utils': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'utils'),
+			'@configs': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'configs')
 		}
 	},
 	module: {

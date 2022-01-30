@@ -13,6 +13,7 @@ export default {
 		'@styles(.*)$': '<rootDir>/src/styles$1',
 		'@hooks(.*)$': '<rootDir>/src/hooks$1',
 		'@api(.*)$': '<rootDir>/src/api$1',
-		'@utils(.*)$': '<rootDir>/src/utils$1'
+		'@utils(.*)$': '<rootDir>/src/utils$1',
+		'@configs(.*)$': '<rootDir>/src/configs$1'
 	}
 };
