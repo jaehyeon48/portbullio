@@ -23,7 +23,7 @@ model User {
 }
 
 model UserAuthId {
-  authId   String       @map("auth_id") @db.VarChar(128)
+  authId   String       @map("auth_id") @db.VarChar(255)
   authType UserAuthType @map("auth_type")
   userId   Int          @map("user_id")
   user     User         @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_user_auth_id_user_user_id")
