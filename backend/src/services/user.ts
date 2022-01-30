@@ -32,6 +32,22 @@ export async function isUserExist(authId: AuthId, authType: AuthType): Promise<b
 	}
 }
 
+export async function getUserId(authId: AuthId, authType: AuthType): Promise<number> {
+	try {
+		const { userId } = (await prisma.userAuthId.findFirst({
+			where: {
+				authId: String(authId),
+				authType
+			}
+		})) ?? { userId: -1 };
+
+		return userId;
+	} catch (error) {
+		logger.error(error);
+		throw error;
+	}
+}
+
 export async function createNewUser({
 	authId,
 	authType,
