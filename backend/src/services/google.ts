@@ -2,13 +2,9 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import envConfig from '@config';
 import { logger } from '@loaders';
 
-interface GoogleUserProfile {
-	id: string;
+interface GoogleUserEmailAndName {
+	email: string;
 	name: string;
-	given_name: string;
-	family_name: string;
-	picture: string;
-	locale: string;
 }
 
 export async function getAccessToken(code: string): Promise<string> {
@@ -37,10 +33,10 @@ export async function getAccessToken(code: string): Promise<string> {
 	}
 }
 
-export async function getUserProfile(accessToken: string): Promise<GoogleUserProfile> {
+export async function getEmailAndUsername(accessToken: string): Promise<GoogleUserEmailAndName> {
 	try {
 		const { data } = await axios.get(
-			`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`
+			`https://www.googleapis.com/oauth2/v2/userinfo?fields=email,name&access_token=${accessToken}`
 		);
 
 		return data;
