@@ -17,8 +17,19 @@ model User {
   currentPortfolio  CurrentPortfolio[]
   favoriteStock     FavoriteStock[]
   portfolio         Portfolio[]
+  userAuthId        UserAuthId[]
 
   @@map("user")
+}
+
+model UserAuthId {
+  authId   Int          @map("auth_id")
+  authType UserAuthType @map("auth_type")
+  userId   Int          @map("user_id")
+  user     User         @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_user_auth_id_user_user_id")
+
+  @@map("user_auth_id")
+  @@id([authId, authType])
 }
 
 model Portfolio {
