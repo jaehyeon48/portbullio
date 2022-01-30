@@ -40,7 +40,7 @@ export async function getAccessToken(code: string): Promise<string> {
 export async function getUserProfile(accessToken: string): Promise<GoogleUserProfile> {
 	try {
 		const { data } = await axios.get(
-			`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=1${accessToken}`
+			`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`
 		);
 
 		return data;
