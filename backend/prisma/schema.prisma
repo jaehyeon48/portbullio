@@ -10,7 +10,7 @@ datasource db {
 model User {
   id                Int                 @id @default(autoincrement()) @map("user_id")
   authType          UserAuthType        @map("auth_type")
-  username          String              @db.VarChar(10)
+  username          String              @db.VarChar(30)
   avatar            String?             @db.VarChar(41)
   currency          String              @db.Char(3)
   createdAt         DateTime            @default(now()) @db.Timestamp(0) @map("created_at")
