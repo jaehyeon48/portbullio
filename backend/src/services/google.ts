@@ -23,7 +23,7 @@ export async function getAccessToken(code: string): Promise<string> {
 		}
 	};
 
-	const url = `https://oauth2.googleapis.com/token?client_id=${clientId}&client_secret=1${clientSecret}&code=${code}&grant_type=authorization_code&redirect_uri=${baseRedirectURI}/google/callback`;
+	const url = `https://oauth2.googleapis.com/token?client_id=${clientId}&client_secret=${clientSecret}&code=${code}&grant_type=authorization_code&redirect_uri=${baseRedirectURI}/google/callback`;
 
 	try {
 		const {
@@ -40,7 +40,7 @@ export async function getAccessToken(code: string): Promise<string> {
 export async function getUserProfile(accessToken: string): Promise<GoogleUserProfile> {
 	try {
 		const { data } = await axios.get(
-			`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=${accessToken}`
+			`https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=1${accessToken}`
 		);
 
 		return data;
