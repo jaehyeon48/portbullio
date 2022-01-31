@@ -12,6 +12,7 @@ if (envFound.error) {
 export default {
 	port: Number(process.env.PORT),
 	origin: process.env.ORIGIN,
+	sessionServerURL: process.env.SESSION_SERVER_URL,
 	oauth: {
 		baseRedirectURI: process.env.BASE_REDIRECT_URI,
 		google: {
