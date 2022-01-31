@@ -53,7 +53,7 @@ export async function createNewUser({
 	authType,
 	username,
 	currency = 'krw'
-}: NewUserProps) {
+}: NewUserProps): Promise<number> {
 	try {
 		const { id: newUserId } = await prisma.user.create({
 			data: {
@@ -64,6 +64,7 @@ export async function createNewUser({
 		});
 
 		await createNewUserAuthId({ authId, authType, userId: newUserId });
+		return newUserId;
 	} catch (error) {
 		logger.error(error);
 		throw error;
