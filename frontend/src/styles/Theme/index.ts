@@ -15,11 +15,13 @@ const breakPoints: BreakPoints = {
 };
 
 const lightThemeColors: ThemeColors = {
-	gray: '#ADB5BD'
+	gray: '#ADB5BD',
+	darkGray: '#53585E'
 };
 
 const darkThemeColors: ThemeColors = {
-	gray: '#CED4DA'
+	gray: '#CED4DA',
+	darkGray: '#62626D'
 };
 
 export const lightTheme: DefaultTheme = {
@@ -41,6 +43,9 @@ export const lightTheme: DefaultTheme = {
 	},
 	modal: {
 		backdropBgColor: 'rgba(28, 35, 41, 0.25)'
+	},
+	input: {
+		labelColor: '#5B5B5B'
 	}
 };
 
@@ -63,5 +68,8 @@ export const darkTheme: DefaultTheme = {
 	},
 	modal: {
 		backdropBgColor: 'rgba(120, 122, 124, 0.35)'
+	},
+	input: {
+		labelColor: '#BABABA'
 	}
 };
