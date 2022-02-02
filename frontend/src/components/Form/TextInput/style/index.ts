@@ -10,6 +10,13 @@ export const StyledTextInput = styled.input`
 	border-radius: 4px;
 	color: ${({ theme }) => theme.base.textColor};
 	padding: 1.8em 0.5em 0.15em;
+
+	&:focus {
+		border-color: ${({ theme }) => theme.base.colors.blue};
+		box-shadow: 0 0 ${({ theme }) => (theme.currentTheme === 'light' ? '3' : '5')}px
+			${({ theme }) => theme.base.colors.blue};
+		outline: 1px solid ${({ theme }) => theme.base.colors.blue};
+	}
 `;
 
 export const StyledTextLabel = styled.label`
@@ -17,4 +24,8 @@ export const StyledTextLabel = styled.label`
 	color: ${({ theme }) => theme.input.labelColor};
 	top: 0.2em;
 	left: 0.5em;
+
+	${StyledTextInput}:focus + & {
+		color: ${({ theme }) => theme.base.colors.blue};
+	}
 `;

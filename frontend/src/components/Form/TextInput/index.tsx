@@ -22,7 +22,6 @@ export default function TextInput({
 }: Props) {
 	return (
 		<TextInputContainer>
-			<StyledTextLabel htmlFor={htmlFor}>{labelName}</StyledTextLabel>
 			<StyledTextInput
 				id={htmlFor}
 				type={type}
@@ -30,6 +29,7 @@ export default function TextInput({
 				onChange={handleChange}
 				readOnly={readOnly}
 			/>
+			<StyledTextLabel htmlFor={htmlFor}>{labelName}</StyledTextLabel>
 		</TextInputContainer>
 	);
 }

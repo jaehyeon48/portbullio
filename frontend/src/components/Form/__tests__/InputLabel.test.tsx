@@ -1,4 +1,4 @@
-import { render, screen, CustomWrapper } from '@api/testingLibrary';
+import { render, screen, CustomWrapper, userEvent } from '@api/testingLibrary';
 import { lightTheme, darkTheme } from '@styles/Theme';
 import TextInput from '../TextInput';
 
