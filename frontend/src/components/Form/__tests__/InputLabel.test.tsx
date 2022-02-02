@@ -1,4 +1,4 @@
-import { render, screen, CustomWrapper, userEvent } from '@api/testingLibrary';
+import { render, screen, CustomWrapper } from '@api/testingLibrary';
 import { lightTheme, darkTheme } from '@styles/Theme';
 import TextInput from '../TextInput';
 
@@ -26,4 +26,17 @@ test('TextInput component layout on dark theme', () => {
 	expect(textInput).toHaveStyle('color: #FFF');
 	expect(textInput).toHaveStyle('background-color: #323645');
 	expect(textInput).toHaveStyle('border: 1px solid #62626D');
+});
+
+test('TextInput component layout on error', () => {
+	render(
+		<CustomWrapper theme={lightTheme}>
+			<TextInput htmlFor="test-input" labelName="test" isError />
+		</CustomWrapper>
+	);
+
+	const textInput = screen.getByRole('textbox', { name: 'test' });
+	const label = screen.getByText('test');
+	expect(textInput).toHaveStyle('border: 1px solid #FA5252');
+	expect(label).toHaveStyle('color: #FA5252');
 });

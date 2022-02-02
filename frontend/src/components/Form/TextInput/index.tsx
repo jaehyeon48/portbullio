@@ -1,4 +1,5 @@
 import { ChangeEventHandler } from 'react';
+import { ExclamationMark } from '@components/Icon';
 import { TextInputContainer, StyledTextInput, StyledTextLabel } from './style';
 
 type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
@@ -10,6 +11,7 @@ interface Props {
 	value?: string | number;
 	readOnly?: boolean;
 	handleChange?: ChangeEventHandler;
+	isError?: boolean;
 }
 
 export default function TextInput({
@@ -18,7 +20,8 @@ export default function TextInput({
 	labelName,
 	value,
 	readOnly = false,
-	handleChange
+	handleChange,
+	isError
 }: Props) {
 	return (
 		<TextInputContainer>
@@ -28,8 +31,12 @@ export default function TextInput({
 				value={value}
 				onChange={handleChange}
 				readOnly={readOnly}
+				isError={isError}
 			/>
-			<StyledTextLabel htmlFor={htmlFor}>{labelName}</StyledTextLabel>
+			<StyledTextLabel htmlFor={htmlFor} isError={isError}>
+				{labelName}
+			</StyledTextLabel>
+			{isError && <ExclamationMark fill="red" />}
 		</TextInputContainer>
 	);
 }

@@ -1,12 +1,24 @@
 import styled from 'styled-components';
 
+interface StyledTextInputProp {
+	isError?: boolean;
+}
+
 export const TextInputContainer = styled.div`
 	position: relative;
+	width: fit-content;
+
+	& > svg {
+		position: absolute;
+		top: 0.48em;
+		right: 0.3em;
+	}
 `;
 
-export const StyledTextInput = styled.input`
+export const StyledTextInput = styled.input<StyledTextInputProp>`
 	background-color: ${({ theme }) => theme.input.backgroundColor};
-	border: 1px solid ${({ theme }) => theme.base.colors.darkGray};
+	border: 1px solid
+		${({ theme, isError }) => (isError ? theme.base.colors.red : theme.base.colors.darkGray)};
 	border-radius: 4px;
 	color: ${({ theme }) => theme.base.textColor};
 	padding: 1.8em 0.5em 0.15em;
@@ -19,9 +31,9 @@ export const StyledTextInput = styled.input`
 	}
 `;
 
-export const StyledTextLabel = styled.label`
+export const StyledTextLabel = styled.label<StyledTextInputProp>`
 	position: absolute;
-	color: ${({ theme }) => theme.input.labelColor};
+	color: ${({ theme, isError }) => (isError ? theme.base.colors.red : theme.input.labelColor)};
 	top: 0.2em;
 	left: 0.5em;
 
