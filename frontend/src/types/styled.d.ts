@@ -22,5 +22,8 @@ declare module 'styled-components' {
 		modal: {
 			backdropBgColor: string;
 		};
+		input: {
+			labelColor: string;
+		};
 	}
 }
