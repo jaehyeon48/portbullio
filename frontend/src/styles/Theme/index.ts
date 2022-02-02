@@ -49,7 +49,8 @@ export const lightTheme: DefaultTheme = {
 		backdropBgColor: 'rgba(28, 35, 41, 0.25)'
 	},
 	input: {
-		labelColor: '#5B5B5B'
+		labelColor: '#5B5B5B',
+		backgroundColor: '#FFF'
 	}
 };
 
@@ -74,6 +75,7 @@ export const darkTheme: DefaultTheme = {
 		backdropBgColor: 'rgba(120, 122, 124, 0.35)'
 	},
 	input: {
-		labelColor: '#BABABA'
+		labelColor: '#BABABA',
+		backgroundColor: '#323645'
 	}
 };

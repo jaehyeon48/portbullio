@@ -24,6 +24,7 @@ declare module 'styled-components' {
 		};
 		input: {
 			labelColor: string;
+			backgroundColor: string;
 		};
 	}
 }
