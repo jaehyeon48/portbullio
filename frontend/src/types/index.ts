@@ -17,6 +17,7 @@ export interface ThemeColors {
 	gray: string;
 	darkGray: string;
 	blue: string;
+	red: string;
 }
 
 export interface IconProps {

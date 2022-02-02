@@ -17,13 +17,15 @@ const breakPoints: BreakPoints = {
 const lightThemeColors: ThemeColors = {
 	gray: '#ADB5BD',
 	darkGray: '#53585E',
-	blue: '#0463D1'
+	blue: '#0463D1',
+	red: '#FA5252'
 };
 
 const darkThemeColors: ThemeColors = {
 	gray: '#CED4DA',
 	darkGray: '#62626D',
-	blue: '#3688EA'
+	blue: '#3688EA',
+	red: '#FF4268'
 };
 
 export const lightTheme: DefaultTheme = {
