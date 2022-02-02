@@ -23,7 +23,8 @@ export const AuthPageButtonContainer = styled.div`
 	height: 60%;
 	margin-top: 3.7em;
 
-	& > button {
+	& > a {
+		text-decoration: none;
 		align-items: center;
 		justify-content: space-evenly;
 		border-radius: 3px;
