@@ -31,12 +31,14 @@ test('TextInput component layout on dark theme', () => {
 test('TextInput component layout on error', () => {
 	render(
 		<CustomWrapper theme={lightTheme}>
-			<TextInput htmlFor="test-input" labelName="test" isError />
+			<TextInput htmlFor="test-input" labelName="test" errorLabel="error label" isError />
 		</CustomWrapper>
 	);
 
 	const textInput = screen.getByRole('textbox', { name: 'test' });
 	const label = screen.getByText('test');
+	const errorLabel = screen.getByText('error label');
 	expect(textInput).toHaveStyle('border: 1px solid #FA5252');
 	expect(label).toHaveStyle('color: #FA5252');
+	expect(errorLabel).toHaveStyle('color: #FA5252');
 });

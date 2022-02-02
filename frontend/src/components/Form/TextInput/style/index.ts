@@ -41,3 +41,16 @@ export const StyledTextLabel = styled.label<StyledTextInputProp>`
 		color: ${({ theme }) => theme.base.colors.blue};
 	}
 `;
+
+export const ErrorLabel = styled.small`
+	position: absolute;
+	color: ${({ theme }) => theme.base.colors.red};
+	left: 3px;
+	bottom: -22px;
+	font-size: 14px;
+
+	@media screen and (max-width: ${({ theme }) => theme.breakPoints.tabletLandscape}) {
+		font-size: 12px;
+		bottom: -20px;
+	}
+`;

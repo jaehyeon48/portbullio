@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
 import { ExclamationMark } from '@components/Icon';
-import { TextInputContainer, StyledTextInput, StyledTextLabel } from './style';
+import { TextInputContainer, StyledTextInput, StyledTextLabel, ErrorLabel } from './style';
 
 type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
 
@@ -8,21 +8,28 @@ interface Props {
 	htmlFor: string;
 	type?: TextInputType;
 	labelName?: string;
+	errorLabel?: string;
 	value?: string | number;
 	readOnly?: boolean;
 	handleChange?: ChangeEventHandler;
-	isError?: boolean;
+	isError?: boolean | (() => boolean);
 }
 
 export default function TextInput({
 	htmlFor,
 	type = 'text',
 	labelName,
+	errorLabel,
 	value,
 	readOnly = false,
 	handleChange,
 	isError
 }: Props) {
+	const handleError = () => {
+		if (typeof isError === 'function') return isError();
+		return isError;
+	};
+
 	return (
 		<TextInputContainer>
 			<StyledTextInput
@@ -31,12 +38,13 @@ export default function TextInput({
 				value={value}
 				onChange={handleChange}
 				readOnly={readOnly}
-				isError={isError}
+				isError={handleError()}
 			/>
-			<StyledTextLabel htmlFor={htmlFor} isError={isError}>
+			<StyledTextLabel htmlFor={htmlFor} isError={handleError()}>
 				{labelName}
 			</StyledTextLabel>
-			{isError && <ExclamationMark fill="red" />}
+			{handleError() && <ExclamationMark fill="red" />}
+			{handleError() && <ErrorLabel>{errorLabel}</ErrorLabel>}
 		</TextInputContainer>
 	);
 }
