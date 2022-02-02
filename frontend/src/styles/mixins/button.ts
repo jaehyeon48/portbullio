@@ -1,4 +1,5 @@
 import { css, FlattenInterpolation, ThemeProps, DefaultTheme } from 'styled-components';
+import { getColor } from '@utils';
 import { flexMixin, FlexProps } from './flexMixin';
 
 interface ButtonStyleProps extends FlexProps {
@@ -21,8 +22,9 @@ const buttonMixin = css<ButtonStyleProps>`
 	height: ${({ height }) => height ?? '100%'};
 	outline: none;
 	border: ${({ border }) => border ?? 'none'};
+	background-color: ${({ backgroundColor, theme }) =>
+		getColor(theme, backgroundColor ?? '') ?? backgroundColor};
 	border-radius: ${({ borderRadius }) => borderRadius ?? '0'};
-	background-color: ${({ backgroundColor }) => backgroundColor ?? 'transparent'};
 	box-shadow: ${({ boxShadow }) => boxShadow ?? 'none'};
 	color: ${({ color, theme }) => color ?? theme.base.textColor};
 	cursor: ${({ cursor }) => cursor ?? 'pointer'};
