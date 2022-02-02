@@ -1,4 +1,5 @@
 export type Theme = 'light' | 'dark';
+export type AuthType = 'google' | 'naver' | 'kakao';
 
 export interface GlobalColors {
 	primary: string;
@@ -14,6 +15,7 @@ export interface BreakPoints {
 
 export interface ThemeColors {
 	gray: string;
+	darkGray: string;
 }
 
 export interface IconProps {
