@@ -16,6 +16,7 @@ export interface BreakPoints {
 export interface ThemeColors {
 	gray: string;
 	darkGray: string;
+	blue: string;
 }
 
 export interface IconProps {
