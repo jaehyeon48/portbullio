@@ -2,7 +2,7 @@ import { render, screen, CustomWrapper } from '@api/testingLibrary';
 import { lightTheme, darkTheme } from '@styles/Theme';
 import Button from '../Button';
 
-test('Card component layout on light theme', () => {
+test('Button component layout on light theme', () => {
 	render(
 		<CustomWrapper theme={lightTheme}>
 			<Button width="123px" height="456px" aria-label="button component test">
@@ -17,7 +17,7 @@ test('Card component layout on light theme', () => {
 	expect(button).toHaveStyle('color: #000');
 });
 
-test('Card component layout on dark theme', () => {
+test('Button component layout on dark theme', () => {
 	render(
 		<CustomWrapper theme={darkTheme}>
 			<Button aria-label="button component test">
@@ -32,7 +32,7 @@ test('Card component layout on dark theme', () => {
 	expect(button).toHaveStyle('color: #fff');
 });
 
-test('Card component not applying flex test', () => {
+test('Button component not applying flex test', () => {
 	render(
 		<CustomWrapper theme={darkTheme}>
 			<Button aria-label="button component test" justifyContent="center">
@@ -46,7 +46,7 @@ test('Card component not applying flex test', () => {
 	expect(button).not.toHaveStyle('justify-content: center');
 });
 
-test('Card component applying flex test', () => {
+test('Button component applying flex test', () => {
 	render(
 		<CustomWrapper theme={darkTheme}>
 			<Button flex aria-label="button component test" justifyContent="center">
