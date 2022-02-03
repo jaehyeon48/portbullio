@@ -11,8 +11,7 @@
     "format:fix": "prettier --write ./src",
     "lint": "eslint ./src",
     "lint:fix": "eslint --fix ./src",
-    "lint:staged": "lint-staged",
-    "husky": "cd ../ && husky install ./frontend/.husky"
+    "lint:staged": "lint-staged"
   },
   "lint-staged": {
     "*.{js,ts,tsx}": [
