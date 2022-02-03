@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { flexMixin } from '@styles/mixins';
+import { globalColors, flexMixin } from '@styles/mixins';
 
 export const PageContainer = styled.div`
 	width: 428px;
@@ -14,7 +14,7 @@ export const HeaderContainer = styled.div`
 		margin-top: 1em;
 		font-size: 2.7em;
 		font-weight: 700;
-		color: ${({ theme }) => theme.globalColors.primary};
+		color: ${globalColors.primary};
 	}
 `;
 

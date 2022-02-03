@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { breakPoints } from '@styles/mixins';
 
 interface StyledTextInputProp {
 	isError?: boolean;
@@ -49,7 +50,7 @@ export const ErrorLabel = styled.small`
 	bottom: -22px;
 	font-size: 14px;
 
-	@media screen and (max-width: ${({ theme }) => theme.breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
 		font-size: 12px;
 		bottom: -20px;
 	}

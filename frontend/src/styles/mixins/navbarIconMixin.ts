@@ -1,4 +1,6 @@
 import { css } from 'styled-components';
+import breakPoints from './breakPoints';
+import globalColors from './globalColors';
 
 const navbarIconMixin = css`
 	& > p {
@@ -13,20 +15,20 @@ const navbarIconMixin = css`
 
 	&.active {
 		& > p {
-			color: ${({ theme }) => theme.globalColors.primary};
+			color: ${globalColors.primary};
 		}
 		& > svg {
-			fill: ${({ theme }) => theme.globalColors.primary};
+			fill: ${globalColors.primary};
 		}
 	}
 
-	@media screen and (max-width: ${({ theme }) => theme.breakPoints.laptop}) {
+	@media screen and (max-width: ${breakPoints.laptop}) {
 		& > svg {
 			transform: scale(0.85);
 		}
 	}
 
-	@media screen and (max-width: ${({ theme }) => theme.breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
 		& > p {
 			font-size: 12px;
 		}
