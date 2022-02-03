@@ -15,9 +15,9 @@
     "husky": "cd ../ && husky install ./frontend/.husky"
   },
   "lint-staged": {
-    "*.{js,ts,tsx,md}": [
-      "prettier --write",
-      "eslint --fix"
+    "*.{js,ts,tsx}": [
+      "prettier --write ./src",
+      "eslint --fix ./src"
     ]
   },
   "keywords": [
