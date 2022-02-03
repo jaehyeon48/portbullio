@@ -37,15 +37,7 @@ export default function Welcome() {
 					</defs>
 				</svg>
 			</Style.ImageContainer>
-			<Style.Anchor
-				to="/portfolios"
-				width="fit-content"
-				height="fit-content"
-				backgroundColor="primary"
-				borderRadius="4px"
-			>
-				새 포트폴리오 만들기
-			</Style.Anchor>
+			<Style.Anchor to="/portfolios">새 포트폴리오 만들기</Style.Anchor>
 		</PageContainer>
 	);
 }

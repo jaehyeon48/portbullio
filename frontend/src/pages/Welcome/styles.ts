@@ -21,7 +21,12 @@ export const ImageContainer = styled.div`
 
 export const Anchor = styled(Link)`
 	${buttonMixin};
+	width: fit-content;
+	height: fit-content;
+	color: #fff;
+	background-color: ${globalColors.primary};
+	border-radius: 4px;
 	text-decoration: none;
 	margin: 2.5em auto;
-	padding: 0.3em 0.4em;
+	padding: 0.3em 0.6em;
 `;
