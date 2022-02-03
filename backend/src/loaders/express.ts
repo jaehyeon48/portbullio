@@ -1,7 +1,7 @@
 import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import { LoaderProps } from '@types';
+import { LoaderProps } from '@src/types';
 import api from '@api';
 import { morgan, formatMorgan } from './morgan';
 

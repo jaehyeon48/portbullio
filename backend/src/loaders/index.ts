@@ -1,4 +1,4 @@
-import { LoaderProps } from '@types';
+import { LoaderProps } from '@src/types';
 import expressLoader from './express';
 import logger from './winston';
 
