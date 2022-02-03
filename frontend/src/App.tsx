@@ -5,7 +5,7 @@ import { lightTheme, darkTheme } from '@src/styles/Theme';
 import useThemeMode from '@hooks/Theme';
 import AppProviders from '@components/AppProviders';
 import Navbar from '@components/Navbar';
-import HomePage from '@src/pages/Home';
+import HomePage from '@pages/Home';
 
 function App(): ReactElement {
 	const [themeMode] = useThemeMode();
