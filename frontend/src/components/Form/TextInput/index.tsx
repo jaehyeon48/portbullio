@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
 import { ExclamationMark } from '@components/Icon';
-import { TextInputContainer, StyledTextInput, StyledTextLabel, ErrorLabel } from './style';
+import { TextInputContainer, StyledTextInput, StyledTextLabel, ErrorLabel } from './styles';
 
 type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
 

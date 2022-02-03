@@ -11,7 +11,7 @@ import {
 	AuthPageButtonContainer,
 	AuthPageButtonIconContainer,
 	AuthPageButtonTextContainer
-} from './style';
+} from './styles';
 
 const { baseRedirectURI, google } = envConfig.oauth;
 

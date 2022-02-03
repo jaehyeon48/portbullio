@@ -1,13 +1,10 @@
-import { ReactNode } from 'react';
-import PageContainerStyle from './style';
+import styled from 'styled-components';
+import { navbarWidth } from '@constants';
 
-interface Props {
-	children: ReactNode;
-	ariaLabel?: string;
-}
-
-function PageContainer({ children, ariaLabel }: Props) {
-	return <PageContainerStyle aria-label={ariaLabel}>{children}</PageContainerStyle>;
-}
+const PageContainer = styled.section`
+	position: relative;
+	width: calc(100% - ${navbarWidth}px);
+	min-height: 100vh;
+`;
 
 export default PageContainer;

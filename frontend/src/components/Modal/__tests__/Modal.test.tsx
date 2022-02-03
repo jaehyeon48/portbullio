@@ -11,7 +11,7 @@ test('Modal component layout on light theme', () => {
 
 	render(
 		<CustomWrapper theme={lightTheme}>
-			<Modal isOpen closeFunction={mockFn}>
+			<Modal closeFunction={mockFn}>
 				<div>this is modal</div>
 			</Modal>
 		</CustomWrapper>
@@ -36,7 +36,7 @@ test('Modal component layout on dark theme', () => {
 
 	render(
 		<CustomWrapper theme={darkTheme}>
-			<Modal isOpen closeFunction={mockFn}>
+			<Modal closeFunction={mockFn}>
 				<div>this is modal</div>
 			</Modal>
 		</CustomWrapper>

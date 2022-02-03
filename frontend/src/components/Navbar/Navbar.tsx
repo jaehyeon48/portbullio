@@ -7,7 +7,7 @@ import Button from '@components/Button';
 import AuthPage from '@pages/Auth';
 import { useModal } from '@hooks/Modal';
 import { navbarIconMixin } from '@styles/mixins';
-import * as Nav from './style';
+import * as Nav from './styles';
 import NavbarLink from './NavbarLink';
 
 const navbarLogoWidth = 76;

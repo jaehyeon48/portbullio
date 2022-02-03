@@ -4,7 +4,7 @@ import PageContainer from '../PageContainer';
 
 test('Page container layout test', () => {
 	render(
-		<PageContainer ariaLabel="page container test">
+		<PageContainer aria-label="page container test">
 			<div />
 		</PageContainer>
 	);

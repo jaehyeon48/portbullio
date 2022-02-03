@@ -1,7 +1,7 @@
 import { ReactNode, SyntheticEvent } from 'react';
 import { Times } from '@components/Icon';
 import Button from '@components/Button';
-import { ModalBackdrop, ModalContentWrap, CloseButtonWrap } from './style';
+import { ModalBackdrop, ModalContentWrap, CloseButtonWrap } from './styles';
 
 interface Props {
 	children: ReactNode;

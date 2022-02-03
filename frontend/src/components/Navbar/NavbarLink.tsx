@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { NavLinkWrapper } from './style';
+import { NavLinkWrapper } from './styles';
 
 interface Props {
 	children: ReactNode;
