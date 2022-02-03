@@ -1,7 +1,7 @@
 import { ReactNode, SyntheticEvent } from 'react';
 import { Times } from '@components/Icon';
 import Button from '@components/Button';
-import { ModalBackdrop, ModalContentWrap, CloseButtonWrap } from './styles';
+import * as Style from './styles';
 
 interface Props {
 	children: ReactNode;
@@ -10,14 +10,19 @@ interface Props {
 
 export default function Modal({ children, closeFunction }: Props) {
 	return (
-		<ModalBackdrop
+		<Style.ModalBackdrop
 			aria-label="Modal backdrop"
 			alignItems="center"
 			justifyContent="center"
 			onClick={closeFunction}
 		>
-			<ModalContentWrap as="dialog" width="fit-content" height="fit-content" aria-label="Modal">
-				<CloseButtonWrap>
+			<Style.ModalContentContainer
+				as="dialog"
+				width="fit-content"
+				height="fit-content"
+				aria-label="Modal"
+			>
+				<Style.CloseButtonContainer>
 					<Button
 						type="button"
 						width="auto"
@@ -27,9 +32,9 @@ export default function Modal({ children, closeFunction }: Props) {
 					>
 						<Times />
 					</Button>
-				</CloseButtonWrap>
+				</Style.CloseButtonContainer>
 				{children}
-			</ModalContentWrap>
-		</ModalBackdrop>
+			</Style.ModalContentContainer>
+		</Style.ModalBackdrop>
 	);
 }

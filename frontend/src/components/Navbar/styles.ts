@@ -34,7 +34,7 @@ export const Bottom = styled.div`
 	height: 12%;
 `;
 
-export const NavLinkWrapper = styled(NavLink)`
+export const NavbarLink = styled(NavLink)`
 	${flexMixin}
 	flex-direction: column;
 	align-items: center;

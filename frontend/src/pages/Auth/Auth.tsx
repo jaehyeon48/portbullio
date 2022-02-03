@@ -5,13 +5,7 @@ import mainLogoLight from '@assets/images/auth_page_main_logo_light.webp';
 import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
 import Button from '@components/Button';
 import { Google, Naver, Kakao } from '@components/Icon';
-import {
-	AuthPageContainer,
-	AuthPageHeaderContainer,
-	AuthPageButtonContainer,
-	AuthPageButtonIconContainer,
-	AuthPageButtonTextContainer
-} from './styles';
+import * as Style from './styles';
 
 const { baseRedirectURI, google } = envConfig.oauth;
 
@@ -24,12 +18,12 @@ export default function Auth() {
 	const logoSrc = currentTheme === 'light' ? mainLogoLight : mainLogoDark;
 
 	return (
-		<AuthPageContainer>
-			<AuthPageHeaderContainer flexDirection="column" alignItems="center">
+		<Style.PageContainer>
+			<Style.HeaderContainer flexDirection="column" alignItems="center">
 				<img src={logoSrc} alt={`main logo ${currentTheme}`} width={96} height={63} />
 				<header>환영합니다!</header>
-			</AuthPageHeaderContainer>
-			<AuthPageButtonContainer flexDirection="column" justifyContent="space-evenly">
+			</Style.HeaderContainer>
+			<Style.ButtonContainer flexDirection="column" justifyContent="space-evenly">
 				<Button
 					as="a"
 					href={`${googleOAuthURL}&state=${prevPathInfo}`}
@@ -38,24 +32,24 @@ export default function Auth() {
 					backgroundColor="#DC4E41"
 					aria-label="Google auth"
 				>
-					<AuthPageButtonIconContainer>
+					<Style.ButtonIconContainer>
 						<Google fill="#fff" />
-					</AuthPageButtonIconContainer>
-					<AuthPageButtonTextContainer>구글로 시작하기</AuthPageButtonTextContainer>
+					</Style.ButtonIconContainer>
+					<Style.ButtonTextContainer>구글로 시작하기</Style.ButtonTextContainer>
 				</Button>
 				<Button as="a" flex color="#fff" backgroundColor="#19CE60" aria-label="Naver auth">
-					<AuthPageButtonIconContainer>
+					<Style.ButtonIconContainer>
 						<Naver />
-					</AuthPageButtonIconContainer>
-					<AuthPageButtonTextContainer>네이버로 시작하기</AuthPageButtonTextContainer>
+					</Style.ButtonIconContainer>
+					<Style.ButtonTextContainer>네이버로 시작하기</Style.ButtonTextContainer>
 				</Button>
 				<Button as="a" flex color="#614345" backgroundColor="#FAE100" aria-label="Kakao auth">
-					<AuthPageButtonIconContainer>
+					<Style.ButtonIconContainer>
 						<Kakao />
-					</AuthPageButtonIconContainer>
-					<AuthPageButtonTextContainer>카카오로 시작하기</AuthPageButtonTextContainer>
+					</Style.ButtonIconContainer>
+					<Style.ButtonTextContainer>카카오로 시작하기</Style.ButtonTextContainer>
 				</Button>
-			</AuthPageButtonContainer>
-		</AuthPageContainer>
+			</Style.ButtonContainer>
+		</Style.PageContainer>
 	);
 }

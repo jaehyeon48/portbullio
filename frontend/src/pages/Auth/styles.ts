@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import { flexMixin } from '@styles/mixins';
 
-export const AuthPageContainer = styled.div`
+export const PageContainer = styled.div`
 	width: 428px;
 	height: 480px;
 `;
 
-export const AuthPageHeaderContainer = styled.div`
+export const HeaderContainer = styled.div`
 	${flexMixin};
 	height: 30%;
 
@@ -18,7 +18,7 @@ export const AuthPageHeaderContainer = styled.div`
 	}
 `;
 
-export const AuthPageButtonContainer = styled.div`
+export const ButtonContainer = styled.div`
 	${flexMixin};
 	height: 60%;
 	margin-top: 3.7em;
@@ -34,12 +34,12 @@ export const AuthPageButtonContainer = styled.div`
 	}
 `;
 
-export const AuthPageButtonIconContainer = styled.div`
+export const ButtonIconContainer = styled.div`
 	${flexMixin};
 	justify-content: center;
 	width: 10%;
 `;
 
-export const AuthPageButtonTextContainer = styled.div`
+export const ButtonTextContainer = styled.div`
 	width: 50%;
 `;

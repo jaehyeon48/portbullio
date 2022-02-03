@@ -13,12 +13,12 @@ export const ModalBackdrop = styled.div`
 	background-color: ${({ theme }) => theme.modal.backdropBgColor};
 `;
 
-export const ModalContentWrap = styled(Card)`
+export const ModalContentContainer = styled(Card)`
 	background-color: ${({ theme }) => theme.base.bgColor};
 	padding: 1em;
 `;
 
-export const CloseButtonWrap = styled.div`
+export const CloseButtonContainer = styled.div`
 	position: relative;
 	padding: 1.3em 0;
 	width: 100%;

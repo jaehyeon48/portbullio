@@ -7,8 +7,7 @@ import Button from '@components/Button';
 import AuthPage from '@pages/Auth';
 import { useModal } from '@hooks/Modal';
 import { navbarIconMixin } from '@styles/mixins';
-import * as Nav from './styles';
-import NavbarLink from './NavbarLink';
+import * as Style from './styles';
 
 const navbarLogoWidth = 76;
 const navbarLogoHeight = 50;
@@ -23,40 +22,40 @@ export default function Navbar() {
 	}
 
 	return (
-		<Nav.Container>
-			<Nav.Top alignItems="center" justifyContent="center">
-				<NavbarLink to="/">
+		<Style.Container>
+			<Style.Top alignItems="center" justifyContent="center">
+				<Style.NavbarLink to="/">
 					<img
 						src={logoSrc}
 						alt={`main logo ${currentTheme}`}
 						width={navbarLogoWidth}
 						height={navbarLogoHeight}
 					/>
-				</NavbarLink>
-			</Nav.Top>
-			<Nav.Middle flexDirection="column" alignItems="center" justifyContent="space-evenly">
-				<NavbarLink to="/dashboard">
+				</Style.NavbarLink>
+			</Style.Top>
+			<Style.Middle flexDirection="column" alignItems="center" justifyContent="space-evenly">
+				<Style.NavbarLink to="/dashboard">
 					<Icon.Dashboard />
 					<p>대시보드</p>
-				</NavbarLink>
-				<NavbarLink to="/portfolios">
+				</Style.NavbarLink>
+				<Style.NavbarLink to="/portfolios">
 					<Icon.List />
 					<p>내 포트폴리오</p>
-				</NavbarLink>
-				<NavbarLink to="/cash">
+				</Style.NavbarLink>
+				<Style.NavbarLink to="/cash">
 					<Icon.Coins />
 					<p>현금</p>
-				</NavbarLink>
-				<NavbarLink to="/dividend">
+				</Style.NavbarLink>
+				<Style.NavbarLink to="/dividend">
 					<Icon.CoinsOnHand />
 					<p>배당</p>
-				</NavbarLink>
-				<NavbarLink to="/settings">
+				</Style.NavbarLink>
+				<Style.NavbarLink to="/settings">
 					<Icon.Settings />
 					<p>설정</p>
-				</NavbarLink>
-			</Nav.Middle>
-			<Nav.Bottom alignItems="center" justifyContent="center">
+				</Style.NavbarLink>
+			</Style.Middle>
+			<Style.Bottom alignItems="center" justifyContent="center">
 				<Button
 					type="button"
 					flex
@@ -68,7 +67,7 @@ export default function Navbar() {
 					<Icon.SignIn />
 					<p>로그인</p>
 				</Button>
-			</Nav.Bottom>
-		</Nav.Container>
+			</Style.Bottom>
+		</Style.Container>
 	);
 }

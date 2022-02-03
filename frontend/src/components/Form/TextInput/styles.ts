@@ -4,7 +4,7 @@ interface StyledTextInputProp {
 	isError?: boolean;
 }
 
-export const TextInputContainer = styled.div`
+export const InputContainer = styled.div`
 	position: relative;
 	width: fit-content;
 
@@ -15,7 +15,7 @@ export const TextInputContainer = styled.div`
 	}
 `;
 
-export const StyledTextInput = styled.input<StyledTextInputProp>`
+export const TextInput = styled.input<StyledTextInputProp>`
 	background-color: ${({ theme }) => theme.input.backgroundColor};
 	border: 1px solid
 		${({ theme, isError }) => (isError ? theme.base.colors.red : theme.base.colors.darkGray)};
@@ -31,13 +31,13 @@ export const StyledTextInput = styled.input<StyledTextInputProp>`
 	}
 `;
 
-export const StyledTextLabel = styled.label<StyledTextInputProp>`
+export const TextLabel = styled.label<StyledTextInputProp>`
 	position: absolute;
 	color: ${({ theme, isError }) => (isError ? theme.base.colors.red : theme.input.labelColor)};
 	top: 0.2em;
 	left: 0.5em;
 
-	${StyledTextInput}:focus + & {
+	${TextInput}:focus + & {
 		color: ${({ theme }) => theme.base.colors.blue};
 	}
 `;

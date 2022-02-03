@@ -1,6 +1,6 @@
 import { ChangeEventHandler } from 'react';
 import { ExclamationMark } from '@components/Icon';
-import { TextInputContainer, StyledTextInput, StyledTextLabel, ErrorLabel } from './styles';
+import * as Style from './styles';
 
 type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
 
@@ -31,8 +31,8 @@ export default function TextInput({
 	};
 
 	return (
-		<TextInputContainer>
-			<StyledTextInput
+		<Style.InputContainer>
+			<Style.TextInput
 				id={htmlFor}
 				type={type}
 				value={value}
@@ -40,11 +40,11 @@ export default function TextInput({
 				readOnly={readOnly}
 				isError={handleError()}
 			/>
-			<StyledTextLabel htmlFor={htmlFor} isError={handleError()}>
+			<Style.TextLabel htmlFor={htmlFor} isError={handleError()}>
 				{labelName}
-			</StyledTextLabel>
+			</Style.TextLabel>
 			{handleError() && <ExclamationMark fill="red" />}
-			{handleError() && <ErrorLabel>{errorLabel}</ErrorLabel>}
-		</TextInputContainer>
+			{handleError() && <Style.ErrorLabel>{errorLabel}</Style.ErrorLabel>}
+		</Style.InputContainer>
 	);
 }
