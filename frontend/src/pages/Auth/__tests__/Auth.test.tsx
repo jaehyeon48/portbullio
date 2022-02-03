@@ -22,7 +22,7 @@ test('Auth page test on light theme', () => {
 	expect(kakaoAuthButton).toBeInTheDocument();
 });
 
-test('Auth page test', () => {
+test('Auth page test on dark theme', () => {
 	render(
 		<CustomWrapper theme={darkTheme}>
 			<Auth />

@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { flexMixin, buttonMixin } from '@styles/mixins';
+import { flexMixin, buttonMixin, globalColors } from '@styles/mixins';
 
 export const Header = styled.header`
 	font-size: 2em;
 	font-weight: 700;
 	margin-top: 3em;
 	text-align: center;
-	color: ${({ theme }) => theme.globalColors.primary};
+	color: ${globalColors.primary};
 `;
 
 export const Paragraph = styled.p`
