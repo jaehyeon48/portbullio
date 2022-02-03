@@ -1,4 +1,5 @@
 export default {
+	serverEndPoint: process.env.SERVER_END_POINT,
 	oauth: {
 		baseRedirectURI: process.env.BASE_REDIRECT_URI,
 		google: {
