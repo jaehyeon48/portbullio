@@ -22,6 +22,9 @@
       ],
       "@constants": [
         "src/constants/index.ts"
+      ],
+      "@middlewares": [
+        "src/middlewares/index.ts"
       ]
     }
   }
