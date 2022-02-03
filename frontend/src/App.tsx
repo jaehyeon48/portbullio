@@ -6,6 +6,7 @@ import useThemeMode from '@hooks/Theme';
 import AppProviders from '@components/AppProviders';
 import Navbar from '@components/Navbar';
 import HomePage from '@pages/Home';
+import WelcomePage from '@pages/Welcome';
 
 function App(): ReactElement {
 	const [themeMode] = useThemeMode();
@@ -19,6 +20,7 @@ function App(): ReactElement {
 			<Navbar />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
+				<Route path="/welcome" element={<WelcomePage />} />
 			</Routes>
 		</AppProviders>
 	);
