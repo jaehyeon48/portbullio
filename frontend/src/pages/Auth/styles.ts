@@ -1,5 +1,10 @@
 import styled from 'styled-components';
-import { globalColors, flexMixin } from '@styles/mixins';
+import { globalColors, flexMixin, buttonMixin } from '@styles/mixins';
+
+interface ButtonProps {
+	color: string;
+	backgroundcolor: string;
+}
 
 export const PageContainer = styled.div`
 	width: 428px;
@@ -42,4 +47,12 @@ export const ButtonIconContainer = styled.div`
 
 export const ButtonTextContainer = styled.div`
 	width: 50%;
+`;
+
+export const Button = styled.div<ButtonProps>`
+	${buttonMixin};
+	${flexMixin};
+	width: 100%;
+	color: ${({ color }) => color};
+	background-color: ${({ backgroundcolor }) => backgroundcolor};
 `;

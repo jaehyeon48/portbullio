@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Card from '@components/Card';
-import { flexMixin } from '@styles/mixins';
+import { buttonMixin, flexMixin } from '@styles/mixins';
 
 export const ModalBackdrop = styled.div`
 	${flexMixin}
@@ -27,5 +27,13 @@ export const CloseButtonContainer = styled.div`
 		position: absolute;
 		top: 0;
 		right: 0;
+	}
+`;
+
+export const Button = styled.button`
+	${buttonMixin};
+
+	& > svg {
+		fill: ${({ theme }) => (theme.currentTheme === 'light' ? '#000' : theme.base.colors.gray)};
 	}
 `;

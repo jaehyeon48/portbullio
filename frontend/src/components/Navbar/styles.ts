@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { flexMixin, navbarIconMixin } from '@src/styles/mixins';
+import { flexMixin, navbarIconMixin, buttonMixin } from '@src/styles/mixins';
 import { navbarWidth } from '@constants';
 
 export const Container = styled.aside`
@@ -40,5 +40,10 @@ export const NavbarLink = styled(NavLink)`
 	align-items: center;
 	transform: scale(0.9);
 	text-decoration: none;
+	${navbarIconMixin};
+`;
+
+export const Button = styled.button`
+	${buttonMixin};
 	${navbarIconMixin};
 `;

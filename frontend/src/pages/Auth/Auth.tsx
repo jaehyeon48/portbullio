@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import envConfig from '@configs/env';
 import mainLogoLight from '@assets/images/auth_page_main_logo_light.webp';
 import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
-import Button from '@components/Button';
 import { Google, Naver, Kakao } from '@components/Icon';
 import * as Style from './styles';
 
@@ -24,31 +23,30 @@ export default function Auth() {
 				<header>환영합니다!</header>
 			</Style.HeaderContainer>
 			<Style.ButtonContainer flexDirection="column" justifyContent="space-evenly">
-				<Button
+				<Style.Button
 					as="a"
 					href={`${googleOAuthURL}&state=${prevPathInfo}`}
-					flex
 					color="#fff"
-					backgroundColor="#DC4E41"
+					backgroundcolor="#DC4E41"
 					aria-label="Google auth"
 				>
 					<Style.ButtonIconContainer>
 						<Google fill="#fff" />
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>구글로 시작하기</Style.ButtonTextContainer>
-				</Button>
-				<Button as="a" flex color="#fff" backgroundColor="#19CE60" aria-label="Naver auth">
+				</Style.Button>
+				<Style.Button as="a" color="#fff" backgroundcolor="#19CE60" aria-label="Naver auth">
 					<Style.ButtonIconContainer>
 						<Naver />
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>네이버로 시작하기</Style.ButtonTextContainer>
-				</Button>
-				<Button as="a" flex color="#614345" backgroundColor="#FAE100" aria-label="Kakao auth">
+				</Style.Button>
+				<Style.Button as="a" color="#614345" backgroundcolor="#FAE100" aria-label="Kakao auth">
 					<Style.ButtonIconContainer>
 						<Kakao />
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>카카오로 시작하기</Style.ButtonTextContainer>
-				</Button>
+				</Style.Button>
 			</Style.ButtonContainer>
 		</Style.PageContainer>
 	);

@@ -3,10 +3,8 @@ import { useTheme } from 'styled-components';
 import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
-import Button from '@components/Button';
 import AuthPage from '@pages/Auth';
 import { useModal } from '@hooks/Modal';
-import { navbarIconMixin } from '@styles/mixins';
 import * as Style from './styles';
 
 const navbarLogoWidth = 76;
@@ -56,17 +54,10 @@ export default function Navbar() {
 				</Style.NavbarLink>
 			</Style.Middle>
 			<Style.Bottom alignItems="center" justifyContent="center">
-				<Button
-					type="button"
-					flex
-					flexDirection="column"
-					alignItems="center"
-					css={navbarIconMixin}
-					onClick={handleOpenModal}
-				>
+				<Style.Button type="button" onClick={handleOpenModal}>
 					<Icon.SignIn />
 					<p>로그인</p>
-				</Button>
+				</Style.Button>
 			</Style.Bottom>
 		</Style.Container>
 	);
