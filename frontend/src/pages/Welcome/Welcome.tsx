@@ -1,17 +1,17 @@
 import { useLocation } from 'react-router-dom';
 import PageContainer from '@components/PageContainer';
-import { StyledHeader, StyledParagraph, WelcomeImageContainer, StyledLink } from './style';
+import * as Style from './styles';
 
 export default function Welcome() {
 	const { search } = useLocation();
 	const username = new URLSearchParams(search).get('username') ?? '';
 	return (
 		<PageContainer>
-			<StyledHeader>👋회원가입을 축하합니다, {username}님!🥳</StyledHeader>
-			<StyledParagraph>
+			<Style.Header>👋회원가입을 축하합니다, {username}님!🥳</Style.Header>
+			<Style.Paragraph>
 				{username}님의 주식 포트폴리오 관리, Portbullio가 도와드릴게요!
-			</StyledParagraph>
-			<WelcomeImageContainer alignItems="center" justifyContent="center">
+			</Style.Paragraph>
+			<Style.ImageContainer alignItems="center" justifyContent="center">
 				<svg
 					width="400"
 					height="375"
@@ -35,8 +35,8 @@ export default function Welcome() {
 						/>
 					</defs>
 				</svg>
-			</WelcomeImageContainer>
-			<StyledLink
+			</Style.ImageContainer>
+			<Style.Anchor
 				to="/portfolios"
 				width="fit-content"
 				height="fit-content"
@@ -44,7 +44,7 @@ export default function Welcome() {
 				borderRadius="4px"
 			>
 				새 포트폴리오 만들기
-			</StyledLink>
+			</Style.Anchor>
 		</PageContainer>
 	);
 }

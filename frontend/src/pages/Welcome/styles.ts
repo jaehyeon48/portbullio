@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { flexMixin, buttonMixin } from '@styles/mixins';
 
-export const StyledHeader = styled.header`
+export const Header = styled.header`
 	font-size: 2em;
 	font-weight: 700;
 	margin-top: 3em;
@@ -10,16 +10,16 @@ export const StyledHeader = styled.header`
 	color: ${({ theme }) => theme.globalColors.primary};
 `;
 
-export const StyledParagraph = styled.p`
+export const Paragraph = styled.p`
 	margin: 2em;
 	text-align: center;
 `;
 
-export const WelcomeImageContainer = styled.div`
+export const ImageContainer = styled.div`
 	${flexMixin};
 `;
 
-export const StyledLink = styled(Link)`
+export const Anchor = styled(Link)`
 	${buttonMixin};
 	text-decoration: none;
 	margin: 2.5em auto;
