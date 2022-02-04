@@ -11,6 +11,11 @@ export default function errorHandler(
 		return;
 	}
 
+	if (err.message === 'Log out failed') {
+		res.status(500).json({ message: 'Log out failed' });
+		return;
+	}
+
 	res.status(500).json({ message: 'Internal server error' });
 	return;
 }
