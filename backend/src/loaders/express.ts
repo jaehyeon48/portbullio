@@ -3,6 +3,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import { LoaderProps } from '@src/types';
 import api from '@api';
+import { errorHandler } from '@middlewares';
 import { morgan, formatMorgan } from './morgan';
 
 export default async function expressLoader({ app }: LoaderProps) {
@@ -19,4 +20,5 @@ export default async function expressLoader({ app }: LoaderProps) {
 	app.use(express.json());
 	app.use(cookieParser());
 	app.use('/api', api());
+	app.use(errorHandler);
 }

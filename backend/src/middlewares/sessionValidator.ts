@@ -5,6 +5,8 @@ const sessionValidator = async (req: Request, res: Response, next: NextFunction)
 	try {
 		const sessionId = req.cookies.uaat;
 		const userId = await sessionService.checkSession(sessionId);
+		if (userId === undefined) throw Error('Invalid session');
+
 		res.locals.userId = userId;
 		next();
 	} catch (error) {
