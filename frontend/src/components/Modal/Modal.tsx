@@ -1,10 +1,11 @@
-import { ReactNode, SyntheticEvent } from 'react';
+import * as React from 'react';
 import { Times } from '@components/Icon';
+import { CloseModalFn } from '@types';
 import * as Style from './styles';
 
 interface Props {
-	children: ReactNode;
-	closeFunction: (e: SyntheticEvent, stopBubble?: boolean) => void;
+	children: React.ReactNode;
+	closeFunction: CloseModalFn;
 }
 
 export default function Modal({ children, closeFunction }: Props) {
@@ -30,7 +31,12 @@ export default function Modal({ children, closeFunction }: Props) {
 						<Times />
 					</Style.Button>
 				</Style.CloseButtonContainer>
-				{children}
+				{React.cloneElement(
+					children as React.ReactElement<any, string | React.JSXElementConstructor<any>>,
+					{
+						closeFunction
+					}
+				)}
 			</Style.ModalContentContainer>
 		</Style.ModalBackdrop>
 	);

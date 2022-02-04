@@ -2,16 +2,17 @@ import { useState, SyntheticEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import { useTheme } from 'styled-components';
 import AppProviders from '@components/AppProviders';
+import { CloseModalFn } from '@types';
 import Modal from '@components/Modal';
 
 type OpenModalFn = (e: SyntheticEvent, children: ReactNode) => void;
-type SetterFn = (e: SyntheticEvent) => void;
+type ToggleModalFn = (e: SyntheticEvent) => void;
 
 interface UseModalReturnType {
 	isOpen: boolean;
 	openModal: OpenModalFn;
-	closeModal: SetterFn;
-	toggleModal: SetterFn;
+	closeModal: CloseModalFn;
+	toggleModal: ToggleModalFn;
 }
 
 export function useModal(): UseModalReturnType {
