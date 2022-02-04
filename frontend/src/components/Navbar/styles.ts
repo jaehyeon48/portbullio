@@ -44,8 +44,8 @@ export const NavbarLink = styled(NavLink)`
 `;
 
 export const Button = styled.button`
-	${flexCenter};
-	flex-direction: column;
 	${buttonMixin};
 	${navbarIconMixin};
+	${flexCenter};
+	flex-direction: column;
 `;
