@@ -4,7 +4,9 @@ import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
 import AuthPage from '@pages/Auth';
+import LogOutPage from '@pages/LogOut';
 import { useModal } from '@hooks/Modal';
+import { useAuth } from '@hooks/Auth';
 import * as Style from './styles';
 
 const navbarLogoWidth = 76;
@@ -12,11 +14,16 @@ const navbarLogoHeight = 50;
 
 export default function Navbar() {
 	const { openModal } = useModal();
+	const isAuthenticated = useAuth();
 	const { currentTheme } = useTheme();
 	const logoSrc = currentTheme === 'light' ? mainLogoLight : mainLogoDark;
 
-	function handleOpenModal(e: SyntheticEvent) {
+	function handleOpenLogInModal(e: SyntheticEvent) {
 		openModal(e, <AuthPage />);
+	}
+
+	function handleOpenLogOutModal(e: SyntheticEvent) {
+		openModal(e, <LogOutPage />);
 	}
 
 	return (
@@ -54,10 +61,17 @@ export default function Navbar() {
 				</Style.NavbarLink>
 			</Style.Middle>
 			<Style.Bottom alignItems="center" justifyContent="center">
-				<Style.Button type="button" onClick={handleOpenModal}>
-					<Icon.SignIn />
-					<p>로그인</p>
-				</Style.Button>
+				{isAuthenticated ? (
+					<Style.Button type="button" onClick={handleOpenLogOutModal}>
+						<Icon.SignOut />
+						<p>로그아웃</p>
+					</Style.Button>
+				) : (
+					<Style.Button type="button" onClick={handleOpenLogInModal}>
+						<Icon.SignIn />
+						<p>로그인</p>
+					</Style.Button>
+				)}
 			</Style.Bottom>
 		</Style.Container>
 	);
