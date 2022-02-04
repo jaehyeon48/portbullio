@@ -4,7 +4,7 @@ import * as Global from '@styles/Global';
 import Navbar from '@components/Navbar';
 import HomePage from '@pages/Home';
 import WelcomePage from '@pages/Welcome';
-import { checkAuth } from '@utils';
+import { checkAuth } from '@api/auth';
 import { useAuthUpdate } from '@hooks/Auth';
 
 function App(): ReactElement {
