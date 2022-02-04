@@ -1,6 +1,5 @@
 import { useState, SyntheticEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import { useTheme } from 'styled-components';
 import AppProviders from '@components/AppProviders';
 import { CloseModalFn } from '@types';
 import Modal from '@components/Modal';
@@ -18,7 +17,6 @@ interface UseModalReturnType {
 export function useModal(): UseModalReturnType {
 	const modalRootElem = document.getElementById('modal-root') as Element;
 	const [isOpen, setIsOpen] = useState(false);
-	const theme = useTheme();
 
 	const closeModal = (e: SyntheticEvent, stopBubble = true) => {
 		if (stopBubble && e.target !== e.currentTarget) return;
@@ -30,7 +28,7 @@ export function useModal(): UseModalReturnType {
 	const openModal = (e: SyntheticEvent, children: ReactNode) => {
 		e.stopPropagation();
 		ReactDOM.render(
-			<AppProviders theme={theme}>
+			<AppProviders>
 				<Modal closeFunction={closeModal}>{children}</Modal>
 			</AppProviders>,
 			modalRootElem
