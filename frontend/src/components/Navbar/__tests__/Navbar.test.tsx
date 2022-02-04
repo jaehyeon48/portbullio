@@ -2,6 +2,7 @@ import { render, screen, CustomWrapper, userEvent } from '@api/testingLibrary';
 import { ThemeProvider } from 'styled-components';
 import { MemoryRouter } from 'react-router-dom';
 import { lightTheme, darkTheme } from '@src/styles/Theme';
+import { AuthContextProvider } from '@hooks/Auth';
 import Navbar from '../index';
 
 const numOfNavbarIcons = 6;
@@ -42,7 +43,9 @@ test('Navbar w/ react router', () => {
 	render(
 		<MemoryRouter>
 			<ThemeProvider theme={lightTheme}>
-				<Navbar />
+				<AuthContextProvider>
+					<Navbar />
+				</AuthContextProvider>
 			</ThemeProvider>
 		</MemoryRouter>
 	);
