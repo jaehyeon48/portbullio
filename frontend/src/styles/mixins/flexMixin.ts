@@ -48,3 +48,9 @@ export const flexMixin = css<FlexProps>`
 	align-items: ${({ alignItems }) => alignItems ?? 'normal'};
 	justify-content: ${({ justifyContent }) => justifyContent ?? 'normal'};
 `;
+
+export const flexCenter = css`
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
