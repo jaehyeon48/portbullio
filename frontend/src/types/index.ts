@@ -3,6 +3,7 @@ export type AuthType = 'google' | 'naver' | 'kakao';
 
 export interface GlobalColors {
 	primary: string;
+	deepRed: string;
 }
 
 export interface BreakPoints {
