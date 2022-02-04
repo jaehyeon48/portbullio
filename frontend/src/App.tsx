@@ -2,6 +2,7 @@ import { ReactElement, useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Global from '@styles/Global';
 import Navbar from '@components/Navbar';
+import EventListeners from '@components/EventListeners';
 import HomePage from '@pages/Home';
 import WelcomePage from '@pages/Welcome';
 import { checkAuth } from '@api/auth';
@@ -17,7 +18,7 @@ function App(): ReactElement {
 	}, [setAuth]);
 
 	return (
-		<>
+		<EventListeners>
 			<Global.CSSReset />
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />
@@ -26,7 +27,7 @@ function App(): ReactElement {
 				<Route path="/" element={<HomePage />} />
 				<Route path="/welcome" element={<WelcomePage />} />
 			</Routes>
-		</>
+		</EventListeners>
 	);
 }
 

@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@src/styles/Theme';
 import useThemeMode from '@hooks/Theme';
 import { AuthContextProvider } from '@hooks/Auth';
+import { EventEmitterProvider } from '@hooks/EventEmitter';
 
 interface Props {
 	children: ReactNode;
@@ -16,7 +17,9 @@ export default function AppProviders({ children }: Props) {
 	return (
 		<BrowserRouter>
 			<ThemeProvider theme={theme}>
-				<AuthContextProvider>{children}</AuthContextProvider>
+				<AuthContextProvider>
+					<EventEmitterProvider>{children}</EventEmitterProvider>
+				</AuthContextProvider>
 			</ThemeProvider>
 		</BrowserRouter>
 	);
