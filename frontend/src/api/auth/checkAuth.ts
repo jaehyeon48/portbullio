@@ -9,10 +9,13 @@ interface CheckAuthResponse {
 
 export default async function checkAuth(): Promise<number | undefined> {
 	const { serverEndPoint } = envConfig;
+	try {
+		const { data }: CheckAuthResponse = await axios.get(`${serverEndPoint}/auth/check`, {
+			withCredentials: true
+		});
 
-	const { data }: CheckAuthResponse = await axios.get(`${serverEndPoint}/auth/check`, {
-		withCredentials: true
-	});
-
-	return data.userId;
+		return data.userId;
+	} catch (error) {
+		return undefined;
+	}
 }
