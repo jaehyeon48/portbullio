@@ -8,6 +8,12 @@ export default async function checkInitialLogin(
 ): Promise<void> {
 	try {
 		const sessionId = req.cookies.login_token;
+		if (sessionId === undefined) {
+			res.locals.isInitialLogin = false;
+			next();
+			return;
+		}
+
 		const userId = await sessionService.checkSession(sessionId);
 		if (userId === undefined) res.locals.isInitialLogin = false;
 
