@@ -19,6 +19,7 @@ export function useModal(): UseModalReturnType {
 	const [isOpen, setIsOpen] = useState(false);
 
 	const closeModal = (e: SyntheticEvent, stopBubble = true) => {
+		console.log(e.target, e.currentTarget);
 		if (stopBubble && e.target !== e.currentTarget) return;
 		e.stopPropagation();
 		ReactDOM.unmountComponentAtNode(modalRootElem);
