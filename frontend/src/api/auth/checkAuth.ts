@@ -4,18 +4,32 @@ import envConfig from '@configs/env';
 interface CheckAuthResponse {
 	data: {
 		userId: number | undefined;
+		isInitialLogin: boolean;
 	};
 }
 
-export default async function checkAuth(): Promise<number | undefined> {
+interface CheckAuthReturnType {
+	userId: number | undefined;
+	isInitialLogin: boolean;
+}
+
+export default async function checkAuth(): Promise<CheckAuthReturnType> {
 	const { serverEndPoint } = envConfig;
 	try {
-		const { data }: CheckAuthResponse = await axios.get(`${serverEndPoint}/auth/check`, {
+		const {
+			data: { userId, isInitialLogin }
+		}: CheckAuthResponse = await axios.get(`${serverEndPoint}/auth/check`, {
 			withCredentials: true
 		});
 
-		return data.userId;
+		return {
+			userId,
+			isInitialLogin
+		};
 	} catch (error) {
-		return undefined;
+		return {
+			userId: undefined,
+			isInitialLogin: false
+		};
 	}
 }

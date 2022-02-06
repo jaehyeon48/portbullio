@@ -31,12 +31,14 @@ export default (): express.Router => {
 				const newUserId = await userService.createNewUser({ authId: email, authType, username });
 				const sessionId = await sessionService.createSession(newUserId);
 				cookieService.issueUAAT(res, sessionId);
+				cookieService.issueLoginToken(res, sessionId);
 				res.redirect(`${clientURL}/welcome?username=${encodeURIComponent(username)}`);
 				return;
 			}
 
 			const sessionId = await sessionService.createSession(userId);
 			cookieService.issueUAAT(res, sessionId);
+			cookieService.issueLoginToken(res, sessionId);
 			res.redirect(`${clientURL}${prevPath}`);
 			return;
 		} catch (error) {
