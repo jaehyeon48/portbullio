@@ -34,6 +34,9 @@
       ],
       "@configs/*": [
         "src/configs/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
       ]
     }
   }

@@ -26,7 +26,8 @@ export default {
 			'@types': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'types', 'index.ts'),
 			'@api': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'api'),
 			'@utils': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'utils'),
-			'@configs': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'configs')
+			'@configs': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'configs'),
+			'@lib': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'lib')
 		}
 	},
 	module: {
