@@ -3,11 +3,11 @@ import envConfig from '@configs/env';
 
 interface CheckAuthResponse {
 	data: {
-		logOutResult: number | undefined;
+		logOutResult: boolean;
 	};
 }
 
-export default async function logOut(): Promise<number | undefined> {
+export default async function logOut(): Promise<boolean> {
 	const { serverEndPoint } = envConfig;
 
 	try {
@@ -16,6 +16,6 @@ export default async function logOut(): Promise<number | undefined> {
 		});
 		return data.logOutResult;
 	} catch (error) {
-		return -1;
+		return false;
 	}
 }
