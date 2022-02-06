@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { MessageType, Theme, ToastStyles, ToastPosition, ToastPositions } from './types';
 
+const progressBarHeight = '5px';
+
 interface MessageProps {
 	currentTheme: Theme;
 	messageType: MessageType;
@@ -108,7 +110,7 @@ export const Toast = styled.div<ProgressBarProps>`
 	min-height: 30px;
 	border-radius: 5px 5px 0px 0px;
 	margin-bottom: 1em;
-	padding: 0.7em;
+	padding: 0.7em 0.7em calc(0.7em + ${progressBarHeight});
 	background-color: ${({ currentTheme, messageType }) =>
 		ToastTheme[currentTheme][messageType].backgroundColor};
 	animation: flipIn ${({ duration }) => Math.min(400, duration / 1.5)}ms;
@@ -165,7 +167,7 @@ export const ProgressBar = styled.div<ProgressBarProps>`
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	height: 5px;
+	height: ${progressBarHeight};
 	background-color: ${({ currentTheme, messageType }) =>
 		ToastTheme[currentTheme][messageType].progressBarColor};
 	animation: progressBar ${({ duration }) => duration}ms linear;
