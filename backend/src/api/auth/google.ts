@@ -1,7 +1,6 @@
 import express, { Request, Response } from 'express';
-import { googleService, userService, sessionService } from '@services';
+import { googleService, userService, sessionService, cookieService } from '@services';
 import envConfig from '@config';
-import { COOKIE_MAX_AGE } from '@constants';
 import { AxiosError } from 'axios';
 
 interface GoogleOAuthState {
@@ -31,23 +30,13 @@ export default (): express.Router => {
 			if (userId === -1) {
 				const newUserId = await userService.createNewUser({ authId: email, authType, username });
 				const sessionId = await sessionService.createSession(newUserId);
-				res.cookie('uaat', sessionId, {
-					httpOnly: true,
-					sameSite: 'strict',
-					secure: true,
-					maxAge: COOKIE_MAX_AGE
-				});
+				cookieService.issueUAAT(res, sessionId);
 				res.redirect(`${clientURL}/welcome?username=${encodeURIComponent(username)}`);
 				return;
 			}
 
 			const sessionId = await sessionService.createSession(userId);
-			res.cookie('uaat', sessionId, {
-				httpOnly: true,
-				sameSite: 'strict',
-				secure: true,
-				maxAge: COOKIE_MAX_AGE
-			});
+			cookieService.issueUAAT(res, sessionId);
 			res.redirect(`${clientURL}${prevPath}`);
 			return;
 		} catch (error) {
