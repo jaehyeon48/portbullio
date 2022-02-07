@@ -5,14 +5,16 @@ const lightThemeColors: ThemeColors = {
 	gray: '#ADB5BD',
 	darkGray: '#53585E',
 	blue: '#0463D1',
-	red: '#FA5252'
+	red: '#FA5252',
+	green: '#0CA678'
 };
 
 const darkThemeColors: ThemeColors = {
 	gray: '#CED4DA',
 	darkGray: '#62626D',
 	blue: '#3688EA',
-	red: '#FF4268'
+	red: '#FF4268',
+	green: '#3AB773'
 };
 
 export const lightTheme: DefaultTheme = {

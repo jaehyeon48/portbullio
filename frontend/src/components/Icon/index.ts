@@ -11,3 +11,6 @@ export { default as Google } from './Google';
 export { default as Naver } from './Naver';
 export { default as Kakao } from './Kakao';
 export { default as ExclamationMark } from './ExclamationMark';
+export { default as CaretUp } from './CaretUp';
+export { default as CaretDown } from './CaretDown';
+export { default as AngleRight } from './AngleRight';

@@ -22,6 +22,7 @@ export interface ThemeColors {
 	darkGray: string;
 	blue: string;
 	red: string;
+	green: string;
 }
 
 export interface IconProps {

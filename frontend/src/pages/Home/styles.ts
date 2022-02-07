@@ -1,0 +1,195 @@
+import styled, { css } from 'styled-components';
+import Card from '@src/components/Card';
+import { Link } from 'react-router-dom';
+import {
+	flexCenter,
+	globalColors,
+	breakPoints,
+	buttonMixin,
+	FlexProps,
+	priceColor
+} from '@styles/mixins';
+
+interface HeaderContainerProps {
+	flexDirection: 'row' | 'column';
+}
+
+interface SectionProps extends FlexProps {
+	margin?: string;
+}
+
+const midBotSectionLayout = css`
+	width: 30%;
+	font-size: 18px;
+	max-width: 20em;
+
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+		font-size: 16px;
+	}
+`;
+
+export const Section = styled.section<SectionProps>`
+	${flexCenter};
+	flex-direction: ${({ flexDirection }) => flexDirection};
+	align-items: ${({ alignItems }) => alignItems};
+	justify-content: ${({ justifyContent }) => justifyContent};
+	max-width: 1600px;
+	margin: 0 auto;
+	margin: ${({ margin }) => margin};
+`;
+
+export const HeaderContainer = styled.div<HeaderContainerProps>`
+	${flexCenter}
+	flex-direction: ${({ flexDirection }) => flexDirection};
+`;
+
+export const Header = styled.header`
+	display: inline-block;
+	font-size: 48px;
+	font-weight: 700;
+	margin-bottom: 1.5em;
+
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+		& {
+			font-size: 40px;
+		}
+	}
+`;
+
+export const HeaderPrimary = styled.span`
+	color: ${globalColors.primary};
+`;
+
+export const HeroImageContainer = styled.div`
+	display: inline-block;
+	margin: 1.5em 5em 1.5em 1.5em;
+
+	@media screen and (max-width: ${breakPoints.laptop}) {
+		& > svg {
+			width: 500px;
+			height: 390px;
+		}
+	}
+
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+		& > svg {
+			width: 450px;
+			height: 351px;
+		}
+	}
+`;
+
+export const Button = styled.button`
+	${buttonMixin};
+	background-color: ${globalColors.primary};
+	color: #fff;
+	font-size: 1.1em;
+	font-weight: 500;
+	border-radius: 6px;
+	padding: 0.6em 3.2em;
+`;
+
+export const LinkButton = styled(Link)`
+	${buttonMixin};
+	text-decoration: none;
+	background-color: ${globalColors.primary};
+	color: #fff;
+	font-size: 1.1em;
+	font-weight: 500;
+	border-radius: 6px;
+	padding: 0.6em 3.2em;
+`;
+
+export const IndexContainer = styled(Card)`
+	${midBotSectionLayout};
+`;
+
+export const IndexHeader = styled.header`
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: 700;
+	padding: 0.4em 0;
+	border-bottom: 1px solid ${({ theme }) => theme.base.colors.gray};
+`;
+
+export const IndexInfo = styled.div`
+	${priceColor};
+`;
+
+export const IndexPriceContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+	padding: 0.8em 0 0.5em;
+`;
+
+export const IndexPrice = styled.span`
+	font-size: 1.5em;
+	font-weight: 700;
+`;
+
+export const IndexPriceChange = styled.span`
+	display: flex;
+	align-items: center;
+	font-size: 1em;
+`;
+
+export const IndexChangePercent = styled.div`
+	padding: 0.3em 0 0.6em;
+	font-size: 1.1em;
+	text-align: center;
+`;
+
+export const Top5ListSection = styled.section`
+	${midBotSectionLayout};
+`;
+
+export const Top5ListHeader = styled(Link)`
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-weight: 500;
+	color: ${({ theme }) => theme.base.textColor};
+	text-decoration: none;
+	margin-bottom: 2em;
+
+	& > svg {
+		position: absolute;
+		right: -11px;
+		fill: ${({ theme }) => theme.base.textColor};
+	}
+`;
+
+export const Top5ListItems = styled.ul`
+	margin: 0;
+	padding: 0;
+	style-list-type: none;
+`;
+
+export const Top5ListItem = styled(Card)`
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	margin-bottom: 1.2em;
+	padding: 0.8em 0;
+	cursor: pointer;
+`;
+
+export const Top5ListItemTicker = styled.span`
+	width: 20%;
+	text-transform: uppercase;
+	font-weight: 500;
+`;
+
+export const Top5ListItemChangePercent = styled.span`
+	width: 32%;
+	${priceColor};
+`;
+
+export const Top5ListItemPrice = styled.span`
+	width: 22%;
+	color: ${({ theme }) => theme.base.textColor};
+	overflow: hidden;
+	text-overflow: ellipsis;
+`;
