@@ -13,7 +13,8 @@ export default createGlobalStyle`
     margin: 0;
   }
   html, body {
-    height: 100%;
+    height: fit-content;
+    min-height: 100%;
   }
   body {
     line-height: 1.5;

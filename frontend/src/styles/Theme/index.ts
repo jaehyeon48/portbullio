@@ -38,6 +38,14 @@ export const lightTheme: DefaultTheme = {
 	input: {
 		labelColor: '#5B5B5B',
 		backgroundColor: '#FFF'
+	},
+	scrollBar: {
+		normal: {
+			backgroundColor: 'rgba(160, 160, 160, 0.4)'
+		},
+		global: {
+			backgroundColor: 'rgba(115, 115, 115, 0.5)'
+		}
 	}
 };
 
@@ -62,5 +70,13 @@ export const darkTheme: DefaultTheme = {
 	input: {
 		labelColor: '#BABABA',
 		backgroundColor: '#323645'
+	},
+	scrollBar: {
+		normal: {
+			backgroundColor: 'rgba(187, 187, 187, 0.4)'
+		},
+		global: {
+			backgroundColor: 'rgba(131, 131, 131, 0.5)'
+		}
 	}
 };

@@ -24,5 +24,13 @@ declare module 'styled-components' {
 			labelColor: string;
 			backgroundColor: string;
 		};
+		scrollBar: {
+			normal: {
+				backgroundColor: string;
+			};
+			global: {
+				backgroundColor: string;
+			};
+		};
 	}
 }

@@ -30,3 +30,7 @@ export interface IconProps {
 	height?: number;
 	fill?: string;
 }
+
+export interface ScrollBarThumbProps {
+	height: number;
+}
