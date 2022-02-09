@@ -9,7 +9,6 @@ import { checkAuth } from '@api/auth';
 import { useAuthUpdate } from '@hooks/Auth';
 import useThemeMode from '@hooks/Theme';
 import toast from '@lib/toast';
-import { GlobalCustomScrollBar } from '@hooks/ScrollBar';
 
 function App(): ReactElement {
 	const setAuth = useAuthUpdate();
@@ -26,7 +25,6 @@ function App(): ReactElement {
 
 	return (
 		<EventListeners>
-			<GlobalCustomScrollBar />
 			<Global.CSSReset />
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />

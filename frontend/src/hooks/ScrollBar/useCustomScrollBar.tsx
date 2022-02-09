@@ -3,6 +3,8 @@ import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 import { scrollBarMixin } from '@styles/mixins';
 import { ScrollBarThumbProps } from '@types';
 
+const MIN_THUMB_H = 60;
+
 interface Props {
 	outerContainerRef: MutableRefObject<any>;
 	innerContainerRef: MutableRefObject<any>;
@@ -16,10 +18,42 @@ interface ReturnType {
 	thumbRef: MutableRefObject<HTMLDivElement | null>;
 }
 
+interface CalculateRevisedThumbProps {
+	outerTop: number;
+	innerTop: number;
+	outerH: number;
+	innerH: number;
+	thumbH: number;
+	outerContainerBorderWidth?: number;
+	isRevisedToMinH?: boolean;
+}
+
 const ScrollBarThumb = styled.div`
 	${scrollBarMixin};
 	background-color: ${({ theme }) => theme.scrollBar.normal.backgroundColor};
 `;
+
+function calculateRevisedThumbH({
+	outerTop,
+	innerTop,
+	outerH,
+	innerH,
+	thumbH,
+	outerContainerBorderWidth = 1,
+	isRevisedToMinH = false
+}: CalculateRevisedThumbProps) {
+	const maxThumbScrollY = innerH - thumbH;
+	const innerContainerY = outerTop - innerTop;
+	const scrollYFactor = (innerH - thumbH) / (innerH - outerH);
+	const minHFactor = isRevisedToMinH
+		? (maxThumbScrollY - (MIN_THUMB_H - thumbH)) / maxThumbScrollY
+		: 1;
+	const thumbScrollYTmp = innerContainerY * scrollYFactor * minHFactor;
+	const revisedMaxThumbScrollY = maxThumbScrollY - (isRevisedToMinH ? MIN_THUMB_H - thumbH : 0);
+	const thumbScrollY =
+		thumbScrollYTmp < outerContainerBorderWidth ? outerContainerBorderWidth : thumbScrollYTmp;
+	return thumbScrollY > revisedMaxThumbScrollY ? revisedMaxThumbScrollY : thumbScrollY;
+}
 
 export default function useCustomScrollBar({
 	outerContainerRef,
@@ -27,6 +61,7 @@ export default function useCustomScrollBar({
 	outerContainerBorderWidth
 }: Props): ReturnType {
 	const thumbRef = useRef<HTMLDivElement | null>(null);
+	const originalThumbH = useRef(-1);
 	const [thumbH, setThumbHeight] = useState(0);
 
 	useEffect(() => {
@@ -36,8 +71,10 @@ export default function useCustomScrollBar({
 			const { clientHeight: outerH } = outerContainerRef.current;
 			const { clientHeight: innerH } = innerContainerRef.current;
 			if (innerH <= outerH) return;
-			setThumbHeight(outerH ** 2 / innerH);
-			thumbRef.current.style.transform = `translateY(${outerContainerBorderWidth}px)`;
+
+			const thumbHCandidate = outerH ** 2 / innerH;
+			if (thumbHCandidate < MIN_THUMB_H) originalThumbH.current = thumbHCandidate;
+			setThumbHeight(thumbHCandidate < MIN_THUMB_H ? MIN_THUMB_H : thumbHCandidate);
 			clearInterval(intervalId);
 		}
 
@@ -45,6 +82,38 @@ export default function useCustomScrollBar({
 			intervalId = setInterval(initThumbHeight, 1);
 		} else initThumbHeight();
 	}, [outerContainerRef, innerContainerRef, thumbRef, outerContainerBorderWidth]);
+
+	useEffect(() => {
+		let intervalId: NodeJS.Timer;
+		function initThumbY() {
+			if (!thumbRef.current) return;
+			if (!outerContainerRef.current) return;
+			if (!innerContainerRef.current) return;
+
+			const { clientHeight: outerH } = outerContainerRef.current;
+			const { clientHeight: innerH } = innerContainerRef.current;
+			const { top: outerTop } = outerContainerRef.current.getBoundingClientRect();
+			const { top: innerTop } = innerContainerRef.current.getBoundingClientRect();
+
+			const revisedThumbScrollY =
+				originalThumbH.current === -1
+					? calculateRevisedThumbH({ outerTop, innerTop, outerH, innerH, thumbH })
+					: calculateRevisedThumbH({
+							outerTop,
+							innerTop,
+							outerH,
+							innerH,
+							thumbH: originalThumbH.current,
+							isRevisedToMinH: true
+					  });
+			thumbRef.current.style.transform = `translateY(${revisedThumbScrollY}px)`;
+			clearInterval(intervalId);
+		}
+
+		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
+			intervalId = setInterval(initThumbY, 1);
+		} else initThumbY();
+	}, [thumbH, innerContainerRef, outerContainerRef]);
 
 	function calculateThumbY() {
 		if (!thumbRef.current) return;
@@ -55,15 +124,19 @@ export default function useCustomScrollBar({
 		const { clientHeight: innerH } = innerContainerRef.current;
 		const { top: outerTop } = outerContainerRef.current.getBoundingClientRect();
 		const { top: innerTop } = innerContainerRef.current.getBoundingClientRect();
-		const innerContainerY = outerTop - innerTop;
-		const scrollYFactor = (innerH - thumbH) / (innerH - outerH);
-		const maxThumbScrollY = innerH - thumbH;
-		const thumbScrollY = innerContainerY * scrollYFactor;
+
 		const revisedThumbScrollY =
-			thumbScrollY < outerContainerBorderWidth ? outerContainerBorderWidth : thumbScrollY;
-		thumbRef.current.style.transform = `translateY(${
-			revisedThumbScrollY > maxThumbScrollY ? maxThumbScrollY : revisedThumbScrollY
-		}px)`;
+			originalThumbH.current === -1
+				? calculateRevisedThumbH({ outerTop, innerTop, outerH, innerH, thumbH })
+				: calculateRevisedThumbH({
+						outerTop,
+						innerTop,
+						outerH,
+						innerH,
+						thumbH: originalThumbH.current,
+						isRevisedToMinH: true
+				  });
+		thumbRef.current.style.transform = `translateY(${revisedThumbScrollY}px)`;
 	}
 
 	return {
