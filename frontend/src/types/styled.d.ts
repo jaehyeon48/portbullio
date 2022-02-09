@@ -30,6 +30,7 @@ declare module 'styled-components' {
 			};
 			global: {
 				backgroundColor: string;
+				hoverBackgroundColor: string;
 			};
 		};
 	}

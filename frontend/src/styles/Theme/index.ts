@@ -44,7 +44,8 @@ export const lightTheme: DefaultTheme = {
 			backgroundColor: 'rgba(160, 160, 160, 0.4)'
 		},
 		global: {
-			backgroundColor: 'rgba(115, 115, 115, 0.5)'
+			backgroundColor: 'rgba(115, 115, 115, 0.5)',
+			hoverBackgroundColor: 'rgba(68, 68, 68, 0.5)'
 		}
 	}
 };
@@ -76,7 +77,8 @@ export const darkTheme: DefaultTheme = {
 			backgroundColor: 'rgba(187, 187, 187, 0.4)'
 		},
 		global: {
-			backgroundColor: 'rgba(131, 131, 131, 0.5)'
+			backgroundColor: 'rgba(131, 131, 131, 0.5)',
+			hoverBackgroundColor: 'rgba(98, 98, 98, 0.5)'
 		}
 	}
 };
