@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import envConfig from '@configs/env';
 import mainLogoLight from '@assets/images/auth_page_main_logo_light.webp';
 import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
-import { Google, Naver, Kakao } from '@components/Icon';
+import { Google, Naver, Kakao } from '@components/index';
 import * as Style from './styles';
 
 const { baseRedirectURI, google } = envConfig.oauth;

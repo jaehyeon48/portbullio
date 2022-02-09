@@ -1,4 +1,4 @@
-import SVG from '@components/SVG';
+import { SVG } from '@components/index';
 import { IconProps } from '@types';
 
 export default function SignOut({ width = 40, height = 40, fill = 'primary' }: IconProps) {

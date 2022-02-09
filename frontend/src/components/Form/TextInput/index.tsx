@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from 'react';
-import { ExclamationMark } from '@components/Icon';
+import { ExclamationMark } from '@components/index';
 import * as Style from './styles';
 
 type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';

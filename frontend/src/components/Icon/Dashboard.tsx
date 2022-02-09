@@ -1,4 +1,4 @@
-import SVG from '@components/SVG';
+import { SVG } from '@components/index';
 import { IconProps } from '@types';
 
 export default function Dashboard({ width = 32, height = 32, fill = 'primary' }: IconProps) {

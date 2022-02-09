@@ -1,6 +1,5 @@
 import { SyntheticEvent } from 'react';
-import DynamicCaret from '@components/DynamicCaret';
-import { AngleRight } from '@components/Icon';
+import { AngleRight, DynamicCaret } from '@components/index';
 import { AuthPage } from '@pages';
 import { useAuth } from '@hooks/Auth';
 import { useModal } from '@hooks/Modal';

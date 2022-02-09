@@ -1,8 +1,7 @@
 import { useState, SyntheticEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import AppProviders from '@components/AppProviders';
+import { AppProviders, Modal } from '@components/index';
 import { CloseModalFn } from '@types';
-import Modal from '@components/Modal';
 
 type OpenModalFn = (e: SyntheticEvent, children: ReactNode) => void;
 type ToggleModalFn = (e: SyntheticEvent) => void;

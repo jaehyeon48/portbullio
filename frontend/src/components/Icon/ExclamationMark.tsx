@@ -1,4 +1,4 @@
-import SVG from '@components/SVG';
+import { SVG } from '@components/index';
 import { IconProps } from '@types';
 
 export default function ExclamationMark({ width = 14, height = 14, fill = 'primary' }: IconProps) {

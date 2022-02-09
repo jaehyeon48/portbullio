@@ -1,4 +1,4 @@
-import SVG from '@components/SVG';
+import { SVG } from '@components/index';
 import { IconProps } from '@types';
 
 export default function Settings({ width = 30, height = 30, fill = 'primary' }: IconProps) {

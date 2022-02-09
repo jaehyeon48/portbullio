@@ -1,4 +1,4 @@
-import SVG from '@components/SVG';
+import { SVG } from '@components/index';
 import { IconProps } from '@types';
 
 export default function CoinsOnHand({ width = 46, height = 46, fill = 'primary' }: IconProps) {

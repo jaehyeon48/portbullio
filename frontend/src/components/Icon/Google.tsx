@@ -1,4 +1,4 @@
-import SVG from '@components/SVG';
+import { SVG } from '@components/index';
 import { IconProps } from '@types';
 
 export default function Google({ width = 26, height = 28, fill = 'primary' }: IconProps) {

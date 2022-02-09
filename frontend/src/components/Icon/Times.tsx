@@ -1,4 +1,4 @@
-import SVG from '@components/SVG';
+import { SVG } from '@components/index';
 import { IconProps } from '@types';
 
 export default function Times({ width = 16, height = 16, fill = 'primary' }: IconProps) {
