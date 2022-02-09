@@ -6,7 +6,8 @@ export default {
 	entry: path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'index.tsx'),
 	output: {
 		path: path.resolve(dirname(fileURLToPath(import.meta.url)), 'dist'),
-		filename: '[name].[contenthash].js'
+		filename: '[name].[contenthash].js',
+		publicPath: '/'
 	},
 	resolve: {
 		extensions: ['.wasm', '.ts', '.tsx', '.mjs', '.cjs', '.js', '.json'],
