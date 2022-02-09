@@ -1,5 +1,4 @@
 import { SyntheticEvent } from 'react';
-import PageContainer from '@components/PageContainer';
 import DynamicCaret from '@components/DynamicCaret';
 import { AngleRight } from '@components/Icon';
 import AuthPage from '@pages/Auth';
@@ -17,7 +16,7 @@ export default function Home() {
 	}
 
 	return (
-		<PageContainer>
+		<>
 			<Style.Section justifyContent="space-evenly">
 				<Style.HeroImageContainer>
 					<HeroImage />
@@ -103,7 +102,7 @@ export default function Home() {
 					<Style.Top5ListItems />
 				</Style.Top5ListSection>
 			</Style.Section>
-		</PageContainer>
+		</>
 	);
 }
 

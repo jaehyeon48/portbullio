@@ -1,6 +1,5 @@
 import { useTheme } from 'styled-components';
 import { useLocation } from 'react-router-dom';
-import PageContainer from '@components/PageContainer';
 import * as Style from './styles';
 import { lightThemeImage, darkThemeImage } from './heroImage';
 
@@ -10,7 +9,7 @@ export default function Welcome() {
 	const { currentTheme } = useTheme();
 
 	return (
-		<PageContainer>
+		<>
 			<Style.Header>👋회원가입을 축하합니다, {username}님!🥳</Style.Header>
 			<Style.Paragraph>
 				{username}님의 주식 포트폴리오 관리, Portbullio가 도와드릴게요!
@@ -42,6 +41,6 @@ export default function Welcome() {
 				</svg>
 			</Style.ImageContainer>
 			<Style.Anchor to="/portfolios">새 포트폴리오 만들기</Style.Anchor>
-		</PageContainer>
+		</>
 	);
 }

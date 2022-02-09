@@ -1,7 +1,7 @@
 import { ReactElement, useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Global from '@styles/Global';
-import Navbar from '@components/Navbar';
+import Layout from '@pages/Layout';
 import EventListeners from '@components/EventListeners';
 import HomePage from '@pages/Home';
 import WelcomePage from '@pages/Welcome';
@@ -28,10 +28,11 @@ function App(): ReactElement {
 			<Global.CSSReset />
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />
-			<Navbar />
 			<Routes>
-				<Route path="/" element={<HomePage />} />
-				<Route path="/welcome" element={<WelcomePage />} />
+				<Route path="/" element={<Layout />}>
+					<Route index element={<HomePage />} />
+					<Route path="/welcome" element={<WelcomePage />} />
+				</Route>
 			</Routes>
 		</EventListeners>
 	);
