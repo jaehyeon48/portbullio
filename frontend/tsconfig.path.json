@@ -8,8 +8,8 @@
       "@components/*": [
         "src/components/*"
       ],
-      "@pages": [
-        "src/pages/index.ts"
+      "@pages/*": [
+        "src/pages/*"
       ],
       "@assets/*": [
         "src/assets/*"

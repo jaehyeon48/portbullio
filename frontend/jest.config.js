@@ -6,7 +6,7 @@ export default {
 		'\\.(css|less)$': '<rootDir>/__mocks__/styleMock.js',
 		'@src(.*)$': '<rootDir>/src$1',
 		'@components(.*)$': '<rootDir>/src/components$1',
-		'@pages': '<rootDir>/src/pages/index.ts',
+		'@pages(.*)$': '<rootDir>/src/pages$1',
 		'@assets(.*)$': '<rootDir>/src/assets$1',
 		'@constants': '<rootDir>/src/constants/index.ts',
 		'@types': '<rootDir>/src/types/index.ts',

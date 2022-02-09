@@ -3,7 +3,7 @@ import { useTheme } from 'styled-components';
 import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
-import { AuthPage, LogOutPage } from '@pages';
+import { AuthPage, LogOutPage } from '@pages/index';
 import { useModal } from '@hooks/Modal';
 import { useAuth } from '@hooks/Auth';
 import * as Style from './styles';

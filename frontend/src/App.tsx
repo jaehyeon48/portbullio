@@ -1,7 +1,7 @@
 import { ReactElement, useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Global from '@styles/Global';
-import * as Page from '@pages';
+import * as Page from '@pages/index';
 import { EventListeners } from '@components/index';
 import { checkAuth } from '@api/auth';
 import { useAuthUpdate } from '@hooks/Auth';
