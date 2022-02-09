@@ -1,10 +1,8 @@
 import { ReactElement, useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Global from '@styles/Global';
-import Layout from '@pages/Layout';
+import * as Page from '@pages';
 import EventListeners from '@components/EventListeners';
-import HomePage from '@pages/Home';
-import WelcomePage from '@pages/Welcome';
 import { checkAuth } from '@api/auth';
 import { useAuthUpdate } from '@hooks/Auth';
 import useThemeMode from '@hooks/Theme';
@@ -29,9 +27,9 @@ function App(): ReactElement {
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />
 			<Routes>
-				<Route path="/" element={<Layout />}>
-					<Route index element={<HomePage />} />
-					<Route path="/welcome" element={<WelcomePage />} />
+				<Route path="/" element={<Page.Layout />}>
+					<Route index element={<Page.HomePage />} />
+					<Route path="/welcome" element={<Page.WelcomePage />} />
 				</Route>
 			</Routes>
 		</EventListeners>

@@ -14,7 +14,7 @@ export default {
 		alias: {
 			'@src': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src'),
 			'@components': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'components'),
-			'@pages': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'pages'),
+			'@pages': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'pages', 'index.ts'),
 			'@assets': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'assets'),
 			'@constants': path.resolve(
 				dirname(fileURLToPath(import.meta.url)),

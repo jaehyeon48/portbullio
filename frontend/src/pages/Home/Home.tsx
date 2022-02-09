@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import DynamicCaret from '@components/DynamicCaret';
 import { AngleRight } from '@components/Icon';
-import AuthPage from '@pages/Auth';
+import { AuthPage } from '@pages';
 import { useAuth } from '@hooks/Auth';
 import { useModal } from '@hooks/Modal';
 import HeroImage from './HeroImage';
