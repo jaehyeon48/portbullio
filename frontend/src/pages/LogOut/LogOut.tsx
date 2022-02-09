@@ -1,8 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { CloseModalFn } from '@types';
 import { logOut } from '@api/auth';
-import { useEmitter } from '@hooks/EventEmitter';
-import useThemeMode from '@hooks/Theme';
+import { useEmitter, useThemeMode } from '@hooks/index';
 import { LOG_OUT } from '@constants';
 import toast from '@lib/toast';
 import * as Style from './styles';

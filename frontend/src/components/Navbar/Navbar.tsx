@@ -4,8 +4,7 @@ import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import * as Icon from '@components/Icon';
 import { AuthPage, LogOutPage } from '@pages/index';
-import { useModal } from '@hooks/Modal';
-import { useAuth } from '@hooks/Auth';
+import { useModal, useAuth } from '@hooks/index';
 import * as Style from './styles';
 
 const navbarLogoWidth = 76;

@@ -1,8 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { AngleRight, DynamicCaret } from '@components/index';
 import { AuthPage } from '@pages/index';
-import { useAuth } from '@hooks/Auth';
-import { useModal } from '@hooks/Modal';
+import { useAuth, useModal } from '@hooks/index';
 import HeroImage from './HeroImage';
 import * as Style from './styles';
 import Top5Stocks from './Top5Stocks';

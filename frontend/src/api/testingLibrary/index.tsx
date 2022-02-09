@@ -1,8 +1,7 @@
 import { ReactElement } from 'react';
 import { ThemeProvider, DefaultTheme } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
-import { AuthContextProvider } from '@hooks/Auth';
-import { EventEmitterProvider } from '@hooks/EventEmitter';
+import { AuthContextProvider, EventEmitterProvider } from '@hooks/index';
 import userEvent from '@testing-library/user-event';
 
 function CustomWrapper({ children, theme }: { children: ReactElement; theme: DefaultTheme }) {

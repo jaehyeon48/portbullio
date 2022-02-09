@@ -4,8 +4,7 @@ import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
 import { EventListeners } from '@components/index';
 import { checkAuth } from '@api/auth';
-import { useAuthUpdate } from '@hooks/Auth';
-import useThemeMode from '@hooks/Theme';
+import { useAuthUpdate, useThemeMode } from '@hooks/index';
 import toast from '@lib/toast';
 
 function App(): ReactElement {
@@ -29,7 +28,7 @@ function App(): ReactElement {
 			<Routes>
 				<Route path="/" element={<Page.Layout />}>
 					<Route index element={<Page.HomePage />} />
-					<Route path="/welcome" element={<Page.WelcomePage />} />
+					<Route path="welcome" element={<Page.WelcomePage />} />
 				</Route>
 			</Routes>
 		</EventListeners>

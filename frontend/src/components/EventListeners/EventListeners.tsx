@@ -1,7 +1,6 @@
 import { ReactNode, useLayoutEffect } from 'react';
 import { LOG_OUT } from '@constants';
-import { useEmitter } from '@hooks/EventEmitter';
-import { useAuthUpdate } from '@hooks/Auth';
+import { useEmitter, useAuthUpdate } from '@hooks/index';
 
 interface Props {
 	children: ReactNode;

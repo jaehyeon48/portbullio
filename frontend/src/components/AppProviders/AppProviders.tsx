@@ -2,9 +2,7 @@ import { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from '@src/styles/Theme';
-import useThemeMode from '@hooks/Theme';
-import { AuthContextProvider } from '@hooks/Auth';
-import { EventEmitterProvider } from '@hooks/EventEmitter';
+import { useThemeMode, AuthContextProvider, EventEmitterProvider } from '@hooks/index';
 
 interface Props {
 	children: ReactNode;
