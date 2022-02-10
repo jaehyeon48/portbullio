@@ -22,19 +22,21 @@ export const CompanyName = styled.header`
 
 export const TickerContainer = styled.div`
 	display: flex;
-	align-items: flex-end;
+	align-items: baseline;
 	margin-top: 0.4em;
 `;
 
 export const StockExchange = styled.span`
 	font-size: 0.9em;
-	margin-left: 0.3em;
+	margin-left: 0.4em;
 	color: ${({ theme }) => theme.stockPage.textSubColor};
+	line-height: 1;
 `;
 
 export const Ticker = styled.span`
 	font-size: 1.2em;
 	color: ${({ theme }) => theme.stockPage.textSubColor};
+	line-height: 1;
 `;
 
 export const PriceSection = styled.section`
