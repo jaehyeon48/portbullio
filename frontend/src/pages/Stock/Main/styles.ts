@@ -20,6 +20,18 @@ export const CompanyName = styled.header`
 	font-size: 3em;
 `;
 
+export const TickerContainer = styled.div`
+	display: flex;
+	align-items: flex-end;
+	margin-top: 0.4em;
+`;
+
+export const StockExchange = styled.span`
+	font-size: 0.9em;
+	margin-left: 0.3em;
+	color: ${({ theme }) => theme.stockPage.textSubColor};
+`;
+
 export const Ticker = styled.span`
 	font-size: 1.2em;
 	color: ${({ theme }) => theme.stockPage.textSubColor};
