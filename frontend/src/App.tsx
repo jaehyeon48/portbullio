@@ -29,6 +29,7 @@ function App(): ReactElement {
 				<Route path="/" element={<Page.Layout />}>
 					<Route index element={<Page.HomePage />} />
 					<Route path="welcome" element={<Page.WelcomePage />} />
+					<Route path="stock/:ticker" element={<Page.StockMainPage />} />
 				</Route>
 			</Routes>
 		</EventListeners>

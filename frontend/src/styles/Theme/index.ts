@@ -47,6 +47,11 @@ export const lightTheme: DefaultTheme = {
 			backgroundColor: 'rgba(115, 115, 115, 0.5)',
 			hoverBackgroundColor: 'rgba(68, 68, 68, 0.5)'
 		}
+	},
+	stockPage: {
+		textSubColor: '#868E96',
+		borderColor: '#DEE1E5',
+		currencySymbol: '#9CA6B0'
 	}
 };
 
@@ -80,5 +85,10 @@ export const darkTheme: DefaultTheme = {
 			backgroundColor: 'rgba(131, 131, 131, 0.5)',
 			hoverBackgroundColor: 'rgba(98, 98, 98, 0.5)'
 		}
+	},
+	stockPage: {
+		textSubColor: '#98A7B6',
+		borderColor: '#4F5278',
+		currencySymbol: '#A6B6C6'
 	}
 };

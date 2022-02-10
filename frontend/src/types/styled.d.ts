@@ -33,5 +33,10 @@ declare module 'styled-components' {
 				hoverBackgroundColor: string;
 			};
 		};
+		stockPage: {
+			textSubColor: string;
+			borderColor: string;
+			currencySymbol: string;
+		};
 	}
 }
