@@ -1,12 +1,10 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { priceColorMixin } from '@styles/Mixins';
-import { breakPoints, globalColors } from '@constants';
-
-const LEFT_AND_RIGHT_MARGIN = '5em';
+import { breakPoints, globalColors, STOCK_PAGE_LEFT_RIGHT_MARGIN } from '@constants';
 
 export const HeaderSection = styled.section`
-	margin: 2em ${LEFT_AND_RIGHT_MARGIN} 0;
+	margin: 2em ${STOCK_PAGE_LEFT_RIGHT_MARGIN} 0;
 	font-size: 16px;
 
 	@media screen and (max-width: ${breakPoints.laptop}) {
@@ -43,7 +41,7 @@ export const PriceSection = styled.section`
 	display: flex;
 	align-items: flex-end;
 	${priceColorMixin};
-	margin: 3em ${LEFT_AND_RIGHT_MARGIN} 5em;
+	margin: 3em ${STOCK_PAGE_LEFT_RIGHT_MARGIN} 5em;
 	font-size: 16px;
 
 	@media screen and (max-width: ${breakPoints.laptop}) {
@@ -78,7 +76,7 @@ export const PriceChange = styled.div`
 `;
 
 export const StockMenuSection = styled.div`
-	padding: 0 ${LEFT_AND_RIGHT_MARGIN} 5px;
+	padding: 0 ${STOCK_PAGE_LEFT_RIGHT_MARGIN} 5px;
 	border-bottom: 1px solid ${({ theme }) => theme.stockPage.borderColor};
 	width: 100%;
 	font-size: 16px;
