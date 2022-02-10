@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Card from '@components/Card';
 import { Link } from 'react-router-dom';
 import * as Mixin from '@styles/Mixins';
-import { breakPoints, globalColors } from '@constants';
+import { breakPoints, globalColors } from '@constants/index';
 
 interface HeaderContainerProps {
 	flexDirection: 'row' | 'column';

@@ -30,16 +30,12 @@ function App(): ReactElement {
 					<Route index element={<Page.HomePage />} />
 					<Route path="welcome" element={<Page.WelcomePage />} />
 					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
-						<Route path="overview" element={<OverviewPage />} />
+						<Route path="overview" element={<Page.StockOverviewPage />} />
 					</Route>
 				</Route>
 			</Routes>
 		</EventListeners>
 	);
-}
-
-function OverviewPage() {
-	return null;
 }
 
 export default App;

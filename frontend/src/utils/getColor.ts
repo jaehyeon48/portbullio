@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components';
-import { globalColors } from '@constants';
+import { globalColors } from '@constants/index';
 import { GlobalColors, ThemeColors } from '@types';
 
 const getColor = (theme: DefaultTheme, key: string) =>

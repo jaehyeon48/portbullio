@@ -1,13 +1,27 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { priceColorMixin } from '@styles/Mixins';
-import { breakPoints, globalColors, STOCK_PAGE_LEFT_RIGHT_MARGIN } from '@constants';
+import * as Constants from '@constants/index';
+
+const STOCK_LINK_INDICATOR_HEIGHT = '3px';
+
+export const StockMainSection = styled.section`
+	position: relative;
+	margin: 0 ${Constants.stockPageLeftRightMargin.desktop};
+	padding: 2em 0 3px;
+	border-bottom: 1px solid ${({ theme }) => theme.stockPage.borderColor};
+	height: ${Constants.stockPageMainSectionHeight.desktop}px;
+
+	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
+		height: ${Constants.stockPageMainSectionHeight.laptop}px;
+		margin: 0 ${Constants.stockPageLeftRightMargin.laptop};
+	}
+`;
 
 export const HeaderSection = styled.section`
-	margin: 2em ${STOCK_PAGE_LEFT_RIGHT_MARGIN} 0;
 	font-size: 16px;
 
-	@media screen and (max-width: ${breakPoints.laptop}) {
+	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
 		font-size: 14px;
 	}
 `;
@@ -41,10 +55,10 @@ export const PriceSection = styled.section`
 	display: flex;
 	align-items: flex-end;
 	${priceColorMixin};
-	margin: 3em ${STOCK_PAGE_LEFT_RIGHT_MARGIN} 5em;
+	margin: 3em 0 0;
 	font-size: 16px;
 
-	@media screen and (max-width: ${breakPoints.laptop}) {
+	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
 		font-size: 14px;
 	}
 `;
@@ -76,12 +90,12 @@ export const PriceChange = styled.div`
 `;
 
 export const StockMenuSection = styled.div`
-	padding: 0 ${STOCK_PAGE_LEFT_RIGHT_MARGIN} 5px;
-	border-bottom: 1px solid ${({ theme }) => theme.stockPage.borderColor};
+	position: absolute;
+	bottom: ${STOCK_LINK_INDICATOR_HEIGHT};
 	width: 100%;
 	font-size: 16px;
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${Constants.breakPoints.tabletLandscape}) {
 		font-size: 14px;
 	}
 `;
@@ -95,14 +109,14 @@ export const StockMenuLink = styled(NavLink)`
 	color: ${({ theme }) => theme.stockPage.textSubColor};
 
 	&.active {
-		color: ${globalColors.primary};
+		color: ${Constants.globalColors.primary};
 
 		&::after {
 			position: absolute;
 			left: 0;
-			bottom: -7px;
+			bottom: -5px;
 			content: '';
-			border-top: 3px solid ${globalColors.primary};
+			border-top: ${STOCK_LINK_INDICATOR_HEIGHT} solid ${Constants.globalColors.primary};
 			width: 100%;
 		}
 	}

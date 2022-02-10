@@ -16,12 +16,7 @@ export default {
 			'@components': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'components'),
 			'@pages': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'pages'),
 			'@assets': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'assets'),
-			'@constants': path.resolve(
-				dirname(fileURLToPath(import.meta.url)),
-				'src',
-				'constants',
-				'index.ts'
-			),
+			'@constants': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'constants'),
 			'@styles': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'styles'),
 			'@hooks': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'hooks'),
 			'@types': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'types', 'index.ts'),

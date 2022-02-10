@@ -1,5 +1,12 @@
 export const navbarWidth = 86;
 export const LOG_OUT = 'LOG_OUT';
-export const STOCK_PAGE_LEFT_RIGHT_MARGIN = '5em';
-export { default as breakPoints } from './breakPoints';
+export const stockPageLeftRightMargin = {
+	desktop: '5em',
+	laptop: '4em'
+};
+export const stockPageMainSectionHeight = {
+	desktop: 320,
+	laptop: 290
+};
+export * from './breakPoints';
 export { default as globalColors } from './globalColors';

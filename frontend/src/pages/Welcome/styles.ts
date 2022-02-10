@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { globalColors } from '@constants';
+import { globalColors } from '@constants/index';
 import { flexMixin, buttonMixin } from '@styles/Mixins';
 
 export const Header = styled.header`

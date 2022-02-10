@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react';
 import { CloseModalFn } from '@types';
 import { logOut } from '@api/auth';
 import { useEmitter, useThemeMode } from '@hooks/index';
-import { LOG_OUT } from '@constants';
+import { LOG_OUT } from '@constants/index';
 import toast from '@lib/toast';
 import * as Style from './styles';
 

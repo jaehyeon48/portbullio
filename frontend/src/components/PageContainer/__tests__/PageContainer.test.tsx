@@ -1,5 +1,5 @@
 import { render, screen } from '@api/testingLibrary';
-import { navbarWidth } from '@constants';
+import { navbarWidth } from '@constants/index';
 import PageContainer from '../PageContainer';
 
 test('Page container layout test', () => {

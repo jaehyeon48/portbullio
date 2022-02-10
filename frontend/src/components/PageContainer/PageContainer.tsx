@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { navbarWidth } from '@constants';
+import { navbarWidth } from '@constants/index';
 
 const PageContainer = styled.section`
 	position: relative;
