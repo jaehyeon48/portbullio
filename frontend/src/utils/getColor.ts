@@ -1,5 +1,5 @@
 import { DefaultTheme } from 'styled-components';
-import { globalColors } from '@styles/Mixins';
+import { globalColors } from '@constants';
 import { GlobalColors, ThemeColors } from '@types';
 
 const getColor = (theme: DefaultTheme, key: string) =>

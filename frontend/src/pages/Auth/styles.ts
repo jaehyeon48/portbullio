@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import { globalColors, flexMixin, buttonMixin } from '@styles/Mixins';
+import { globalColors } from '@constants';
+import { flexMixin, buttonMixin } from '@styles/Mixins';
 
 interface ButtonProps {
 	color: string;

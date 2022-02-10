@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Card from '@components/Card';
 import { Link } from 'react-router-dom';
 import * as Mixin from '@styles/Mixins';
-import { breakPoints } from '@constants';
+import { breakPoints, globalColors } from '@constants';
 
 interface HeaderContainerProps {
 	flexDirection: 'row' | 'column';
@@ -51,7 +51,7 @@ export const Header = styled.header`
 `;
 
 export const HeaderPrimary = styled.span`
-	color: ${Mixin.globalColors.primary};
+	color: ${globalColors.primary};
 `;
 
 export const HeroImageContainer = styled.div`
@@ -75,7 +75,7 @@ export const HeroImageContainer = styled.div`
 
 export const Button = styled.button`
 	${Mixin.buttonMixin};
-	background-color: ${Mixin.globalColors.primary};
+	background-color: ${globalColors.primary};
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 500;
@@ -86,7 +86,7 @@ export const Button = styled.button`
 export const LinkButton = styled(Link)`
 	${Mixin.buttonMixin};
 	text-decoration: none;
-	background-color: ${Mixin.globalColors.primary};
+	background-color: ${globalColors.primary};
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 500;

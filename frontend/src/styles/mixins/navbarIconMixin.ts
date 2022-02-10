@@ -1,6 +1,5 @@
 import { css } from 'styled-components';
-import { breakPoints } from '@constants';
-import globalColors from './globalColors';
+import { breakPoints, globalColors } from '@constants';
 
 const navbarIconMixin = css`
 	& > p {
