@@ -8,3 +8,4 @@ export { default as Modal } from './Modal';
 export { default as Navbar } from './Navbar';
 export { default as PageContainer } from './PageContainer';
 export { default as SVG } from './SVG/SVG';
+export { default as TradingViewWidget } from './TradingViewWidget/TradingViewWidget';
