@@ -9,14 +9,6 @@ export interface GlobalColors {
 	deepRed: string;
 }
 
-export interface BreakPoints {
-	mobile: string;
-	mobileLandscape: string;
-	tablet: string;
-	tabletLandscape: string;
-	laptop: string;
-}
-
 export interface ThemeColors {
 	gray: string;
 	darkGray: string;

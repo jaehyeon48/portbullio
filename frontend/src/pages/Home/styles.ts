@@ -1,7 +1,8 @@
 import styled, { css } from 'styled-components';
-import Card from '@src/components/Card';
+import Card from '@components/Card';
 import { Link } from 'react-router-dom';
 import * as Mixin from '@styles/Mixins';
+import { breakPoints } from '@constants';
 
 interface HeaderContainerProps {
 	flexDirection: 'row' | 'column';
@@ -16,7 +17,7 @@ const midBotSectionLayout = css`
 	font-size: 18px;
 	max-width: 20em;
 
-	@media screen and (max-width: ${Mixin.breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
 		font-size: 16px;
 	}
 `;
@@ -42,7 +43,7 @@ export const Header = styled.header`
 	font-weight: 700;
 	margin-bottom: 1.5em;
 
-	@media screen and (max-width: ${Mixin.breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
 		& {
 			font-size: 40px;
 		}
@@ -57,14 +58,14 @@ export const HeroImageContainer = styled.div`
 	display: inline-block;
 	margin: 1.5em 5em 1.5em 1.5em;
 
-	@media screen and (max-width: ${Mixin.breakPoints.laptop}) {
+	@media screen and (max-width: ${breakPoints.laptop}) {
 		& > svg {
 			width: 500px;
 			height: 390px;
 		}
 	}
 
-	@media screen and (max-width: ${Mixin.breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
 		& > svg {
 			width: 450px;
 			height: 351px;

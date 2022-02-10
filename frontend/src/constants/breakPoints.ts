@@ -1,5 +1,10 @@
-import { BreakPoints } from '@types';
-
+interface BreakPoints {
+	mobile: string;
+	mobileLandscape: string;
+	tablet: string;
+	tabletLandscape: string;
+	laptop: string;
+}
 // 해상도 break point는 https://gs.statcounter.com/screen-resolution-stats/ 참조하였음.
 const breakPoints: BreakPoints = {
 	mobile: '414px', // 414x736
