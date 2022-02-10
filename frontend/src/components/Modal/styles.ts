@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Card from '@components/Card';
-import { buttonMixin, flexMixin } from '@styles/mixins';
+import { buttonMixin, flexMixin } from '@styles/Mixins';
 
 export const ModalBackdrop = styled.div`
 	${flexMixin}

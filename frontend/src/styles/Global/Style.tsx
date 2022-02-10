@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { flexMixin } from '../mixins';
+import { flexMixin } from '../Mixins';
 
 export default createGlobalStyle`
   body {

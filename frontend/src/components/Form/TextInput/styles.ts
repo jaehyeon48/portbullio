@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { breakPoints } from '@styles/mixins';
+import { breakPoints } from '@styles/Mixins';
 
 interface StyledTextInputProp {
 	isError?: boolean;

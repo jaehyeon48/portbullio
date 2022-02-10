@@ -1,20 +1,13 @@
 import styled, { css } from 'styled-components';
 import Card from '@src/components/Card';
 import { Link } from 'react-router-dom';
-import {
-	flexCenter,
-	globalColors,
-	breakPoints,
-	buttonMixin,
-	FlexProps,
-	priceColor
-} from '@styles/mixins';
+import * as Mixin from '@styles/Mixins';
 
 interface HeaderContainerProps {
 	flexDirection: 'row' | 'column';
 }
 
-interface SectionProps extends FlexProps {
+interface SectionProps extends Mixin.FlexProps {
 	margin?: string;
 }
 
@@ -23,13 +16,13 @@ const midBotSectionLayout = css`
 	font-size: 18px;
 	max-width: 20em;
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${Mixin.breakPoints.tabletLandscape}) {
 		font-size: 16px;
 	}
 `;
 
 export const Section = styled.section<SectionProps>`
-	${flexCenter};
+	${Mixin.flexCenter};
 	flex-direction: ${({ flexDirection }) => flexDirection};
 	align-items: ${({ alignItems }) => alignItems};
 	justify-content: ${({ justifyContent }) => justifyContent};
@@ -39,7 +32,7 @@ export const Section = styled.section<SectionProps>`
 `;
 
 export const HeaderContainer = styled.div<HeaderContainerProps>`
-	${flexCenter}
+	${Mixin.flexCenter}
 	flex-direction: ${({ flexDirection }) => flexDirection};
 `;
 
@@ -49,7 +42,7 @@ export const Header = styled.header`
 	font-weight: 700;
 	margin-bottom: 1.5em;
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${Mixin.breakPoints.tabletLandscape}) {
 		& {
 			font-size: 40px;
 		}
@@ -57,21 +50,21 @@ export const Header = styled.header`
 `;
 
 export const HeaderPrimary = styled.span`
-	color: ${globalColors.primary};
+	color: ${Mixin.globalColors.primary};
 `;
 
 export const HeroImageContainer = styled.div`
 	display: inline-block;
 	margin: 1.5em 5em 1.5em 1.5em;
 
-	@media screen and (max-width: ${breakPoints.laptop}) {
+	@media screen and (max-width: ${Mixin.breakPoints.laptop}) {
 		& > svg {
 			width: 500px;
 			height: 390px;
 		}
 	}
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${Mixin.breakPoints.tabletLandscape}) {
 		& > svg {
 			width: 450px;
 			height: 351px;
@@ -80,8 +73,8 @@ export const HeroImageContainer = styled.div`
 `;
 
 export const Button = styled.button`
-	${buttonMixin};
-	background-color: ${globalColors.primary};
+	${Mixin.buttonMixin};
+	background-color: ${Mixin.globalColors.primary};
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 500;
@@ -90,9 +83,9 @@ export const Button = styled.button`
 `;
 
 export const LinkButton = styled(Link)`
-	${buttonMixin};
+	${Mixin.buttonMixin};
 	text-decoration: none;
-	background-color: ${globalColors.primary};
+	background-color: ${Mixin.globalColors.primary};
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 500;
@@ -113,7 +106,7 @@ export const IndexHeader = styled.header`
 `;
 
 export const IndexInfo = styled.div`
-	${priceColor};
+	${Mixin.priceColor};
 `;
 
 export const IndexPriceContainer = styled.div`
@@ -184,7 +177,7 @@ export const Top5ListItemTicker = styled.span`
 
 export const Top5ListItemChangePercent = styled.span`
 	width: 32%;
-	${priceColor};
+	${Mixin.priceColor};
 `;
 
 export const Top5ListItemPrice = styled.span`

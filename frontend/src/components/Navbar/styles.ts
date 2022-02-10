@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@src/styles/mixins';
+import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
 import { navbarWidth } from '@constants';
 
 export const Container = styled.aside`
