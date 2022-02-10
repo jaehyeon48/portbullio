@@ -1,5 +1,5 @@
 import { render, screen, CustomWrapper } from '@api/testingLibrary';
-import { lightTheme, darkTheme } from '@src/styles/Theme';
+import { lightTheme, darkTheme } from '@styles/Theme';
 import Welcome from '../Welcome';
 
 test('Welcome page test on light theme', () => {

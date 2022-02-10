@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect, MutableRefObject } from 'react';
 import styled, { StyledComponent, DefaultTheme } from 'styled-components';
-import { scrollBarMixin } from '@src/styles/Mixins';
+import { scrollBarMixin } from '@styles/Mixins';
 import { ScrollBarThumbProps } from '@types';
 
 const MIN_THUMB_H = 60;

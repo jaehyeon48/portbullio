@@ -1,5 +1,5 @@
 import { render, screen, CustomWrapper, userEvent } from '@api/testingLibrary';
-import { lightTheme } from '@src/styles/Theme';
+import { lightTheme } from '@styles/Theme';
 import LogOut from '../LogOut';
 
 test('LogOut page test', () => {

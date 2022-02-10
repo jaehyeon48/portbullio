@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from '@src/styles/Theme';
+import { lightTheme, darkTheme } from '@styles/Theme';
 import { useThemeMode, AuthContextProvider, EventEmitterProvider } from '@hooks/index';
 
 interface Props {
