@@ -107,7 +107,7 @@ export const IndexHeader = styled.header`
 `;
 
 export const IndexInfo = styled.div`
-	${Mixin.priceColor};
+	${Mixin.priceColorMixin};
 `;
 
 export const IndexPriceContainer = styled.div`
@@ -178,7 +178,7 @@ export const Top5ListItemTicker = styled.span`
 
 export const Top5ListItemChangePercent = styled.span`
 	width: 32%;
-	${Mixin.priceColor};
+	${Mixin.priceColorMixin};
 `;
 
 export const Top5ListItemPrice = styled.span`

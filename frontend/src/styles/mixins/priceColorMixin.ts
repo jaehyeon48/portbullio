@@ -10,7 +10,7 @@ function calculatePriceColor(theme: DefaultTheme, value: number) {
 	return theme.base.colors.gray;
 }
 
-const priceColor = css<PriceColorProps>`
+const priceColorMixin = css<PriceColorProps>`
 	color: ${({ theme, value }) => calculatePriceColor(theme, value)};
 
 	& svg {
@@ -18,4 +18,4 @@ const priceColor = css<PriceColorProps>`
 	}
 `;
 
-export default priceColor;
+export default priceColorMixin;
