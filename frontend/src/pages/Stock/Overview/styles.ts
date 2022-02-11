@@ -1,31 +1,38 @@
 import styled, { css } from 'styled-components';
 import { Card } from '@components/index';
-import * as Constants from '@constants/index';
+import { breakPoints } from '@constants/index';
+import * as StockPageConst from '../constants';
+import { stockPageBaseFontStyle } from '../styles';
 
 export const ChartContainer = styled.div`
-	margin: 2em ${Constants.stockPageLeftRightMargin.desktop} 4em;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	margin: 2em ${StockPageConst.leftAndRightMargins.desktop}px 4em;
+	max-width: ${StockPageConst.maxWidth}px;
+	${stockPageBaseFontStyle};
 
-	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
-		margin: 2em ${Constants.stockPageLeftRightMargin.laptop} 4em;
+	@media screen and (max-width: ${breakPoints.laptop}) {
+		margin: 2em ${StockPageConst.leftAndRightMargins.laptop}px 4em;
 	}
 `;
 
 export const RightPanelContainer = styled.div`
-	position: absolute;
+	position: relative;
 	display: flex;
 	flex-direction: column;
-	top: ${Constants.stockPageMainSectionHeight.desktop / 1.7}px;
-	right: ${Constants.stockPageLeftRightMargin.desktop};
+	width: ${StockPageConst.rightPanelWidth.desktop}px;
+	top: -${StockPageConst.mainSectionHeights.desktop / StockPageConst.rightPanelTopDivideFactor}px;
+	right: 0;
 
-	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
-		top: ${Constants.stockPageMainSectionHeight.laptop / 1.7}px;
-		right: ${Constants.stockPageLeftRightMargin.laptop};
+	@media screen and (max-width: ${breakPoints.laptop}) {
+		top: -${StockPageConst.mainSectionHeights.laptop / StockPageConst.rightPanelTopDivideFactor}px;
 	}
 `;
 
 const PanelBaseStyle = css`
 	padding: 1em 1.2em;
-	width: 22em;
+	width: 100%;
 `;
 
 export const UpperPanel = styled(Card)`

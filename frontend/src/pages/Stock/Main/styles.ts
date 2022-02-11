@@ -2,27 +2,23 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { priceColorMixin } from '@styles/Mixins';
 import * as Constants from '@constants/index';
+import * as StockPageConst from '../constants';
+import { stockPageBaseFontStyle } from '../styles';
 
 const STOCK_LINK_INDICATOR_HEIGHT = '3px';
 
 export const StockMainSection = styled.section`
 	position: relative;
-	margin: 0 ${Constants.stockPageLeftRightMargin.desktop};
-	padding: 2em 0 3px;
+	margin: 0 ${StockPageConst.leftAndRightMargins.desktop}px;
+	padding: 2em 0 ${STOCK_LINK_INDICATOR_HEIGHT};
 	border-bottom: 1px solid ${({ theme }) => theme.stockPage.borderColor};
-	height: ${Constants.stockPageMainSectionHeight.desktop}px;
+	max-width: ${StockPageConst.maxWidth}px;
+	height: ${StockPageConst.mainSectionHeights.desktop}px;
+	${stockPageBaseFontStyle};
 
 	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
-		height: ${Constants.stockPageMainSectionHeight.laptop}px;
-		margin: 0 ${Constants.stockPageLeftRightMargin.laptop};
-	}
-`;
-
-export const HeaderSection = styled.section`
-	font-size: 16px;
-
-	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
-		font-size: 14px;
+		height: ${StockPageConst.mainSectionHeights.laptop}px;
+		margin: 0 ${StockPageConst.leftAndRightMargins.laptop}px;
 	}
 `;
 
@@ -39,8 +35,8 @@ export const TickerContainer = styled.div`
 `;
 
 export const StockExchange = styled.span`
-	font-size: 0.9em;
-	margin-left: 0.4em;
+	font-size: 0.85em;
+	margin-left: 0.45em;
 	color: ${({ theme }) => theme.stockPage.textSubColor};
 	line-height: 1;
 `;
@@ -55,33 +51,28 @@ export const PriceSection = styled.section`
 	display: flex;
 	align-items: flex-end;
 	${priceColorMixin};
-	margin: 3em 0 0;
-	font-size: 16px;
-
-	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
-		font-size: 14px;
-	}
+	margin: 2.7em 0 0;
 `;
 
 export const CurrentPrice = styled.div`
 	display: flex;
 	align-items: flex-start;
 	font-size: 3.2em;
-	font-weight: 500;
-	margin-right: 0.3em;
+	font-weight: 700;
+	margin-right: 0.2em;
 	line-height: 1;
 `;
 
 export const CurrencySymbol = styled.div`
-	font-size: 0.6em;
+	font-size: 0.7em;
 	color: ${({ theme }) => theme.stockPage.currencySymbol};
 `;
 
 export const PriceChangeContainer = styled.div`
 	display: flex;
 	align-items: center;
-	font-size: 1.7em;
 	line-height: 1;
+	font-size: 1.5em;
 `;
 
 export const PriceChange = styled.div`
@@ -92,20 +83,14 @@ export const PriceChange = styled.div`
 export const StockMenuSection = styled.div`
 	position: absolute;
 	bottom: ${STOCK_LINK_INDICATOR_HEIGHT};
-	width: 100%;
-	font-size: 16px;
-
-	@media screen and (max-width: ${Constants.breakPoints.tabletLandscape}) {
-		font-size: 14px;
-	}
 `;
 
 export const StockMenuLink = styled(NavLink)`
 	position: relative;
 	text-decoration: none;
-	font-size: 1.2em;
+	font-size: 1.1em;
 	font-weight: 500;
-	margin-right: 4em;
+	margin-right: 3.4em;
 	color: ${({ theme }) => theme.stockPage.textSubColor};
 
 	&.active {

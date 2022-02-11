@@ -20,13 +20,13 @@ export default function StockMain() {
 	return (
 		<>
 			<Style.StockMainSection aria-label="Stock info">
-				<Style.HeaderSection>
+				<section>
 					<Style.CompanyName aria-label="Company name">Apple Inc.</Style.CompanyName>
 					<Style.TickerContainer>
 						<Style.Ticker aria-label="Ticker">{ticker.toUpperCase()}</Style.Ticker>
 						<Style.StockExchange>NASDAQ</Style.StockExchange>
 					</Style.TickerContainer>
-				</Style.HeaderSection>
+				</section>
 				<Style.PriceSection value={-1}>
 					<Style.CurrentPrice aria-label="Current price">
 						<Style.CurrencySymbol aria-label="Currency symbol">$</Style.CurrencySymbol>
