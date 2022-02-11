@@ -14,3 +14,4 @@ export { default as CaretUp } from './CaretUp';
 export { default as CaretDown } from './CaretDown';
 export { default as AngleRight } from './AngleRight';
 export { default as User } from './User';
+export { default as AddImage } from './AddImage';

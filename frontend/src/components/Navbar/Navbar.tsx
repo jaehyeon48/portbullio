@@ -4,7 +4,7 @@ import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import { ProfileThumbnail } from '@components/index';
 import * as Icon from '@components/Icon';
-import { AuthPage, LogOutPage } from '@pages/index';
+import { AuthPage, LogOutPage, UserSettingsPage } from '@pages/index';
 import { useModal, useAuth } from '@hooks/index';
 import NavbarDropdown from './NavbarDropdown';
 import * as Style from './styles';
@@ -43,6 +43,11 @@ export default function Navbar() {
 		const target = e.target as HTMLElement;
 		if (target.closest('#nav-profile-button')) return;
 		setIsDropdownOpen(false);
+	}
+
+	function handleOpenUserSettingsModal(e: SyntheticEvent) {
+		setIsDropdownOpen(false);
+		openModal(e, <UserSettingsPage />);
 	}
 
 	return (
@@ -92,7 +97,9 @@ export default function Navbar() {
 					</Style.Button>
 				)}
 			</Style.Bottom>
-			{isDropdownOpen && <NavbarDropdown logOutFn={handleOpenLogOutModal} profileFn={() => {}} />}
+			{isDropdownOpen && (
+				<NavbarDropdown logOutFn={handleOpenLogOutModal} profileFn={handleOpenUserSettingsModal} />
+			)}
 		</Style.Container>
 	);
 }
