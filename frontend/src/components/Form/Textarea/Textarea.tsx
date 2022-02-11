@@ -10,6 +10,7 @@ interface Props {
 	errorLabel?: string;
 	value?: string | number;
 	readOnly?: boolean;
+	placeholder?: string;
 	handleChange?: ChangeEventHandler;
 	isError?: boolean | (() => boolean);
 }
@@ -22,6 +23,7 @@ export default function Textarea({
 	errorLabel,
 	value,
 	readOnly = false,
+	placeholder,
 	handleChange,
 	isError
 }: Props) {
@@ -40,6 +42,7 @@ export default function Textarea({
 				onChange={handleChange}
 				readOnly={readOnly}
 				isError={handleError()}
+				placeholder={placeholder}
 			/>
 			<Style.TextareaLabel htmlFor={htmlFor} isError={handleError()}>
 				{labelName}

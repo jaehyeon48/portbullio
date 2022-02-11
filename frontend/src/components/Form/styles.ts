@@ -11,7 +11,7 @@ export const InputStyle = css<InputStyleProps>`
 		${({ theme, isError }) => (isError ? theme.base.colors.red : theme.base.colors.darkGray)};
 	border-radius: 4px;
 	color: ${({ theme }) => theme.base.textColor};
-	padding: 1.8em 0.5em 0.15em;
+	padding: 1.8em 0.5em 0.25em;
 
 	&:focus {
 		border-color: ${({ theme }) => theme.base.colors.blue};

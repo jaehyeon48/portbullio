@@ -11,6 +11,7 @@ interface Props {
 	errorLabel?: string;
 	value?: string | number;
 	readOnly?: boolean;
+	placeholder?: string;
 	handleChange?: ChangeEventHandler;
 	isError?: boolean | (() => boolean);
 }
@@ -22,6 +23,7 @@ export default function TextInput({
 	errorLabel,
 	value,
 	readOnly = false,
+	placeholder,
 	handleChange,
 	isError
 }: Props) {
@@ -39,6 +41,7 @@ export default function TextInput({
 				onChange={handleChange}
 				readOnly={readOnly}
 				isError={handleError()}
+				placeholder={placeholder}
 			/>
 			<Style.TextInputLabel htmlFor={htmlFor} isError={handleError()}>
 				{labelName}
