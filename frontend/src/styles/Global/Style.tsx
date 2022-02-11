@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { globalScrollBarWidth } from '@constants/index';
 import { flexMixin } from '../Mixins';
 
 export default createGlobalStyle`
@@ -7,7 +8,7 @@ export default createGlobalStyle`
     background-color: ${({ theme }) => theme.base.bgColor};
     color: ${({ theme }) => theme.base.textColor};
     &::-webkit-scrollbar {
-      width: 10px;
+      width: ${globalScrollBarWidth}px;
     }
 
     &::-webkit-scrollbar-thumb {
