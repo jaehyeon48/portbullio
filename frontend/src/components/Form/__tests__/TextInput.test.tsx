@@ -1,6 +1,6 @@
 import { render, screen, CustomWrapper } from '@api/testingLibrary';
 import { lightTheme, darkTheme } from '@styles/Theme';
-import TextInput from '../TextInput';
+import TextInput from '../TextInput/TextInput';
 
 test('TextInput component layout on light theme', () => {
 	render(

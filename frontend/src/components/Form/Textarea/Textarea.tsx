@@ -1,12 +1,11 @@
 import { ChangeEventHandler } from 'react';
 import { ExclamationMark } from '@components/index';
-import * as Style from './styles';
-
-type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
+import * as Style from '../styles';
 
 interface Props {
 	htmlFor: string;
-	type?: TextInputType;
+	rows?: number;
+	cols?: number;
 	labelName?: string;
 	errorLabel?: string;
 	value?: string | number;
@@ -15,9 +14,10 @@ interface Props {
 	isError?: boolean | (() => boolean);
 }
 
-export default function TextInput({
+export default function Textarea({
 	htmlFor,
-	type = 'text',
+	rows = 30,
+	cols = 20,
 	labelName,
 	errorLabel,
 	value,
@@ -32,17 +32,18 @@ export default function TextInput({
 
 	return (
 		<Style.InputContainer>
-			<Style.TextInput
+			<Style.Textarea
 				id={htmlFor}
-				type={type}
 				value={value}
+				rows={rows}
+				cols={cols}
 				onChange={handleChange}
 				readOnly={readOnly}
 				isError={handleError()}
 			/>
-			<Style.TextLabel htmlFor={htmlFor} isError={handleError()}>
+			<Style.TextareaLabel htmlFor={htmlFor} isError={handleError()}>
 				{labelName}
-			</Style.TextLabel>
+			</Style.TextareaLabel>
 			{handleError() && <ExclamationMark fill="red" />}
 			{handleError() && <Style.ErrorLabel>{errorLabel}</Style.ErrorLabel>}
 		</Style.InputContainer>
