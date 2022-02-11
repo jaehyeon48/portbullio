@@ -34,7 +34,7 @@ export default function StockMain() {
 					</Style.CurrentPrice>
 					<Style.PriceChangeContainer>
 						<Style.PriceChange aria-label="Price change">
-							<DynamicCaret value={-1} width={24} height={24} marginTop={4} />
+							<DynamicCaret value={-1} width={24} height={24} />
 							3.34
 						</Style.PriceChange>
 						&#40;-0.45%&#41;

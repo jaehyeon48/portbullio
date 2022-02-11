@@ -8,7 +8,7 @@ interface Props {
 	marginTop?: number;
 }
 
-export default function DynamicCaret({ value, width, height, marginTop = 2 }: Props) {
+export default function DynamicCaret({ value, width, height, marginTop = 4 }: Props) {
 	if (value === 0) return null;
 
 	return (
