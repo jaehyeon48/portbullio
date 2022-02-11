@@ -5,7 +5,6 @@ export { default as Coins } from './Coins';
 export { default as CoinsOnHand } from './CoinsOnHand';
 export { default as Settings } from './Settings';
 export { default as SignIn } from './SignIn';
-export { default as SignOut } from './SignOut';
 export { default as Times } from './Times';
 export { default as Google } from './Google';
 export { default as Naver } from './Naver';
