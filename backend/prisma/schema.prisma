@@ -13,6 +13,8 @@ model User {
   username          String              @db.VarChar(30)
   avatar            String?             @db.VarChar(41)
   currency          String              @db.Char(3)
+  bio               String?             @db.Text
+  location          String?             @db.Text
   createdAt         DateTime            @default(now()) @db.Timestamp(0) @map("created_at")
   currentPortfolio  CurrentPortfolio[]
   favoriteStock     FavoriteStock[]
