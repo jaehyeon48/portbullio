@@ -12,6 +12,8 @@ declare module 'styled-components' {
 		navbar: {
 			bgColor: string;
 			textColor: string;
+			dropdownBgColor: string;
+			dropdownBorderColor: string;
 		};
 		card: {
 			bgColor: string;

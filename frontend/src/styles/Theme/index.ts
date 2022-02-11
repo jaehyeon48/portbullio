@@ -26,7 +26,9 @@ export const lightTheme: DefaultTheme = {
 	},
 	navbar: {
 		bgColor: '#FFF',
-		textColor: '#000'
+		textColor: '#000',
+		dropdownBgColor: '#E2E2Eb',
+		dropdownBorderColor: '#CCCCE3'
 	},
 	card: {
 		bgColor: '#FFF',
@@ -64,7 +66,9 @@ export const darkTheme: DefaultTheme = {
 	},
 	navbar: {
 		bgColor: '#222338',
-		textColor: '#FFF'
+		textColor: '#FFF',
+		dropdownBgColor: '#3B3C54',
+		dropdownBorderColor: '#4A4A70'
 	},
 	card: {
 		bgColor: '#26273B',

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
-import { navbarWidth } from '@constants/index';
+import { navbarWidth, globalColors } from '@constants/index';
 
 export const Container = styled.aside`
 	display: flex;
@@ -11,6 +11,7 @@ export const Container = styled.aside`
 	background-color: ${({ theme }) => theme.navbar.bgColor};
 	width: ${navbarWidth}px;
 	height: 100vh;
+	z-index: 1;
 `;
 
 export const Top = styled.div`
@@ -48,4 +49,36 @@ export const Button = styled.button`
 	${navbarIconMixin};
 	${flexCenter};
 	flex-direction: column;
+`;
+
+export const DropdownContainer = styled.div`
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: ${({ theme }) => theme.navbar.dropdownBgColor};
+	border: 1px solid ${({ theme }) => theme.navbar.dropdownBorderColor};
+	border-radius: 4px;
+	left: ${navbarWidth - 8}px;
+	bottom: 34px;
+
+	&::after {
+		content: '◀';
+		position: absolute;
+		left: -13px;
+		bottom: 6px;
+		z-index: 1;
+		color: ${({ theme }) => theme.navbar.dropdownBgColor};
+	}
+`;
+
+export const DropdownButton = styled.button`
+	color: ${({ theme }) => theme.navbar.textColor};
+	${buttonMixin};
+	padding: 10px 16px;
+	width: 120px;
+
+	&:hover {
+		background-color: ${globalColors.primary};
+	}
 `;

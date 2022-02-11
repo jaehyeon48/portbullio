@@ -1,20 +1,31 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useState, useEffect } from 'react';
 import { useTheme } from 'styled-components';
 import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
+import { ProfileThumbnail } from '@components/index';
 import * as Icon from '@components/Icon';
 import { AuthPage, LogOutPage } from '@pages/index';
 import { useModal, useAuth } from '@hooks/index';
+import NavbarDropdown from './NavbarDropdown';
 import * as Style from './styles';
 
 const navbarLogoWidth = 76;
 const navbarLogoHeight = 50;
 
 export default function Navbar() {
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const { openModal } = useModal();
 	const isAuthenticated = useAuth();
 	const { currentTheme } = useTheme();
 	const logoSrc = currentTheme === 'light' ? mainLogoLight : mainLogoDark;
+
+	useEffect(() => {
+		document.addEventListener('click', handleCloseNavDropdown);
+
+		return () => {
+			document.removeEventListener('click', handleCloseNavDropdown);
+		};
+	}, []);
 
 	function handleOpenLogInModal(e: SyntheticEvent) {
 		openModal(e, <AuthPage />);
@@ -22,6 +33,16 @@ export default function Navbar() {
 
 	function handleOpenLogOutModal(e: SyntheticEvent) {
 		openModal(e, <LogOutPage />);
+	}
+
+	function handleOpenNavDropdown() {
+		setIsDropdownOpen(true);
+	}
+
+	function handleCloseNavDropdown(e: Event) {
+		const target = e.target as HTMLElement;
+		if (target.closest('#nav-profile-button')) return;
+		setIsDropdownOpen(false);
 	}
 
 	return (
@@ -53,16 +74,11 @@ export default function Navbar() {
 					<Icon.CoinsOnHand />
 					<p>배당</p>
 				</Style.NavbarLink>
-				<Style.NavbarLink to="/settings">
-					<Icon.Settings />
-					<p>설정</p>
-				</Style.NavbarLink>
 			</Style.Middle>
 			<Style.Bottom alignItems="center" justifyContent="center">
 				{isAuthenticated ? (
-					<Style.Button type="button" onClick={handleOpenLogOutModal}>
-						<Icon.SignOut />
-						<p>로그아웃</p>
+					<Style.Button id="nav-profile-button" type="button" onClick={handleOpenNavDropdown}>
+						<ProfileThumbnail />
 					</Style.Button>
 				) : (
 					<Style.Button type="button" onClick={handleOpenLogInModal}>
@@ -71,6 +87,7 @@ export default function Navbar() {
 					</Style.Button>
 				)}
 			</Style.Bottom>
+			{isDropdownOpen && <NavbarDropdown logOutFn={handleOpenLogOutModal} profileFn={() => {}} />}
 		</Style.Container>
 	);
 }

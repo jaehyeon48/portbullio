@@ -2,7 +2,7 @@ import { render, screen, CustomWrapper } from '@api/testingLibrary';
 import { lightTheme, darkTheme } from '@styles/Theme';
 import Navbar from '../index';
 
-const numOfNavbarIcons = 6;
+const numOfNavbarIcons = 5;
 
 test('Navbar layout test on light theme', () => {
 	render(
