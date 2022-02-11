@@ -162,18 +162,24 @@ export const Top5ListItems = styled.ul`
 `;
 
 export const Top5ListItem = styled(Card)`
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
+	list-style-type: none;
 	margin-bottom: 1.2em;
 	padding: 0.8em 0;
 	cursor: pointer;
+`;
+
+export const Top5ListItemLink = styled(Link)`
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
 `;
 
 export const Top5ListItemTicker = styled.span`
 	width: 20%;
 	text-transform: uppercase;
 	font-weight: 500;
+	color: ${({ theme }) => theme.base.textColor};
 `;
 
 export const Top5ListItemChangePercent = styled.span`
