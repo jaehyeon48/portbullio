@@ -26,6 +26,7 @@ export const HeaderContainer = styled.div`
 
 export const ButtonContainer = styled.div`
 	${flexMixin};
+	padding: 0 1.4em;
 	height: 60%;
 	margin-top: 3.7em;
 
