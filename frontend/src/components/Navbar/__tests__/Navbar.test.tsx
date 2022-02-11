@@ -35,3 +35,15 @@ test('Navbar layout test on dark theme', () => {
 	expect(mainLogoImg).toBeInTheDocument();
 	expect(navbarIcons).toHaveLength(numOfNavbarIcons);
 });
+
+test('Navbar layout on authenticated state', () => {
+	render(
+		<CustomWrapper theme={lightTheme} authValue>
+			<Navbar />
+		</CustomWrapper>
+	);
+
+	const userProfileButton = screen.getByLabelText('User profile button');
+
+	expect(userProfileButton).toBeInTheDocument();
+});

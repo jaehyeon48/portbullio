@@ -13,3 +13,4 @@ export { default as ExclamationMark } from './ExclamationMark';
 export { default as CaretUp } from './CaretUp';
 export { default as CaretDown } from './CaretDown';
 export { default as AngleRight } from './AngleRight';
+export { default as User } from './User';

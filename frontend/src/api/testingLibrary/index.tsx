@@ -4,10 +4,16 @@ import { BrowserRouter } from 'react-router-dom';
 import { AuthContextProvider, EventEmitterProvider } from '@hooks/index';
 import userEvent from '@testing-library/user-event';
 
-function CustomWrapper({ children, theme }: { children: ReactElement; theme: DefaultTheme }) {
+interface WrapperProps {
+	children: ReactElement;
+	theme: DefaultTheme;
+	authValue?: boolean;
+}
+
+function CustomWrapper({ children, theme, authValue = false }: WrapperProps) {
 	return (
 		<BrowserRouter>
-			<AuthContextProvider>
+			<AuthContextProvider initialValue={authValue}>
 				<ThemeProvider theme={theme}>
 					<EventEmitterProvider>{children}</EventEmitterProvider>
 				</ThemeProvider>

@@ -54,6 +54,9 @@ export const lightTheme: DefaultTheme = {
 		textSubColor: '#868E96',
 		borderColor: '#DEE1E5',
 		currencySymbol: '#9CA6B0'
+	},
+	userIcon: {
+		bgColor: '#57636F'
 	}
 };
 
@@ -94,5 +97,8 @@ export const darkTheme: DefaultTheme = {
 		textSubColor: '#98A7B6',
 		borderColor: '#4F5278',
 		currencySymbol: '#A6B6C6'
+	},
+	userIcon: {
+		bgColor: '#A3A9AF'
 	}
 };

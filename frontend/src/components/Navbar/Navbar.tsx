@@ -77,7 +77,12 @@ export default function Navbar() {
 			</Style.Middle>
 			<Style.Bottom alignItems="center" justifyContent="center">
 				{isAuthenticated ? (
-					<Style.Button id="nav-profile-button" type="button" onClick={handleOpenNavDropdown}>
+					<Style.Button
+						id="nav-profile-button"
+						aria-label="User profile button"
+						type="button"
+						onClick={handleOpenNavDropdown}
+					>
 						<ProfileThumbnail />
 					</Style.Button>
 				) : (

@@ -2,11 +2,16 @@ import * as React from 'react';
 
 type AuthUpdateState = React.Dispatch<React.SetStateAction<boolean>>;
 
+interface ProviderProps {
+	children: React.ReactNode;
+	initialValue?: boolean;
+}
+
 const AuthContext = React.createContext<boolean | null>(null);
 const AuthUpdateContext = React.createContext<AuthUpdateState | null>(null);
 
-export function AuthContextProvider({ children }: { children: React.ReactNode }) {
-	const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+export function AuthContextProvider({ children, initialValue = false }: ProviderProps) {
+	const [isAuthenticated, setIsAuthenticated] = React.useState(initialValue);
 
 	return (
 		<AuthContext.Provider value={isAuthenticated}>

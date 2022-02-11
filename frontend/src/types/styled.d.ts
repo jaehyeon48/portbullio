@@ -40,5 +40,8 @@ declare module 'styled-components' {
 			borderColor: string;
 			currencySymbol: string;
 		};
+		userIcon: {
+			bgColor: string;
+		};
 	}
 }
