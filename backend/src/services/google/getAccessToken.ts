@@ -2,12 +2,7 @@ import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import envConfig from '@config';
 import { logger } from '@loaders';
 
-interface GoogleUserEmailAndName {
-	email: string;
-	name: string;
-}
-
-export async function getAccessToken(code: string): Promise<string> {
+export default async function getAccessToken(code: string): Promise<string> {
 	const {
 		baseRedirectURI,
 		google: { clientId, clientSecret }
@@ -26,21 +21,6 @@ export async function getAccessToken(code: string): Promise<string> {
 			data: { access_token: accessToken }
 		} = await axios.post(url, reqConfig);
 		return accessToken as string;
-	} catch (error) {
-		const err = error as AxiosError;
-		logger.error(err.message);
-		logger.error(`${err.response?.status}: ${JSON.stringify(err.response?.data)}`);
-		throw err;
-	}
-}
-
-export async function getEmailAndUsername(accessToken: string): Promise<GoogleUserEmailAndName> {
-	try {
-		const { data } = await axios.get(
-			`https://www.googleapis.com/oauth2/v2/userinfo?fields=email,name&access_token=${accessToken}`
-		);
-
-		return data;
 	} catch (error) {
 		const err = error as AxiosError;
 		logger.error(err.message);

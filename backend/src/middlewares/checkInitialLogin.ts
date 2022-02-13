@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { sessionService, cookieService } from '@services';
+import { sessionService, cookieService } from '@services/index';
 
 export default async function checkInitialLogin(
 	req: Request,

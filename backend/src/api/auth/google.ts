@@ -1,5 +1,5 @@
 import express, { Request, Response } from 'express';
-import { googleService, userService, sessionService, cookieService } from '@services';
+import { googleService, userService, sessionService, cookieService } from '@services/index';
 import envConfig from '@config';
 import { AxiosError } from 'axios';
 

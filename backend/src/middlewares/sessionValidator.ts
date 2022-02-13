@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { sessionService } from '@services';
+import * as sessionService from '@services/session';
 
 export default async function sessionValidator(
 	req: Request,

@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { sessionService, cookieService } from '@services';
+import { sessionService, cookieService } from '@services/index';
 import { sessionValidator } from '@middlewares';
 
 export default (): express.Router => {
