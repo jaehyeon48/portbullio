@@ -4,7 +4,7 @@ import { getAvatar } from '@api/user';
 import * as Style from './styles';
 
 export default function ProfileThumbnail() {
-	const { data: avatarURL, isLoading } = useQuery('avatar url', getAvatar, { staleTime: Infinity });
+	const { data: avatarURL, isLoading } = useQuery('avatarUrl', getAvatar, { staleTime: Infinity });
 
 	return (
 		<Style.Container>
