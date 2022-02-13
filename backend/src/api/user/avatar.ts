@@ -8,7 +8,7 @@ export default (): express.Router => {
 	router.get('/', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const { userId } = res.locals;
-			const avatarURL = await userService.getAvatar(userId);
+			const avatarURL = await userService.getAvatar(Number(userId));
 			res.status(200).json({ avatarURL });
 		} catch (error) {
 			next(error);
