@@ -1,6 +1,6 @@
 import { LoaderProps } from '@src/types';
+import logger from '@lib/winston';
 import expressLoader from './express';
-import logger from './winston';
 
 export default async function appLoader({ app }: LoaderProps) {
 	await expressLoader({ app });
@@ -8,4 +8,3 @@ export default async function appLoader({ app }: LoaderProps) {
 }
 
 export { default as prisma } from './prisma';
-export { logger };

@@ -1,4 +1,5 @@
-import { logger, prisma } from '@loaders';
+import logger from '@lib/winston';
+import { prisma } from '@loaders';
 import { AuthId, AuthType } from './types';
 
 export default async function getUserId(authId: AuthId, authType: AuthType): Promise<number> {

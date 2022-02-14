@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { logger } from '@loaders';
+import logger from '@lib/winston';
 
 process.env.NODE_ENV = process.env.NODE_ENV ?? 'development';
 
@@ -19,5 +19,10 @@ export default {
 			clientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET
 		}
+	},
+	aws: {
+		identityPoolId: process.env.AWS_IDENTITY_POOL_ID,
+		region: process.env.AWS_REGION,
+		bucketName: process.env.AWS_S3_BUCKET_NAME
 	}
 };

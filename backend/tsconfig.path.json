@@ -8,6 +8,9 @@
       "@config": [
         "src/config/index.ts"
       ],
+      "@lib/*": [
+        "src/lib/*"
+      ],
       "@loaders": [
         "src/loaders/index.ts"
       ],

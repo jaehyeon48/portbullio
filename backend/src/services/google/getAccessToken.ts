@@ -1,6 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 import envConfig from '@config';
-import { logger } from '@loaders';
+import logger from '@lib/winston';
 
 export default async function getAccessToken(code: string): Promise<string> {
 	const {

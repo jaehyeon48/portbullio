@@ -3,7 +3,8 @@ import https from 'https';
 import path from 'path';
 import fs from 'fs';
 import config from '@config';
-import loaders, { logger } from '@loaders';
+import logger from '@lib/winston';
+import loaders from '@loaders';
 
 async function startServer() {
 	const app = express();

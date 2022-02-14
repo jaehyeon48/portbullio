@@ -1,4 +1,5 @@
-import { logger, prisma } from '@loaders';
+import logger from '@lib/winston';
+import { prisma } from '@loaders';
 
 type AvatarURL = string | null | undefined;
 

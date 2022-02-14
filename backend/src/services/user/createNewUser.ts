@@ -1,4 +1,5 @@
-import { logger, prisma } from '@loaders';
+import logger from '@lib/winston';
+import { prisma } from '@loaders';
 import createNewUserAuthId from './createNewUserAuthId';
 import { AuthId, AuthType } from './types';
 

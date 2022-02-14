@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { logger } from '@loaders';
+import logger from '@lib/winston';
 
 interface GoogleUserEmailAndName {
 	email: string;
