@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import * as userService from '@services/user';
-import { sessionValidator } from '@middlewares';
+import { sessionValidator, multerForAvatar } from '@middlewares';
+import { AvatarMIMEType } from '@types';
 
 export default (): express.Router => {
 	const router = express.Router();
@@ -14,6 +15,26 @@ export default (): express.Router => {
 			next(error);
 		}
 	});
+
+	router.put(
+		'/',
+		sessionValidator,
+		multerForAvatar.single('avatar'),
+		async (req: Request, res: Response, next: NextFunction) => {
+			try {
+				const { userId } = res.locals;
+				const avatarData = req.file?.buffer as unknown as string;
+				const uploadedFileName = await userService.updateAvatar(
+					req.file?.mimetype as AvatarMIMEType,
+					Number(userId),
+					avatarData
+				);
+				res.json({ uploadedFileName });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
 
 	return router;
 };
