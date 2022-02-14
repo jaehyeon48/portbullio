@@ -1,4 +1,5 @@
 import express from 'express';
+import logger from '@lib/winston';
 
 export default function errorHandler(
 	err: any,
@@ -6,6 +7,7 @@ export default function errorHandler(
 	res: express.Response,
 	next: express.NextFunction
 ) {
+	logger.error(err.message);
 	if (err.message === 'Invalid session') {
 		res.status(401).json({ message: 'Invalid session' });
 		return;
