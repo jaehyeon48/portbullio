@@ -1,5 +1,5 @@
 import logger from '@lib/winston';
-import { prisma } from '@loaders';
+import prisma from '@lib/prisma';
 import { AuthId, AuthType } from './types';
 
 export default async function isUserExist(authId: AuthId, authType: AuthType): Promise<boolean> {

@@ -1,5 +1,5 @@
 import logger from '@lib/winston';
-import { prisma } from '@loaders';
+import prisma from '@lib/prisma';
 
 type AvatarURL = string | null | undefined;
 

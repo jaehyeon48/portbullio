@@ -6,5 +6,3 @@ export default async function appLoader({ app }: LoaderProps) {
 	await expressLoader({ app });
 	logger.info('Express loaded');
 }
-
-export { default as prisma } from './prisma';

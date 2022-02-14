@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 import { uploadAvatarToS3 } from '@services/s3';
 import { AvatarMIMEType } from '@types';
 import { AVATAR_MIME_TYPES } from '@constants';
-import { prisma } from '@loaders';
+import prisma from '@lib/prisma';
 
 export default async function updateAvatar(
 	mimetype: AvatarMIMEType,
