@@ -8,5 +8,6 @@ export default {
 			clientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
 			secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET
 		}
-	}
+	},
+	avatarImageEndPoint: process.env.AVATAR_IMAGE_END_POINT
 };

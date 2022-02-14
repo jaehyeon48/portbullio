@@ -6,6 +6,10 @@ export const Container = styled.div`
 	${flexCenter};
 	flex-direction: column;
 	padding: 1em;
+
+	& > input[type='file'] {
+		display: none;
+	}
 `;
 
 export const ImageContainer = styled.div`
@@ -21,6 +25,10 @@ export const ImageContainer = styled.div`
 	& > svg {
 		fill: ${({ theme }) => theme.userIcon.bgColor};
 	}
+`;
+
+export const Image = styled.img`
+	border-radius: 50%;
 `;
 
 export const AddImageIconContainer = styled.div`
