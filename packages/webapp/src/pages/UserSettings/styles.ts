@@ -22,7 +22,7 @@ export const ImageContainer = styled.div`
 	position: relative;
 	width: 100px;
 	height: 100px;
-	border: 1px solid ${({ theme }) => theme.base.colors.darkGray};
+	box-shadow: 0 0 0 1px ${({ theme }) => theme.base.colors.darkGray};
 	background-color: ${({ theme }) => theme.card.bgColor};
 	border-radius: 50%;
 
