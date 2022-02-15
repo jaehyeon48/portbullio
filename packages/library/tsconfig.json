@@ -1,0 +1,22 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "es6",
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "composite": true,
+    "paths": {
+      "@portbullio/shared/*": [
+        "../shared/*"
+      ]
+    }
+  },
+  "references": [
+    {
+      "path": "../shared"
+    }
+  ],
+  "include": [
+    "./**/*"
+  ],
+}

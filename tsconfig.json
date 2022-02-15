@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es6",
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "checkJs": true,
+  },
+  "references": [
+    {
+      "path": "packages/webapp"
+    },
+    {
+      "path": "packages/server"
+    }
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "*.d.ts"
+  ]
+}
