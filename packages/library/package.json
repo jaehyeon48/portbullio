@@ -4,6 +4,13 @@
   "author": "jaehyeon48 <imjaehyeon48@gmail.com>",
   "license": "MIT",
   "type": "module",
+  "scripts": {
+    "format": "prettier --check ./src",
+    "format:fix": "prettier --write ./src",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint --fix ./src",
+    "precommit": "npm run format:fix && npm run lint:fix"
+  },
   "devDependencies": {
     "eslint-config-airbnb-base": "^15.0.0"
   }
