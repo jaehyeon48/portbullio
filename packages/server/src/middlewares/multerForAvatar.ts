@@ -1,5 +1,5 @@
 import multer from 'multer';
-import { AVATAR_MIME_TYPES } from '@portbullio/shared/constants/index';
+import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
 
 export default multer({
 	fileFilter: (req, file, cb) => {
