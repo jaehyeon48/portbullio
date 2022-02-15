@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { buttonMixin, flexCenter } from '@styles/index';
 import { globalColors } from '@constants/index';
 
+interface ImageUploadButtonProps {
+	bgPrimary?: string;
+}
+
 export const Container = styled.div`
 	${flexCenter};
 	flex-direction: column;
@@ -49,7 +53,7 @@ export const AddImageIconContainer = styled.div`
 `;
 
 export const Form = styled.form`
-	margin: 40px 10px 10px;
+	margin: 20px 10px 10px;
 
 	& div {
 		width: 100%;
@@ -63,12 +67,31 @@ export const Form = styled.form`
 
 export const Button = styled.button`
 	${buttonMixin};
-	font-size: 18px;
+	font-size: 16px;
 	margin: 0.8em 0 0 auto;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
 	background-color: ${globalColors.primary};
 	color: #fff;
+`;
+
+export const ImageUploadButton = styled.button<ImageUploadButtonProps>`
+	${buttonMixin};
+	font-size: 16px;
+	margin-left: 12px;
+	padding: 0.4em 0.9em;
+	border-radius: 4px;
+	background-color: ${({ theme, bgPrimary }) =>
+		bgPrimary ? globalColors.primary : theme.base.colors.darkGray};
+	color: #fff;
+`;
+
+export const UploadButtonContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin-top: 12px;
+	padding-right: 10px;
 `;
 
 export const NoticeNotSupportedImageType = styled.p`

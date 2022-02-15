@@ -30,10 +30,15 @@ export default function AvatarImagePicker() {
 		fileInputRef.current.click();
 	}
 
+	function cancelUpload() {
+		setPreviewUrl(null);
+		setNewAvatarImage(null);
+	}
+
 	function handlePickedImage(e: SyntheticEvent) {
 		const target = e.target as HTMLInputElement;
 		if (!target.files || target.files.length !== 1) {
-			setPreviewUrl('');
+			setPreviewUrl(null);
 			return;
 		}
 
@@ -53,7 +58,7 @@ export default function AvatarImagePicker() {
 
 		setIsUploadingImage(true);
 		setNewAvatarImage(null);
-		setPreviewUrl('');
+		setPreviewUrl(null);
 		setIsValidMIMEType(true);
 		const uploadResponse = await uploadAvatar(newAvatarImage);
 		if (uploadResponse === '') {
@@ -97,9 +102,14 @@ export default function AvatarImagePicker() {
 				</Style.NoticeNotSupportedImageType>
 			)}
 			{isValidMIMEType && newAvatarImage && (
-				<Style.Button type="button" onClick={handleUploadAvatar}>
-					이미지 수정
-				</Style.Button>
+				<Style.UploadButtonContainer>
+					<Style.ImageUploadButton type="button" onClick={cancelUpload}>
+						취소
+					</Style.ImageUploadButton>
+					<Style.ImageUploadButton type="button" onClick={handleUploadAvatar} bgPrimary="primary">
+						이미지 수정
+					</Style.ImageUploadButton>
+				</Style.UploadButtonContainer>
 			)}
 		</>
 	);
