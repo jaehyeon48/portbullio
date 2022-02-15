@@ -49,4 +49,7 @@
       "path": "../shared"
     }
   ],
+  "include": [
+    "src/**/*"
+  ]
 }
