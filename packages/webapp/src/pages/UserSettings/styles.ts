@@ -70,3 +70,8 @@ export const Button = styled.button`
 	background-color: ${globalColors.primary};
 	color: #fff;
 `;
+
+export const NoticeNotSupportedImageType = styled.p`
+	color: ${globalColors.deepRed};
+	margin: 0.5em 0 0 0;
+`;

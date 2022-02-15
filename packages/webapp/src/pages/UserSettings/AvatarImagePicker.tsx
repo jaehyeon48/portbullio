@@ -3,6 +3,7 @@ import { useQueryClient } from 'react-query';
 import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
 import { uploadAvatar } from '@api/user';
 import { useThemeMode } from '@hooks/index';
+import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
 import toast from '@lib/toast';
 import * as Style from './styles';
 
@@ -13,6 +14,7 @@ export default function AvatarImagePicker() {
 	const [isUploadingImage, setIsUploadingImage] = useState(false);
 	const [newAvatarImage, setNewAvatarImage] = useState<File | null>(null);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+	const [isValidMIMEType, setIsValidMIMEType] = useState(true);
 
 	useEffect(() => {
 		if (!newAvatarImage) return;
@@ -35,7 +37,11 @@ export default function AvatarImagePicker() {
 			return;
 		}
 
+		setIsValidMIMEType(true);
 		const [pickedImage] = target.files;
+		if (!(pickedImage.type in AVATAR_MIME_TYPES)) {
+			setIsValidMIMEType(false);
+		}
 		setNewAvatarImage(pickedImage);
 	}
 
@@ -48,7 +54,7 @@ export default function AvatarImagePicker() {
 		setIsUploadingImage(true);
 		setNewAvatarImage(null);
 		setPreviewUrl('');
-
+		setIsValidMIMEType(true);
 		const uploadResponse = await uploadAvatar(newAvatarImage);
 		if (uploadResponse === '') {
 			toast.error(
@@ -85,7 +91,12 @@ export default function AvatarImagePicker() {
 					<AddImageIcon width={22} height={22} />
 				</Style.AddImageIconContainer>
 			</Style.ImageContainer>
-			{newAvatarImage && (
+			{!isValidMIMEType && (
+				<Style.NoticeNotSupportedImageType>
+					지원하지 않는 이미지 형식입니다.
+				</Style.NoticeNotSupportedImageType>
+			)}
+			{isValidMIMEType && newAvatarImage && (
 				<Style.Button type="button" onClick={handleUploadAvatar}>
 					이미지 수정
 				</Style.Button>
