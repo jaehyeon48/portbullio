@@ -11,14 +11,6 @@
     "allowJs": true,
     "checkJs": true,
   },
-  "references": [
-    {
-      "path": "packages/webapp"
-    },
-    {
-      "path": "packages/server"
-    }
-  ],
   "exclude": [
     "node_modules",
     "dist",
