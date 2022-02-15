@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "author": "jaehyeon48 <imjaehyeon48@gmail.com>",
   "license": "MIT",
-  "type": "module",
   "scripts": {
     "format": "prettier --check ./src",
     "format:fix": "prettier --write ./src",
