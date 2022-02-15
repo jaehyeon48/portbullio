@@ -2,5 +2,9 @@
   "name": "@portbullio/shared",
   "version": "1.0.0",
   "author": "jaehyeon48 <imjaehyeon48@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "eslint-config-airbnb-base": "^15.0.0"
+  }
 }
