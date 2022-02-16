@@ -8,7 +8,7 @@ import toast from '@lib/toast';
 import * as Style from './styles';
 
 export default function AvatarImagePicker() {
-	const fileInputRef = useRef<HTMLInputElement>(null);
+	const imageInputRef = useRef<HTMLInputElement>(null);
 	const queryClient = useQueryClient();
 	const [themeMode] = useThemeMode();
 	const [isUploadingImage, setIsUploadingImage] = useState(false);
@@ -26,13 +26,14 @@ export default function AvatarImagePicker() {
 	}, [newAvatarImage]);
 
 	function openFilePicker() {
-		if (!fileInputRef.current) return;
-		fileInputRef.current.click();
+		if (!imageInputRef.current) return;
+		imageInputRef.current.click();
 	}
 
 	function cancelUpload() {
 		setPreviewUrl(null);
 		setNewAvatarImage(null);
+		imageInputRef.current!.value = '';
 	}
 
 	function handlePickedImage(e: SyntheticEvent) {
@@ -74,6 +75,7 @@ export default function AvatarImagePicker() {
 		toast.success('아바타 이미지가 업데이트 되었습니다.', themeMode, 'topRight');
 		queryClient.setQueryData('avatarUrl', uploadResponse);
 		setIsUploadingImage(false);
+		imageInputRef.current!.value = '';
 	}
 
 	function renderImage() {
@@ -85,7 +87,7 @@ export default function AvatarImagePicker() {
 	return (
 		<>
 			<input
-				ref={fileInputRef}
+				ref={imageInputRef}
 				type="file"
 				accept=".jpg,.jpeg,.png,.webp"
 				onChange={handlePickedImage}
