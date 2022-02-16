@@ -10,10 +10,5 @@ export default async function uploadAvatarToS3(fileName: string, fileData: Buffe
 		ContentEncoding: 'base64'
 	};
 
-	try {
-		await s3Client.send(new PutObjectCommand(uploadParams));
-		return 0;
-	} catch (error) {
-		return -1;
-	}
+	await s3Client.send(new PutObjectCommand(uploadParams));
 }

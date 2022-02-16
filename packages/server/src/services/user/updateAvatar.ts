@@ -10,10 +10,7 @@ export default async function updateAvatar(
 	fileData: string
 ) {
 	const fileName = `${randomUUID()}.${AVATAR_MIME_TYPES[mimetype]}`;
-	const uploadResult = await uploadAvatarToS3(fileName, Buffer.from(fileData, 'base64'));
-	if (uploadResult === -1) {
-		throw new Error(`There was an error uploading userId ${userId}'s avatar`);
-	}
+	await uploadAvatarToS3(fileName, Buffer.from(fileData, 'base64'));
 
 	await prisma.user.update({
 		where: { id: userId },
