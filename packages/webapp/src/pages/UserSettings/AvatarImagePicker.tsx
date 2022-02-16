@@ -105,7 +105,7 @@ export default function AvatarImagePicker() {
 	}
 
 	function renderImage() {
-		if (isUploadingImage) return <div>업로딩 중...</div>;
+		if (isUploadingImage) return <div>업로드 중...</div>;
 		if (previewUrl) return <Style.Image src={previewUrl} alt="New avatar preview" />;
 		return <AvatarImage userIconWidth={60} userIconHeight={60} />;
 	}
