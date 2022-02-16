@@ -67,7 +67,7 @@ export const Form = styled.form`
 
 export const Button = styled.button`
 	${buttonMixin};
-	font-size: 16px;
+	font-size: 14px;
 	margin: 0.8em 0 0 auto;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
@@ -75,23 +75,23 @@ export const Button = styled.button`
 	color: #fff;
 `;
 
+export const UploadButtonContainer = styled.div`
+	display: flex;
+	justify-content: flex-end;
+	width: 100%;
+	margin-top: 20px;
+	padding-right: 10px;
+`;
+
 export const ImageUploadButton = styled.button<ImageUploadButtonProps>`
 	${buttonMixin};
-	font-size: 16px;
+	font-size: 14px;
 	margin-left: 12px;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
 	background-color: ${({ theme, bgPrimary }) =>
 		bgPrimary ? globalColors.primary : theme.base.colors.darkGray};
 	color: #fff;
-`;
-
-export const UploadButtonContainer = styled.div`
-	display: flex;
-	justify-content: flex-end;
-	width: 100%;
-	margin-top: 12px;
-	padding-right: 10px;
 `;
 
 export const NoticeNotSupportedImageType = styled.p`
