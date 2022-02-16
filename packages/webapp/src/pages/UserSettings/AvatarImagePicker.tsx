@@ -1,13 +1,14 @@
 import { SyntheticEvent, useRef, useState, useEffect } from 'react';
-import { useQueryClient } from 'react-query';
+import { useQuery, useQueryClient } from 'react-query';
 import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
-import { uploadAvatar } from '@api/user';
+import { getAvatar, uploadAvatar, deleteAvatar } from '@api/user';
 import { useThemeMode } from '@hooks/index';
 import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
 import toast from '@lib/toast';
 import * as Style from './styles';
 
 export default function AvatarImagePicker() {
+	const { data: avatarURL, isLoading } = useQuery('avatarUrl', getAvatar, { staleTime: Infinity });
 	const imageInputRef = useRef<HTMLInputElement>(null);
 	const queryClient = useQueryClient();
 	const [themeMode] = useThemeMode();
@@ -15,6 +16,8 @@ export default function AvatarImagePicker() {
 	const [newAvatarImage, setNewAvatarImage] = useState<File | null>(null);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const [isValidMIMEType, setIsValidMIMEType] = useState(true);
+	const [isDeleteImageButtonDisabled, setIsDeleteImageButtonDisabled] = useState(false);
+	const [isOpenImageDeleteConfirm, setIsOpenImageDeleteConfirm] = useState(false);
 
 	useEffect(() => {
 		if (!newAvatarImage) return;
@@ -24,6 +27,10 @@ export default function AvatarImagePicker() {
 		};
 		fileReader.readAsDataURL(newAvatarImage);
 	}, [newAvatarImage]);
+
+	useEffect(() => {
+		setIsDeleteImageButtonDisabled((!isLoading && !avatarURL) || !!newAvatarImage);
+	}, [avatarURL, isLoading, newAvatarImage]);
 
 	function openFilePicker() {
 		if (!imageInputRef.current) return;
@@ -78,6 +85,25 @@ export default function AvatarImagePicker() {
 		imageInputRef.current!.value = '';
 	}
 
+	function openDeleteImageConfirm() {
+		setIsOpenImageDeleteConfirm(true);
+	}
+
+	function closeDeleteImageConfirm() {
+		setIsOpenImageDeleteConfirm(false);
+	}
+
+	async function handleDeleteAvatar() {
+		const isDeleteSuccess = await deleteAvatar();
+		closeDeleteImageConfirm();
+		if (!isDeleteSuccess) {
+			toast.error('아바타 이미지 삭제에 실패했습니다. 다시 시도해 주세요.', themeMode, 'topRight');
+			return;
+		}
+		toast.success('아바타 이미지를 성공적으로 삭제했습니다.', themeMode, 'topRight');
+		queryClient.setQueryData('avatarUrl', null);
+	}
+
 	function renderImage() {
 		if (isUploadingImage) return <div>업로딩 중...</div>;
 		if (previewUrl) return <Style.Image src={previewUrl} alt="New avatar preview" />;
@@ -103,15 +129,37 @@ export default function AvatarImagePicker() {
 					지원하지 않는 이미지 형식입니다.
 				</Style.NoticeNotSupportedImageType>
 			)}
-			{isValidMIMEType && newAvatarImage && (
-				<Style.UploadButtonContainer>
-					<Style.ImageUploadButton type="button" onClick={cancelUpload}>
-						취소
-					</Style.ImageUploadButton>
-					<Style.ImageUploadButton type="button" onClick={handleUploadAvatar} bgPrimary="primary">
-						이미지 수정
-					</Style.ImageUploadButton>
-				</Style.UploadButtonContainer>
+			<Style.UploadButtonContainer>
+				<Style.ImageDeleteButton
+					type="button"
+					disabled={isDeleteImageButtonDisabled}
+					onClick={openDeleteImageConfirm}
+				>
+					이미지 삭제
+				</Style.ImageDeleteButton>
+				{isValidMIMEType && newAvatarImage && (
+					<div>
+						<Style.ImageUploadCancelButton type="button" onClick={cancelUpload}>
+							취소
+						</Style.ImageUploadCancelButton>
+						<Style.ImageUploadButton type="button" onClick={handleUploadAvatar}>
+							이미지 수정
+						</Style.ImageUploadButton>
+					</div>
+				)}
+			</Style.UploadButtonContainer>
+			{isOpenImageDeleteConfirm && (
+				<Style.DeleteConfirmContainer>
+					<Style.DeleteConfirmMessage>정말 이미지를 삭제하시겠습니까?</Style.DeleteConfirmMessage>
+					<div>
+						<Style.DeleteConfirmCancelButton type="button" onClick={closeDeleteImageConfirm}>
+							취소
+						</Style.DeleteConfirmCancelButton>
+						<Style.DeleteConfirmButton type="button" onClick={handleDeleteAvatar}>
+							삭제
+						</Style.DeleteConfirmButton>
+					</div>
+				</Style.DeleteConfirmContainer>
 			)}
 		</>
 	);

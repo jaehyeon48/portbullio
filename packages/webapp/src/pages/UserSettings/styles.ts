@@ -1,10 +1,6 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { buttonMixin, flexCenter } from '@styles/index';
 import { globalColors } from '@constants/index';
-
-interface ImageUploadButtonProps {
-	bgPrimary?: string;
-}
 
 export const Container = styled.div`
 	${flexCenter};
@@ -77,24 +73,80 @@ export const Button = styled.button`
 
 export const UploadButtonContainer = styled.div`
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	width: 100%;
 	margin-top: 20px;
 	padding-right: 10px;
+
+	& > div {
+		display: flex;
+	}
 `;
 
-export const ImageUploadButton = styled.button<ImageUploadButtonProps>`
+const ImageButtonStyle = css`
 	${buttonMixin};
 	font-size: 14px;
 	margin-left: 12px;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
-	background-color: ${({ theme, bgPrimary }) =>
-		bgPrimary ? globalColors.primary : theme.base.colors.darkGray};
 	color: #fff;
+`;
+
+export const ImageUploadCancelButton = styled.button`
+	${ImageButtonStyle};
+	background-color: ${({ theme }) => theme.base.colors.darkGray};
+`;
+
+export const ImageUploadButton = styled.button`
+	${ImageButtonStyle};
+	background-color: ${globalColors.primary};
+`;
+
+export const ImageDeleteButton = styled.button`
+	${ImageButtonStyle};
+	background-color: ${globalColors.deepRed};
+
+	&:disabled {
+		cursor: not-allowed;
+		color: ${({ theme }) => theme.base.colors.gray};
+		background-color: ${({ theme }) => theme.base.colors.darkGray};
+	}
 `;
 
 export const NoticeNotSupportedImageType = styled.p`
 	color: ${globalColors.deepRed};
 	margin: 0.5em 0 0 0;
+`;
+
+export const DeleteConfirmContainer = styled.div`
+	padding: 14px 0;
+
+	& > div {
+		margin-top: 6px;
+		display: flex;
+		justify-content: center;
+	}
+`;
+
+export const DeleteConfirmMessage = styled.p`
+	text-align: center;
+`;
+
+const DeleteConfirmButtonStyle = css`
+	${buttonMixin};
+	font-size: 14px;
+	padding: 0.4em 0.5em;
+	margin: 0 8px;
+	border-radius: 4px;
+	color: #fff;
+`;
+
+export const DeleteConfirmCancelButton = styled.button`
+	${DeleteConfirmButtonStyle};
+	background-color: ${({ theme }) => theme.base.colors.darkGray};
+`;
+
+export const DeleteConfirmButton = styled.button`
+	${DeleteConfirmButtonStyle};
+	background-color: ${globalColors.deepRed};
 `;

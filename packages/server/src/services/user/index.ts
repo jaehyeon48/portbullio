@@ -4,3 +4,4 @@ export { default as createNewUser } from './createNewUser';
 export { default as createNewUserAuthId } from './createNewUserAuthId';
 export { default as getAvatar } from './getAvatar';
 export { default as updateAvatar } from './updateAvatar';
+export { default as deleteAvatar } from './deleteAvatar';

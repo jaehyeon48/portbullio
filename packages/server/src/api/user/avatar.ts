@@ -36,5 +36,15 @@ export default (): express.Router => {
 		}
 	);
 
+	router.delete('/', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
+		try {
+			const { userId } = res.locals;
+			await userService.deleteAvatar(Number(userId));
+			res.status(200).send();
+		} catch (error) {
+			next(error);
+		}
+	});
+
 	return router;
 };
