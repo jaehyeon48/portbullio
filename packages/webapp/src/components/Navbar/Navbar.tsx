@@ -1,11 +1,10 @@
 import { SyntheticEvent, useState, useEffect } from 'react';
-import { useTheme } from 'styled-components';
 import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
 import { ProfileThumbnail } from '@components/index';
 import * as Icon from '@components/Icon';
 import { AuthPage, LogOutPage, UserSettingsPage } from '@pages/index';
-import { useModal, useAuth } from '@hooks/index';
+import { useModal, useAuth, useThemeMode } from '@hooks/index';
 import NavbarDropdown from './NavbarDropdown';
 import * as Style from './styles';
 
@@ -16,7 +15,7 @@ export default function Navbar() {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const { openModal } = useModal();
 	const isAuthenticated = useAuth();
-	const { currentTheme } = useTheme();
+	const [currentTheme] = useThemeMode();
 	const logoSrc = currentTheme === 'light' ? mainLogoLight : mainLogoDark;
 
 	useEffect(() => {
