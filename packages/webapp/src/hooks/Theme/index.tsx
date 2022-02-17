@@ -1,8 +1,12 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Theme } from '@types';
 
 export default function useThemeMode(): [Theme, () => void] {
 	const [themeMode, setThemeMode] = useState<Theme>(setInitialTheme);
+
+	useEffect(() => {
+		document.documentElement.dataset.theme = themeMode;
+	}, [themeMode]);
 
 	function setInitialTheme(): Theme {
 		const storedTheme = localStorage.getItem('theme');
