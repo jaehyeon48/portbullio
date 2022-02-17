@@ -158,7 +158,7 @@ export const Top5ListHeader = styled(Link)`
 export const Top5ListItems = styled.ul`
 	margin: 0;
 	padding: 0;
-	style-list-type: none;
+	list-style-type: none;
 `;
 
 export const Top5ListItem = styled(Card)`
