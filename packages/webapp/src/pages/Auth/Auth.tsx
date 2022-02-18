@@ -27,7 +27,7 @@ export default function Auth() {
 					as="a"
 					href={`${googleOAuthURL}&state=${prevPathInfo}`}
 					color="#fff"
-					backgroundcolor="#DC4E41"
+					bgColor="#DC4E41"
 					aria-label="Google auth"
 				>
 					<Style.ButtonIconContainer>
@@ -35,13 +35,13 @@ export default function Auth() {
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>구글로 시작하기</Style.ButtonTextContainer>
 				</Style.Button>
-				<Style.Button as="a" color="#fff" backgroundcolor="#19CE60" aria-label="Naver auth">
+				<Style.Button as="a" color="#fff" bgColor="#19CE60" aria-label="Naver auth">
 					<Style.ButtonIconContainer>
 						<Naver />
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>네이버로 시작하기</Style.ButtonTextContainer>
 				</Style.Button>
-				<Style.Button as="a" color="#614345" backgroundcolor="#FAE100" aria-label="Kakao auth">
+				<Style.Button as="a" color="#614345" bgColor="#FAE100" aria-label="Kakao auth">
 					<Style.ButtonIconContainer>
 						<Kakao />
 					</Style.ButtonIconContainer>

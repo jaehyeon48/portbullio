@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { globalColors } from '@constants/index';
 import { flexMixin, buttonMixin } from '@styles/Mixins';
 
 interface ButtonProps {
 	color: string;
-	backgroundcolor: string;
+	bgColor: string;
 }
 
 export const PageContainer = styled.div`
@@ -20,7 +19,7 @@ export const HeaderContainer = styled.div`
 		margin-top: 1em;
 		font-size: 2.7em;
 		font-weight: 700;
-		color: ${globalColors.primary};
+		color: var(--primary);
 	}
 `;
 
@@ -56,5 +55,5 @@ export const Button = styled.div<ButtonProps>`
 	${flexMixin};
 	width: 100%;
 	color: ${({ color }) => color};
-	background-color: ${({ backgroundcolor }) => backgroundcolor};
+	background-color: ${({ bgColor }) => bgColor};
 `;
