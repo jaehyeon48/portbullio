@@ -76,7 +76,7 @@ export const HeroImageContainer = styled.div`
 export const Button = styled.button`
 	${Mixin.buttonMixin};
 	background-color: var(--primary);
-	color: #fff;
+	color: var(--white);
 	font-size: 1.1em;
 	font-weight: 500;
 	border-radius: 6px;
@@ -87,7 +87,7 @@ export const LinkButton = styled(Link)`
 	${Mixin.buttonMixin};
 	text-decoration: none;
 	background-color: var(--primary);
-	color: #fff;
+	color: var(--white);
 	font-size: 1.1em;
 	font-weight: 500;
 	border-radius: 6px;

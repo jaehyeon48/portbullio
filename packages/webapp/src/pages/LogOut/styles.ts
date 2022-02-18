@@ -21,7 +21,7 @@ const logOutButtonStyle = css`
 	${buttonMixin};
 	border-radius: 4px;
 	padding: 0.2em 0.6em;
-	color: #fff;
+	color: var(--white); ;
 `;
 
 export const CancelButton = styled.button`
