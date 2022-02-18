@@ -50,6 +50,10 @@ export default createGlobalStyle`
     /* Stock Page */
     --stockPageBorderColor: hsla(var(--colorBaseBlueGray), 85%);
     --stockPageTextSubColor: hsla(var(--colorBaseBlueGray), 42%);
+
+    /* Modal */
+    --modalBackdropColor: hsla(var(--colorBaseBlueGray), 90%, 50%);
+    --modalCloseIconColor: var(--darkGray);
   }
 
   html[data-theme='dark'] {
@@ -81,6 +85,10 @@ export default createGlobalStyle`
     /* Stock Page */
     --stockPageBorderColor: hsla(var(--colorBaseBlueGray), 35%);
     --stockPageTextSubColor: hsla(var(--colorBaseBlueGray), 63%);
+
+    /* Modal */
+    --modalBackdropColor: hsla(var(--colorBaseBlueGray), 90%, 30%);
+    --modalCloseIconColor: var(--gray);
   }
 
   body {

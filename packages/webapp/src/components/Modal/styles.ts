@@ -10,11 +10,11 @@ export const ModalBackdrop = styled.div`
 	top: 0;
 	left: 0;
 	backdrop-filter: blur(4px);
-	background-color: ${({ theme }) => theme.modal.backdropBgColor};
+	background-color: var(--modalBackdropColor);
 `;
 
 export const ModalContentContainer = styled(Card)`
-	background-color: ${({ theme }) => theme.base.bgColor};
+	background-color: var(--bodyBgColor);
 	padding: 1em;
 `;
 
@@ -34,6 +34,6 @@ export const Button = styled.button`
 	${buttonMixin};
 
 	& > svg {
-		fill: ${({ theme }) => (theme.currentTheme === 'light' ? '#000' : theme.base.colors.gray)};
+		fill: var(--modalCloseIconColor);
 	}
 `;
