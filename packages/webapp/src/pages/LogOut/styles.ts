@@ -1,10 +1,5 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { buttonMixin } from '@styles/Mixins';
-import { getColor } from '@utils';
-
-interface ButtonProps {
-	backgroundColor: string;
-}
 
 export const PageContainer = styled.div`
 	width: 300px;
@@ -12,7 +7,7 @@ export const PageContainer = styled.div`
 `;
 
 export const Header = styled.header`
-	color: ${({ theme }) => theme.base.textColor};
+	color: var(--baseTextColor);
 	text-align: center;
 `;
 
@@ -22,10 +17,19 @@ export const ButtonContainer = styled.div`
 	margin-top: 1em;
 `;
 
-export const Button = styled.button<ButtonProps>`
+const logOutButtonStyle = css`
 	${buttonMixin};
 	border-radius: 4px;
 	padding: 0.2em 0.6em;
 	color: #fff;
-	background-color: ${({ backgroundColor, theme }) => getColor(theme, backgroundColor)};
+`;
+
+export const CancelButton = styled.button`
+	${logOutButtonStyle};
+	background-color: var(--gray);
+`;
+
+export const LogOutButton = styled.button`
+	${logOutButtonStyle};
+	background-color: var(--deepRed);
 `;
