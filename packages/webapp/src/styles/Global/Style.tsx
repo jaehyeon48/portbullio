@@ -8,6 +8,9 @@ export default createGlobalStyle`
     --colorBaseWhite: 0, 0;
     --colorBaseBlueGray: 210, 17%;
     --colorBaseGreen: 162, 90%;
+    --colorBaseDeepGreen: 157, 100%;
+    --colorBaseRed: 350, 80%;
+    --colorBaseDeepRed: 4, 100%;
     --white: hsla(0, 0%, 100%);
     --dark: hsla(0, 0%, 0%);
     --primary: hsla(var(--colorBaseGreen), 35%);
@@ -23,6 +26,8 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 68%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 53%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 93%);
+    --priceGreen: hsla(var(--colorBaseDeepGreen), 27%);
+    --priceRed: hsla(var(--colorBaseDeepRed), 42%);
 
     /* Navbar */
     --navbarBgColor: var(--white);
@@ -32,6 +37,9 @@ export default createGlobalStyle`
     /* Card */
     --cardBgColor: hsla(var(--colorBaseBlueGray), 96%);
     --cardBoxShadow: var(--boxShadowDimension) hsla(var(--colorBaseBlueGray), 0%, 0.1);
+
+    /* Home Page */
+    --indexCardHeaderBorderColor: hsla(var(--colorBaseBlueGray), 78%);
   }
 
   html[data-theme='dark'] {
@@ -41,6 +49,8 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 42%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 57%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 17%);
+    --priceGreen: hsla(var(--colorBaseDeepGreen), 36%);
+    --priceRed: hsla(var(--colorBaseRed), 55%);
 
     /* Navbar */
     --navbarBgColor: hsla(var(--colorBaseBlueGray), 14%);
@@ -50,6 +60,9 @@ export default createGlobalStyle`
     /* Card */
     --cardBgColor: hsla(var(--colorBaseBlueGray), 18%);
     --cardBoxShadow: none;
+
+    /* Home Page */
+    --indexCardHeaderBorderColor: hsla(var(--colorBaseBlueGray), 45%);
   }
 
   body {

@@ -1,12 +1,12 @@
 import { css, DefaultTheme } from 'styled-components';
 
-interface PriceColorProps {
+export interface PriceColorProps {
 	value: number;
 }
 
 function calculatePriceColor(theme: DefaultTheme, value: number) {
-	if (value > 0) return theme.base.colors.green;
-	if (value < 0) return theme.base.colors.red;
+	if (value > 0) return 'var(--priceGreen)';
+	if (value < 0) return 'var(--priceRed)';
 	return theme.base.colors.gray;
 }
 

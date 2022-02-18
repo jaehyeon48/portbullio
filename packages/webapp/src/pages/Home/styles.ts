@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Card from '@components/Card';
 import { Link } from 'react-router-dom';
 import * as Mixin from '@styles/Mixins';
-import { breakPoints, globalColors } from '@constants/index';
+import { breakPoints } from '@constants/index';
 
 interface HeaderContainerProps {
 	flexDirection: 'row' | 'column';
@@ -51,7 +51,7 @@ export const Header = styled.header`
 `;
 
 export const HeaderPrimary = styled.span`
-	color: ${globalColors.primary};
+	color: var(--primary);
 `;
 
 export const HeroImageContainer = styled.div`
@@ -75,7 +75,7 @@ export const HeroImageContainer = styled.div`
 
 export const Button = styled.button`
 	${Mixin.buttonMixin};
-	background-color: ${globalColors.primary};
+	background-color: var(--primary);
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 500;
@@ -86,7 +86,7 @@ export const Button = styled.button`
 export const LinkButton = styled(Link)`
 	${Mixin.buttonMixin};
 	text-decoration: none;
-	background-color: ${globalColors.primary};
+	background-color: var(--primary);
 	color: #fff;
 	font-size: 1.1em;
 	font-weight: 500;
@@ -103,7 +103,7 @@ export const IndexHeader = styled.header`
 	font-size: 1.2em;
 	font-weight: 700;
 	padding: 0.4em 0;
-	border-bottom: 1px solid ${({ theme }) => theme.base.colors.gray};
+	border-bottom: 1px solid var(--indexCardHeaderBorderColor);
 `;
 
 export const IndexInfo = styled.div`
@@ -144,14 +144,14 @@ export const Top5ListHeader = styled(Link)`
 	align-items: center;
 	justify-content: space-between;
 	font-weight: 500;
-	color: ${({ theme }) => theme.base.textColor};
+	color: var(--baseTextColor);
 	text-decoration: none;
 	margin-bottom: 2em;
 
 	& > svg {
 		position: absolute;
 		right: -11px;
-		fill: ${({ theme }) => theme.base.textColor};
+		fill: var(--baseTextColor);
 	}
 `;
 
@@ -179,7 +179,7 @@ export const Top5ListItemTicker = styled.span`
 	width: 20%;
 	text-transform: uppercase;
 	font-weight: 500;
-	color: ${({ theme }) => theme.base.textColor};
+	color: var(--baseTextColor);
 `;
 
 export const Top5ListItemChangePercent = styled.span`
@@ -189,7 +189,7 @@ export const Top5ListItemChangePercent = styled.span`
 
 export const Top5ListItemPrice = styled.span`
 	width: 22%;
-	color: ${({ theme }) => theme.base.textColor};
+	color: var(--baseTextColor);
 	overflow: hidden;
 	text-overflow: ellipsis;
 `;
