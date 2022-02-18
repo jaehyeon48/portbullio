@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { getColor } from '@utils';
 
 interface SvgStyleProps {
 	width: string | number;
@@ -10,7 +9,7 @@ interface SvgStyleProps {
 const SVG = styled.svg<SvgStyleProps>`
 	width: ${({ width }) => width};
 	height: ${({ height }) => height};
-	fill: ${({ fill, theme }) => getColor(theme, fill) ?? fill};
+	fill: ${({ fill }) => fill};
 `;
 
 export default SVG;
