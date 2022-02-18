@@ -1,16 +1,16 @@
 import styled from 'styled-components';
 
-interface CardStyleProps {
+export interface CardStyleProps {
 	width?: string | number;
 	height?: string | number;
 }
 
 const Card = styled.div<CardStyleProps>`
 	position: relative;
-	background-color: ${({ theme }) => theme.card.bgColor};
-	color: ${({ theme }) => theme.base.textColor};
+	background-color: var(--cardBgColor);
+	color: var(--baseTextColor);
 	border-radius: 8px;
-	box-shadow: ${({ theme }) => theme.card.boxShadow};
+	box-shadow: var(--cardBoxShadow);
 	width: ${({ width }) => width ?? '100%'};
 	height: ${({ height }) => height ?? '100%'};
 `;
