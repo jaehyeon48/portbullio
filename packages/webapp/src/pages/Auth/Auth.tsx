@@ -1,5 +1,5 @@
-import { useTheme } from 'styled-components';
 import { useLocation } from 'react-router-dom';
+import useThemeMode from '@hooks/Theme';
 import envConfig from '@configs/env';
 import mainLogoLight from '@assets/images/auth_page_main_logo_light.webp';
 import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
@@ -13,7 +13,7 @@ const googleOAuthURL = `${google.endPoint}?client_id=${google.clientId}&redirect
 export default function Auth() {
 	const { pathname } = useLocation();
 	const prevPathInfo = encodeURIComponent(JSON.stringify({ prevPath: pathname }));
-	const { currentTheme } = useTheme();
+	const [currentTheme] = useThemeMode();
 	const logoSrc = currentTheme === 'light' ? mainLogoLight : mainLogoDark;
 
 	return (

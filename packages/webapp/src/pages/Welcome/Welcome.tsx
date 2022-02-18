@@ -1,12 +1,12 @@
-import { useTheme } from 'styled-components';
 import { useLocation } from 'react-router-dom';
+import useThemeMode from '@hooks/Theme';
 import * as Style from './styles';
 import { lightThemeImage, darkThemeImage } from './heroImage';
 
 export default function Welcome() {
 	const { search } = useLocation();
 	const username = new URLSearchParams(search).get('username') ?? '';
-	const { currentTheme } = useTheme();
+	const [currentTheme] = useThemeMode();
 
 	return (
 		<>
