@@ -1,23 +1,23 @@
 import { css } from 'styled-components';
-import { breakPoints, globalColors } from '@constants/index';
+import { breakPoints } from '@constants/index';
 
 const navbarIconMixin = css`
 	& > p {
 		margin-top: 0.4em;
 		font-size: 13px;
-		color: ${({ theme }) => theme.navbar.textColor};
+		color: var(--baseTextColor);
 	}
 
 	& > svg {
-		fill: ${({ theme }) => theme.base.colors.gray};
+		fill: var(--navbarIconBgColor);
 	}
 
 	&.active {
 		& > p {
-			color: ${globalColors.primary};
+			color: var(--primary);
 		}
 		& > svg {
-			fill: ${globalColors.primary};
+			fill: var(--primary);
 		}
 	}
 

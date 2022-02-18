@@ -6,8 +6,10 @@ export default createGlobalStyle`
   html {
     --colorBaseWhite: 0, 0;
     --colorBaseBlueGray: 210, 17%;
+    --colorBaseGreen: 162, 90%;
     --white: hsla(0, 0%, 100%);
     --dark: hsla(0, 0%, 0%);
+    --primary: hsla(var(--colorBaseGreen), 35%);
   }
 
   html[data-theme='light'] {
@@ -17,6 +19,11 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 68%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 53%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 93%);
+
+    /* Navbar */
+    --navbarBgColor: var(--white);
+    --navbarDropdownBorderColor: hsla(var(--colorBaseBlueGray), 70%);
+    --navbarIconBgColor: hsla(var(--colorBaseBlueGray), 60%);
   }
 
   html[data-theme='dark'] {
@@ -26,6 +33,11 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 42%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 57%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 17%);
+
+    /* Navbar */
+    --navbarBgColor: hsla(var(--colorBaseBlueGray), 14%);
+    --navbarDropdownBorderColor: hsla(var(--colorBaseBlueGray), 25%);
+    --navbarIconBgColor: hsla(var(--colorBaseBlueGray), 66%);
   }
 
   body {

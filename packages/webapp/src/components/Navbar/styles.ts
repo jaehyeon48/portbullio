@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
-import { navbarWidth, globalColors } from '@constants/index';
+import { navbarWidth } from '@constants/index';
 
 export const Container = styled.aside`
 	display: flex;
 	flex-direction: column;
 	position: sticky;
 	top: 0;
-	background-color: ${({ theme }) => theme.navbar.bgColor};
+	background-color: var(--navbarBgColor);
 	width: ${navbarWidth}px;
 	height: 100vh;
 	z-index: 1;
@@ -56,8 +56,8 @@ export const DropdownContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	background-color: ${({ theme }) => theme.navbar.dropdownBgColor};
-	border: 1px solid ${({ theme }) => theme.navbar.dropdownBorderColor};
+	background-color: var(--navbarBgColor);
+	border: 1px solid var(--navbarDropdownBorderColor);
 	border-radius: 4px;
 	left: ${navbarWidth - 8}px;
 	bottom: 34px;
@@ -68,17 +68,18 @@ export const DropdownContainer = styled.div`
 		left: -13px;
 		bottom: 6px;
 		z-index: 1;
-		color: ${({ theme }) => theme.navbar.dropdownBgColor};
+		color: var(--navbarDropdownBorderColor);
 	}
 `;
 
 export const DropdownButton = styled.button`
-	color: ${({ theme }) => theme.navbar.textColor};
+	color: var(--baseTextColor);
 	${buttonMixin};
 	padding: 10px 16px;
 	width: 120px;
 
 	&:hover {
-		background-color: ${globalColors.primary};
+		background-color: var(--primary);
+		color: var(--white);
 	}
 `;
