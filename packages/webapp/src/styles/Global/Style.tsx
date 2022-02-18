@@ -7,6 +7,7 @@ export default createGlobalStyle`
     /* Color */
     --colorBaseWhite: 0, 0;
     --colorBaseBlueGray: 210, 17%;
+    --colorBaseDarkGray: 214, 7%;
     --colorBaseGreen: 162, 90%;
     --colorBaseDeepGreen: 157, 100%;
     --colorBaseRed: 350, 80%;
@@ -14,6 +15,7 @@ export default createGlobalStyle`
     --white: hsla(0, 0%, 100%);
     --dark: hsla(0, 0%, 0%);
     --primary: hsla(var(--colorBaseGreen), 35%);
+    --deepRed: hsla(var(--colorBaseDeepRed), 40%);
 
     /* Box-Shadow */
     --boxShadowDimension: 1px 1px 3px 1px;
@@ -26,8 +28,12 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 68%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 53%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 93%);
+    --baseBorderColor: hsla(var(--colorBaseBlueGray), 67%);
     --priceGreen: hsla(var(--colorBaseDeepGreen), 27%);
     --priceRed: hsla(var(--colorBaseDeepRed), 42%);
+    --gray: hsla(var(--colorBaseDarkGray), 60%);
+    --darkGray: hsla(var(--colorBaseDarkGray), 40%);
+    --deepDarkGray: hsla(var(--colorBaseDarkGray), 19%);
 
     /* Navbar */
     --navbarBgColor: var(--white);
@@ -53,8 +59,12 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 42%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 57%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 17%);
+    --baseBorderColor: hsla(var(--colorBaseBlueGray), 34%);
     --priceGreen: hsla(var(--colorBaseDeepGreen), 36%);
     --priceRed: hsla(var(--colorBaseRed), 55%);
+    --gray: hsla(var(--colorBaseDarkGray), 50%);
+    --darkGray: hsla(var(--colorBaseDarkGray), 30%);
+    --deepDarkGray: hsla(var(--colorBaseDarkGray), 13%);
 
     /* Navbar */
     --navbarBgColor: hsla(var(--colorBaseBlueGray), 14%);

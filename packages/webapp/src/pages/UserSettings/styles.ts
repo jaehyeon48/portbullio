@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components';
 import { buttonMixin, flexCenter } from '@styles/index';
-import { globalColors } from '@constants/index';
 
 export const Container = styled.div`
 	${flexCenter};
@@ -18,12 +17,12 @@ export const ImageContainer = styled.div`
 	position: relative;
 	width: 100px;
 	height: 100px;
-	box-shadow: 0 0 0 1px ${({ theme }) => theme.base.colors.darkGray};
-	background-color: ${({ theme }) => theme.card.bgColor};
+	box-shadow: 0 0 0 1px var(--baseBorderColor);
+	background-color: var(--cardBgColor);
 	border-radius: 50%;
 
 	& > svg {
-		fill: ${({ theme }) => theme.userIcon.bgColor};
+		fill: var(--gray);
 	}
 `;
 
@@ -37,14 +36,14 @@ export const AddImageIconContainer = styled.div`
 	z-index: 1;
 	width: 36px;
 	height: 36px;
-	background-color: ${({ theme }) => theme.card.bgColor};
-	border: 1px solid ${({ theme }) => theme.base.colors.darkGray};
+	background-color: var(--cardBgColor);
+	border: 1px solid var(--baseBorderColor);
 	border-radius: 50%;
 	right: -12px;
 	bottom: 6px;
 
 	& > svg {
-		fill: ${({ theme }) => theme.userIcon.bgColor};
+		fill: var(--gray);
 	}
 `;
 
@@ -67,8 +66,8 @@ export const Button = styled.button`
 	margin: 0.8em 0 0 auto;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
-	background-color: ${globalColors.primary};
-	color: #fff;
+	background-color: var(--primary);
+	color: var(--white);
 `;
 
 export const UploadButtonContainer = styled.div`
@@ -89,32 +88,32 @@ const ImageButtonStyle = css`
 	margin-left: 12px;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
-	color: #fff;
+	color: var(--white);
 `;
 
 export const ImageUploadCancelButton = styled.button`
 	${ImageButtonStyle};
-	background-color: ${({ theme }) => theme.base.colors.darkGray};
+	background-color: var(--darkGray);
 `;
 
 export const ImageUploadButton = styled.button`
 	${ImageButtonStyle};
-	background-color: ${globalColors.primary};
+	background-color: var(--primary);
 `;
 
 export const ImageDeleteButton = styled.button`
 	${ImageButtonStyle};
-	background-color: ${globalColors.deepRed};
+	background-color: var(--deepRed);
 
 	&:disabled {
 		cursor: not-allowed;
-		color: ${({ theme }) => theme.base.colors.gray};
-		background-color: ${({ theme }) => theme.base.colors.darkGray};
+		color: var(--deepDarkGray);
+		background-color: var(--darkGray);
 	}
 `;
 
 export const NoticeNotSupportedImageType = styled.p`
-	color: ${globalColors.deepRed};
+	color: var(--deepRed);
 	margin: 0.5em 0 0 0;
 `;
 
@@ -135,18 +134,18 @@ export const DeleteConfirmMessage = styled.p`
 const DeleteConfirmButtonStyle = css`
 	${buttonMixin};
 	font-size: 14px;
-	padding: 0.4em 0.5em;
+	padding: 0.4em 0.8em;
 	margin: 0 8px;
 	border-radius: 4px;
-	color: #fff;
+	color: var(--white);
 `;
 
 export const DeleteConfirmCancelButton = styled.button`
 	${DeleteConfirmButtonStyle};
-	background-color: ${({ theme }) => theme.base.colors.darkGray};
+	background-color: var(--darkGray);
 `;
 
 export const DeleteConfirmButton = styled.button`
 	${DeleteConfirmButtonStyle};
-	background-color: ${globalColors.deepRed};
+	background-color: var(--deepRed);
 `;
