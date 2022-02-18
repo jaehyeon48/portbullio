@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { globalColors } from '@constants/index';
 import { flexMixin, buttonMixin } from '@styles/Mixins';
 
 export const Header = styled.header`
@@ -8,7 +7,7 @@ export const Header = styled.header`
 	font-weight: 700;
 	margin-top: 3em;
 	text-align: center;
-	color: ${globalColors.primary};
+	color: var(--primary);
 `;
 
 export const Paragraph = styled.p`
@@ -24,8 +23,8 @@ export const Anchor = styled(Link)`
 	${buttonMixin};
 	width: fit-content;
 	height: fit-content;
-	color: #fff;
-	background-color: ${globalColors.primary};
+	color: var(--white);
+	background-color: var(--primary);
 	border-radius: 4px;
 	text-decoration: none;
 	margin: 2.5em auto;
