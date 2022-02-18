@@ -40,6 +40,10 @@ export default createGlobalStyle`
 
     /* Home Page */
     --indexCardHeaderBorderColor: hsla(var(--colorBaseBlueGray), 78%);
+
+    /* Stock Page */
+    --stockPageBorderColor: hsla(var(--colorBaseBlueGray), 85%);
+    --stockPageTextSubColor: hsla(var(--colorBaseBlueGray), 42%);
   }
 
   html[data-theme='dark'] {
@@ -63,6 +67,10 @@ export default createGlobalStyle`
 
     /* Home Page */
     --indexCardHeaderBorderColor: hsla(var(--colorBaseBlueGray), 45%);
+
+    /* Stock Page */
+    --stockPageBorderColor: hsla(var(--colorBaseBlueGray), 35%);
+    --stockPageTextSubColor: hsla(var(--colorBaseBlueGray), 63%);
   }
 
   body {

@@ -52,6 +52,6 @@ export const PanelItem = styled.div`
 `;
 
 export const PanelItemTitle = styled.span`
-	color: ${({ theme }) => theme.stockPage.textSubColor};
+	color: var(--stockPageTextSubColor);
 `;
 export const PanelItemValue = styled.span``;

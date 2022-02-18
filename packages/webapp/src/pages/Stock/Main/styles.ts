@@ -11,7 +11,7 @@ export const StockMainSection = styled.section`
 	position: relative;
 	margin: 0 ${StockPageConst.leftAndRightMargins.desktop}px;
 	padding: 2em 0 ${STOCK_LINK_INDICATOR_HEIGHT};
-	border-bottom: 1px solid ${({ theme }) => theme.stockPage.borderColor};
+	border-bottom: 1px solid var(--stockPageBorderColor);
 	max-width: ${StockPageConst.maxWidth}px;
 	height: ${StockPageConst.mainSectionHeights.desktop}px;
 	${stockPageBaseFontStyle};
@@ -23,7 +23,7 @@ export const StockMainSection = styled.section`
 `;
 
 export const CompanyName = styled.header`
-	color: ${({ theme }) => theme.base.textColor};
+	color: var(--baseTextColor);
 	font-weight: 700;
 	font-size: 3em;
 `;
@@ -37,13 +37,13 @@ export const TickerContainer = styled.div`
 export const StockExchange = styled.span`
 	font-size: 0.85em;
 	margin-left: 0.45em;
-	color: ${({ theme }) => theme.stockPage.textSubColor};
+	color: var(--stockPageTextSubColor);
 	line-height: 1;
 `;
 
 export const Ticker = styled.span`
 	font-size: 1.2em;
-	color: ${({ theme }) => theme.stockPage.textSubColor};
+	color: var(--stockPageTextSubColor);
 	line-height: 1;
 `;
 
@@ -65,7 +65,7 @@ export const CurrentPrice = styled.div`
 
 export const CurrencySymbol = styled.div`
 	font-size: 0.7em;
-	color: ${({ theme }) => theme.stockPage.currencySymbol};
+	color: var(--stockPageTextSubColor);
 `;
 
 export const PriceChangeContainer = styled.div`
@@ -91,17 +91,17 @@ export const StockMenuLink = styled(NavLink)`
 	font-size: 1.1em;
 	font-weight: 500;
 	margin-right: 3.4em;
-	color: ${({ theme }) => theme.stockPage.textSubColor};
+	color: var(--stockPageTextSubColor);
 
 	&.active {
-		color: ${Constants.globalColors.primary};
+		color: var(--primary);
 
 		&::after {
 			position: absolute;
 			left: 0;
 			bottom: -5px;
 			content: '';
-			border-top: ${STOCK_LINK_INDICATOR_HEIGHT} solid ${Constants.globalColors.primary};
+			border-top: ${STOCK_LINK_INDICATOR_HEIGHT} solid var(--primary);
 			width: 100%;
 		}
 	}
