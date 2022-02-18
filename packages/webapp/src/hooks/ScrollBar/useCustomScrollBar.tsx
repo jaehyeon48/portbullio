@@ -30,7 +30,7 @@ interface CalculateRevisedThumbProps {
 
 const ScrollBarThumb = styled.div`
 	${scrollBarMixin};
-	background-color: ${({ theme }) => theme.scrollBar.normal.backgroundColor};
+	background-color: var(--scrollBarThumbBgColor);
 `;
 
 function calculateRevisedThumbH({

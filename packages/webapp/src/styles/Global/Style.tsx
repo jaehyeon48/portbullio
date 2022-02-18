@@ -32,6 +32,7 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 68%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 53%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 93%);
+    --scrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 83%, 55%);
     --baseBorderColor: hsla(var(--colorBaseBlueGray), 67%);
     --priceGreen: hsla(var(--colorBaseDeepGreen), 27%);
     --priceRed: hsla(var(--colorBaseDeepRed), 42%);
@@ -71,6 +72,7 @@ export default createGlobalStyle`
     --globalScrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 42%);
     --globalScrollBarThumbBgColorHover: hsla(var(--colorBaseBlueGray), 57%);
     --globalScrollBarTrackBgColor: hsla(var(--colorBaseBlueGray), 17%);
+    --scrollBarThumbBgColor: hsla(var(--colorBaseBlueGray), 40%, 60%);
     --baseBorderColor: hsla(var(--colorBaseBlueGray), 34%);
     --priceGreen: hsla(var(--colorBaseDeepGreen), 36%);
     --priceRed: hsla(var(--colorBaseRed), 55%);
