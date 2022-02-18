@@ -6,24 +6,23 @@ interface InputStyleProps {
 }
 
 export const InputStyle = css<InputStyleProps>`
-	background-color: ${({ theme }) => theme.input.backgroundColor};
-	border: 1px solid
-		${({ theme, isError }) => (isError ? theme.base.colors.red : theme.base.colors.darkGray)};
+	background-color: var(--inputBgColor);
+	border: 1px solid ${({ isError }) => (isError ? 'var(--deepRed)' : 'var(--baseBorderColor)')};
 	border-radius: 4px;
-	color: ${({ theme }) => theme.base.textColor};
+	color: var(--baseTextColor);
 	padding: 1.8em 0.5em 0.25em;
 
 	&:focus {
-		border-color: ${({ theme }) => theme.base.colors.blue};
+		border-color: var(--lightBlue);
 		box-shadow: 0 0 ${({ theme }) => (theme.currentTheme === 'light' ? '3' : '5')}px
-			${({ theme }) => theme.base.colors.blue};
-		outline: 1px solid ${({ theme }) => theme.base.colors.blue};
+			var(--lightBlue);
+		outline: 1px solid var(--lightBlue);
 	}
 `;
 
 export const LabelStyle = css<InputStyleProps>`
 	position: absolute;
-	color: ${({ theme, isError }) => (isError ? theme.base.colors.red : theme.input.labelColor)};
+	color: ${({ isError }) => (isError ? 'var(--deepRed)' : 'var(--inputLabelColor)')};
 	top: 0.2em;
 	left: 0.5em;
 `;
@@ -36,6 +35,7 @@ export const InputContainer = styled.div`
 		position: absolute;
 		top: 0.48em;
 		right: 0.3em;
+		fill: var(--deepRed);
 	}
 `;
 
@@ -51,7 +51,7 @@ export const TextInputLabel = styled.label<InputStyleProps>`
 	${LabelStyle};
 
 	${TextInput}:focus + & {
-		color: ${({ theme }) => theme.base.colors.blue};
+		color: var(--lightBlue);
 	}
 `;
 
@@ -59,13 +59,13 @@ export const TextareaLabel = styled.label<InputStyleProps>`
 	${LabelStyle};
 
 	${Textarea}:focus + & {
-		color: ${({ theme }) => theme.base.colors.blue};
+		color: var(--lightBlue);
 	}
 `;
 
 export const ErrorLabel = styled.small<InputStyleProps>`
 	position: absolute;
-	color: ${({ theme }) => theme.base.colors.red};
+	color: var(--deepRed);
 	left: 3px;
 	bottom: -22px;
 	font-size: 14px;

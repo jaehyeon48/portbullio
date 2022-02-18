@@ -12,10 +12,14 @@ export default createGlobalStyle`
     --colorBaseDeepGreen: 157, 100%;
     --colorBaseRed: 350, 80%;
     --colorBaseDeepRed: 4, 100%;
+    --colorBaseLightBlue: 209, 100%;
+    --colorBaseDeepBlue: 223, 100%;
     --white: hsla(0, 0%, 100%);
     --dark: hsla(0, 0%, 0%);
     --primary: hsla(var(--colorBaseGreen), 35%);
     --deepRed: hsla(var(--colorBaseDeepRed), 40%);
+    --lightBlue: hsla(var(--colorBaseLightBlue), 50%);
+    --deepBlue: hsla(var(--colorBaseDeepBlue), 45%);
 
     /* Box-Shadow */
     --boxShadowDimension: 1px 1px 3px 1px;
@@ -54,6 +58,10 @@ export default createGlobalStyle`
     /* Modal */
     --modalBackdropColor: hsla(var(--colorBaseBlueGray), 90%, 50%);
     --modalCloseIconColor: var(--darkGray);
+
+    /* Input */
+    --inputBgColor: var(--white);
+    --inputLabelColor: var(--darkGray);
   }
 
   html[data-theme='dark'] {
@@ -89,6 +97,10 @@ export default createGlobalStyle`
     /* Modal */
     --modalBackdropColor: hsla(var(--colorBaseBlueGray), 90%, 30%);
     --modalCloseIconColor: var(--gray);
+
+    /* Input */
+    --inputBgColor: hsla(var(--colorBaseBlueGray), 14%);
+    --inputLabelColor: var(--gray);
   }
 
   body {

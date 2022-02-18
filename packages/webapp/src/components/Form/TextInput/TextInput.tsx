@@ -46,7 +46,7 @@ export default function TextInput({
 			<Style.TextInputLabel htmlFor={htmlFor} isError={handleError()}>
 				{labelName}
 			</Style.TextInputLabel>
-			{handleError() && <ExclamationMark fill="red" />}
+			{handleError() && <ExclamationMark />}
 			{handleError() && <Style.ErrorLabel>{errorLabel}</Style.ErrorLabel>}
 		</Style.InputContainer>
 	);
