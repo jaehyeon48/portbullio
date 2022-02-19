@@ -8,7 +8,7 @@ const scrollBarMixin = css<ScrollBarThumbProps>`
 	border-radius: 8px;
 	width: 8px;
 	top: 0px;
-	right: 3px;
+	right: 1px;
 `;
 
 export default scrollBarMixin;
