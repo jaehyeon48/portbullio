@@ -14,12 +14,15 @@ export default createGlobalStyle`
     --colorBaseDeepRed: 4, 100%;
     --colorBaseLightBlue: 209, 100%;
     --colorBaseDeepBlue: 223, 100%;
+    --colorBaseDeepPurple: 271, 100%;
+    --colorBaseDeepOrange: 36, 100%;
     --white: hsla(0, 0%, 100%);
     --dark: hsla(0, 0%, 0%);
     --primary: hsla(var(--colorBaseGreen), 35%);
     --deepRed: hsla(var(--colorBaseDeepRed), 40%);
     --lightBlue: hsla(var(--colorBaseLightBlue), 50%);
     --deepBlue: hsla(var(--colorBaseDeepBlue), 45%);
+    --deepOrange: hsla(var(--colorBaseDeepOrange), 45%);
 
     /* Box-Shadow */
     --boxShadowDimension: 1px 1px 3px 1px;
@@ -63,6 +66,9 @@ export default createGlobalStyle`
     /* Input */
     --inputBgColor: var(--white);
     --inputLabelColor: var(--darkGray);
+
+    /* Portfolios Page */
+    --filterButtonBgColor: hsla(var(--colorBaseDeepPurple), 61%);
   }
 
   html[data-theme='dark'] {
@@ -103,6 +109,9 @@ export default createGlobalStyle`
     /* Input */
     --inputBgColor: hsla(var(--colorBaseBlueGray), 14%);
     --inputLabelColor: var(--gray);
+
+    /* Portfolios Page */
+    --filterButtonBgColor: hsla(var(--colorBaseDeepPurple), 51%);
   }
 
   body {

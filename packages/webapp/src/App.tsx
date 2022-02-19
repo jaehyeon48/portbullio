@@ -32,6 +32,7 @@ function App(): ReactElement {
 					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
 						<Route path="overview" element={<Page.StockOverviewPage />} />
 					</Route>
+					<Route path="portfolios" element={<Page.PortfoliosPage />} />
 				</Route>
 			</Routes>
 		</EventListeners>
