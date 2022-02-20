@@ -16,7 +16,7 @@ model User {
   bio               String?             @db.Text
   location          String?             @db.Text
   createdAt         DateTime            @default(now()) @db.Timestamp(0) @map("created_at")
-  currentPortfolio  CurrentPortfolio[]
+  defaultPortfolio  DefaultPortfolio[]
   favoriteStock     FavoriteStock[]
   portfolio         Portfolio[]
   userAuthId        UserAuthId[]
@@ -42,7 +42,7 @@ model Portfolio {
   createdAt           DateTime                @default(now()) @db.Timestamp(0) @map("created_at")
   user                User                    @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_portfolio_user_user_id")
   cashTransactionLog  CashTransactionLog[]
-  currentPortfolio    CurrentPortfolio[]
+  defaultPortfolio    DefaultPortfolio[]
   stockTransactionLog StockTransactionLog[]
 
   @@map("portfolio")
@@ -71,15 +71,15 @@ model CashTransactionLog {
   @@index([portfolioId], map: "fk_cash_transaction_log_portfolio_portfolio_id_idx")
 }
 
-model CurrentPortfolio {
+model DefaultPortfolio {
   userId       Int       @map("user_id")
   portfolioId  Int       @map("portfolio_id")
-  portfolio    Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade, map: "fk_current_portfolio_portfolio_portfolio_id")
-  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_current_portfolio_user_user_id")
+  portfolio    Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade, map: "fk_default_portfolio_portfolio_portfolio_id")
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_default_portfolio_user_user_id")
 
-  @@map("current_portfolio")
+  @@map("default_portfolio")
   @@id([userId, portfolioId])
-  @@index([portfolioId], map: "fk_current_portfolio_portfolio_portfolio_id_idx")
+  @@index([portfolioId], map: "fk_default_portfolio_portfolio_portfolio_id_idx")
 }
 
 model StockTransactionLog {
