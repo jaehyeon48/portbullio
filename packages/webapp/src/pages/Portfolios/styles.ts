@@ -5,7 +5,7 @@ interface PortfolioListItemProp {
 	isFirstList: boolean;
 }
 
-const PORTFOLIO_IS_SELECTED_SECTION_WIDTH = 40;
+const PORTFOLIO_IS_DEFAULT_SECTION_WIDTH = 40;
 
 const sectionStyle = css`
 	max-width: 1680px;
@@ -115,12 +115,12 @@ export const PortfolioListHeaderContainer = styled.div`
 	padding-bottom: 0.5em;
 `;
 
-export const PortfolioIsSelectedSection = styled.div`
-	width: ${PORTFOLIO_IS_SELECTED_SECTION_WIDTH}px;
+export const PortfolioIsDefaultSection = styled.div`
+	width: ${PORTFOLIO_IS_DEFAULT_SECTION_WIDTH}px;
 `;
 
 export const PortfolioNameSection = styled.div`
-	width: calc(30% - ${PORTFOLIO_IS_SELECTED_SECTION_WIDTH}px);
+	width: calc(30% - ${PORTFOLIO_IS_DEFAULT_SECTION_WIDTH}px);
 `;
 
 export const PortfolioPrivacySection = styled.div`
@@ -179,4 +179,9 @@ export const EditNameButton = styled.button`
 export const DeletePortfolioButton = styled.button`
 	${portfolioActionButtonStyle};
 	color: var(--deepRed);
+`;
+
+export const ListNotice = styled.p`
+	margin-top: 20px;
+	text-align: center;
 `;
