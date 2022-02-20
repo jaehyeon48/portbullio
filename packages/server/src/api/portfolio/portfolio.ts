@@ -12,6 +12,16 @@ interface GetPortfolioReqQuery {
 	portfolioId: string;
 }
 
+interface EditPortfolioNameReqBody {
+	portfolioId: string;
+	newPortfolioName: string;
+}
+
+interface EditPortfolioPrivacyReqBody {
+	portfolioId: string;
+	newPrivacy: PortfolioPrivacy;
+}
+
 const MAX_PORTFOLIO_NAME_LENGTH = 20;
 
 export default (): express.Router => {
@@ -68,6 +78,56 @@ export default (): express.Router => {
 			next(error);
 		}
 	});
+
+	router.put('/name', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
+		const { portfolioId, newPortfolioName } = req.body as unknown as EditPortfolioNameReqBody;
+		const { userId } = res.locals;
+
+		if (newPortfolioName.length > MAX_PORTFOLIO_NAME_LENGTH) {
+			res
+				.status(400)
+				.json({ error: `Portfolio name's length must be shorter than or equal to 20.` });
+			return;
+		}
+
+		try {
+			const portfolio = await portfolioService.getPortfolio(Number(portfolioId), Number(userId));
+			if (!portfolio) {
+				res.status(404).json({ error: 'Portfolio not found.' });
+				return;
+			}
+			await portfolioService.editPortfolioName(Number(portfolioId), newPortfolioName);
+			res.status(200).json({ newPortfolioName });
+		} catch (error) {
+			next(error);
+		}
+	});
+
+	router.put(
+		'/privacy',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { portfolioId, newPrivacy } = req.body as unknown as EditPortfolioPrivacyReqBody;
+			const { userId } = res.locals;
+
+			if (newPrivacy !== 'public' && newPrivacy !== 'private') {
+				res.status(400).json({ error: 'Invalid privacy type.' });
+				return;
+			}
+
+			try {
+				const portfolio = await portfolioService.getPortfolio(Number(portfolioId), Number(userId));
+				if (!portfolio) {
+					res.status(404).json({ error: 'Portfolio not found.' });
+					return;
+				}
+				await portfolioService.editPortfolioPrivacy(Number(portfolioId), newPrivacy);
+				res.status(200).json({ newPrivacy });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
 
 	return router;
 };
