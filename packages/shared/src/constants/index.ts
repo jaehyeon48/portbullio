@@ -4,3 +4,5 @@ export const AVATAR_MIME_TYPES = {
 	'image/jpeg': 'jpeg',
 	'image/webp': 'webp'
 };
+
+export const MAX_PORTFOLIO_NAME_LENGTH = 20;

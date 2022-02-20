@@ -1,13 +1,21 @@
+import { SyntheticEvent } from 'react';
 import * as Icon from '@components/Icon';
 import { useQuery } from 'react-query';
 import { getPortfolios } from '@api/portfolio';
+import { useModal } from '@hooks/Modal';
 import * as Style from './styles';
 import PortfolioList from './PortfolioList';
+import AddPortfolio from '../AddPortfolio/AddPortfolio';
 
 export default function Portfolios() {
 	const { data: portfolios, isLoading } = useQuery('portfolioList', getPortfolios, {
 		staleTime: Infinity
 	});
+	const { openModal, closeModal } = useModal();
+
+	function openAddPortfolioModal(e: SyntheticEvent) {
+		openModal(e, <AddPortfolio closeModal={closeModal} />);
+	}
 
 	return (
 		<>
@@ -19,7 +27,7 @@ export default function Portfolios() {
 						<Icon.Filter width={20} height={20} />
 						필터
 					</Style.SearchFilterButton>
-					<Style.AddNewPortfolioButton type="button">
+					<Style.AddNewPortfolioButton type="button" onClick={openAddPortfolioModal}>
 						<Icon.Plus width={20} height={20} />새 포트폴리오 추가
 					</Style.AddNewPortfolioButton>
 				</Style.FilterAndAddButtonContainer>
