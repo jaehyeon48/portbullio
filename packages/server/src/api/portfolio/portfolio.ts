@@ -8,7 +8,7 @@ interface NewPortfolioReqBody {
 	privacy: PortfolioPrivacy;
 }
 
-interface GetPortfolioReqQuery {
+interface GetPortfolioParams {
 	portfolioId: string;
 }
 
@@ -31,23 +31,9 @@ const MAX_PORTFOLIO_NAME_LENGTH = 20;
 export default (): express.Router => {
 	const router = express.Router();
 
-	router.get('/', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
-		const { portfolioId } = req.query as unknown as GetPortfolioReqQuery;
+	router.get('/all', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
 		const { userId } = res.locals;
-		try {
-			const portfolio = await portfolioService.getPortfolio(Number(portfolioId), Number(userId));
-			if (!portfolio) {
-				res.status(404).json({ error: 'Portfolio not found.' });
-				return;
-			}
-			res.status(200).json({ portfolio });
-		} catch (error) {
-			next(error);
-		}
-	});
 
-	router.get('/list', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
-		const { userId } = res.locals;
 		try {
 			const portfolios = await portfolioService.getPortfolios(Number(userId));
 			if (!portfolios) {
@@ -59,6 +45,26 @@ export default (): express.Router => {
 			next(error);
 		}
 	});
+
+	router.get(
+		'/:portfolioId',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { portfolioId } = req.params as unknown as GetPortfolioParams;
+			const { userId } = res.locals;
+
+			try {
+				const portfolio = await portfolioService.getPortfolio(Number(portfolioId), Number(userId));
+				if (!portfolio) {
+					res.status(404).json({ error: 'Portfolio not found.' });
+					return;
+				}
+				res.status(200).json({ portfolio });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
 
 	router.post('/', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
 		const { portfolioName, privacy } = req.body as unknown as NewPortfolioReqBody;
