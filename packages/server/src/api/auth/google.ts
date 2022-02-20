@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express, { NextFunction, Request, Response } from 'express';
 import { googleService, userService, sessionService, cookieService } from '@services/index';
 import envConfig from '@config';
 import { AxiosError } from 'axios';
@@ -11,6 +11,11 @@ interface GoogleOAuthQuery {
 	state: string;
 	code: string;
 	scope: string;
+}
+
+interface PostmanReqBody {
+	accessToken: string;
+	secret: string;
 }
 
 export default (): express.Router => {
@@ -50,6 +55,35 @@ export default (): express.Router => {
 			);
 		}
 	});
+
+	router.post(
+		'/postman',
+		async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+			const { accessToken, secret } = req.body as unknown as PostmanReqBody;
+
+			try {
+				if (secret !== envConfig.oauth.google.postmanSecret) {
+					res.status(401).json({ error: 'Invalid google postman secret' });
+					return;
+				}
+
+				const { email } = await googleService.getEmailAndUsername(accessToken);
+				const userId = await userService.getUserId(email, 'google');
+
+				if (userId === -1) {
+					res.status(401).json({ error: 'User does not exist' });
+					return;
+				}
+
+				const sessionId = await sessionService.createSession(userId);
+				cookieService.issueUAAT(res, sessionId);
+				res.send();
+				return;
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
 
 	return router;
 };

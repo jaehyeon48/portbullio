@@ -17,7 +17,8 @@ export default {
 		baseRedirectURI: process.env.BASE_REDIRECT_URI,
 		google: {
 			clientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
-			clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET
+			clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
+			postmanSecret: process.env.GOOGLE_POSTMAN_SECRET
 		}
 	},
 	aws: {
