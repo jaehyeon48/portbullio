@@ -13,13 +13,15 @@ interface GetPortfolioParams {
 	portfolioId: string;
 }
 
-interface EditPortfolioNameReqBody {
+interface EditPortfolioParams {
 	portfolioId: string;
+}
+
+interface EditPortfolioNameReqBody {
 	newPortfolioName: string;
 }
 
 interface EditPortfolioPrivacyReqBody {
-	portfolioId: string;
 	newPrivacy: PortfolioPrivacy;
 }
 
@@ -88,35 +90,41 @@ export default (): express.Router => {
 		}
 	});
 
-	router.put('/name', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
-		const { portfolioId, newPortfolioName } = req.body as unknown as EditPortfolioNameReqBody;
-		const { userId } = res.locals;
-
-		if (newPortfolioName.length > MAX_PORTFOLIO_NAME_LENGTH) {
-			res
-				.status(400)
-				.json({ error: `Portfolio name's length must be shorter than or equal to 20.` });
-			return;
-		}
-
-		try {
-			const portfolio = await portfolioService.getPortfolio(Number(portfolioId), Number(userId));
-			if (!portfolio) {
-				res.status(404).json({ error: 'Portfolio not found.' });
-				return;
-			}
-			await portfolioService.editPortfolioName(Number(portfolioId), newPortfolioName);
-			res.status(200).json({ newPortfolioName });
-		} catch (error) {
-			next(error);
-		}
-	});
-
 	router.put(
-		'/privacy',
+		'/:portfolioId/name',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { portfolioId, newPrivacy } = req.body as unknown as EditPortfolioPrivacyReqBody;
+			const { portfolioId } = req.params as unknown as EditPortfolioParams;
+			const { newPortfolioName } = req.body as unknown as EditPortfolioNameReqBody;
+			const { userId } = res.locals;
+
+			if (newPortfolioName.length > MAX_PORTFOLIO_NAME_LENGTH) {
+				res
+					.status(400)
+					.json({ error: `Portfolio name's length must be shorter than or equal to 20.` });
+				return;
+			}
+
+			try {
+				const portfolio = await portfolioService.getPortfolio(Number(portfolioId), Number(userId));
+				if (!portfolio) {
+					res.status(404).json({ error: 'Portfolio not found.' });
+					return;
+				}
+				await portfolioService.editPortfolioName(Number(portfolioId), newPortfolioName);
+				res.status(200).json({ newPortfolioName });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
+	router.put(
+		'/:portfolioId/privacy',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { portfolioId } = req.params as unknown as EditPortfolioParams;
+			const { newPrivacy } = req.body as unknown as EditPortfolioPrivacyReqBody;
 			const { userId } = res.locals;
 
 			if (newPrivacy !== 'public' && newPrivacy !== 'private') {
