@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+import { SyntheticEvent, useRef } from 'react';
 import * as Icon from '@components/Icon';
-import { useCustomScrollBar } from '@hooks/ScrollBar';
+import { useCustomScrollBar, useModal } from '@hooks/index';
 import { Portfolio } from '@types';
 import * as Style from './styles';
+import EditPortfolio from '../AddAndEditPage/EditPortfolio';
 
 interface Props {
 	portfolioList: Portfolio[] | undefined;
@@ -17,6 +18,14 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 		outerContainerRef,
 		outerContainerBorderWidth: 1
 	});
+	const { openModal, closeModal } = useModal();
+
+	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
+		openModal(
+			e,
+			<EditPortfolio portfolioId={portfolioId} prevName={prevName} closeModal={closeModal} />
+		);
+	}
 
 	if (isLoading) {
 		return <Style.ListNotice>로딩 중...</Style.ListNotice>;
@@ -41,7 +50,10 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 							</Style.PortfolioPrivacySection>
 							<Style.PortfolioAssetSection>$123,456</Style.PortfolioAssetSection>
 							<Style.PortfolioActionSection>
-								<Style.EditNameButton type="button">
+								<Style.EditNameButton
+									type="button"
+									onClick={e => openEditPortfolioModal(e, id, name)}
+								>
 									<Icon.Pencil width={16} height={16} />
 									이름 수정
 								</Style.EditNameButton>

@@ -5,7 +5,7 @@ import { getPortfolios } from '@api/portfolio';
 import { useModal } from '@hooks/Modal';
 import * as Style from './styles';
 import PortfolioList from './PortfolioList';
-import AddPortfolio from '../AddPortfolio/AddPortfolio';
+import AddPortfolio from '../AddAndEditPage/AddPortfolio';
 
 export default function Portfolios() {
 	const { data: portfolios, isLoading } = useQuery('portfolioList', getPortfolios, {
