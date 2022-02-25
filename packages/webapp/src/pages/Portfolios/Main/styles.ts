@@ -185,3 +185,10 @@ export const ListNotice = styled.p`
 	margin-top: 20px;
 	text-align: center;
 `;
+
+export const TogglePrivacyButton = styled.button`
+	${buttonMixin};
+	text-decoration: underline;
+	font-size: 0.8em;
+	color: var(--stockPageTextSubColor);
+`;

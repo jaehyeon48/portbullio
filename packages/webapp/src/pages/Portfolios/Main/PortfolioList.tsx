@@ -1,7 +1,11 @@
 import { SyntheticEvent, useRef } from 'react';
+import { useQueryClient } from 'react-query';
+import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import * as Icon from '@components/Icon';
+import { editPortfolioPrivacy } from '@api/portfolio';
 import { useCustomScrollBar, useModal } from '@hooks/index';
 import { Portfolio } from '@types';
+import toast from '@lib/toast';
 import * as Style from './styles';
 import EditPortfolio from '../AddAndEditPage/EditPortfolio';
 
@@ -11,6 +15,7 @@ interface Props {
 }
 
 export default function PortfolioList({ portfolioList, isLoading }: Props) {
+	const queryClient = useQueryClient();
 	const outerContainerRef = useRef<HTMLUListElement>(null);
 	const innerContainerRef = useRef<HTMLDivElement>(null);
 	const { ScrollBarThumb, calculateThumbY, thumbH, thumbRef } = useCustomScrollBar({
@@ -25,6 +30,27 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 			e,
 			<EditPortfolio portfolioId={portfolioId} prevName={prevName} closeModal={closeModal} />
 		);
+	}
+
+	async function handleTogglePrivacy(
+		e: SyntheticEvent,
+		portfolioId: number,
+		portfolioName: string,
+		prevPrivacy: PortfolioPrivacy
+	) {
+		const newPrivacy = prevPrivacy === 'public' ? 'private' : 'public';
+		const editRes = await editPortfolioPrivacy(portfolioId, newPrivacy);
+		if (!editRes) {
+			toast.error('에러가 발생했습니다. 다시 시도해 주세요', 'light', 'topRight');
+			return;
+		}
+		toast.success(
+			`${portfolioName}을(를) ${privacyKor[newPrivacy]}로 전환했습니다.`,
+			'light',
+			'topRight'
+		);
+		queryClient.invalidateQueries('portfolioList');
+		closeModal(e, false);
 	}
 
 	if (isLoading) {
@@ -47,6 +73,12 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 							<Style.PortfolioPrivacySection>
 								{privacy === 'public' ? <Icon.LockOpen /> : <Icon.LockClose />}
 								{privacyKor[privacy]}
+								<Style.TogglePrivacyButton
+									type="button"
+									onClick={e => handleTogglePrivacy(e, id, name, privacy)}
+								>
+									변경
+								</Style.TogglePrivacyButton>
 							</Style.PortfolioPrivacySection>
 							<Style.PortfolioAssetSection>$123,456</Style.PortfolioAssetSection>
 							<Style.PortfolioActionSection>
