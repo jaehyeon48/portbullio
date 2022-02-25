@@ -21,7 +21,7 @@ export default function Welcome() {
 					viewBox="0 0 400 375"
 					fill="none"
 					xmlns="http://www.w3.org/2000/svg"
-					aria-label={`Welcome page hero image ${currentTheme} theme`}
+					aria-label="Welcome page hero image"
 				>
 					<rect width="400" height="375" fill="url(#pattern0)" />
 					<defs>
