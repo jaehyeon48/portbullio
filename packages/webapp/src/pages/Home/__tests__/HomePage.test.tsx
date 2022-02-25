@@ -9,8 +9,7 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		const heroImage = screen.getByLabelText('Main page hero image');
-		expect(heroImage).toBeInTheDocument();
+		expect(screen.getByLabelText('Main page hero image')).toBeInTheDocument();
 	});
 
 	test('should have a main page title', () => {
@@ -20,8 +19,7 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		const title = screen.getByLabelText('Main page title');
-		expect(title).toBeInTheDocument();
+		expect(screen.getByLabelText('Main page title')).toBeInTheDocument();
 	});
 
 	test('should have a "시작하기" button', () => {
@@ -31,8 +29,7 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		const startButton = screen.getByRole('button', { name: /시작하기/ });
-		expect(startButton).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: /시작하기/ })).toBeInTheDocument();
 	});
 
 	test('should have a "내 포트폴리오" button', () => {
@@ -42,8 +39,7 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		const myPortfolioButton = screen.getByRole('link', { name: /내 포트폴리오/ });
-		expect(myPortfolioButton).toBeInTheDocument();
+		expect(screen.getByRole('link', { name: /내 포트폴리오/ })).toBeInTheDocument();
 	});
 
 	test('should have 3 major US stock index info components', () => {
@@ -53,13 +49,9 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		const dowJonesInfo = screen.getByLabelText('DJI index info');
-		const snp500Info = screen.getByLabelText('SPX index info');
-		const nasdaqInfo = screen.getByLabelText('IXIC index info');
-
-		expect(dowJonesInfo).toBeInTheDocument();
-		expect(snp500Info).toBeInTheDocument();
-		expect(nasdaqInfo).toBeInTheDocument();
+		expect(screen.getByLabelText('DJI index info')).toBeInTheDocument();
+		expect(screen.getByLabelText('SPX index info')).toBeInTheDocument();
+		expect(screen.getByLabelText('IXIC index info')).toBeInTheDocument();
 	});
 
 	test('should have 3 daily top5 stocks link', () => {
@@ -69,12 +61,8 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		const dailyVolumeTop5Link = screen.getByRole('link', { name: /거래량/ });
-		const dailyGainerTop5Link = screen.getByRole('link', { name: /상승률/ });
-		const dailyLoserTop5Link = screen.getByRole('link', { name: /하락률/ });
-
-		expect(dailyVolumeTop5Link).toBeInTheDocument();
-		expect(dailyGainerTop5Link).toBeInTheDocument();
-		expect(dailyLoserTop5Link).toBeInTheDocument();
+		expect(screen.getByRole('link', { name: /거래량/ })).toBeInTheDocument();
+		expect(screen.getByRole('link', { name: /상승률/ })).toBeInTheDocument();
+		expect(screen.getByRole('link', { name: /하락률/ })).toBeInTheDocument();
 	});
 });

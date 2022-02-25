@@ -11,8 +11,7 @@ test('Should render AAPL stock page', () => {
 		</MemoryRouter>
 	);
 
-	const ticker = screen.getByLabelText('Ticker');
-	expect(ticker).toHaveTextContent('AAPL');
+	expect(screen.getByLabelText('Ticker')).toHaveTextContent('AAPL');
 });
 
 test('Should render MSFT stock page', () => {
@@ -24,6 +23,5 @@ test('Should render MSFT stock page', () => {
 		</MemoryRouter>
 	);
 
-	const ticker = screen.getByLabelText('Ticker');
-	expect(ticker).toHaveTextContent('MSFT');
+	expect(screen.getByLabelText('Ticker')).toHaveTextContent('MSFT');
 });

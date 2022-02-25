@@ -9,8 +9,7 @@ describe('Welcome Page', () => {
 			</CustomWrapper>
 		);
 
-		const welcomeText = screen.getByText(/회원가입을 축하합니다/);
-		expect(welcomeText).toBeInTheDocument();
+		expect(screen.getByText(/회원가입을 축하합니다/)).toBeInTheDocument();
 	});
 
 	test('should have a welcome page hero image', () => {
@@ -20,8 +19,7 @@ describe('Welcome Page', () => {
 			</CustomWrapper>
 		);
 
-		const heroImage = screen.getByLabelText('Welcome page hero image');
-		expect(heroImage).toBeInTheDocument();
+		expect(screen.getByLabelText('Welcome page hero image')).toBeInTheDocument();
 	});
 
 	test('should have a create new portfolio link button', () => {
@@ -31,7 +29,6 @@ describe('Welcome Page', () => {
 			</CustomWrapper>
 		);
 
-		const createNewPortfolioButton = screen.getByRole('link', { name: /새 포트폴리오 만들기/ });
-		expect(createNewPortfolioButton).toBeInTheDocument();
+		expect(screen.getByRole('link', { name: /새 포트폴리오 만들기/ })).toBeInTheDocument();
 	});
 });
