@@ -20,7 +20,7 @@ export default function Home() {
 					<HeroImage />
 				</Style.HeroImageContainer>
 				<Style.HeaderContainer flexDirection="column">
-					<Style.Header>
+					<Style.Header aria-label="Main page title">
 						미국 주식 포트폴리오 관리, <br /> Port<Style.HeaderPrimary>bull</Style.HeaderPrimary>
 						io로 시작하세요!
 					</Style.Header>
@@ -34,7 +34,7 @@ export default function Home() {
 				</Style.HeaderContainer>
 			</Style.Section>
 			<Style.Section margin="5em auto 8em" justifyContent="space-evenly">
-				<Style.IndexContainer>
+				<Style.IndexContainer aria-label="DJI index info">
 					<Style.IndexHeader>다우 존스</Style.IndexHeader>
 					<Style.IndexInfo value={-1}>
 						<Style.IndexPriceContainer>
@@ -47,7 +47,7 @@ export default function Home() {
 						<Style.IndexChangePercent>-0.45%</Style.IndexChangePercent>
 					</Style.IndexInfo>
 				</Style.IndexContainer>
-				<Style.IndexContainer>
+				<Style.IndexContainer aria-label="SPX index info">
 					<Style.IndexHeader>S&amp;P 500</Style.IndexHeader>
 					<Style.IndexInfo value={-1}>
 						<Style.IndexPriceContainer>
@@ -60,7 +60,7 @@ export default function Home() {
 						<Style.IndexChangePercent>-0.14%</Style.IndexChangePercent>
 					</Style.IndexInfo>
 				</Style.IndexContainer>
-				<Style.IndexContainer>
+				<Style.IndexContainer aria-label="IXIC index info">
 					<Style.IndexHeader>나스닥 종합</Style.IndexHeader>
 					<Style.IndexInfo value={1}>
 						<Style.IndexPriceContainer>
