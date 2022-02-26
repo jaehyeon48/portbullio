@@ -1,4 +1,4 @@
-import { SyntheticEvent, useRef } from 'react';
+import { SyntheticEvent, useEffect, useRef } from 'react';
 import { useQueryClient } from 'react-query';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import * as Icon from '@components/Icon';
@@ -7,7 +7,8 @@ import { useCustomScrollBar, useModal } from '@hooks/index';
 import { Portfolio } from '@types';
 import toast from '@lib/toast';
 import * as Style from './styles';
-import EditPortfolio from '../AddAndEditPage/EditPortfolio';
+import EditPortfolio from '../ModalPage/EditPortfolio';
+import DeleteConfirm from '../ModalPage/DeleteConfirm';
 
 interface Props {
 	portfolioList: Portfolio[] | undefined;
@@ -25,8 +26,16 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 	});
 	const { openModal, closeModal } = useModal();
 
+	useEffect(() => {
+		calculateThumbY();
+	}, [calculateThumbY]);
+
 	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
 		openModal(e, <EditPortfolio portfolioId={portfolioId} prevName={prevName} />);
+	}
+
+	function openDeleteConfirmModal(e: SyntheticEvent, portfolioId: number, portfolioName: string) {
+		openModal(e, <DeleteConfirm portfolioId={portfolioId} portfolioName={portfolioName} />);
 	}
 
 	async function handleTogglePrivacy(
@@ -86,7 +95,10 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 									<Icon.Pencil width={16} height={16} />
 									이름 수정
 								</Style.EditNameButton>
-								<Style.DeletePortfolioButton type="button">
+								<Style.DeletePortfolioButton
+									type="button"
+									onClick={e => openDeleteConfirmModal(e, id, name)}
+								>
 									<Icon.TrashCan width={16} height={16} />
 									삭제
 								</Style.DeletePortfolioButton>

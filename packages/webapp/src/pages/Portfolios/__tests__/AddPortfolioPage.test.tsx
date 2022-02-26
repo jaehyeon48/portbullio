@@ -1,5 +1,5 @@
 import { CustomWrapper, render, screen } from '@api/testingLibrary';
-import AddPortfolioPage from '../AddAndEditPage/AddPortfolio';
+import AddPortfolioPage from '../ModalPage/AddPortfolio';
 
 describe('Add portfolio page layout', () => {
 	test('Should have a "포트폴리오 추가" header', () => {

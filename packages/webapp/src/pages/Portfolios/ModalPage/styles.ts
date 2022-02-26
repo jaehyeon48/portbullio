@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { buttonMixin } from '@styles/Mixins';
 
 export const Container = styled.div`
@@ -63,4 +63,33 @@ export const Header = styled.header`
 	font-size: 24px;
 	text-align: center;
 	padding-bottom: 1em;
+`;
+
+export const ConfirmMessage = styled.p`
+	text-align: center;
+	margin-bottom: 20px;
+`;
+
+export const ButtonContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+`;
+
+const DeleteConfirmButtonStyle = css`
+	padding: 0.4em 0.6em;
+	border-radius: 4px;
+	color: var(--white);
+`;
+
+export const DeleteCancelButton = styled.button`
+	${buttonMixin};
+	${DeleteConfirmButtonStyle};
+	background-color: var(--gray);
+`;
+
+export const DeletePortfolioButton = styled.button`
+	${buttonMixin};
+	${DeleteConfirmButtonStyle};
+	background-color: var(--deepRed);
 `;
