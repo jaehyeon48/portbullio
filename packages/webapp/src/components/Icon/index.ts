@@ -23,3 +23,4 @@ export { default as Pencil } from './Pencil';
 export { default as TrashCan } from './TrashCan';
 export { default as LockOpen } from './LockOpen';
 export { default as LockClose } from './LockClose';
+export { default as CandleChart } from './CandleChart';

@@ -20,6 +20,7 @@ describe('Navbar layout', () => {
 		);
 
 		expect(screen.getByRole('link', { name: /대시보드/ })).toBeInTheDocument();
+		expect(screen.getByRole('link', { name: /내 종목/ })).toBeInTheDocument();
 		expect(screen.getByRole('link', { name: /내 포트폴리오/ })).toBeInTheDocument();
 		expect(screen.getByRole('link', { name: /현금/ })).toBeInTheDocument();
 		expect(screen.getByRole('link', { name: /배당/ })).toBeInTheDocument();
