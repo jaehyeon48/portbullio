@@ -94,7 +94,7 @@ export default function AddPortfolio({ closeModal }: Props) {
 						비공개
 					</Style.RadioLabel>
 				</Style.RadioInputContainer>
-				<Style.AddButton type="submit">포트폴리오 추가</Style.AddButton>
+				<Style.AddButton type="submit">추가하기</Style.AddButton>
 			</Style.Form>
 		</Style.Container>
 	);
