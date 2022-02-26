@@ -21,7 +21,9 @@ export default function Portfolios() {
 		<>
 			<Style.UpperSection>
 				<Style.Header>내 포트폴리오</Style.Header>
-				<Style.NumOfPortfolios>{portfolios?.length ?? 0}개</Style.NumOfPortfolios>
+				<Style.NumOfPortfolios aria-label="Number of my portfolios">
+					{portfolios?.length ?? 0}개
+				</Style.NumOfPortfolios>
 				<Style.FilterAndAddButtonContainer>
 					<Style.SearchFilterButton type="button">
 						<Icon.Filter width={20} height={20} />
