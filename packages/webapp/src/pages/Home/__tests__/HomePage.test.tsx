@@ -9,7 +9,7 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByLabelText('Main page hero image')).toBeInTheDocument();
+		expect(screen.getByTitle('Main page hero image')).toBeInTheDocument();
 	});
 
 	test('Should have a main page title', () => {
@@ -19,7 +19,7 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByLabelText('Main page title')).toBeInTheDocument();
+		expect(screen.getByText(/미국 주식 포트폴리오 관리,/)).toBeInTheDocument();
 	});
 
 	test('Should have a "시작하기" button', () => {
@@ -49,9 +49,9 @@ describe('Home page', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByLabelText('DJI index info')).toBeInTheDocument();
-		expect(screen.getByLabelText('SPX index info')).toBeInTheDocument();
-		expect(screen.getByLabelText('IXIC index info')).toBeInTheDocument();
+		expect(screen.getByText(/다우 존스/)).toBeInTheDocument();
+		expect(screen.getByText(/S&P 500/)).toBeInTheDocument();
+		expect(screen.getByText(/나스닥 종합/)).toBeInTheDocument();
 	});
 
 	test('Should have 3 daily top5 stocks link', () => {

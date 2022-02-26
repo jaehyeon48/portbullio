@@ -9,7 +9,7 @@ describe('User settings page', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByLabelText('User profile image')).toBeInTheDocument();
+		expect(screen.getByTestId('user-profile-image')).toBeInTheDocument();
 	});
 
 	test('Should have a delete confirm message after clicking delete avatar button', () => {

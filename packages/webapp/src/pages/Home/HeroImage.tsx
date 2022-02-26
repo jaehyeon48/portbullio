@@ -6,8 +6,8 @@ export default function HeroImage() {
 			viewBox="0 0 550 429"
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
-			aria-label="Main page hero image"
 		>
+			<title>Main page hero image</title>
 			<rect width="550" height="429" fill="url(#pattern0)" />
 			<defs>
 				<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">

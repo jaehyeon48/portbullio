@@ -19,7 +19,7 @@ describe('Portfolio main page layout', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByLabelText('Number of my portfolios')).toBeInTheDocument();
+		expect(screen.getByTestId('num-of-my-portfolios')).toBeInTheDocument();
 	});
 
 	test('Should have a filter button', () => {

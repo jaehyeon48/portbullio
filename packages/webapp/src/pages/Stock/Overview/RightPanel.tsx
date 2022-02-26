@@ -2,7 +2,7 @@ import * as Style from './styles';
 
 export default function RightPanel() {
 	return (
-		<Style.RightPanelContainer aria-label="Stock overview right panel">
+		<Style.RightPanelContainer data-testid="stock-overview-right-panel">
 			<Style.UpperPanel>
 				<Style.PanelItem>
 					<Style.PanelItemTitle>시가</Style.PanelItemTitle>

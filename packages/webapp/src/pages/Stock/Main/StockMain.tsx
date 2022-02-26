@@ -19,28 +19,28 @@ export default function StockMain() {
 
 	return (
 		<>
-			<Style.StockMainSection aria-label="Stock info">
+			<Style.StockMainSection>
 				<section>
-					<Style.CompanyName aria-label="Company name">Apple Inc.</Style.CompanyName>
+					<Style.CompanyName data-testid="company-name">Apple Inc.</Style.CompanyName>
 					<Style.TickerContainer>
-						<Style.Ticker aria-label="Ticker">{ticker.toUpperCase()}</Style.Ticker>
+						<Style.Ticker data-testid="ticker">{ticker.toUpperCase()}</Style.Ticker>
 						<Style.StockExchange>NASDAQ</Style.StockExchange>
 					</Style.TickerContainer>
 				</section>
 				<Style.PriceSection value={-1}>
-					<Style.CurrentPrice aria-label="Current price">
-						<Style.CurrencySymbol aria-label="Currency symbol">$</Style.CurrencySymbol>
+					<Style.CurrentPrice data-testid="current-price">
+						<Style.CurrencySymbol data-testid="currency-symbol">$</Style.CurrencySymbol>
 						172.19
 					</Style.CurrentPrice>
 					<Style.PriceChangeContainer>
-						<Style.PriceChange aria-label="Price change">
+						<Style.PriceChange data-testid="price-change">
 							<DynamicCaret value={-1} width={24} height={24} />
 							3.34
 						</Style.PriceChange>
 						&#40;-0.45%&#41;
 					</Style.PriceChangeContainer>
 				</Style.PriceSection>
-				<Style.StockMenuSection aria-label="Stock page links">
+				<Style.StockMenuSection>
 					<Style.StockMenuLink to="overview">개요</Style.StockMenuLink>
 					<Style.StockMenuLink to="info">기업 정보</Style.StockMenuLink>
 					<Style.StockMenuLink to="financial">재무 정보</Style.StockMenuLink>

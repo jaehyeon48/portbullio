@@ -12,7 +12,8 @@ describe('Stock Main Layout', () => {
 			</MemoryRouter>
 		);
 
-		expect(screen.getByLabelText('Ticker')).toHaveTextContent('AAPL');
+		expect(screen.getByTestId('company-name')).toBeInTheDocument();
+		expect(screen.getByTestId('ticker')).toHaveTextContent('AAPL');
 	});
 
 	test('Should render MSFT stock page', () => {
@@ -24,7 +25,8 @@ describe('Stock Main Layout', () => {
 			</MemoryRouter>
 		);
 
-		expect(screen.getByLabelText('Ticker')).toHaveTextContent('MSFT');
+		expect(screen.getByTestId('company-name')).toBeInTheDocument();
+		expect(screen.getByTestId('ticker')).toHaveTextContent('MSFT');
 	});
 
 	test('Should have a current price component', () => {
@@ -36,7 +38,8 @@ describe('Stock Main Layout', () => {
 			</MemoryRouter>
 		);
 
-		expect(screen.getByLabelText('Current price')).toBeInTheDocument();
+		expect(screen.getByTestId('current-price')).toBeInTheDocument();
+		expect(screen.getByTestId('currency-symbol')).toBeInTheDocument();
 	});
 
 	test('Should have a price change component', () => {
@@ -48,7 +51,7 @@ describe('Stock Main Layout', () => {
 			</MemoryRouter>
 		);
 
-		expect(screen.getByLabelText('Price change')).toBeInTheDocument();
+		expect(screen.getByTestId('price-change')).toBeInTheDocument();
 	});
 
 	test('Should have four stock menu links', () => {

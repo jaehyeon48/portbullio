@@ -9,7 +9,7 @@ describe('Stock overview layout', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByLabelText('Stock overview right panel')).toBeInTheDocument();
+		expect(screen.getByTestId('stock-overview-right-panel')).toBeInTheDocument();
 	});
 
 	test('Should have stock overview right panel items', () => {

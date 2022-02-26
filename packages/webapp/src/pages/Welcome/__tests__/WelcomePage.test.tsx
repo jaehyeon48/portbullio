@@ -19,7 +19,7 @@ describe('Welcome Page', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByLabelText('Welcome page hero image')).toBeInTheDocument();
+		expect(screen.getByTitle('Welcome page hero image')).toBeInTheDocument();
 	});
 
 	test('Should have a create new portfolio link button', () => {

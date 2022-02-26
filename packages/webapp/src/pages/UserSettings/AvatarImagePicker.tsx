@@ -118,7 +118,7 @@ export default function AvatarImagePicker() {
 				accept=".jpg,.jpeg,.png,.webp"
 				onChange={handlePickedImage}
 			/>
-			<Style.ImageContainer aria-label="User profile image" onClick={openFilePicker}>
+			<Style.ImageContainer data-testid="user-profile-image" onClick={openFilePicker}>
 				{renderImage()}
 				<Style.AddImageIconContainer>
 					<AddImageIcon width={22} height={22} />
