@@ -65,7 +65,11 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 					<Style.ListNotice>포트폴리오가 없습니다.</Style.ListNotice>
 				) : (
 					portfolioList.map(({ id, name, privacy }, idx) => (
-						<Style.PortfolioListItem key={id} isFirstList={idx === 0}>
+						<Style.PortfolioListItem
+							key={id}
+							isFirstList={idx === 0}
+							aria-label="A portfolio list item"
+						>
 							<Style.PortfolioIsDefaultSection>
 								<Icon.CircleCheck />
 							</Style.PortfolioIsDefaultSection>
