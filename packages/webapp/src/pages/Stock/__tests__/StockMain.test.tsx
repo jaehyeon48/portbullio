@@ -1,6 +1,6 @@
 import { render, screen } from '@api/testingLibrary';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
-import StockMain from '../StockMain';
+import StockMain from '../Main/StockMain';
 
 describe('Stock Main Layout', () => {
 	test('Should render AAPL stock page', () => {
