@@ -55,7 +55,7 @@ export default function Navbar() {
 				<Style.NavbarLink to="/">
 					<img
 						src={logoSrc}
-						alt={`main logo ${currentTheme}`}
+						alt="Navbar main logo"
 						width={navbarLogoWidth}
 						height={navbarLogoHeight}
 					/>
