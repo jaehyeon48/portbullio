@@ -2,7 +2,7 @@ import { CustomWrapper, screen, render, userEvent } from '@api/testingLibrary';
 import UserSettings from '../UserSettings';
 
 describe('User settings page', () => {
-	test('should have a user profile image component', () => {
+	test('Should have a user profile image component', () => {
 		render(
 			<CustomWrapper>
 				<UserSettings />
@@ -12,7 +12,7 @@ describe('User settings page', () => {
 		expect(screen.getByLabelText('User profile image')).toBeInTheDocument();
 	});
 
-	test('should have a delete confirm message after clicking delete avatar button', () => {
+	test('Should have a delete confirm message after clicking delete avatar button', () => {
 		render(
 			<CustomWrapper>
 				<UserSettings />
@@ -25,7 +25,7 @@ describe('User settings page', () => {
 		expect(screen.getByRole('button', { name: '삭제' })).toBeInTheDocument();
 	});
 
-	test('should have a my bio edit input', () => {
+	test('Should have a my bio edit input', () => {
 		render(
 			<CustomWrapper>
 				<UserSettings />
@@ -35,7 +35,7 @@ describe('User settings page', () => {
 		expect(screen.getByPlaceholderText('내 설명')).toBeInTheDocument();
 	});
 
-	test('should have a my location edit input', () => {
+	test('Should have a my location edit input', () => {
 		render(
 			<CustomWrapper>
 				<UserSettings />
@@ -45,7 +45,7 @@ describe('User settings page', () => {
 		expect(screen.getByPlaceholderText('내 위치')).toBeInTheDocument();
 	});
 
-	test('should have a edit button', () => {
+	test('Should have a edit button', () => {
 		render(
 			<CustomWrapper>
 				<UserSettings />

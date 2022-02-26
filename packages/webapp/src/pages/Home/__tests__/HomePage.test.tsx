@@ -2,7 +2,7 @@ import { CustomWrapper, screen, render } from '@api/testingLibrary';
 import Home from '../Home';
 
 describe('Home page', () => {
-	test('should have a main hero image', () => {
+	test('Should have a main hero image', () => {
 		render(
 			<CustomWrapper>
 				<Home />
@@ -12,7 +12,7 @@ describe('Home page', () => {
 		expect(screen.getByLabelText('Main page hero image')).toBeInTheDocument();
 	});
 
-	test('should have a main page title', () => {
+	test('Should have a main page title', () => {
 		render(
 			<CustomWrapper>
 				<Home />
@@ -22,7 +22,7 @@ describe('Home page', () => {
 		expect(screen.getByLabelText('Main page title')).toBeInTheDocument();
 	});
 
-	test('should have a "시작하기" button', () => {
+	test('Should have a "시작하기" button', () => {
 		render(
 			<CustomWrapper>
 				<Home />
@@ -32,7 +32,7 @@ describe('Home page', () => {
 		expect(screen.getByRole('button', { name: /시작하기/ })).toBeInTheDocument();
 	});
 
-	test('should have a "내 포트폴리오" button', () => {
+	test('Should have a "내 포트폴리오" button', () => {
 		render(
 			<CustomWrapper authValue>
 				<Home />
@@ -42,7 +42,7 @@ describe('Home page', () => {
 		expect(screen.getByRole('link', { name: /내 포트폴리오/ })).toBeInTheDocument();
 	});
 
-	test('should have 3 major US stock index info components', () => {
+	test('Should have 3 major US stock index info components', () => {
 		render(
 			<CustomWrapper authValue>
 				<Home />
@@ -54,7 +54,7 @@ describe('Home page', () => {
 		expect(screen.getByLabelText('IXIC index info')).toBeInTheDocument();
 	});
 
-	test('should have 3 daily top5 stocks link', () => {
+	test('Should have 3 daily top5 stocks link', () => {
 		render(
 			<CustomWrapper authValue>
 				<Home />

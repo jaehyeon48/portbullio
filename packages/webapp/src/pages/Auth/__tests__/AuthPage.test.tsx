@@ -2,7 +2,7 @@ import { CustomWrapper, render, screen } from '@api/testingLibrary';
 import Auth from '../Auth';
 
 describe('OAuth page', () => {
-	test('should have a logo image', () => {
+	test('Should have a logo image', () => {
 		render(
 			<CustomWrapper>
 				<Auth />
@@ -13,7 +13,7 @@ describe('OAuth page', () => {
 		expect(logoImage).toBeInTheDocument();
 	});
 
-	test('should have a title saying "환영합니다"', () => {
+	test('Should have a title saying "환영합니다"', () => {
 		render(
 			<CustomWrapper>
 				<Auth />
@@ -24,7 +24,7 @@ describe('OAuth page', () => {
 		expect(titleHeader).toBeInTheDocument();
 	});
 
-	test('should have three oauth buttons', () => {
+	test('Should have three oauth buttons', () => {
 		render(
 			<CustomWrapper>
 				<Auth />
