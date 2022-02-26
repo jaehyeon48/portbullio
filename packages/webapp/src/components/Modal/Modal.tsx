@@ -11,17 +11,12 @@ interface Props {
 export default function Modal({ children, closeFunction }: Props) {
 	return (
 		<Style.ModalBackdrop
-			aria-label="Modal backdrop"
+			data-testid="modal-backdrop"
 			alignItems="center"
 			justifyContent="center"
 			onClick={closeFunction}
 		>
-			<Style.ModalContentContainer
-				as="dialog"
-				width="fit-content"
-				height="fit-content"
-				aria-label="Modal"
-			>
+			<Style.ModalContentContainer as="dialog" width="fit-content" height="fit-content">
 				<Style.CloseButtonContainer>
 					<Style.Button
 						type="button"
