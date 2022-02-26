@@ -5,7 +5,7 @@ describe('Add portfolio page layout', () => {
 	test('Should have a "포트폴리오 추가" header', () => {
 		render(
 			<CustomWrapper>
-				<AddPortfolioPage closeModal={jest.fn()} />
+				<AddPortfolioPage />
 			</CustomWrapper>
 		);
 
@@ -15,7 +15,7 @@ describe('Add portfolio page layout', () => {
 	test('Should have a new portfolio name input', () => {
 		render(
 			<CustomWrapper>
-				<AddPortfolioPage closeModal={jest.fn()} />
+				<AddPortfolioPage />
 			</CustomWrapper>
 		);
 
@@ -25,7 +25,7 @@ describe('Add portfolio page layout', () => {
 	test('Should have select privacy radio inputs', () => {
 		render(
 			<CustomWrapper>
-				<AddPortfolioPage closeModal={jest.fn()} />
+				<AddPortfolioPage />
 			</CustomWrapper>
 		);
 
@@ -36,7 +36,7 @@ describe('Add portfolio page layout', () => {
 	test('Should have a submit button', () => {
 		render(
 			<CustomWrapper>
-				<AddPortfolioPage closeModal={jest.fn()} />
+				<AddPortfolioPage />
 			</CustomWrapper>
 		);
 

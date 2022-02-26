@@ -11,10 +11,10 @@ export default function Portfolios() {
 	const { data: portfolios, isLoading } = useQuery('portfolioList', getPortfolios, {
 		staleTime: Infinity
 	});
-	const { openModal, closeModal } = useModal();
+	const { openModal } = useModal();
 
 	function openAddPortfolioModal(e: SyntheticEvent) {
-		openModal(e, <AddPortfolio closeModal={closeModal} />);
+		openModal(e, <AddPortfolio />);
 	}
 
 	return (

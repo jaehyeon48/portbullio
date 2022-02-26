@@ -10,10 +10,10 @@ import * as Style from './styles';
 interface Props {
 	prevName: string;
 	portfolioId: number;
-	closeModal: CloseModalFn;
+	closeFunction?: CloseModalFn;
 }
 
-export default function EditPortfolio({ prevName, portfolioId, closeModal }: Props) {
+export default function EditPortfolio({ prevName, portfolioId, closeFunction }: Props) {
 	const queryClient = useQueryClient();
 	const [newName, setNewName] = useState(prevName);
 
@@ -37,7 +37,7 @@ export default function EditPortfolio({ prevName, portfolioId, closeModal }: Pro
 		}
 		toast.success('성공적으로 포트폴리오 이름을 변경했습니다.', 'light', 'topRight');
 		queryClient.invalidateQueries('portfolioList');
-		closeModal(e, false);
+		closeFunction!(e, false);
 	}
 
 	function handleChangeNewName(e: SyntheticEvent) {

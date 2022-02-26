@@ -10,10 +10,10 @@ import { CloseModalFn } from '@types';
 import * as Style from './styles';
 
 interface Props {
-	closeModal: CloseModalFn;
+	closeFunction?: CloseModalFn;
 }
 
-export default function AddPortfolio({ closeModal }: Props) {
+export default function AddPortfolio({ closeFunction }: Props) {
 	const queryClient = useQueryClient();
 	const [newName, setNewName] = useState('');
 	const [privacy, setPrivacy] = useState<PortfolioPrivacy>('public');
@@ -52,7 +52,7 @@ export default function AddPortfolio({ closeModal }: Props) {
 		}
 		toast.success('성공적으로 포트폴리오를 추가했습니다.', 'light', 'topRight');
 		queryClient.invalidateQueries('portfolioList');
-		closeModal(e, false);
+		closeFunction!(e, false);
 	}
 
 	return (

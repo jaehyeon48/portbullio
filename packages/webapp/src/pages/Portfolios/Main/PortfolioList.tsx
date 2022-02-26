@@ -26,10 +26,7 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 	const { openModal, closeModal } = useModal();
 
 	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
-		openModal(
-			e,
-			<EditPortfolio portfolioId={portfolioId} prevName={prevName} closeModal={closeModal} />
-		);
+		openModal(e, <EditPortfolio portfolioId={portfolioId} prevName={prevName} />);
 	}
 
 	async function handleTogglePrivacy(
