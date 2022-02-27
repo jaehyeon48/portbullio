@@ -105,11 +105,11 @@ export default (): express.Router => {
 			const { userId } = res.locals;
 
 			try {
-				const isValidPortfolio = !!(await portfolioService.getPortfolio(
+				const doesUserHavePortfolio = !!(await portfolioService.getPortfolio(
 					Number(portfolioId),
 					Number(userId)
 				));
-				if (!isValidPortfolio) {
+				if (!doesUserHavePortfolio) {
 					res.status(400).json({ error: 'User does not have the portfolio.' });
 					return;
 				}
