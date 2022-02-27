@@ -82,6 +82,30 @@ export default (): express.Router => {
 		}
 	});
 
+	router.post(
+		'/:portfolioId/default',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { portfolioId } = req.params as unknown as PortfolioIdParam;
+			const { userId } = res.locals;
+
+			try {
+				const isValidPortfolio = !!(await portfolioService.getPortfolio(
+					Number(portfolioId),
+					Number(userId)
+				));
+				if (!isValidPortfolio) {
+					res.status(400).json({ error: 'User does not have the portfolio.' });
+					return;
+				}
+				await portfolioService.setDefaultPortfolio(Number(portfolioId), Number(userId));
+				res.send();
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
 	router.put(
 		'/:portfolioId/name',
 		sessionValidator,
