@@ -54,8 +54,8 @@ export default (): express.Router => {
 			const { userId } = res.locals;
 
 			try {
-				const defaultPortfolioId = await portfolioService.getDefaultPortfolio(Number(userId));
-				res.json({ defaultPortfolioId });
+				const defaultPortfolioInfo = await portfolioService.getDefaultPortfolio(Number(userId));
+				res.json({ defaultPortfolioId: defaultPortfolioInfo?.portfolioId });
 			} catch (error) {
 				next(error);
 			}
