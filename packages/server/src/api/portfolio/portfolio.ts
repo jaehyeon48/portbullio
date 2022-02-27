@@ -244,5 +244,29 @@ export default (): express.Router => {
 		}
 	);
 
+	router.delete(
+		'/:portfolioId/default',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { portfolioId } = req.params as unknown as PortfolioIdParam;
+			const { userId } = res.locals;
+
+			try {
+				const doesUserHavePortfolio = !!(await portfolioService.getPortfolio(
+					Number(portfolioId),
+					Number(userId)
+				));
+				if (!doesUserHavePortfolio) {
+					res.status(400).json({ error: 'User does not have the portfolio.' });
+					return;
+				}
+				await portfolioService.deleteDefaultPortfolio(Number(portfolioId), Number(userId));
+				res.send();
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
 	return router;
 };
