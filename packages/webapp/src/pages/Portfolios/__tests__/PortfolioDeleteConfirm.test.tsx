@@ -5,7 +5,7 @@ describe('Portfolio delete confirm page', () => {
 	test('Should have a delete confirm title', () => {
 		render(
 			<CustomWrapper>
-				<DeleteConfirm portfolioId={1} portfolioName="" />
+				<DeleteConfirm portfolioId={1} portfolioName="" isDefaultPortfolio />
 			</CustomWrapper>
 		);
 
@@ -15,7 +15,7 @@ describe('Portfolio delete confirm page', () => {
 	test('Should have an asking message', () => {
 		render(
 			<CustomWrapper>
-				<DeleteConfirm portfolioId={1} portfolioName="포트폴리오123" />
+				<DeleteConfirm portfolioId={1} portfolioName="포트폴리오123" isDefaultPortfolio />
 			</CustomWrapper>
 		);
 
@@ -26,7 +26,7 @@ describe('Portfolio delete confirm page', () => {
 	test('Should have a cancel and a delete button', () => {
 		render(
 			<CustomWrapper>
-				<DeleteConfirm portfolioId={1} portfolioName="" />
+				<DeleteConfirm portfolioId={1} portfolioName="" isDefaultPortfolio />
 			</CustomWrapper>
 		);
 

@@ -1,11 +1,16 @@
 import axios from 'axios';
 import envConfig from '@configs/env';
 
-export default async function deletePortfolio(portfolioId: number) {
+export default async function deletePortfolio(portfolioId: number, isDefaultPortfolio: boolean) {
 	const { serverEndPoint } = envConfig;
 
 	try {
-		await axios.delete(`${serverEndPoint}/portfolio/${portfolioId}`, { withCredentials: true });
+		await axios.delete(
+			`${serverEndPoint}/portfolio/${portfolioId}?isDefaultPortfolio=${
+				isDefaultPortfolio ? '1' : '0'
+			}`,
+			{ withCredentials: true }
+		);
 		return true;
 	} catch (error) {
 		return false;

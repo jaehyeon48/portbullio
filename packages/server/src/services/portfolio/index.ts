@@ -6,3 +6,4 @@ export { default as setDefaultPortfolio } from './setDefaultPortfolio';
 export { default as getDefaultPortfolio } from './getDefaultPortfolio';
 export { default as editDefaultPortfolio } from './editDefaultPortfolio';
 export { default as deleteDefaultPortfolio } from './deleteDefaultPortfolio';
+export { default as setDefaultPortfolioAutomatically } from './setDefaultPortfolioAutomatically';

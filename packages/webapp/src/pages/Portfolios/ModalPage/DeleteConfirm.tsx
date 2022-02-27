@@ -9,19 +9,26 @@ interface Props {
 	closeFunction?: CloseModalFn;
 	portfolioId: number;
 	portfolioName: string;
+	isDefaultPortfolio: boolean;
 }
 
-export default function DeleteConfirm({ closeFunction, portfolioId, portfolioName }: Props) {
+export default function DeleteConfirm({
+	closeFunction,
+	portfolioId,
+	portfolioName,
+	isDefaultPortfolio
+}: Props) {
 	const queryClient = useQueryClient();
 
 	async function handleDeletePortfolio(e: SyntheticEvent) {
-		const createRes = await deletePortfolio(portfolioId);
+		const createRes = await deletePortfolio(portfolioId, isDefaultPortfolio);
 		if (!createRes) {
 			toast.error('에러가 발생했습니다. 다시 시도해 주세요', 'light', 'topRight');
 			return;
 		}
 		toast.success(`${portfolioName}을(를) 삭제했습니다.`, 'light', 'topRight');
 		queryClient.invalidateQueries('portfolioList');
+		queryClient.invalidateQueries('defaultPortfolio');
 		closeFunction!(e, false);
 	}
 

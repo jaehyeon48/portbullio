@@ -29,6 +29,10 @@ interface EditPortfolioPrivacyReqBody {
 	newPrivacy: PortfolioPrivacy;
 }
 
+interface DeletePortfolioReqBody {
+	isDefaultPortfolio: '0' | '1';
+}
+
 export default (): express.Router => {
 	const router = express.Router();
 
@@ -219,6 +223,7 @@ export default (): express.Router => {
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
 			const { portfolioId } = req.params as unknown as PortfolioIdParam;
+			const { isDefaultPortfolio } = req.query as unknown as DeletePortfolioReqBody;
 			const { userId } = res.locals;
 
 			try {
@@ -226,6 +231,13 @@ export default (): express.Router => {
 				if (!portfolio) {
 					res.status(404).json({ error: 'Portfolio not found.' });
 					return;
+				}
+
+				if (Number(isDefaultPortfolio)) {
+					await portfolioService.setDefaultPortfolioAutomatically(
+						Number(portfolioId),
+						Number(userId)
+					);
 				}
 
 				const deletedPortfolio = await portfolioService.deletePortfolio(Number(portfolioId));

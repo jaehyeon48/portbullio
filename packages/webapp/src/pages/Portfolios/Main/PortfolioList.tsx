@@ -35,8 +35,20 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 		openModal(e, <EditPortfolio portfolioId={portfolioId} prevName={prevName} />);
 	}
 
-	function openDeleteConfirmModal(e: SyntheticEvent, portfolioId: number, portfolioName: string) {
-		openModal(e, <DeleteConfirm portfolioId={portfolioId} portfolioName={portfolioName} />);
+	function openDeleteConfirmModal(
+		e: SyntheticEvent,
+		portfolioId: number,
+		portfolioName: string,
+		isDefaultPortfolio: boolean
+	) {
+		openModal(
+			e,
+			<DeleteConfirm
+				portfolioId={portfolioId}
+				portfolioName={portfolioName}
+				isDefaultPortfolio={isDefaultPortfolio}
+			/>
+		);
 	}
 
 	async function handleTogglePrivacy(
@@ -118,7 +130,7 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 								</Style.EditNameButton>
 								<Style.DeletePortfolioButton
 									type="button"
-									onClick={e => openDeleteConfirmModal(e, id, name)}
+									onClick={e => openDeleteConfirmModal(e, id, name, id === defaultPortfolioId)}
 								>
 									<Icon.TrashCan width={16} height={16} />
 									삭제
