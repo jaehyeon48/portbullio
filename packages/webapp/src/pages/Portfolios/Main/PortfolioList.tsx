@@ -88,7 +88,7 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 							<Style.PortfolioActionSection>
 								<Style.SetDefaultButton type="button" isDefault={id === defaultPortfolioId}>
 									<Icon.CircleCheck width={20} height={20} />
-									{id === defaultPortfolioId ? '기본' : '기본으로 설정'}
+									{id === defaultPortfolioId ? '기본 포트폴리오' : '기본으로 설정'}
 								</Style.SetDefaultButton>
 								<Style.EditNameButton
 									type="button"

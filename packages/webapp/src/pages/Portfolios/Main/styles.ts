@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
+import { breakPoints } from '@constants/breakPoints';
 
 interface PortfolioListItemProp {
 	isFirstList: boolean;
@@ -128,12 +129,17 @@ export const PortfolioPrivacySection = styled.div`
 `;
 
 export const PortfolioAssetSection = styled.div`
-	width: 30%;
+	width: 25%;
 `;
 
 export const PortfolioActionSection = styled.div`
-	width: 30%;
+	width: 35%;
 	display: flex;
+	justify-content: space-evenly;
+
+	@media screen and (max-width: ${breakPoints.laptop}) {
+		justify-content: space-between;
+	}
 `;
 
 export const PortfolioListItems = styled.ul`
@@ -170,14 +176,12 @@ const portfolioActionButtonStyle = css`
 
 export const SetDefaultButton = styled.button<SetDefaultButtonProps>`
 	${portfolioActionButtonStyle};
-	margin-right: 32px;
-	width: 128px;
+	width: 142px;
 	color: ${({ isDefault }) => (isDefault ? 'var(--primary)' : 'var(--gray)')};
 `;
 
 export const EditNameButton = styled.button`
 	${portfolioActionButtonStyle};
-	margin-right: 32px;
 	color: var(--deepOrange);
 `;
 
