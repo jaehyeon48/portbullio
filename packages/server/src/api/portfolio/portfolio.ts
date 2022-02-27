@@ -40,6 +40,21 @@ export default (): express.Router => {
 	});
 
 	router.get(
+		'/default',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { userId } = res.locals;
+
+			try {
+				const defaultPortfolioId = await portfolioService.getDefaultPortfolio(Number(userId));
+				res.json({ defaultPortfolioId });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
+	router.get(
 		'/:portfolioId',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
