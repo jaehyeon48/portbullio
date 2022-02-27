@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import * as Icon from '@components/Icon';
 import { useQuery } from 'react-query';
-import { getPortfolios } from '@api/portfolio';
+import { getPortfolios, getDefaultPortfolio } from '@api/portfolio';
 import { useModal } from '@hooks/Modal';
 import * as Style from './styles';
 import PortfolioList from './PortfolioList';
@@ -11,6 +11,10 @@ export default function Portfolios() {
 	const { data: portfolios, isLoading } = useQuery('portfolioList', getPortfolios, {
 		staleTime: Infinity
 	});
+	const { data: defaultPortfolioId } = useQuery('defaultPortfolio', getDefaultPortfolio, {
+		staleTime: Infinity
+	});
+
 	const { openModal } = useModal();
 
 	function openAddPortfolioModal(e: SyntheticEvent) {
@@ -41,12 +45,15 @@ export default function Portfolios() {
 			<Style.LowerSection>
 				<Style.PortfolioListContainer>
 					<Style.PortfolioListHeaderContainer>
-						<Style.PortfolioIsDefaultSection />
 						<Style.PortfolioNameSection>이름</Style.PortfolioNameSection>
 						<Style.PortfolioPrivacySection>공개 여부</Style.PortfolioPrivacySection>
 						<Style.PortfolioAssetSection>총 자산</Style.PortfolioAssetSection>
 					</Style.PortfolioListHeaderContainer>
-					<PortfolioList portfolioList={portfolios} isLoading={isLoading} />
+					<PortfolioList
+						portfolioList={portfolios}
+						isLoading={isLoading}
+						defaultPortfolioId={defaultPortfolioId}
+					/>
 				</Style.PortfolioListContainer>
 			</Style.LowerSection>
 		</>

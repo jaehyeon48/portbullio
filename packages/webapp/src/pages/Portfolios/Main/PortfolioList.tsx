@@ -13,9 +13,10 @@ import DeleteConfirm from '../ModalPage/DeleteConfirm';
 interface Props {
 	portfolioList: Portfolio[] | undefined;
 	isLoading: boolean;
+	defaultPortfolioId: number | undefined;
 }
 
-export default function PortfolioList({ portfolioList, isLoading }: Props) {
+export default function PortfolioList({ portfolioList, isLoading, defaultPortfolioId }: Props) {
 	const queryClient = useQueryClient();
 	const outerContainerRef = useRef<HTMLUListElement>(null);
 	const innerContainerRef = useRef<HTMLDivElement>(null);
@@ -72,9 +73,6 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 				) : (
 					portfolioList.map(({ id, name, privacy }, idx) => (
 						<Style.PortfolioListItem key={id} isFirstList={idx === 0}>
-							<Style.PortfolioIsDefaultSection>
-								<Icon.CircleCheck />
-							</Style.PortfolioIsDefaultSection>
 							<Style.PortfolioNameSection>{name}</Style.PortfolioNameSection>
 							<Style.PortfolioPrivacySection>
 								{privacy === 'public' ? <Icon.LockOpen /> : <Icon.LockClose />}
@@ -88,6 +86,10 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 							</Style.PortfolioPrivacySection>
 							<Style.PortfolioAssetSection>$123,456</Style.PortfolioAssetSection>
 							<Style.PortfolioActionSection>
+								<Style.SetDefaultButton type="button" isDefault={id === defaultPortfolioId}>
+									<Icon.CircleCheck width={20} height={20} />
+									{id === defaultPortfolioId ? '기본' : '기본으로 설정'}
+								</Style.SetDefaultButton>
 								<Style.EditNameButton
 									type="button"
 									onClick={e => openEditPortfolioModal(e, id, name)}

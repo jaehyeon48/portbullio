@@ -6,7 +6,11 @@ describe('Portfolio list layout', () => {
 	test('Should have a loading indicator', () => {
 		render(
 			<CustomWrapper>
-				<PortfolioList isLoading portfolioList={dummyPortfolioList} />
+				<PortfolioList
+					isLoading
+					portfolioList={dummyPortfolioList}
+					defaultPortfolioId={undefined}
+				/>
 			</CustomWrapper>
 		);
 
@@ -16,7 +20,7 @@ describe('Portfolio list layout', () => {
 	test('Should have an empty portfolio notice', () => {
 		render(
 			<CustomWrapper>
-				<PortfolioList isLoading={false} portfolioList={[]} />
+				<PortfolioList isLoading={false} portfolioList={[]} defaultPortfolioId={undefined} />
 			</CustomWrapper>
 		);
 
@@ -26,7 +30,11 @@ describe('Portfolio list layout', () => {
 	test('Should have a correct portfolio item layout', () => {
 		render(
 			<CustomWrapper>
-				<PortfolioList isLoading={false} portfolioList={dummyPortfolioList} />
+				<PortfolioList
+					isLoading={false}
+					portfolioList={dummyPortfolioList}
+					defaultPortfolioId={undefined}
+				/>
 			</CustomWrapper>
 		);
 
@@ -34,6 +42,20 @@ describe('Portfolio list layout', () => {
 		expect(screen.getByRole('button', { name: /변경/ })).toBeInTheDocument();
 		expect(screen.getByRole('button', { name: /이름 수정/ })).toBeInTheDocument();
 		expect(screen.getByRole('button', { name: /삭제/ })).toBeInTheDocument();
+	});
+
+	test('Should indicate a default portfolio', () => {
+		render(
+			<CustomWrapper>
+				<PortfolioList
+					isLoading={false}
+					portfolioList={dummyPortfolioList}
+					defaultPortfolioId={1}
+				/>
+			</CustomWrapper>
+		);
+
+		expect(screen.getByRole('button', { name: /기본/ })).toBeInTheDocument();
 	});
 });
 

@@ -5,7 +5,9 @@ interface PortfolioListItemProp {
 	isFirstList: boolean;
 }
 
-const PORTFOLIO_IS_DEFAULT_SECTION_WIDTH = 40;
+interface SetDefaultButtonProps {
+	isDefault: boolean;
+}
 
 const sectionStyle = css`
 	max-width: 1680px;
@@ -115,12 +117,8 @@ export const PortfolioListHeaderContainer = styled.div`
 	padding-bottom: 0.5em;
 `;
 
-export const PortfolioIsDefaultSection = styled.div`
-	width: ${PORTFOLIO_IS_DEFAULT_SECTION_WIDTH}px;
-`;
-
 export const PortfolioNameSection = styled.div`
-	width: calc(30% - ${PORTFOLIO_IS_DEFAULT_SECTION_WIDTH}px);
+	width: 25%;
 `;
 
 export const PortfolioPrivacySection = styled.div`
@@ -130,11 +128,11 @@ export const PortfolioPrivacySection = styled.div`
 `;
 
 export const PortfolioAssetSection = styled.div`
-	width: 35%;
+	width: 30%;
 `;
 
 export const PortfolioActionSection = styled.div`
-	width: 20%;
+	width: 30%;
 	display: flex;
 `;
 
@@ -168,6 +166,13 @@ const portfolioActionButtonStyle = css`
 	& > svg {
 		margin: 2px 2px 0 0;
 	}
+`;
+
+export const SetDefaultButton = styled.button<SetDefaultButtonProps>`
+	${portfolioActionButtonStyle};
+	margin-right: 32px;
+	width: 128px;
+	color: ${({ isDefault }) => (isDefault ? 'var(--primary)' : 'var(--gray)')};
 `;
 
 export const EditNameButton = styled.button`
