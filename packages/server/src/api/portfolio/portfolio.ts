@@ -17,6 +17,14 @@ interface EditPortfolioNameReqBody {
 	newPortfolioName: string;
 }
 
+interface EditDefaultPortfolioParam {
+	prevPortfolioId: string;
+}
+
+interface EditDefaultPortfolioReqBody {
+	newPortfolioId: string;
+}
+
 interface EditPortfolioPrivacyReqBody {
 	newPrivacy: PortfolioPrivacy;
 }
@@ -171,6 +179,43 @@ export default (): express.Router => {
 				}
 				await portfolioService.editPortfolioPrivacy(Number(portfolioId), newPrivacy);
 				res.status(200).json({ newPrivacy });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
+	router.put(
+		'/:prevPortfolioId/default',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { prevPortfolioId } = req.params as unknown as EditDefaultPortfolioParam;
+			const { newPortfolioId } = req.body as unknown as EditDefaultPortfolioReqBody;
+			const { userId } = res.locals;
+
+			try {
+				const isDefaultPortfolioExist = !!(await portfolioService.getDefaultPortfolio(
+					Number(userId)
+				));
+				if (!isDefaultPortfolioExist) {
+					res.status(400).json({ error: 'User does not have any default portfolios' });
+					return;
+				}
+
+				const doesUserHavePortfolio = !!(await portfolioService.getPortfolio(
+					Number(newPortfolioId),
+					Number(userId)
+				));
+				if (!doesUserHavePortfolio) {
+					res.status(400).json({ error: 'User does not have the portfolio.' });
+					return;
+				}
+				await portfolioService.editDefaultPortfolio(
+					Number(prevPortfolioId),
+					Number(newPortfolioId),
+					Number(userId)
+				);
+				res.send();
 			} catch (error) {
 				next(error);
 			}
