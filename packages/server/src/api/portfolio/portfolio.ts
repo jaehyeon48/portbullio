@@ -194,14 +194,6 @@ export default (): express.Router => {
 			const { userId } = res.locals;
 
 			try {
-				const isDefaultPortfolioExist = !!(await portfolioService.getDefaultPortfolio(
-					Number(userId)
-				));
-				if (!isDefaultPortfolioExist) {
-					res.status(400).json({ error: 'User does not have any default portfolios' });
-					return;
-				}
-
 				const doesUserHavePortfolio = !!(await portfolioService.getPortfolio(
 					Number(newPortfolioId),
 					Number(userId)
