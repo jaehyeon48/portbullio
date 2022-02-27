@@ -4,17 +4,13 @@ import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
 import * as portfolioService from '@services/portfolio';
 import { sessionValidator } from '@middlewares';
 
+interface PortfolioIdParam {
+	portfolioId: string;
+}
+
 interface NewPortfolioReqBody {
 	portfolioName: string;
 	privacy: PortfolioPrivacy;
-}
-
-interface GetPortfolioParams {
-	portfolioId: string;
-}
-
-interface EditPortfolioParams {
-	portfolioId: string;
 }
 
 interface EditPortfolioNameReqBody {
@@ -23,10 +19,6 @@ interface EditPortfolioNameReqBody {
 
 interface EditPortfolioPrivacyReqBody {
 	newPrivacy: PortfolioPrivacy;
-}
-
-interface DeletePortfolioParams {
-	portfolioId: string;
 }
 
 export default (): express.Router => {
@@ -51,7 +43,7 @@ export default (): express.Router => {
 		'/:portfolioId',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { portfolioId } = req.params as unknown as GetPortfolioParams;
+			const { portfolioId } = req.params as unknown as PortfolioIdParam;
 			const { userId } = res.locals;
 
 			try {
@@ -94,7 +86,7 @@ export default (): express.Router => {
 		'/:portfolioId/name',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { portfolioId } = req.params as unknown as EditPortfolioParams;
+			const { portfolioId } = req.params as unknown as PortfolioIdParam;
 			const { newPortfolioName } = req.body as unknown as EditPortfolioNameReqBody;
 			const { userId } = res.locals;
 
@@ -123,7 +115,7 @@ export default (): express.Router => {
 		'/:portfolioId/privacy',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { portfolioId } = req.params as unknown as EditPortfolioParams;
+			const { portfolioId } = req.params as unknown as PortfolioIdParam;
 			const { newPrivacy } = req.body as unknown as EditPortfolioPrivacyReqBody;
 			const { userId } = res.locals;
 
@@ -150,7 +142,7 @@ export default (): express.Router => {
 		'/:portfolioId',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { portfolioId } = req.params as unknown as DeletePortfolioParams;
+			const { portfolioId } = req.params as unknown as PortfolioIdParam;
 			const { userId } = res.locals;
 
 			try {
