@@ -2,7 +2,7 @@ import { SyntheticEvent, useEffect, useRef } from 'react';
 import { useQueryClient } from 'react-query';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import * as Icon from '@components/Icon';
-import { editPortfolioPrivacy } from '@api/portfolio';
+import { editDefaultPortfolio, editPortfolioPrivacy } from '@api/portfolio';
 import { useCustomScrollBar, useModal } from '@hooks/index';
 import { Portfolio } from '@types';
 import toast from '@lib/toast';
@@ -60,6 +60,21 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 		closeModal(e, false);
 	}
 
+	async function handleEditDefaultPortfolio(newPortfolioId: number, portfolioName: string) {
+		if (defaultPortfolioId === undefined) {
+			toast.error('기본으로 설정된 포트폴리오가 없습니다.', 'light', 'topRight');
+			return;
+		}
+
+		const editRes = await editDefaultPortfolio(defaultPortfolioId, newPortfolioId);
+		if (!editRes) {
+			toast.error('에러가 발생했습니다. 다시 시도해 주세요', 'light', 'topRight');
+			return;
+		}
+		toast.success(`${portfolioName}을(를) 기본 포트폴리오로 설정했습니다.`, 'light', 'topRight');
+		queryClient.invalidateQueries('defaultPortfolio');
+	}
+
 	if (isLoading) {
 		return <Style.ListNotice>로딩 중...</Style.ListNotice>;
 	}
@@ -86,7 +101,11 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 							</Style.PortfolioPrivacySection>
 							<Style.PortfolioAssetSection>$123,456</Style.PortfolioAssetSection>
 							<Style.PortfolioActionSection>
-								<Style.SetDefaultButton type="button" isDefault={id === defaultPortfolioId}>
+								<Style.SetDefaultButton
+									type="button"
+									isDefault={id === defaultPortfolioId}
+									onClick={() => handleEditDefaultPortfolio(id, name)}
+								>
 									<Icon.CircleCheck width={20} height={20} />
 									{id === defaultPortfolioId ? '기본 포트폴리오' : '기본으로 설정'}
 								</Style.SetDefaultButton>
