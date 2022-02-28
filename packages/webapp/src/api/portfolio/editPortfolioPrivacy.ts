@@ -15,7 +15,7 @@ export default async function editPortfolioName(portfolioId: number, newPrivacy:
 	const formData = JSON.stringify({ newPrivacy });
 
 	try {
-		await axios.put(`${serverEndPoint}/portfolio/${portfolioId}/privacy`, formData, config);
+		await axios.patch(`${serverEndPoint}/portfolios/${portfolioId}/privacy`, formData, config);
 		return true;
 	} catch (error) {
 		return false;

@@ -6,7 +6,7 @@ export default async function deletePortfolio(portfolioId: number, isDefaultPort
 
 	try {
 		await axios.delete(
-			`${serverEndPoint}/portfolio/${portfolioId}?isDefaultPortfolio=${
+			`${serverEndPoint}/portfolios/${portfolioId}?isDefaultPortfolio=${
 				isDefaultPortfolio ? '1' : '0'
 			}`,
 			{ withCredentials: true }

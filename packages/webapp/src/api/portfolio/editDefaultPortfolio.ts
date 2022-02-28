@@ -17,7 +17,7 @@ export default async function editDefaultPortfolio(
 	const formData = JSON.stringify({ newPortfolioId });
 
 	try {
-		await axios.put(`${serverEndPoint}/portfolio/${prevPortfolioId}/default`, formData, config);
+		await axios.put(`${serverEndPoint}/portfolios/${prevPortfolioId}/default`, formData, config);
 		return true;
 	} catch (error) {
 		return false;

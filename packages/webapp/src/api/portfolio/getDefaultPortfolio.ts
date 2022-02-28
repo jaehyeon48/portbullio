@@ -12,7 +12,7 @@ export default async function getDefaultPortfolio(): Promise<number | undefined>
 
 	try {
 		const { data }: GetDefaultPortfolioRes = await axios.get(
-			`${serverEndPoint}/portfolio/default`,
+			`${serverEndPoint}/portfolios/default`,
 			{
 				withCredentials: true
 			}
