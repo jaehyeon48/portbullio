@@ -36,7 +36,7 @@ interface DeletePortfolioReqBody {
 export default (): express.Router => {
 	const router = express.Router();
 
-	router.get('/all', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
+	router.get('/', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
 		const { userId } = res.locals;
 
 		try {

@@ -7,7 +7,7 @@ export default function appRouter(): Router {
 	const router = Router();
 	router.use('/auth', auth());
 	router.use('/user', user());
-	router.use('/portfolio', portfolio());
+	router.use('/portfolios', portfolio());
 
 	return router;
 }
