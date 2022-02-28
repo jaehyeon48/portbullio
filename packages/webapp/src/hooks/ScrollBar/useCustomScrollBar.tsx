@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect, MutableRefObject } from 'react';
+import { useRef, useState, useEffect, MutableRefObject, useCallback } from 'react';
 import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 import { scrollBarMixin } from '@styles/Mixins';
 import { ScrollBarThumbProps } from '@types';
@@ -24,7 +24,7 @@ interface CalculateRevisedThumbProps {
 	outerH: number;
 	innerH: number;
 	thumbH: number;
-	outerContainerBorderWidth?: number;
+	outerContainerBorderWidth: number;
 	isRevisedToMinH?: boolean;
 }
 
@@ -39,7 +39,7 @@ function calculateRevisedThumbH({
 	outerH,
 	innerH,
 	thumbH,
-	outerContainerBorderWidth = 1,
+	outerContainerBorderWidth,
 	isRevisedToMinH = false
 }: CalculateRevisedThumbProps) {
 	const maxThumbScrollY = innerH - thumbH;
@@ -58,7 +58,7 @@ function calculateRevisedThumbH({
 export default function useCustomScrollBar({
 	outerContainerRef,
 	innerContainerRef,
-	outerContainerBorderWidth
+	outerContainerBorderWidth = 1
 }: Props): ReturnType {
 	const thumbRef = useRef<HTMLDivElement | null>(null);
 	const originalThumbH = useRef(-1);
@@ -68,20 +68,23 @@ export default function useCustomScrollBar({
 		let intervalId: NodeJS.Timer;
 		function initThumbHeight() {
 			if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) return;
+			clearInterval(intervalId);
 			const { clientHeight: outerH } = outerContainerRef.current;
 			const { clientHeight: innerH } = innerContainerRef.current;
-			if (innerH <= outerH) return;
+			if (innerH <= outerH) {
+				setThumbHeight(0);
+				return;
+			}
 
 			const thumbHCandidate = outerH ** 2 / innerH;
 			if (thumbHCandidate < MIN_THUMB_H) originalThumbH.current = thumbHCandidate;
 			setThumbHeight(thumbHCandidate < MIN_THUMB_H ? MIN_THUMB_H : thumbHCandidate);
-			clearInterval(intervalId);
 		}
 
 		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
 			intervalId = setInterval(initThumbHeight, 1);
 		} else initThumbHeight();
-	}, [outerContainerRef, innerContainerRef, thumbRef, outerContainerBorderWidth]);
+	});
 
 	useEffect(() => {
 		let intervalId: NodeJS.Timer;
@@ -97,13 +100,21 @@ export default function useCustomScrollBar({
 
 			const revisedThumbScrollY =
 				originalThumbH.current === -1
-					? calculateRevisedThumbH({ outerTop, innerTop, outerH, innerH, thumbH })
+					? calculateRevisedThumbH({
+							outerTop,
+							innerTop,
+							outerH,
+							innerH,
+							outerContainerBorderWidth,
+							thumbH
+					  })
 					: calculateRevisedThumbH({
 							outerTop,
 							innerTop,
 							outerH,
 							innerH,
 							thumbH: originalThumbH.current,
+							outerContainerBorderWidth,
 							isRevisedToMinH: true
 					  });
 			thumbRef.current.style.transform = `translateY(${revisedThumbScrollY}px)`;
@@ -113,9 +124,9 @@ export default function useCustomScrollBar({
 		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
 			intervalId = setInterval(initThumbY, 1);
 		} else initThumbY();
-	}, [thumbH, innerContainerRef, outerContainerRef]);
+	}, [thumbH, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
 
-	function calculateThumbY() {
+	const calculateThumbY = useCallback(() => {
 		if (!thumbRef.current) return;
 		if (!outerContainerRef.current) return;
 		if (!innerContainerRef.current) return;
@@ -127,17 +138,30 @@ export default function useCustomScrollBar({
 
 		const revisedThumbScrollY =
 			originalThumbH.current === -1
-				? calculateRevisedThumbH({ outerTop, innerTop, outerH, innerH, thumbH })
+				? calculateRevisedThumbH({
+						outerTop,
+						innerTop,
+						outerH,
+						innerH,
+						outerContainerBorderWidth,
+						thumbH
+				  })
 				: calculateRevisedThumbH({
 						outerTop,
 						innerTop,
 						outerH,
 						innerH,
 						thumbH: originalThumbH.current,
+						outerContainerBorderWidth,
+
 						isRevisedToMinH: true
 				  });
 		thumbRef.current.style.transform = `translateY(${revisedThumbScrollY}px)`;
-	}
+	}, [thumbH, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
+
+	useEffect(() => {
+		calculateThumbY();
+	}, [calculateThumbY]);
 
 	return {
 		calculateThumbY,
