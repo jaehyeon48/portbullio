@@ -62,26 +62,30 @@ export default function Navbar() {
 				</Style.NavbarLink>
 			</Style.Top>
 			<Style.Middle flexDirection="column" alignItems="center" justifyContent="space-evenly">
-				<Style.NavbarLink to="/dashboard">
-					<Icon.Dashboard />
-					<p>대시보드</p>
-				</Style.NavbarLink>
-				<Style.NavbarLink to="/my-stocks" applyStrokeStyle>
-					<Icon.CandleChart />
-					<p>내 종목</p>
-				</Style.NavbarLink>
-				<Style.NavbarLink to="/portfolios">
-					<Icon.List />
-					<p>내 포트폴리오</p>
-				</Style.NavbarLink>
-				<Style.NavbarLink to="/cash">
-					<Icon.Coins />
-					<p>현금</p>
-				</Style.NavbarLink>
-				<Style.NavbarLink to="/dividend" applyStrokeStyle>
-					<Icon.CoinsOnHand />
-					<p>배당</p>
-				</Style.NavbarLink>
+				{isAuthenticated && (
+					<>
+						<Style.NavbarLink to="/dashboard">
+							<Icon.Dashboard />
+							<p>대시보드</p>
+						</Style.NavbarLink>
+						<Style.NavbarLink to="/my-stocks" applyStrokeStyle>
+							<Icon.CandleChart />
+							<p>내 종목</p>
+						</Style.NavbarLink>
+						<Style.NavbarLink to="/portfolios">
+							<Icon.List />
+							<p>내 포트폴리오</p>
+						</Style.NavbarLink>
+						<Style.NavbarLink to="/cash">
+							<Icon.Coins />
+							<p>현금</p>
+						</Style.NavbarLink>
+						<Style.NavbarLink to="/dividend" applyStrokeStyle>
+							<Icon.CoinsOnHand />
+							<p>배당</p>
+						</Style.NavbarLink>
+					</>
+				)}
 			</Style.Middle>
 			<Style.Bottom alignItems="center" justifyContent="center">
 				{isAuthenticated ? (
