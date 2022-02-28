@@ -133,7 +133,7 @@ export default (): express.Router => {
 		}
 	);
 
-	router.put(
+	router.patch(
 		'/:portfolioId/name',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
@@ -162,7 +162,7 @@ export default (): express.Router => {
 		}
 	);
 
-	router.put(
+	router.patch(
 		'/:portfolioId/privacy',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
