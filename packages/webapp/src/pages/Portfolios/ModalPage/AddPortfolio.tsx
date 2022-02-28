@@ -52,6 +52,7 @@ export default function AddPortfolio({ closeFunction }: Props) {
 		}
 		toast.success('성공적으로 포트폴리오를 추가했습니다.', 'light', 'topRight');
 		queryClient.invalidateQueries('portfolioList');
+		queryClient.invalidateQueries('defaultPortfolio');
 		closeFunction!(e, false);
 	}
 
