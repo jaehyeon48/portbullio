@@ -103,6 +103,12 @@ export default (): express.Router => {
 				portfolioName,
 				privacy
 			});
+
+			const isFirstlyCreated = (await portfolioService.getPortfolios(Number(userId))).length === 1;
+			if (isFirstlyCreated) {
+				await portfolioService.setDefaultPortfolio(newPortfolioId, Number(userId));
+			}
+
 			res.status(201).json({ newPortfolioId });
 		} catch (error) {
 			next(error);
