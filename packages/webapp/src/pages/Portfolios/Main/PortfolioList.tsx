@@ -73,6 +73,8 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 	}
 
 	async function handleEditDefaultPortfolio(newPortfolioId: number, portfolioName: string) {
+		if (newPortfolioId === defaultPortfolioId) return;
+
 		if (defaultPortfolioId === undefined) {
 			toast.error('기본으로 설정된 포트폴리오가 없습니다.', 'light', 'topRight');
 			return;
