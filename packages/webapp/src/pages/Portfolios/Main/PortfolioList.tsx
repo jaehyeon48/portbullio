@@ -1,9 +1,10 @@
-import { SyntheticEvent, useEffect, useRef } from 'react';
+import { SyntheticEvent } from 'react';
 import { useQueryClient } from 'react-query';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import * as Icon from '@components/Icon';
+import { ListItems, EmptyListNotice } from '@components/ListPage';
 import { editDefaultPortfolio, editPortfolioPrivacy } from '@api/portfolio';
-import { useCustomScrollBar, useModal } from '@hooks/index';
+import { useModal } from '@hooks/index';
 import { Portfolio } from '@types';
 import toast from '@lib/toast';
 import * as Style from './styles';
@@ -18,18 +19,7 @@ interface Props {
 
 export default function PortfolioList({ portfolioList, isLoading, defaultPortfolioId }: Props) {
 	const queryClient = useQueryClient();
-	const outerContainerRef = useRef<HTMLUListElement>(null);
-	const innerContainerRef = useRef<HTMLDivElement>(null);
-	const { ScrollBarThumb, calculateThumbY, thumbH, thumbRef } = useCustomScrollBar({
-		innerContainerRef,
-		outerContainerRef,
-		outerContainerBorderWidth: 1
-	});
 	const { openModal, closeModal } = useModal();
-
-	useEffect(() => {
-		calculateThumbY();
-	}, [calculateThumbY]);
 
 	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
 		openModal(e, <EditPortfolio portfolioId={portfolioId} prevName={prevName} />);
@@ -90,59 +80,52 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 	}
 
 	if (isLoading) {
-		return <Style.ListNotice>로딩 중...</Style.ListNotice>;
+		return <EmptyListNotice>로딩 중...</EmptyListNotice>;
 	}
 
 	return (
-		<Style.PortfolioListItems ref={outerContainerRef} onScroll={calculateThumbY}>
-			<ScrollBarThumb ref={thumbRef} height={thumbH} />
-			<div ref={innerContainerRef}>
-				{!portfolioList || portfolioList.length === 0 ? (
-					<Style.ListNotice>포트폴리오가 없습니다.</Style.ListNotice>
-				) : (
-					portfolioList.map(({ id, name, privacy }, idx) => (
-						<Style.PortfolioListItem key={id} isFirstList={idx === 0}>
-							<Style.PortfolioNameSection>{name}</Style.PortfolioNameSection>
-							<Style.PortfolioPrivacySection>
-								{privacy === 'public' ? <Icon.LockOpen /> : <Icon.LockClose />}
-								{privacyKor[privacy]}
-								<Style.TogglePrivacyButton
-									type="button"
-									onClick={e => handleTogglePrivacy(e, id, name, privacy)}
-								>
-									변경
-								</Style.TogglePrivacyButton>
-							</Style.PortfolioPrivacySection>
-							<Style.PortfolioAssetSection>$123,456</Style.PortfolioAssetSection>
-							<Style.PortfolioActionSection>
-								<Style.SetDefaultButton
-									type="button"
-									isDefault={id === defaultPortfolioId}
-									onClick={() => handleEditDefaultPortfolio(id, name)}
-								>
-									<Icon.CircleCheck width={20} height={20} />
-									{id === defaultPortfolioId ? '기본 포트폴리오' : '기본으로 설정'}
-								</Style.SetDefaultButton>
-								<Style.EditNameButton
-									type="button"
-									onClick={e => openEditPortfolioModal(e, id, name)}
-								>
-									<Icon.Pencil width={16} height={16} />
-									이름 수정
-								</Style.EditNameButton>
-								<Style.DeletePortfolioButton
-									type="button"
-									onClick={e => openDeleteConfirmModal(e, id, name, id === defaultPortfolioId)}
-								>
-									<Icon.TrashCan width={16} height={16} />
-									삭제
-								</Style.DeletePortfolioButton>
-							</Style.PortfolioActionSection>
-						</Style.PortfolioListItem>
-					))
-				)}
-			</div>
-		</Style.PortfolioListItems>
+		<ListItems
+			isListEmpty={!portfolioList || portfolioList.length === 0}
+			emptyListNoticeMessage="포트폴리오가 없습니다."
+		>
+			{(portfolioList ?? []).map(({ id, name, privacy }, idx) => (
+				<Style.PortfolioListItem key={id} isFirstList={idx === 0}>
+					<Style.PortfolioNameSection>{name}</Style.PortfolioNameSection>
+					<Style.PortfolioPrivacySection>
+						{privacy === 'public' ? <Icon.LockOpen /> : <Icon.LockClose />}
+						{privacyKor[privacy]}
+						<Style.TogglePrivacyButton
+							type="button"
+							onClick={e => handleTogglePrivacy(e, id, name, privacy)}
+						>
+							변경
+						</Style.TogglePrivacyButton>
+					</Style.PortfolioPrivacySection>
+					<Style.PortfolioAssetSection>$123,456</Style.PortfolioAssetSection>
+					<Style.PortfolioActionSection>
+						<Style.SetDefaultButton
+							type="button"
+							isDefault={id === defaultPortfolioId}
+							onClick={() => handleEditDefaultPortfolio(id, name)}
+						>
+							<Icon.CircleCheck width={20} height={20} />
+							{id === defaultPortfolioId ? '기본 포트폴리오' : '기본으로 설정'}
+						</Style.SetDefaultButton>
+						<Style.EditNameButton type="button" onClick={e => openEditPortfolioModal(e, id, name)}>
+							<Icon.Pencil width={16} height={16} />
+							이름 수정
+						</Style.EditNameButton>
+						<Style.DeletePortfolioButton
+							type="button"
+							onClick={e => openDeleteConfirmModal(e, id, name, id === defaultPortfolioId)}
+						>
+							<Icon.TrashCan width={16} height={16} />
+							삭제
+						</Style.DeletePortfolioButton>
+					</Style.PortfolioActionSection>
+				</Style.PortfolioListItem>
+			))}
+		</ListItems>
 	);
 }
 

@@ -9,7 +9,7 @@ describe('Portfolio main page layout', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByText('내 포트폴리오')).toBeInTheDocument();
+		expect(screen.getByRole('heading', { level: 1, name: '내 포트폴리오' })).toBeInTheDocument();
 	});
 
 	test(`Should have a indicator of the number of user's portfolios`, () => {
