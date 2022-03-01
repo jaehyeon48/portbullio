@@ -1,10 +1,11 @@
 import { css } from 'styled-components';
 
 export interface PriceColorProps {
-	value: number;
+	value?: number;
 }
 
-function calculatePriceColor(value: number) {
+function calculatePriceColor(value: number | undefined) {
+	if (value === undefined) return '';
 	if (value > 0) return 'var(--priceGreen)';
 	if (value < 0) return 'var(--priceRed)';
 	return 'var(--gray)';
