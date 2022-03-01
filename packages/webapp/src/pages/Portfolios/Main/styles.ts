@@ -2,10 +2,6 @@ import styled, { css } from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
 import { breakPoints } from '@constants/breakPoints';
 
-interface PortfolioListItemProp {
-	isFirstList: boolean;
-}
-
 interface SetDefaultButtonProps {
 	isDefault: boolean;
 }
@@ -32,12 +28,6 @@ export const PortfolioActionSection = styled.div`
 	@media screen and (max-width: ${breakPoints.laptop}) {
 		justify-content: space-between;
 	}
-`;
-
-export const PortfolioListItem = styled.li<PortfolioListItemProp>`
-	display: flex;
-	padding: 1em 0;
-	${({ isFirstList }) => !isFirstList && 'border-top: 1px solid var(--baseBorderColor)'};
 `;
 
 const portfolioActionButtonStyle = css`

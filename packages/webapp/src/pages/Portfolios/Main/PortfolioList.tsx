@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react';
 import { useQueryClient } from 'react-query';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import * as Icon from '@components/Icon';
-import { ListItems, EmptyListNotice } from '@components/ListPage';
+import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { editDefaultPortfolio, editPortfolioPrivacy } from '@api/portfolio';
 import { useModal } from '@hooks/index';
 import { Portfolio } from '@types';
@@ -89,7 +89,7 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 			emptyListNoticeMessage="포트폴리오가 없습니다."
 		>
 			{(portfolioList ?? []).map(({ id, name, privacy }, idx) => (
-				<Style.PortfolioListItem key={id} isFirstList={idx === 0}>
+				<ListItem key={id} isFirstList={idx === 0}>
 					<Style.PortfolioNameSection>{name}</Style.PortfolioNameSection>
 					<Style.PortfolioPrivacySection>
 						{privacy === 'public' ? <Icon.LockOpen /> : <Icon.LockClose />}
@@ -123,7 +123,7 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 							삭제
 						</Style.DeletePortfolioButton>
 					</Style.PortfolioActionSection>
-				</Style.PortfolioListItem>
+				</ListItem>
 			))}
 		</ListItems>
 	);

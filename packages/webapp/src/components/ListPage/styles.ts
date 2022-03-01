@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
 
+interface ListItemProp {
+	isFirstList: boolean;
+}
+
 const sectionStyle = css`
 	max-width: 1680px;
 	margin: 0 auto;
@@ -120,6 +124,12 @@ export const ListItemsContainer = styled.ul`
 	::-webkit-scrollbar {
 		width: 0;
 	}
+`;
+
+export const ListItem = styled.li<ListItemProp>`
+	display: flex;
+	padding: 1em 0;
+	${({ isFirstList }) => !isFirstList && 'border-top: 1px solid var(--baseBorderColor)'};
 `;
 
 export const EmptyListNotice = styled.p`
