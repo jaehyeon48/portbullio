@@ -68,7 +68,7 @@ export default function Navbar() {
 							<Icon.Dashboard />
 							<p>대시보드</p>
 						</Style.NavbarLink>
-						<Style.NavbarLink to="/my-stocks" applyStrokeStyle>
+						<Style.NavbarLink to="/holdings" applyStrokeStyle>
 							<Icon.CandleChart />
 							<p>내 종목</p>
 						</Style.NavbarLink>
