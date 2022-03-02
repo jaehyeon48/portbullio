@@ -1,3 +1,4 @@
+import { formatCurrency } from '@utils';
 import * as Style from './styles';
 
 interface StockItem {
@@ -21,7 +22,7 @@ export default function Top5Stocks({ stockList }: Props) {
 							{change > 0 && '+'}
 							{change}%
 						</Style.Top5ListItemChangePercent>
-						<Style.Top5ListItemPrice>${price}</Style.Top5ListItemPrice>
+						<Style.Top5ListItemPrice>{formatCurrency(price, 'usd')}</Style.Top5ListItemPrice>
 					</Style.Top5ListItemLink>
 				</Style.Top5ListItem>
 			))}

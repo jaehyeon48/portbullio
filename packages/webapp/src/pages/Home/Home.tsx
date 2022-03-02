@@ -2,6 +2,7 @@ import { SyntheticEvent } from 'react';
 import { AngleRight, DynamicCaret } from '@components/index';
 import { AuthPage } from '@pages/index';
 import { useAuth, useModal } from '@hooks/index';
+import { formatNum } from '@utils';
 import HeroImage from './HeroImage';
 import * as Style from './styles';
 import Top5Stocks from './Top5Stocks';
@@ -38,10 +39,10 @@ export default function Home() {
 					<Style.IndexHeader>다우 존스</Style.IndexHeader>
 					<Style.IndexInfo value={-1}>
 						<Style.IndexPriceContainer>
-							<Style.IndexPrice>36,068.87</Style.IndexPrice>
+							<Style.IndexPrice>{formatNum(36068.87)}</Style.IndexPrice>
 							<Style.IndexPriceChange>
 								<DynamicCaret value={-1} width={20} height={20} />
-								162.79
+								{formatNum(1234.56)}
 							</Style.IndexPriceChange>
 						</Style.IndexPriceContainer>
 						<Style.IndexChangePercent>-0.45%</Style.IndexChangePercent>
@@ -51,10 +52,10 @@ export default function Home() {
 					<Style.IndexHeader>S&amp;P 500</Style.IndexHeader>
 					<Style.IndexInfo value={-1}>
 						<Style.IndexPriceContainer>
-							<Style.IndexPrice>4,670.29</Style.IndexPrice>
+							<Style.IndexPrice>{formatNum(4670.29)}</Style.IndexPrice>
 							<Style.IndexPriceChange>
 								<DynamicCaret value={-1} width={20} height={20} />
-								6.74
+								{formatNum(123.45)}
 							</Style.IndexPriceChange>
 						</Style.IndexPriceContainer>
 						<Style.IndexChangePercent>-0.14%</Style.IndexChangePercent>
@@ -64,10 +65,10 @@ export default function Home() {
 					<Style.IndexHeader>나스닥 종합</Style.IndexHeader>
 					<Style.IndexInfo value={1}>
 						<Style.IndexPriceContainer>
-							<Style.IndexPrice>14,942.83</Style.IndexPrice>
+							<Style.IndexPrice>{formatNum(14942.83)}</Style.IndexPrice>
 							<Style.IndexPriceChange>
 								<DynamicCaret value={1} width={20} height={20} />
-								6.93
+								{formatNum(1.23)}
 							</Style.IndexPriceChange>
 						</Style.IndexPriceContainer>
 						<Style.IndexChangePercent>+0.05%</Style.IndexChangePercent>
