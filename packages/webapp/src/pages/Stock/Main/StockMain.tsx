@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { DynamicCaret } from '@components/index';
+import { formatNum } from '@utils';
 import * as Style from './styles';
 
 function isValidTicker() {
@@ -30,12 +31,12 @@ export default function StockMain() {
 				<Style.PriceSection value={-1}>
 					<Style.CurrentPrice data-testid="current-price">
 						<Style.CurrencySymbol data-testid="currency-symbol">$</Style.CurrencySymbol>
-						172.19
+						{formatNum(1234.56)}
 					</Style.CurrentPrice>
 					<Style.PriceChangeContainer>
 						<Style.PriceChange data-testid="price-change">
 							<DynamicCaret value={-1} width={24} height={24} />
-							3.34
+							{formatNum(123.45)}
 						</Style.PriceChange>
 						&#40;-0.45%&#41;
 					</Style.PriceChangeContainer>
