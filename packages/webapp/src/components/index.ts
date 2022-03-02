@@ -12,3 +12,4 @@ export { default as TradingViewWidget } from './TradingViewWidget/TradingViewWid
 export { default as ProfileThumbnail } from './ProfileThumbnail/ProfileThumbnail';
 export { default as AvatarImage } from './AvatarImage/AvatarImage';
 export * from './ListPage/styles';
+export * from './PortfolioSelect';
