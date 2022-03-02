@@ -6,6 +6,7 @@ import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { editDefaultPortfolio, editPortfolioPrivacy } from '@api/portfolio';
 import { useModal } from '@hooks/index';
 import { Portfolio } from '@types';
+import { formatCurrency } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
 import EditPortfolio from '../ModalPage/EditPortfolio';
@@ -101,7 +102,7 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 							변경
 						</Style.TogglePrivacyButton>
 					</Style.PortfolioPrivacySection>
-					<Style.PortfolioAssetSection>$123,456</Style.PortfolioAssetSection>
+					<Style.PortfolioAssetSection>{formatCurrency(123456, 'usd')}</Style.PortfolioAssetSection>
 					<Style.PortfolioActionSection>
 						<Style.SetDefaultButton
 							type="button"
