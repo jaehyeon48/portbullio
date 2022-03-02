@@ -22,6 +22,16 @@ describe('Holdings main page layout', () => {
 		expect(screen.getByTestId('num-of-holdings')).toBeInTheDocument();
 	});
 
+	test('Should have a portfolio select component', () => {
+		render(
+			<CustomWrapper>
+				<Holdings />
+			</CustomWrapper>
+		);
+
+		expect(screen.getByPlaceholderText('포트폴리오 선택')).toBeInTheDocument();
+	});
+
 	test('Should have a filter button', () => {
 		render(
 			<CustomWrapper>

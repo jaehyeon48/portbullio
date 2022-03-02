@@ -1,17 +1,21 @@
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
+import { PortfolioSelect, usePortfolioSelectId } from '@components/PortfolioSelect';
 import { Holding } from '@types';
 import { formatNum } from '@utils';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
 
 export default function Holdings() {
+	const [selectedPortfolioId, handleSelectedPortfolioId] = usePortfolioSelectId();
+
 	return (
 		<>
 			<ListPage.UpperSection>
 				<ListPage.MainHeader>보유종목</ListPage.MainHeader>
 				<ListPage.NumOfItems data-testid="num-of-holdings">{formatNum(24)}개</ListPage.NumOfItems>
 				<ListPage.UpperSectionButtonContainer>
+					<PortfolioSelect value={selectedPortfolioId} onChange={handleSelectedPortfolioId} />
 					<ListPage.SearchFilterButton type="button">
 						<Icon.Filter width={20} height={20} />
 						필터
