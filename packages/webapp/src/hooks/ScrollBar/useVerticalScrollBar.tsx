@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, MutableRefObject, useCallback } from 'react';
 import styled, { StyledComponent, DefaultTheme } from 'styled-components';
 import { scrollBarMixin } from '@styles/Mixins';
-import { ScrollBarThumbProps } from '@types';
+import { VerticalScrollBarThumbProps } from '@types';
 
 const MIN_THUMB_H = 60;
 
@@ -13,9 +13,9 @@ interface Props {
 
 interface ReturnType {
 	calculateThumbY: () => void;
-	ScrollBarThumb: StyledComponent<'div', DefaultTheme, ScrollBarThumbProps, never>;
-	thumbH: number;
-	thumbRef: MutableRefObject<HTMLDivElement | null>;
+	VerticalScrollBarThumb: StyledComponent<'div', DefaultTheme, VerticalScrollBarThumbProps, never>;
+	verticalThumbH: number;
+	verticalThumbRef: MutableRefObject<HTMLDivElement | null>;
 }
 
 interface CalculateRevisedThumbProps {
@@ -28,8 +28,12 @@ interface CalculateRevisedThumbProps {
 	isRevisedToMinH?: boolean;
 }
 
-const ScrollBarThumb = styled.div`
+const ScrollBarThumb = styled.div<VerticalScrollBarThumbProps>`
 	${scrollBarMixin};
+	width: 8px;
+	height: ${({ height }) => height}px;
+	top: 0px;
+	right: 1px;
 	background-color: var(--scrollBarThumbBgColor);
 `;
 
@@ -55,7 +59,7 @@ function calculateRevisedThumbH({
 	return thumbScrollY > revisedMaxThumbScrollY ? revisedMaxThumbScrollY : thumbScrollY;
 }
 
-export default function useCustomScrollBar({
+export default function useVerticalScrollBar({
 	outerContainerRef,
 	innerContainerRef,
 	outerContainerBorderWidth = 1
@@ -165,8 +169,8 @@ export default function useCustomScrollBar({
 
 	return {
 		calculateThumbY,
-		ScrollBarThumb,
-		thumbH,
-		thumbRef
+		VerticalScrollBarThumb: ScrollBarThumb,
+		verticalThumbH: thumbH,
+		verticalThumbRef: thumbRef
 	};
 }

@@ -1,1 +1,2 @@
-export { default as useCustomScrollBar } from './useCustomScrollBar';
+export { default as useVerticalScrollBar } from './useVerticalScrollBar';
+export { default as useHorizontalScrollBar } from './useHorizontalScrollBar';

@@ -23,6 +23,7 @@ export const navbarIconMixin = css<NavbarIconMixinProps>`
 		}
 		& > svg {
 			fill: var(--primary);
+			${({ applyStrokeStyle }) => (applyStrokeStyle ? 'stroke: var(--primary)' : '')};
 		}
 	}
 

@@ -100,12 +100,10 @@ export const SearchInput = styled.input`
 	}
 `;
 
-export const ListContainer = styled.div`
-	width: 100%;
-`;
-
 export const ListHeaderContainer = styled.div`
 	display: flex;
+	width: fit-content;
+	min-width: 100%;
 	font-size: 18px;
 	font-weight: 700;
 	color: var(--stockPageTextSubColor);
@@ -115,6 +113,8 @@ export const ListHeaderContainer = styled.div`
 
 export const ListItemsContainer = styled.ul`
 	position: relative;
+	width: fit-content;
+	min-width: 100%;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;

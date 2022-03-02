@@ -1,5 +1,5 @@
 import { ReactNode, useRef } from 'react';
-import { useCustomScrollBar } from '@hooks/index';
+import { useVerticalScrollBar } from '@hooks/index';
 import { ListItemsContainer, EmptyListNotice } from './styles';
 
 interface Props {
@@ -11,15 +11,16 @@ interface Props {
 export default function ListItems({ isListEmpty, emptyListNoticeMessage, children }: Props) {
 	const outerContainerRef = useRef<HTMLUListElement>(null);
 	const innerContainerRef = useRef<HTMLDivElement>(null);
-	const { ScrollBarThumb, calculateThumbY, thumbH, thumbRef } = useCustomScrollBar({
-		innerContainerRef,
-		outerContainerRef,
-		outerContainerBorderWidth: 1
-	});
+	const { VerticalScrollBarThumb, calculateThumbY, verticalThumbH, verticalThumbRef } =
+		useVerticalScrollBar({
+			innerContainerRef,
+			outerContainerRef,
+			outerContainerBorderWidth: 1
+		});
 
 	return (
 		<ListItemsContainer ref={outerContainerRef} onScroll={calculateThumbY}>
-			<ScrollBarThumb ref={thumbRef} height={thumbH} />
+			<VerticalScrollBarThumb ref={verticalThumbRef} height={verticalThumbH} />
 			<div ref={innerContainerRef}>
 				{isListEmpty ? <EmptyListNotice>{emptyListNoticeMessage}</EmptyListNotice> : children}
 			</div>

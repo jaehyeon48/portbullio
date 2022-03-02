@@ -8,22 +8,26 @@ interface SetDefaultButtonProps {
 
 export const PortfolioNameSection = styled.div`
 	width: 25%;
+	min-width: 220px;
 `;
 
 export const PortfolioPrivacySection = styled.div`
 	width: 15%;
 	display: flex;
 	align-items: center;
+	min-width: 140px;
 `;
 
 export const PortfolioAssetSection = styled.div`
 	width: 25%;
+	min-width: 200px;
 `;
 
 export const PortfolioActionSection = styled.div`
 	width: 35%;
 	display: flex;
 	justify-content: space-evenly;
+	min-width: 320px;
 
 	@media screen and (max-width: ${breakPoints.laptop}) {
 		justify-content: space-between;

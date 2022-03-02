@@ -11,8 +11,12 @@ export interface IconProps {
 	fill?: string;
 }
 
-export interface ScrollBarThumbProps {
+export interface VerticalScrollBarThumbProps {
 	height: number;
+}
+
+export interface HorizontalScrollBarThumbProps {
+	width: number;
 }
 
 export interface Portfolio {
@@ -21,4 +25,10 @@ export interface Portfolio {
 	name: string;
 	privacy: PortfolioPrivacy;
 	createdAt: Date;
+}
+
+export interface Holding {
+	ticker: string;
+	avgCost: number;
+	quantity: number;
 }

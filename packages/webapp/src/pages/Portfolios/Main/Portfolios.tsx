@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import { useQuery } from 'react-query';
 import * as Icon from '@components/Icon';
-import * as ListPage from '@components/ListPage/styles';
+import * as ListPage from '@components/ListPage';
 import { getPortfolios, getDefaultPortfolio } from '@api/portfolio';
 import { useModal } from '@hooks/Modal';
 import * as Style from './styles';
