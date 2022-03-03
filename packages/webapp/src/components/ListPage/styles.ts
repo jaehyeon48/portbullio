@@ -86,7 +86,7 @@ export const SearchInput = styled.input`
 	color: var(--baseTextColor);
 	padding: 0.6em 0.5em 0.6em 2.5em;
 	background-color: var(--inputBgColor);
-	border: var(--baseBorderColor);
+	border: 1px solid var(--baseBorderColor);
 	border-radius: 4px;
 	outline: none;
 	width: 100%;

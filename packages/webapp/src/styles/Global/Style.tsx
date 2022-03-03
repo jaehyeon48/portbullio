@@ -107,7 +107,7 @@ export default createGlobalStyle`
     --modalCloseIconColor: var(--gray);
 
     /* Input */
-    --inputBgColor: hsla(var(--colorBaseBlueGray), 14%);
+    --inputBgColor: hsla(var(--colorBaseBlueGray), 17%);
     --inputLabelColor: var(--gray);
 
     /* Portfolios Page */
