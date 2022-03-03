@@ -98,6 +98,16 @@ model StockTransactionLog {
   @@index([portfolioId], map: "fk_stock_transaction_log_portfolio_portfolio_id_idx")
 }
 
+model Symbol {
+  ticker   String @id @db.VarChar(5)
+  exchange String @db.VarChar(8)
+  name     String @db.VarChar(100)
+  type     String @db.VarChar(6)
+
+  @@map("symbol")
+  @@index([name], map: "symbol_name_index")
+}
+
 enum UserAuthType {
   google
   kakao
