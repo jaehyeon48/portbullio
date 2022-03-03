@@ -1,1 +1,2 @@
 export const COOKIE_MAX_AGE = 3600000;
+export const NUM_OF_STOCK_SEARCH_RESULTS_TO_TAKE = 10;
