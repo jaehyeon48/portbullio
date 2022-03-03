@@ -98,14 +98,14 @@ model StockTransactionLog {
   @@index([portfolioId], map: "fk_stock_transaction_log_portfolio_portfolio_id_idx")
 }
 
-model Symbol {
+model StockMeta {
   ticker   String @id @db.VarChar(5)
   exchange String @db.VarChar(8)
   name     String @db.VarChar(100)
-  type     String @db.VarChar(6)
+  type     StockType
 
-  @@map("symbol")
-  @@index([name], map: "symbol_name_index")
+  @@map("stock_meta")
+  @@index([name], map: "stock_meta_name_index")
 }
 
 enum UserAuthType {
@@ -130,4 +130,15 @@ enum CashTransactionType {
 enum StockTransactionType {
   buy
   sell
+}
+
+enum StockType {
+  ad
+  cs
+  et
+  ps
+  rt
+  struct
+  ut
+  wt
 }
