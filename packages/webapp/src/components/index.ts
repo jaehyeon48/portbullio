@@ -13,3 +13,4 @@ export { default as ProfileThumbnail } from './ProfileThumbnail/ProfileThumbnail
 export { default as AvatarImage } from './AvatarImage/AvatarImage';
 export * from './ListPage/styles';
 export * from './PortfolioSelect';
+export { default as SearchStocks } from './SearchStocks/SearchStocks';

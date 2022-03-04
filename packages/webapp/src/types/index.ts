@@ -32,3 +32,12 @@ export interface Holding {
 	avgCost: number;
 	quantity: number;
 }
+
+type StockType = 'ad' | 'cs' | 'et' | 'ps' | 'rt' | 'struct' | 'ut' | 'wt';
+
+export interface SearchSymbolItem {
+	ticker: string;
+	exchange: string;
+	name: string;
+	type: StockType;
+}

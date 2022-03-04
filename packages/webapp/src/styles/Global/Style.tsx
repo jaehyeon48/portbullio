@@ -5,7 +5,7 @@ import { flexMixin } from '../Mixins';
 export default createGlobalStyle`
   html {
     /* Color */
-    --colorBaseWhite: 0, 0;
+    --colorBaseWhite: 0, 0%;
     --colorBaseBlueGray: 210, 17%;
     --colorBaseDarkGray: 214, 7%;
     --colorBaseGreen: 162, 90%;
@@ -69,6 +69,10 @@ export default createGlobalStyle`
 
     /* Portfolios Page */
     --filterButtonBgColor: hsla(var(--colorBaseDeepPurple), 61%);
+
+    /* Search Stock */
+    --searchStockItemBorderColor: hsla(var(--colorBaseWhite), 94%);
+    --searchStockHoverBgColor: hsla(var(--colorBaseWhite), 96%);
   }
 
   html[data-theme='dark'] {
@@ -112,6 +116,10 @@ export default createGlobalStyle`
 
     /* Portfolios Page */
     --filterButtonBgColor: hsla(var(--colorBaseDeepPurple), 51%);
+
+    /* Search Stock */
+    --searchStockItemBorderColor: hsla(var(--colorBaseBlueGray), 20%);
+    --searchStockHoverBgColor: hsla(var(--colorBaseBlueGray), 22%);
   }
 
   body {
