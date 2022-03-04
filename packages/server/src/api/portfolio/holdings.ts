@@ -33,7 +33,9 @@ export default (): express.Router => {
 				const transactions = await stockTransactionService.getAllStockTransactions(
 					Number(portfolioId)
 				);
-				res.json({ transactions });
+
+				const holdings = await stockTransactionService.calculateAvgCost(transactions);
+				res.json({ holdings });
 			} catch (error) {
 				next(error);
 			}
