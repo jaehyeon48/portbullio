@@ -7,6 +7,10 @@ interface PortfolioIdParam {
 	portfolioId: string;
 }
 
+interface GetStockTransactionOfATickerParam extends PortfolioIdParam {
+	ticker: string;
+}
+
 interface StockTransactionReqBody {
 	ticker: string;
 	price: number;
@@ -18,6 +22,41 @@ interface StockTransactionReqBody {
 
 export default (): express.Router => {
 	const router = express.Router();
+
+	router.get(
+		'/:portfolioId/holdings',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { portfolioId } = req.params as unknown as PortfolioIdParam;
+
+			try {
+				const transactions = await stockTransactionService.getAllStockTransactions(
+					Number(portfolioId)
+				);
+				res.json({ transactions });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
+	router.get(
+		'/:portfolioId/holdings/:ticker',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { portfolioId, ticker } = req.params as unknown as GetStockTransactionOfATickerParam;
+
+			try {
+				const transactions = await stockTransactionService.getStockTransactionsOfATicker(
+					Number(portfolioId),
+					ticker
+				);
+				res.json({ transactions });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
 
 	router.post(
 		'/:portfolioId/holdings',
