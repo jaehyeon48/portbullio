@@ -10,7 +10,7 @@ export default function asyncThrottleAndDebounce<T extends (...args: any) => any
 	let timer: NodeJS.Timeout;
 	return async (...args: any): Promise<ReturnType<any>> => {
 		clearTimeout(timer);
-		timer = setTimeout(() => callback(...args), limit * 1.5);
+		timer = setTimeout(() => callback(...args), limit);
 		if (!wait) {
 			callback(...args);
 			wait = true;
