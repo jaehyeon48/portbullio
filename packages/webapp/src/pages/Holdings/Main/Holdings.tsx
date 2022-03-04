@@ -21,7 +21,7 @@ export default function Holdings() {
 						필터
 					</ListPage.SearchFilterButton>
 					<ListPage.AddItemButton type="button" onClick={() => {}}>
-						<Icon.Plus width={20} height={20} />새 보유종목 추가
+						<Icon.Plus width={20} height={20} />새 거래내역 추가
 					</ListPage.AddItemButton>
 				</ListPage.UpperSectionButtonContainer>
 				<ListPage.SearchInputContainer>

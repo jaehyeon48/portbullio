@@ -49,7 +49,7 @@ describe('Holdings main page layout', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByRole('button', { name: /새 보유종목 추가/ })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: /새 거래내역 추가/ })).toBeInTheDocument();
 	});
 
 	test('Should have a search holdings input', () => {
