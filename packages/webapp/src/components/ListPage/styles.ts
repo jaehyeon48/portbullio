@@ -15,7 +15,7 @@ const sectionStyle = css`
 
 export const UpperSection = styled.section`
 	${sectionStyle};
-	margin-top: 50px;
+	margin-top: 20px;
 `;
 
 export const LowerSection = styled.section`

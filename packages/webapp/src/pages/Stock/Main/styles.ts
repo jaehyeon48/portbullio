@@ -10,7 +10,7 @@ const STOCK_LINK_INDICATOR_HEIGHT = '3px';
 export const StockMainSection = styled.section`
 	position: relative;
 	margin: 0 ${StockPageConst.leftAndRightMargins.desktop}px;
-	padding: 2em 0 ${STOCK_LINK_INDICATOR_HEIGHT};
+	padding: 4px 0 ${STOCK_LINK_INDICATOR_HEIGHT};
 	border-bottom: 1px solid var(--stockPageBorderColor);
 	max-width: ${StockPageConst.maxWidth}px;
 	height: ${StockPageConst.mainSectionHeights.desktop}px;
