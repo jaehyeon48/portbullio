@@ -29,7 +29,7 @@ describe('Holdings main page layout', () => {
 			</CustomWrapper>
 		);
 
-		expect(screen.getByPlaceholderText('포트폴리오 선택')).toBeInTheDocument();
+		expect(screen.getByTestId('select-portfolio')).toBeInTheDocument();
 	});
 
 	test('Should have a filter button', () => {

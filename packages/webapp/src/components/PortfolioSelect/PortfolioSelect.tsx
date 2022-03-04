@@ -18,11 +18,12 @@ export default function PortfolioSelect({ value, onChange }: Props) {
 	});
 
 	return (
-		<Select value={value} onChange={onChange} placeholder="포트폴리오 선택">
+		<Select value={value} onChange={onChange} defaultValue={-1} data-testid="select-portfolio">
+			<PlaceHolderOption value={-1}>포트폴리오 선택</PlaceHolderOption>
 			{(portfolios ?? []).map(({ id, name }) => (
-				<Option key={id} value={id}>
+				<option key={id} value={id}>
 					{name}
-				</Option>
+				</option>
 			))}
 		</Select>
 	);
@@ -36,4 +37,6 @@ export const Select = styled.select<SelectMarginProps>`
 	border-radius: 2px;
 `;
 
-export const Option = styled.option``;
+export const PlaceHolderOption = styled.option`
+	display: none;
+`;
