@@ -11,14 +11,16 @@ function App(): ReactElement {
 	const setAuth = useAuthUpdate();
 
 	useLayoutEffect(() => {
-		(async () => {
+		async function tryLogIn() {
 			const { userId, isInitialLogin } = await checkAuth();
 
 			setAuth(!!userId);
 			if (isInitialLogin) {
 				toast.success({ message: '성공적으로 로그인 되었습니다.' });
 			}
-		})();
+		}
+
+		tryLogIn();
 	}, [setAuth]);
 
 	return (
