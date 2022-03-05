@@ -23,10 +23,10 @@ export default function DeleteConfirm({
 	async function handleDeletePortfolio(e: SyntheticEvent) {
 		const createRes = await deletePortfolio(portfolioId, isDefaultPortfolio);
 		if (!createRes) {
-			toast.error('에러가 발생했습니다. 다시 시도해 주세요', 'light', 'topRight');
+			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
 			return;
 		}
-		toast.success(`${portfolioName}을(를) 삭제했습니다.`, 'light', 'topRight');
+		toast.success({ message: `${portfolioName}을(를) 삭제했습니다.` });
 		queryClient.invalidateQueries('portfolioList');
 		queryClient.invalidateQueries('defaultPortfolio');
 		closeFunction!(e, false);

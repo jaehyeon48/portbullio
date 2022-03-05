@@ -4,27 +4,29 @@ import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
 import { EventListeners } from '@components/index';
 import { checkAuth } from '@api/auth';
-import { useAuthUpdate, useThemeMode } from '@hooks/index';
+import { useAuthUpdate } from '@hooks/index';
 import toast from '@lib/toast';
 
 function App(): ReactElement {
 	const setAuth = useAuthUpdate();
-	const [themeMode] = useThemeMode();
 
 	useLayoutEffect(() => {
 		(async () => {
 			const { userId, isInitialLogin } = await checkAuth();
 
 			setAuth(!!userId);
-			if (isInitialLogin) toast.success('성공적으로 로그인 되었습니다.', themeMode, 'topRight');
+			if (isInitialLogin) {
+				toast.success({ message: '성공적으로 로그인 되었습니다.' });
+			}
 		})();
-	}, [setAuth, themeMode]);
+	}, [setAuth]);
 
 	return (
 		<EventListeners>
 			<Global.CSSReset />
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />
+			<Global.ToastColors />
 			<Routes>
 				<Route path="/" element={<Page.Layout />}>
 					<Route index element={<Page.HomePage />} />

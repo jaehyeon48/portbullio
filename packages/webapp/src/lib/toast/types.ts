@@ -8,29 +8,23 @@ export type ToastPosition =
 	| 'bottomCenter';
 export type Theme = 'light' | 'dark';
 
-interface ToastTheme {
-	backgroundColor: string;
+interface ToastStyle {
+	bgColor: string;
 	progressBarColor: string;
 	color: string;
 }
 
-interface ToastStyle {
-	success: ToastTheme;
-	warning: ToastTheme;
-	error: ToastTheme;
-	info: ToastTheme;
-}
-
 export interface ToastStyles {
-	light: ToastStyle;
-	dark: ToastStyle;
+	success: ToastStyle;
+	warning: ToastStyle;
+	error: ToastStyle;
+	info: ToastStyle;
 }
 
 export interface Message {
 	id: string;
 	message: string;
 	type: MessageType;
-	theme: Theme;
 	duration: number;
 }
 

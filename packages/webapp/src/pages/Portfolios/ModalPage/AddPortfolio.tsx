@@ -36,21 +36,21 @@ export default function AddPortfolio({ closeFunction }: Props) {
 		e.preventDefault();
 
 		if (newName === '') {
-			toast.error('포트폴리오 이름을 작성해주세요.', 'light', 'topRight');
+			toast.error({ message: '포트폴리오 이름을 작성해주세요.' });
 			return;
 		}
 
 		if (isInvalidName()) {
-			toast.error('포트폴리오 이름은 20자 이하이어야 합니다.', 'light', 'topRight');
+			toast.error({ message: '포트폴리오 이름은 20자 이하이어야 합니다.' });
 			return;
 		}
 
 		const createRes = await createPortfolio(newName, privacy);
 		if (!createRes) {
-			toast.error('에러가 발생했습니다. 다시 시도해 주세요', 'light', 'topRight');
+			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
 			return;
 		}
-		toast.success('성공적으로 포트폴리오를 추가했습니다.', 'light', 'topRight');
+		toast.success({ message: '성공적으로 포트폴리오를 추가했습니다.' });
 		queryClient.invalidateQueries('portfolioList');
 		queryClient.invalidateQueries('defaultPortfolio');
 		closeFunction!(e, false);

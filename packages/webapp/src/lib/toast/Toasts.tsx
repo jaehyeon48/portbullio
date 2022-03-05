@@ -18,21 +18,18 @@ export default function Toasts({ position, messages, closeMessage }: Props) {
 
 	return (
 		<Style.ToastContainer position={position}>
-			{messages.map(({ id, message, theme, type, duration }) => (
-				<Style.Toast key={id} currentTheme={theme} messageType={type} duration={duration}>
+			{messages.map(({ id, message, type, duration }) => (
+				<Style.Toast key={id} messageType={type} duration={duration}>
 					{getIcon(type)}
-					<Style.Message currentTheme={theme} messageType={type}>
-						{message}
-					</Style.Message>
+					<Style.Message messageType={type}>{message}</Style.Message>
 					<Style.CloseButton
 						type="button"
-						currentTheme={theme}
 						messageType={type}
 						onClick={() => closeMessage(id, position)}
 					>
 						<Icon.Close />
 					</Style.CloseButton>
-					<Style.ProgressBar currentTheme={theme} messageType={type} duration={duration} />
+					<Style.ProgressBar messageType={type} duration={duration} />
 				</Style.Toast>
 			))}
 		</Style.ToastContainer>

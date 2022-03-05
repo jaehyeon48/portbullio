@@ -2,7 +2,6 @@ import { SyntheticEvent, useRef, useState, useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
 import { getAvatar, uploadAvatar, deleteAvatar } from '@api/user';
-import { useThemeMode } from '@hooks/index';
 import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
 import toast from '@lib/toast';
 import * as Style from './styles';
@@ -11,7 +10,6 @@ export default function AvatarImagePicker() {
 	const { data: avatarURL, isLoading } = useQuery('avatarUrl', getAvatar, { staleTime: Infinity });
 	const imageInputRef = useRef<HTMLInputElement>(null);
 	const queryClient = useQueryClient();
-	const [themeMode] = useThemeMode();
 	const [isUploadingImage, setIsUploadingImage] = useState(false);
 	const [newAvatarImage, setNewAvatarImage] = useState<File | null>(null);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
@@ -60,7 +58,7 @@ export default function AvatarImagePicker() {
 
 	async function handleUploadAvatar() {
 		if (!newAvatarImage) {
-			toast.error('새 아바타 이미지가 없습니다.', themeMode, 'topRight');
+			toast.error({ message: '새 아바타 이미지가 없습니다.' });
 			return;
 		}
 
@@ -70,16 +68,12 @@ export default function AvatarImagePicker() {
 		setIsValidMIMEType(true);
 		const uploadResponse = await uploadAvatar(newAvatarImage);
 		if (uploadResponse === '') {
-			toast.error(
-				'아바타 이미지 업데이트에 실패했습니다. 다시 시도해 주세요.',
-				themeMode,
-				'topRight'
-			);
+			toast.error({ message: '아바타 이미지 업데이트에 실패했습니다. 다시 시도해 주세요.' });
 			setIsUploadingImage(false);
 			return;
 		}
 
-		toast.success('아바타 이미지가 업데이트 되었습니다.', themeMode, 'topRight');
+		toast.success({ message: '아바타 이미지가 업데이트 되었습니다.' });
 		queryClient.setQueryData('avatarUrl', uploadResponse);
 		setIsUploadingImage(false);
 		imageInputRef.current!.value = '';
@@ -97,10 +91,10 @@ export default function AvatarImagePicker() {
 		const isDeleteSuccess = await deleteAvatar();
 		closeDeleteImageConfirm();
 		if (!isDeleteSuccess) {
-			toast.error('아바타 이미지 삭제에 실패했습니다. 다시 시도해 주세요.', themeMode, 'topRight');
+			toast.error({ message: '아바타 이미지 삭제에 실패했습니다. 다시 시도해 주세요.' });
 			return;
 		}
-		toast.success('아바타 이미지를 성공적으로 삭제했습니다.', themeMode, 'topRight');
+		toast.success({ message: '아바타 이미지를 성공적으로 삭제했습니다.' });
 		queryClient.setQueryData('avatarUrl', null);
 	}
 

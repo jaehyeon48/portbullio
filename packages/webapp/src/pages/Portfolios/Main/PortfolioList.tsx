@@ -51,32 +51,28 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 		const newPrivacy = prevPrivacy === 'public' ? 'private' : 'public';
 		const editRes = await editPortfolioPrivacy(portfolioId, newPrivacy);
 		if (!editRes) {
-			toast.error('에러가 발생했습니다. 다시 시도해 주세요', 'light', 'topRight');
+			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
 			return;
 		}
-		toast.success(
-			`${portfolioName}을(를) ${privacyKor[newPrivacy]}로 전환했습니다.`,
-			'light',
-			'topRight'
-		);
+
+		toast.success({ message: `${portfolioName}을(를) ${privacyKor[newPrivacy]}로 전환했습니다.` });
 		queryClient.invalidateQueries('portfolioList');
 		closeModal(e, false);
 	}
 
 	async function handleEditDefaultPortfolio(newPortfolioId: number, portfolioName: string) {
 		if (newPortfolioId === defaultPortfolioId) return;
-
 		if (defaultPortfolioId === undefined) {
-			toast.error('기본으로 설정된 포트폴리오가 없습니다.', 'light', 'topRight');
+			toast.error({ message: '기본으로 설정된 포트폴리오가 없습니다.' });
 			return;
 		}
 
 		const editRes = await editDefaultPortfolio(defaultPortfolioId, newPortfolioId);
 		if (!editRes) {
-			toast.error('에러가 발생했습니다. 다시 시도해 주세요', 'light', 'topRight');
+			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
 			return;
 		}
-		toast.success(`${portfolioName}을(를) 기본 포트폴리오로 설정했습니다.`, 'light', 'topRight');
+		toast.success({ message: `${portfolioName}을(를) 기본 포트폴리오로 설정했습니다.` });
 		queryClient.invalidateQueries('defaultPortfolio');
 	}
 

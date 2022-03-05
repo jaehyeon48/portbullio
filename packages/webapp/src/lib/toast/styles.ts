@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import { MessageType, Theme, ToastStyles, ToastPosition, ToastPositions } from './types';
+import { MessageType, ToastStyles, ToastPosition, ToastPositions } from './types';
 
 const progressBarHeight = '5px';
 
 interface MessageProps {
-	currentTheme: Theme;
 	messageType: MessageType;
 }
 
@@ -17,49 +16,25 @@ interface ToastContainerProps {
 }
 
 const ToastTheme: ToastStyles = {
-	light: {
-		success: {
-			backgroundColor: '#4CAF50',
-			progressBarColor: '#CCF4CD',
-			color: '#FFF1F1'
-		},
-		warning: {
-			backgroundColor: '#FABE0C',
-			progressBarColor: '#FFF6C5',
-			color: '#FFFCF3'
-		},
-		error: {
-			backgroundColor: '#FF5252',
-			progressBarColor: '#FFCBCB',
-			color: '#F1FFF1'
-		},
-		info: {
-			backgroundColor: '#2196F3',
-			progressBarColor: '#BDE0FB',
-			color: '#F3FAFF'
-		}
+	success: {
+		bgColor: 'var(--toastSuccessBgColor)',
+		progressBarColor: 'var(--toastSuccessProgressBarColor)',
+		color: 'var(--white)'
 	},
-	dark: {
-		success: {
-			backgroundColor: '#16B542',
-			progressBarColor: '#CCF4CD',
-			color: '#F1FFF1'
-		},
-		warning: {
-			backgroundColor: '#EBB410',
-			progressBarColor: '#FFF6C5',
-			color: '#FFFCF3'
-		},
-		error: {
-			backgroundColor: '#E74949',
-			progressBarColor: '#FFCBCB',
-			color: '#FFF1F1'
-		},
-		info: {
-			backgroundColor: '#1D86E8',
-			progressBarColor: '#BDE0FB',
-			color: '#F3FAFF'
-		}
+	warning: {
+		bgColor: 'var(--toastWarningBgColor)',
+		progressBarColor: 'var(--toastWarningProgressBarColor)',
+		color: 'var(--toastWarningTextColor)'
+	},
+	error: {
+		bgColor: 'var(--toastErrorBgColor)',
+		progressBarColor: 'var(--toastErrorProgressBarColor)',
+		color: 'var(--white)'
+	},
+	info: {
+		bgColor: 'var(--toastInfoBgColor)',
+		progressBarColor: 'var(--toastInfoProgressBarColor)',
+		color: 'var(--white)'
 	}
 };
 
@@ -111,12 +86,11 @@ export const Toast = styled.div<ProgressBarProps>`
 	border-radius: 5px 5px 0px 0px;
 	margin-bottom: 1em;
 	padding: 0.7em 0.7em calc(0.7em + ${progressBarHeight});
-	background-color: ${({ currentTheme, messageType }) =>
-		ToastTheme[currentTheme][messageType].backgroundColor};
+	background-color: ${({ messageType }) => ToastTheme[messageType].bgColor};
 	animation: flipIn ${({ duration }) => Math.min(400, duration / 1.5)}ms;
 
 	& > svg {
-		fill: ${({ currentTheme, messageType }) => ToastTheme[currentTheme][messageType].color};
+		fill: ${({ messageType }) => ToastTheme[messageType].color};
 		margin-right: 0.5em;
 	}
 
@@ -148,7 +122,7 @@ export const Message = styled.p<MessageProps>`
 	max-height: 60px;
 	margin: 0;
 	word-break: break-all;
-	color: ${({ currentTheme, messageType }) => ToastTheme[currentTheme][messageType].color};
+	color: ${({ messageType }) => ToastTheme[messageType].color};
 	overflow: hidden;
 `;
 
@@ -159,7 +133,7 @@ export const CloseButton = styled.button<MessageProps>`
 	border: none;
 	cursor: pointer;
 	& > svg {
-		fill: ${({ currentTheme, messageType }) => ToastTheme[currentTheme][messageType].color};
+		fill: ${({ messageType }) => ToastTheme[messageType].color};
 	}
 `;
 
@@ -168,8 +142,7 @@ export const ProgressBar = styled.div<ProgressBarProps>`
 	left: 0;
 	bottom: 0;
 	height: ${progressBarHeight};
-	background-color: ${({ currentTheme, messageType }) =>
-		ToastTheme[currentTheme][messageType].progressBarColor};
+	background-color: ${({ messageType }) => ToastTheme[messageType].progressBarColor};
 	animation: progressBar ${({ duration }) => duration}ms linear;
 
 	@keyframes progressBar {
