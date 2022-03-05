@@ -1,19 +1,11 @@
-import { SyntheticEvent } from 'react';
 import { AngleRight, DynamicCaret } from '@components/index';
-import { AuthPage } from '@pages/index';
-import { useAuth, useModal } from '@hooks/index';
 import { formatNum } from '@utils';
 import HeroImage from './HeroImage';
 import * as Style from './styles';
 import Top5Stocks from './Top5Stocks';
+import HomeMainButton from './HomeMainButton';
 
 export default function Home() {
-	const isAuthenticated = useAuth();
-	const { openModal } = useModal();
-	function handleOpenLogInModal(e: SyntheticEvent) {
-		openModal(e, <AuthPage />);
-	}
-
 	return (
 		<>
 			<Style.Section justifyContent="space-evenly">
@@ -25,13 +17,7 @@ export default function Home() {
 						미국 주식 포트폴리오 관리, <br /> Port<Style.HeaderPrimary>bull</Style.HeaderPrimary>
 						io로 시작하세요!
 					</Style.Header>
-					{isAuthenticated ? (
-						<Style.LinkButton to="/portfolios">내 포트폴리오</Style.LinkButton>
-					) : (
-						<Style.Button type="button" onClick={handleOpenLogInModal}>
-							시작하기
-						</Style.Button>
-					)}
+					<HomeMainButton authText="내 포트폴리오" unAuthText="시작하기" />
 				</Style.HeaderContainer>
 			</Style.Section>
 			<Style.Section margin="5em auto 8em" justifyContent="space-evenly">
