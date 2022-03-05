@@ -2,7 +2,7 @@ import { ReactElement, useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
-import { EventListeners } from '@components/index';
+import { EventEmitterListeners } from '@components/index';
 import { checkAuth } from '@api/auth';
 import { useAuthUpdate } from '@hooks/index';
 import toast from '@lib/toast';
@@ -24,7 +24,7 @@ function App(): ReactElement {
 	}, [setAuth]);
 
 	return (
-		<EventListeners>
+		<EventEmitterListeners>
 			<Global.CSSReset />
 			<Global.GlobalFonts />
 			<Global.GlobalStyles />
@@ -40,7 +40,7 @@ function App(): ReactElement {
 					<Route path="portfolios" element={<Page.PortfoliosPage />} />
 				</Route>
 			</Routes>
-		</EventListeners>
+		</EventEmitterListeners>
 	);
 }
 

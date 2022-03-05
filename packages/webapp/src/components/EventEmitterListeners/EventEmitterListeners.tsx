@@ -6,7 +6,7 @@ interface Props {
 	children: ReactNode;
 }
 
-export default function EventListeners({ children }: Props) {
+export default function EventEmitterListeners({ children }: Props) {
 	const setAuth = useAuthUpdate();
 	const Emitter = useEmitter();
 

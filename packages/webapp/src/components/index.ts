@@ -1,7 +1,7 @@
 export { default as AppProviders } from './AppProviders';
 export { default as Card } from './Card';
 export { default as DynamicCaret } from './DynamicCaret';
-export { default as EventListeners } from './EventListeners';
+export { default as EventEmitterListeners } from './EventEmitterListeners';
 export * from './Form';
 export * from './Icon';
 export { default as Modal } from './Modal';
