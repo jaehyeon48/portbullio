@@ -1,8 +1,9 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import { Navbar, PageContainer, SearchStocks } from '@components/index';
+import { navbarWidth } from '@constants/index';
+import { Navbar, SearchStocks } from '@components/index';
 
-export default function Layout() {
+export default function BaseLayout() {
 	const navigate = useNavigate();
 
 	function routeToStockPage(ticker: string) {
@@ -21,6 +22,12 @@ export default function Layout() {
 		</>
 	);
 }
+
+const PageContainer = styled.section`
+	position: relative;
+	width: calc(100% - ${navbarWidth}px);
+	min-height: 100vh;
+`;
 
 const SearchStocksContainer = styled.div`
 	width: 50%;

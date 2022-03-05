@@ -30,7 +30,7 @@ function App(): ReactElement {
 			<Global.GlobalStyles />
 			<Global.ToastColors />
 			<Routes>
-				<Route path="/" element={<Page.Layout />}>
+				<Route path="/" element={<Page.BaseLayout />}>
 					<Route index element={<Page.HomePage />} />
 					<Route path="welcome" element={<Page.WelcomePage />} />
 					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
