@@ -71,6 +71,7 @@ export const Button = styled.button`
 `;
 
 export const UploadButtonContainer = styled.div`
+	position: relative;
 	display: flex;
 	justify-content: space-between;
 	width: 100%;
@@ -118,10 +119,18 @@ export const NoticeNotSupportedImageType = styled.p`
 `;
 
 export const DeleteConfirmContainer = styled.div`
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	width: 80%;
+	margin-left: 10%;
 	padding: 14px 0;
+	border-radius: 4px;
+	z-index: 1;
+	background-color: var(--deleteConfirmBgColor);
 
 	& > div {
-		margin-top: 6px;
+		margin-top: 16px;
 		display: flex;
 		justify-content: center;
 	}
@@ -142,7 +151,7 @@ const DeleteConfirmButtonStyle = css`
 
 export const DeleteConfirmCancelButton = styled.button`
 	${DeleteConfirmButtonStyle};
-	background-color: var(--darkGray);
+	background-color: var(--gray);
 `;
 
 export const DeleteConfirmButton = styled.button`

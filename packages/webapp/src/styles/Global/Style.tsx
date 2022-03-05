@@ -73,6 +73,9 @@ export default createGlobalStyle`
     /* Search Stock */
     --searchStockItemBorderColor: hsla(var(--colorBaseWhite), 94%);
     --searchStockHoverBgColor: hsla(var(--colorBaseWhite), 96%);
+
+    /* Avatar Picker */
+    --deleteConfirmBgColor: hsla(var(--colorBaseDarkGray), 93%);
   }
 
   html[data-theme='dark'] {
@@ -120,6 +123,9 @@ export default createGlobalStyle`
     /* Search Stock */
     --searchStockItemBorderColor: hsla(var(--colorBaseBlueGray), 20%);
     --searchStockHoverBgColor: hsla(var(--colorBaseBlueGray), 22%);
+
+    /* Avatar Picker */
+    --deleteConfirmBgColor: hsla(var(--colorBaseDarkGray), 22%);
   }
 
   body {
