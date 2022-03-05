@@ -24,5 +24,6 @@ export default function useThemeMode(): [Theme, () => void] {
 }
 
 function isValidThemeType(theme: string | null): boolean {
-	return !!((theme && theme === 'light') || theme === 'dark');
+	if (!theme) return false;
+	return theme === 'light' || theme === 'dark';
 }
