@@ -3,23 +3,21 @@ import { TradingViewWidget } from '@components/index';
 import { useThemeMode } from '@hooks/index';
 import * as Dimensions from '@constants/breakPoints';
 import { navbarWidth } from '@constants/index';
-import * as StockPageConst from '../constants';
 import * as Style from './styles';
 import RightPanel from './RightPanel';
+import {
+	PAGE_MAX_WIDTH,
+	RIGHT_PANEL_WIDTH,
+	CHART_HEIGHT,
+	GAP_BTW_CHART_AND_RIGHT_PANEL,
+	LEFT_AND_RIGHT_MARGIN
+} from '../constants';
 
 function determineWidgetDimension(width: number) {
-	const {
-		maxWidth,
-		rightPanelWidth,
-		gapBetweenChartAndRightPanel,
-		leftAndRightMargins,
-		chartHeight
-	} = StockPageConst;
-
-	if (width >= maxWidth) {
+	if (width >= PAGE_MAX_WIDTH) {
 		return [
-			maxWidth - rightPanelWidth.desktop - gapBetweenChartAndRightPanel.maxWidth,
-			chartHeight.desktop
+			PAGE_MAX_WIDTH - RIGHT_PANEL_WIDTH.desktop - GAP_BTW_CHART_AND_RIGHT_PANEL.maxWidth,
+			CHART_HEIGHT.desktop
 		];
 	}
 
@@ -27,20 +25,20 @@ function determineWidgetDimension(width: number) {
 		return [
 			width -
 				navbarWidth -
-				rightPanelWidth.desktop -
-				gapBetweenChartAndRightPanel.desktop -
-				leftAndRightMargins.desktop * 2,
-			chartHeight.desktop
+				RIGHT_PANEL_WIDTH.desktop -
+				GAP_BTW_CHART_AND_RIGHT_PANEL.desktop -
+				LEFT_AND_RIGHT_MARGIN.desktop * 2,
+			CHART_HEIGHT.desktop
 		];
 	}
 	if (width > Dimensions.TABLET_LANDSCAPE_WIDTH) {
 		return [
 			width -
 				navbarWidth -
-				rightPanelWidth.laptop -
-				gapBetweenChartAndRightPanel.laptop -
-				leftAndRightMargins.laptop * 2,
-			chartHeight.laptop
+				RIGHT_PANEL_WIDTH.laptop -
+				GAP_BTW_CHART_AND_RIGHT_PANEL.laptop -
+				LEFT_AND_RIGHT_MARGIN.laptop * 2,
+			CHART_HEIGHT.laptop
 		];
 	}
 	return [500, 500];

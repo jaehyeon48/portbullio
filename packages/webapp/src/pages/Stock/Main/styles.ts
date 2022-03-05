@@ -2,23 +2,23 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { priceColorMixin } from '@styles/Mixins';
 import * as Constants from '@constants/index';
-import * as StockPageConst from '../constants';
 import { stockPageBaseFontStyle } from '../styles';
+import { PAGE_MAX_WIDTH, LEFT_AND_RIGHT_MARGIN, MAIN_SECTION_HEIGHT } from '../constants';
 
 const STOCK_LINK_INDICATOR_HEIGHT = '3px';
 
 export const StockMainSection = styled.section`
 	position: relative;
-	margin: 0 ${StockPageConst.leftAndRightMargins.desktop}px;
+	margin: 0 ${LEFT_AND_RIGHT_MARGIN.desktop}px;
 	padding: 4px 0 ${STOCK_LINK_INDICATOR_HEIGHT};
 	border-bottom: 1px solid var(--stockPageBorderColor);
-	max-width: ${StockPageConst.maxWidth}px;
-	height: ${StockPageConst.mainSectionHeights.desktop}px;
+	max-width: ${PAGE_MAX_WIDTH}px;
+	height: ${MAIN_SECTION_HEIGHT.desktop}px;
 	${stockPageBaseFontStyle};
 
 	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
-		height: ${StockPageConst.mainSectionHeights.laptop}px;
-		margin: 0 ${StockPageConst.leftAndRightMargins.laptop}px;
+		height: ${MAIN_SECTION_HEIGHT.laptop}px;
+		margin: 0 ${LEFT_AND_RIGHT_MARGIN.laptop}px;
 	}
 `;
 
