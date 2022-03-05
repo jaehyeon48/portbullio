@@ -1,9 +1,9 @@
-import { AngleRight, DynamicCaret } from '@components/index';
-import { formatNum } from '@utils';
+import { AngleRight } from '@components/index';
 import HeroImage from './HeroImage';
 import * as Style from './styles';
 import Top5Stocks from './Top5Stocks';
 import HomeMainButton from './HomeMainButton';
+import IndexInfo from './IndexInfo';
 
 export default function Home() {
 	return (
@@ -21,45 +21,24 @@ export default function Home() {
 				</Style.HeaderContainer>
 			</Style.Section>
 			<Style.Section margin="5em auto 8em" justifyContent="space-evenly">
-				<Style.IndexContainer>
-					<Style.IndexHeader>다우 존스</Style.IndexHeader>
-					<Style.IndexInfo value={-1}>
-						<Style.IndexPriceContainer>
-							<Style.IndexPrice>{formatNum(36068.87)}</Style.IndexPrice>
-							<Style.IndexPriceChange>
-								<DynamicCaret value={-1} width={20} height={20} />
-								{formatNum(1234.56)}
-							</Style.IndexPriceChange>
-						</Style.IndexPriceContainer>
-						<Style.IndexChangePercent>-0.45%</Style.IndexChangePercent>
-					</Style.IndexInfo>
-				</Style.IndexContainer>
-				<Style.IndexContainer>
-					<Style.IndexHeader>S&amp;P 500</Style.IndexHeader>
-					<Style.IndexInfo value={-1}>
-						<Style.IndexPriceContainer>
-							<Style.IndexPrice>{formatNum(4670.29)}</Style.IndexPrice>
-							<Style.IndexPriceChange>
-								<DynamicCaret value={-1} width={20} height={20} />
-								{formatNum(123.45)}
-							</Style.IndexPriceChange>
-						</Style.IndexPriceContainer>
-						<Style.IndexChangePercent>-0.14%</Style.IndexChangePercent>
-					</Style.IndexInfo>
-				</Style.IndexContainer>
-				<Style.IndexContainer>
-					<Style.IndexHeader>나스닥 종합</Style.IndexHeader>
-					<Style.IndexInfo value={1}>
-						<Style.IndexPriceContainer>
-							<Style.IndexPrice>{formatNum(14942.83)}</Style.IndexPrice>
-							<Style.IndexPriceChange>
-								<DynamicCaret value={1} width={20} height={20} />
-								{formatNum(1.23)}
-							</Style.IndexPriceChange>
-						</Style.IndexPriceContainer>
-						<Style.IndexChangePercent>+0.05%</Style.IndexChangePercent>
-					</Style.IndexInfo>
-				</Style.IndexContainer>
+				<IndexInfo
+					indexName="다우 존스"
+					indexValue={36068.87}
+					indexValueChange={1234.56}
+					indexValueChangePercent={-0.45}
+				/>
+				<IndexInfo
+					indexName="S&P 500"
+					indexValue={4670.29}
+					indexValueChange={123.45}
+					indexValueChangePercent={-0.14}
+				/>
+				<IndexInfo
+					indexName="나스닥 종합"
+					indexValue={14942.83}
+					indexValueChange={1.23}
+					indexValueChangePercent={0.05}
+				/>
 			</Style.Section>
 			<Style.Section margin="0 auto 5em" justifyContent="space-evenly">
 				<Style.Top5ListSection>
