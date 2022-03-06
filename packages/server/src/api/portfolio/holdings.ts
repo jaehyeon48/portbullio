@@ -143,5 +143,20 @@ export default (): express.Router => {
 		}
 	);
 
+	router.delete(
+		'/holdings/:stockTransactionId',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { stockTransactionId } = req.params as unknown as StockTransactionIdParam;
+
+			try {
+				await stockTransactionService.deleteStockTransaction(Number(stockTransactionId));
+				res.send();
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
 	return router;
 };
