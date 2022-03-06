@@ -12,11 +12,21 @@ export const InputStyle = css<InputStyleProps>`
 	color: var(--baseTextColor);
 	padding: 1.8em 0.5em 0.25em;
 
-	&:focus {
+	&:not(:read-only):focus {
 		border-color: var(--lightBlue);
 		box-shadow: 0 0 ${({ theme }) => (theme.currentTheme === 'light' ? '3' : '5')}px
 			var(--lightBlue);
 		outline: 1px solid var(--lightBlue);
+	}
+
+	&:read-only {
+		cursor: not-allowed;
+		color: var(--dark);
+		background-color: var(--lightGray);
+	}
+
+	&:read-only:focus {
+		outline: none;
 	}
 `;
 
@@ -50,7 +60,11 @@ export const Textarea = styled.textarea<InputStyleProps>`
 export const TextInputLabel = styled.label<InputStyleProps>`
 	${LabelStyle};
 
-	${TextInput}:focus + & {
+	${TextInput}:read-only + & {
+		color: var(--darkGray);
+	}
+
+	${TextInput}:not(:read-only)focus + & {
 		color: var(--lightBlue);
 	}
 `;
