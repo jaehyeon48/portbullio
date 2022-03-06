@@ -1,8 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { TradingViewWidget } from '@components/index';
 import { useThemeMode } from '@hooks/index';
-import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
-import { navbarWidth } from '@constants/index';
+import { NAVBAR_WIDTH, WIDTH_BREAK_POINT_PX } from '@constants/index';
 import * as Style from './styles';
 import RightPanel from './RightPanel';
 import {
@@ -24,7 +23,7 @@ function determineWidgetDimension(width: number) {
 	if (width > WIDTH_BREAK_POINT_PX.laptop) {
 		return [
 			width -
-				navbarWidth -
+				NAVBAR_WIDTH -
 				RIGHT_PANEL_WIDTH.desktop -
 				GAP_BTW_CHART_AND_RIGHT_PANEL.desktop -
 				LEFT_AND_RIGHT_MARGIN.desktop * 2,
@@ -34,7 +33,7 @@ function determineWidgetDimension(width: number) {
 	if (width > WIDTH_BREAK_POINT_PX.tabletLandscape) {
 		return [
 			width -
-				navbarWidth -
+				NAVBAR_WIDTH -
 				RIGHT_PANEL_WIDTH.laptop -
 				GAP_BTW_CHART_AND_RIGHT_PANEL.laptop -
 				LEFT_AND_RIGHT_MARGIN.laptop * 2,

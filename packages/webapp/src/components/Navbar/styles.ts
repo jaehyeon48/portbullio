@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { NAVBAR_WIDTH } from '@constants/index';
 import {
 	flexMixin,
 	flexCenter,
@@ -7,7 +8,6 @@ import {
 	NavbarIconMixinProps,
 	buttonMixin
 } from '@styles/Mixins';
-import { navbarWidth } from '@constants/index';
 
 export const Container = styled.aside`
 	display: flex;
@@ -15,7 +15,7 @@ export const Container = styled.aside`
 	position: sticky;
 	top: 0;
 	background-color: var(--navbarBgColor);
-	width: ${navbarWidth}px;
+	width: ${NAVBAR_WIDTH}px;
 	height: 100vh;
 	z-index: 1;
 `;
@@ -65,7 +65,7 @@ export const DropdownContainer = styled.div`
 	background-color: var(--navbarBgColor);
 	border: 1px solid var(--navbarDropdownBorderColor);
 	border-radius: 4px;
-	left: ${navbarWidth - 8}px;
+	left: ${NAVBAR_WIDTH - 8}px;
 	bottom: 34px;
 
 	&::after {
