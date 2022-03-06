@@ -5,7 +5,7 @@ interface ListItemProp {
 	isFirstList: boolean;
 }
 
-const listItemSidePadding = '6px';
+const LIST_ITEM_LEFT_RIGHT_PADDING_PX = 6;
 
 const sectionStyle = css`
 	max-width: 1680px;
@@ -110,7 +110,7 @@ export const ListHeaderContainer = styled.div`
 	font-weight: 700;
 	color: var(--stockPageTextSubColor);
 	border-bottom: 1px solid var(--darkGray);
-	padding: 0 ${listItemSidePadding} 0.5em;
+	padding: 0 ${LIST_ITEM_LEFT_RIGHT_PADDING_PX}px 0.5em;
 `;
 
 export const ListItemsContainer = styled.ul`
@@ -130,7 +130,7 @@ export const ListItemsContainer = styled.ul`
 
 export const ListItem = styled.li<ListItemProp>`
 	display: flex;
-	padding: 1em ${listItemSidePadding};
+	padding: 1em ${LIST_ITEM_LEFT_RIGHT_PADDING_PX}px;
 	${({ isFirstList }) => !isFirstList && 'border-top: 1px solid var(--baseBorderColor)'};
 `;
 
