@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import Card from '@components/Card';
 import { Link } from 'react-router-dom';
 import * as Mixin from '@styles/Mixins';
-import { breakPoints } from '@constants/index';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 
 interface HeaderContainerProps {
 	flexDirection: 'row' | 'column';
@@ -17,7 +17,7 @@ const midBotSectionLayout = css`
 	font-size: 18px;
 	max-width: 20em;
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
 		font-size: 16px;
 	}
 `;
@@ -43,7 +43,7 @@ export const Header = styled.header`
 	font-weight: 700;
 	margin-bottom: 1.5em;
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
 		& {
 			font-size: 40px;
 		}
@@ -58,14 +58,14 @@ export const HeroImageContainer = styled.div`
 	display: inline-block;
 	margin: 1.5em 5em 1.5em 1.5em;
 
-	@media screen and (max-width: ${breakPoints.laptop}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
 		& > svg {
 			width: 500px;
 			height: 390px;
 		}
 	}
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
 		& > svg {
 			width: 450px;
 			height: 351px;

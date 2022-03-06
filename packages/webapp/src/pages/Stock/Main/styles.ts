@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { priceColorMixin } from '@styles/Mixins';
-import * as Constants from '@constants/index';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import { stockPageBaseFontStyle } from '../styles';
 import { PAGE_MAX_WIDTH, LEFT_AND_RIGHT_MARGIN, MAIN_SECTION_HEIGHT } from '../constants';
 
@@ -16,7 +16,7 @@ export const StockMainSection = styled.section`
 	height: ${MAIN_SECTION_HEIGHT.desktop}px;
 	${stockPageBaseFontStyle};
 
-	@media screen and (max-width: ${Constants.breakPoints.laptop}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
 		height: ${MAIN_SECTION_HEIGHT.laptop}px;
 		margin: 0 ${LEFT_AND_RIGHT_MARGIN.laptop}px;
 	}

@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
-import { breakPoints } from '@constants/breakPoints';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 
 interface SetDefaultButtonProps {
 	isDefault: boolean;
@@ -29,7 +29,7 @@ export const PortfolioActionSection = styled.div`
 	justify-content: space-evenly;
 	min-width: 320px;
 
-	@media screen and (max-width: ${breakPoints.laptop}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
 		justify-content: space-between;
 	}
 `;

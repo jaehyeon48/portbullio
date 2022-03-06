@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { breakPoints } from '@constants/index';
+import { WIDTH_BREAK_POINT_PX } from '@constants/index';
 
 interface InputStyleProps {
 	isError?: boolean;
@@ -70,7 +70,7 @@ export const ErrorLabel = styled.small<InputStyleProps>`
 	bottom: -22px;
 	font-size: 14px;
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
 		font-size: 12px;
 		bottom: -20px;
 	}

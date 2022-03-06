@@ -1,5 +1,5 @@
 import { css } from 'styled-components';
-import { breakPoints } from '@constants/index';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 
 export interface NavbarIconMixinProps {
 	applyStrokeStyle?: boolean;
@@ -27,13 +27,13 @@ export const navbarIconMixin = css<NavbarIconMixinProps>`
 		}
 	}
 
-	@media screen and (max-width: ${breakPoints.laptop}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
 		& > svg {
 			transform: scale(0.85);
 		}
 	}
 
-	@media screen and (max-width: ${breakPoints.tabletLandscape}) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
 		& > p {
 			font-size: 12px;
 		}
