@@ -8,7 +8,7 @@ interface UpdateStockTransactionArgs {
 	type: StockTransactionType;
 }
 
-export default async function editStockTransactionPriceQuantityType({
+export async function editStockTransactionPriceQuantityType({
 	stockTransactionId,
 	price,
 	quantity,
@@ -21,6 +21,14 @@ export default async function editStockTransactionPriceQuantityType({
 			quantity,
 			transactionType: type
 		}
+	});
+	return;
+}
+
+export async function editStockTransactionMemo(stockTransactionId: number, memo: string) {
+	await prisma.stockTransactionLog.update({
+		where: { id: stockTransactionId },
+		data: { memo }
 	});
 	return;
 }

@@ -24,10 +24,14 @@ interface AddStockTransactionReqBody {
 	isRealized: boolean;
 }
 
-interface UpdateStockTransactionReqBody {
+interface UpdateStockTransactionPriceQuantityTypeReqBody {
 	price: number;
 	quantity: number;
 	type: StockTransactionType;
+}
+
+interface UpdateStockTransactionMemoReqBody {
+	memo: string;
 }
 
 export default (): express.Router => {
@@ -106,15 +110,32 @@ export default (): express.Router => {
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
 			const { stockTransactionId } = req.params as unknown as StockTransactionIdParam;
-			const { price, quantity, type } = req.body as unknown as UpdateStockTransactionReqBody;
+			const { price, quantity, type } =
+				req.body as unknown as UpdateStockTransactionPriceQuantityTypeReqBody;
 
 			try {
-				await stockTransactionService.updateStockTransaction({
+				await stockTransactionService.editStockTransactionPriceQuantityType({
 					stockTransactionId: Number(stockTransactionId),
 					price,
 					quantity,
 					type
 				});
+				res.send();
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
+	router.patch(
+		'/holdings/:stockTransactionId/memo',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { stockTransactionId } = req.params as unknown as StockTransactionIdParam;
+			const { memo } = req.body as unknown as UpdateStockTransactionMemoReqBody;
+
+			try {
+				await stockTransactionService.editStockTransactionMemo(Number(stockTransactionId), memo);
 				res.send();
 			} catch (error) {
 				next(error);
