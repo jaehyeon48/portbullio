@@ -1,7 +1,7 @@
 import { useState, SyntheticEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
 import { AppProviders, Modal } from '@components/index';
-import { globalScrollBarWidth } from '@constants/index';
+import { GLOBAL_SCROLLBAR_WIDTH } from '@constants/index';
 import { CloseModalFn } from '@types';
 
 type OpenModalFn = (e: SyntheticEvent, children: ReactNode) => void;
@@ -31,7 +31,7 @@ export function useModal(): UseModalReturnType {
 	const openModal = (e: SyntheticEvent, children: ReactNode) => {
 		e.stopPropagation();
 		bodyElement.style.overflow = 'hidden';
-		bodyElement.style.paddingRight = `${globalScrollBarWidth}px`;
+		bodyElement.style.paddingRight = `${GLOBAL_SCROLLBAR_WIDTH}px`;
 		ReactDOM.render(
 			<AppProviders>
 				<Modal closeFunction={closeModal}>{children}</Modal>

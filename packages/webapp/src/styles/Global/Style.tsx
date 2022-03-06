@@ -1,5 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
-import { globalScrollBarWidth } from '@constants/index';
+import { GLOBAL_SCROLLBAR_WIDTH } from '@constants/index';
 import { flexMixin } from '../Mixins';
 
 export default createGlobalStyle`
@@ -134,7 +134,7 @@ export default createGlobalStyle`
     color: var(--baseTextColor);
 
     &::-webkit-scrollbar {
-      width: ${globalScrollBarWidth}px;
+      width: ${GLOBAL_SCROLLBAR_WIDTH}px;
     }
 
     &::-webkit-scrollbar-thumb {
