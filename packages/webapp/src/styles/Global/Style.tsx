@@ -39,6 +39,7 @@ export default createGlobalStyle`
     --baseBorderColor: hsla(var(--colorBaseBlueGray), 67%);
     --priceGreen: hsla(var(--colorBaseDeepGreen), 27%);
     --priceRed: hsla(var(--colorBaseDeepRed), 42%);
+    --lightGray: hsla(var(--colorBaseDarkGray), 80%);
     --gray: hsla(var(--colorBaseDarkGray), 60%);
     --darkGray: hsla(var(--colorBaseDarkGray), 40%);
     --deepDarkGray: hsla(var(--colorBaseDarkGray), 19%);
@@ -89,6 +90,7 @@ export default createGlobalStyle`
     --baseBorderColor: hsla(var(--colorBaseBlueGray), 34%);
     --priceGreen: hsla(var(--colorBaseDeepGreen), 36%);
     --priceRed: hsla(var(--colorBaseRed), 55%);
+    --lightGray: hsla(var(--colorBaseDarkGray), 70%);
     --gray: hsla(var(--colorBaseDarkGray), 50%);
     --darkGray: hsla(var(--colorBaseDarkGray), 30%);
     --deepDarkGray: hsla(var(--colorBaseDarkGray), 13%);
