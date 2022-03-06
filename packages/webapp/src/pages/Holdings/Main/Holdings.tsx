@@ -1,13 +1,21 @@
+import { useQuery } from 'react-query';
+import { getAllHoldings } from '@api/portfolio';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { PortfolioSelect, usePortfolioSelectId } from '@components/PortfolioSelect';
-import { Holding } from '@types';
 import { formatNum } from '@utils';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
 
 export default function Holdings() {
 	const [selectedPortfolioId, handleSelectedPortfolioId] = usePortfolioSelectId();
+	const { data: holdings, isLoading } = useQuery(
+		`holdingsOf${selectedPortfolioId}`,
+		() => getAllHoldings(selectedPortfolioId),
+		{
+			staleTime: !selectedPortfolioId ? 0 : Infinity
+		}
+	);
 
 	return (
 		<>
@@ -40,22 +48,9 @@ export default function Holdings() {
 						<Style.HoldingDailyGainSection>일일 손익</Style.HoldingDailyGainSection>
 						<Style.HoldingTotalGainSection>총 손익</Style.HoldingTotalGainSection>
 					</ListPage.ListHeaderContainer>
-					<HoldingsList holdingsList={dummyHoldingsList} isLoading={false} />
+					<HoldingsList holdingsList={holdings} isLoading={isLoading} />
 				</ListPage.ListContainer>
 			</ListPage.LowerSection>
 		</>
 	);
 }
-
-const dummyHoldingsList: Holding[] = [
-	{ ticker: 'AAPL', avgCost: 123.23, quantity: 12345 },
-	{ ticker: 'MSFT', avgCost: 456.12, quantity: 123456 },
-	{ ticker: 'GOOG', avgCost: 1234.56, quantity: 1234567 },
-	{ ticker: 'AMZN', avgCost: 2345.56, quantity: 1234567 },
-	{ ticker: 'TSLA', avgCost: 1113.23, quantity: 12 },
-	{ ticker: 'NVDA', avgCost: 111.23, quantity: 1 },
-	{ ticker: 'V', avgCost: 111.23, quantity: 123456789 },
-	{ ticker: 'JNJ', avgCost: 111.23, quantity: 123456789 },
-	{ ticker: 'JPM', avgCost: 111.23, quantity: 123456789 },
-	{ ticker: 'BRK-B', avgCost: 111.23, quantity: 123456789 }
-];
