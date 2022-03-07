@@ -49,6 +49,7 @@
     "react/jsx-no-useless-fragment": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "no-useless-return": "off",
-    "@typescript-eslint/no-non-null-assertion": "off"
+    "@typescript-eslint/no-non-null-assertion": "off",
+    "jsx-a11y/label-has-associated-control": "off"
   }
 }
