@@ -52,6 +52,7 @@ export default function ListContainer({ children }: Props) {
 			onMouseDown={enableGrabbedState}
 			onMouseUp={disableGrabbedState}
 			onMouseMove={mouseMove}
+			onMouseLeave={disableGrabbedState}
 		>
 			<HorizontalScrollBarThumb ref={horizontalThumbRef} width={horizontalThumbW} />
 			<InnerContainer ref={innerContainerRef}>{children}</InnerContainer>
