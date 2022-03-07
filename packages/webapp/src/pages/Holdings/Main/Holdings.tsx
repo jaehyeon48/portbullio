@@ -1,14 +1,19 @@
+import { SyntheticEvent } from 'react';
 import { useQuery } from 'react-query';
 import { getAllHoldings } from '@api/portfolio';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { PortfolioSelect, usePortfolioSelectId } from '@components/PortfolioSelect';
+import { useModal } from '@hooks/Modal';
 import { formatNum } from '@utils';
+import toast from '@lib/toast';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
+import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
 
 export default function Holdings() {
 	const [selectedPortfolioId, handleSelectedPortfolioId] = usePortfolioSelectId();
+	const { openModal } = useModal();
 	const { data: holdings, isLoading } = useQuery(
 		`holdingsOf${selectedPortfolioId}`,
 		() => getAllHoldings(selectedPortfolioId),
@@ -16,6 +21,14 @@ export default function Holdings() {
 			staleTime: !selectedPortfolioId ? 0 : Infinity
 		}
 	);
+
+	function openAddNewStockTransactionModal(e: SyntheticEvent) {
+		if (!selectedPortfolioId) {
+			toast.error({ message: '선택된 포트폴리오가 없습니다.' });
+			return;
+		}
+		openModal(e, <AddNewStockTransaction portfolioId={selectedPortfolioId} />);
+	}
 
 	return (
 		<>
@@ -28,7 +41,7 @@ export default function Holdings() {
 						<Icon.Filter width={20} height={20} />
 						필터
 					</ListPage.SearchFilterButton>
-					<ListPage.AddItemButton type="button" onClick={() => {}}>
+					<ListPage.AddItemButton type="button" onClick={openAddNewStockTransactionModal}>
 						<Icon.Plus width={20} height={20} />새 거래내역 추가
 					</ListPage.AddItemButton>
 				</ListPage.UpperSectionButtonContainer>
