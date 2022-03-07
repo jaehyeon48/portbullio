@@ -25,13 +25,13 @@ export default function ListContainer({ children }: Props) {
 		startPos.current = { left: outerContainerRef.current.scrollLeft, x: e.clientX };
 	}
 
-	function disableGrabbedState(e: MouseEvent) {
+	function disableGrabbedState() {
 		if (!isScrollBarGrabbed.current) return;
+		if (!outerContainerRef.current) return;
 
 		isScrollBarGrabbed.current = false;
 		startPos.current = { left: 0, x: 0 };
-		const target = e.target as HTMLDivElement;
-		target.style.cursor = 'default';
+		outerContainerRef.current.style.cursor = 'default';
 	}
 
 	function mouseMove(e: MouseEvent) {
@@ -39,8 +39,7 @@ export default function ListContainer({ children }: Props) {
 		if (!outerContainerRef.current) return;
 
 		e.preventDefault();
-		const target = e.target as HTMLDivElement;
-		target.style.cursor = 'grabbing';
+		outerContainerRef.current.style.cursor = 'grabbing';
 		const dx = startPos.current.x - e.clientX;
 		outerContainerRef.current.scrollLeft = startPos.current.left + dx;
 	}
