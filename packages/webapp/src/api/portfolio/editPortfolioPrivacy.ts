@@ -1,8 +1,18 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { Portfolio } from '@prisma/client';
 import envConfig from '@configs/env';
 
-export default async function editPortfolioName(portfolioId: number, newPrivacy: PortfolioPrivacy) {
+interface EditPortfolioPrivacyRes {
+	data: {
+		modifiedPortfolio: Portfolio;
+	};
+}
+
+export default async function editPortfolioPrivacy(
+	portfolioId: number,
+	newPrivacy: PortfolioPrivacy
+) {
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {
@@ -13,5 +23,10 @@ export default async function editPortfolioName(portfolioId: number, newPrivacy:
 	};
 
 	const formData = JSON.stringify({ newPrivacy });
-	await axios.patch(`${serverEndPoint}/portfolios/${portfolioId}/privacy`, formData, config);
+	const { data }: EditPortfolioPrivacyRes = await axios.patch(
+		`${serverEndPoint}/portfolios/${portfolioId}/privacy`,
+		formData,
+		config
+	);
+	return data.modifiedPortfolio;
 }

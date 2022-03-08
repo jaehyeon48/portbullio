@@ -1,6 +1,8 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { Portfolio } from '@prisma/client';
 import { editPortfolioPrivacy } from '@api/portfolio';
+import { updateArray } from '@utils';
 
 interface EditPortfolioNameArgs {
 	portfolioId: number;
@@ -14,8 +16,10 @@ export default function useEditPortfolioPrivacy() {
 		({ portfolioId, newPrivacy }: EditPortfolioNameArgs) =>
 			editPortfolioPrivacy(portfolioId, newPrivacy),
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('portfolioList');
+			onSuccess: res => {
+				queryClient.setQueryData<Portfolio[]>('portfolioList', data =>
+					updateArray(data, res, element => element.id === res.id)
+				);
 			}
 		}
 	);

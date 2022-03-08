@@ -10,9 +10,9 @@ export async function editPortfolioName(portfolioId: number, newName: string) {
 }
 
 export async function editPortfolioPrivacy(portfolioId: number, newPrivacy: PortfolioPrivacy) {
-	await prisma.portfolio.update({
+	const modifiedPortfolio = await prisma.portfolio.update({
 		where: { id: portfolioId },
 		data: { privacy: newPrivacy }
 	});
-	return;
+	return modifiedPortfolio;
 }
