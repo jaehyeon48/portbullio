@@ -1,16 +1,15 @@
 import { SyntheticEvent, useRef, useState, useEffect } from 'react';
-import { useQuery, useQueryClient } from 'react-query';
+import { useQuery } from 'react-query';
 import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
-import { getAvatar, deleteAvatar } from '@api/user';
+import { getAvatar } from '@api/user';
 import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
 import toast from '@lib/toast';
 import * as Style from './styles';
 import DeleteConfirmTriggerButton from './DeleteConfirmTriggerButton';
 import UploadButton from './UploadButton';
-import { useUpdateAvatar } from './queries';
+import { useUpdateAvatar, useDeleteAvatar } from './queries';
 
 export default function AvatarImagePicker() {
-	const queryClient = useQueryClient();
 	const { data: avatarURL, isLoading } = useQuery('avatarUrl', getAvatar, { staleTime: Infinity });
 	const imageInputRef = useRef<HTMLInputElement>(null);
 	const [isUploadingImage, setIsUploadingImage] = useState(false);
@@ -19,6 +18,7 @@ export default function AvatarImagePicker() {
 	const [isValidMIMEType, setIsValidMIMEType] = useState(true);
 	const [isDeleteImageButtonDisabled, setIsDeleteImageButtonDisabled] = useState(false);
 	const uploadAvatarMutation = useUpdateAvatar();
+	const deleteAvatarMutation = useDeleteAvatar();
 
 	useEffect(() => {
 		if (!newAvatarImage) return;
@@ -91,13 +91,11 @@ export default function AvatarImagePicker() {
 	}
 
 	async function handleDeleteAvatar() {
-		const isDeleteSuccess = await deleteAvatar();
-		if (!isDeleteSuccess) {
-			toast.error({ message: '아바타 이미지 삭제에 실패했습니다. 다시 시도해 주세요.' });
-			return;
-		}
-		toast.success({ message: '아바타 이미지를 성공적으로 삭제했습니다.' });
-		queryClient.setQueryData('avatarUrl', null);
+		deleteAvatarMutation.mutate(undefined, {
+			onSuccess: () => toast.success({ message: '아바타 이미지를 성공적으로 삭제했습니다.' }),
+			onError: () =>
+				toast.error({ message: '아바타 이미지 삭제에 실패했습니다. 다시 시도해 주세요.' })
+		});
 	}
 
 	function renderImage() {

@@ -8,10 +8,5 @@ export default async function deleteAvatar() {
 		withCredentials: true
 	};
 
-	try {
-		await axios.delete(`${serverEndPoint}/user/avatar`, config);
-		return true;
-	} catch (error) {
-		return false;
-	}
+	await axios.delete(`${serverEndPoint}/user/avatar`, config);
 }
