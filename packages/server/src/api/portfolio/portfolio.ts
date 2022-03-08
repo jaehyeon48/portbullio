@@ -98,7 +98,7 @@ export default (): express.Router => {
 
 		try {
 			const { userId } = res.locals;
-			const newPortfolioId = await portfolioService.createPortfolio({
+			const newPortfolio = await portfolioService.createPortfolio({
 				userId: Number(userId),
 				portfolioName,
 				privacy
@@ -106,10 +106,10 @@ export default (): express.Router => {
 
 			const isFirstlyCreated = (await portfolioService.getPortfolios(Number(userId))).length === 1;
 			if (isFirstlyCreated) {
-				await portfolioService.setDefaultPortfolio(newPortfolioId, Number(userId));
+				await portfolioService.setDefaultPortfolio(newPortfolio.id, Number(userId));
 			}
 
-			res.status(201).json({ newPortfolioId });
+			res.status(201).json({ newPortfolio });
 		} catch (error) {
 			next(error);
 		}

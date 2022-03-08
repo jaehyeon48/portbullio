@@ -11,7 +11,7 @@ export default async function createPortfolio({
 	userId,
 	portfolioName,
 	privacy
-}: NewPortfolioArgs): Promise<number> {
+}: NewPortfolioArgs) {
 	const newPortfolio = await prisma.portfolio.create({
 		data: {
 			userId,
@@ -19,5 +19,5 @@ export default async function createPortfolio({
 			privacy
 		}
 	});
-	return newPortfolio.id;
+	return newPortfolio;
 }
