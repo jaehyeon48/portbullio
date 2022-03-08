@@ -33,12 +33,8 @@ export async function getPortfolio(portfolioId: number): Promise<Portfolio | nul
 export async function getPortfolios(): Promise<Portfolio[]> {
 	const { serverEndPoint } = envConfig;
 
-	try {
-		const { data }: GetPortfoliosRes = await axios.get(`${serverEndPoint}/portfolios`, {
-			withCredentials: true
-		});
-		return data.portfolios;
-	} catch (error) {
-		return [];
-	}
+	const { data }: GetPortfoliosRes = await axios.get(`${serverEndPoint}/portfolios`, {
+		withCredentials: true
+	});
+	return data.portfolios;
 }

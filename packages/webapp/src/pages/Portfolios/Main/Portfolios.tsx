@@ -2,16 +2,16 @@ import { SyntheticEvent } from 'react';
 import { useQuery } from 'react-query';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
-import { getPortfolios, getDefaultPortfolio } from '@api/portfolio';
+import { QueryErrorBoundary } from '@components/index';
+import { getDefaultPortfolio } from '@api/portfolio';
 import { useModal } from '@hooks/Modal';
 import * as Style from './styles';
 import PortfolioList from './PortfolioList';
 import AddPortfolio from '../ModalPage/AddPortfolio';
+import { usePortfolioList } from '../queries';
 
 export default function Portfolios() {
-	const { data: portfolios, isLoading } = useQuery('portfolioList', getPortfolios, {
-		staleTime: Infinity
-	});
+	const portfolios = usePortfolioList();
 	const { data: defaultPortfolioId } = useQuery('defaultPortfolio', getDefaultPortfolio, {
 		staleTime: Infinity
 	});
@@ -27,7 +27,7 @@ export default function Portfolios() {
 			<ListPage.UpperSection>
 				<ListPage.MainHeader>내 포트폴리오</ListPage.MainHeader>
 				<ListPage.NumOfItems data-testid="num-of-my-portfolios">
-					{portfolios?.length ?? 0}개
+					{portfolios.data?.length ?? 0}개
 				</ListPage.NumOfItems>
 				<ListPage.UpperSectionButtonContainer>
 					<ListPage.SearchFilterButton type="button">
@@ -50,11 +50,17 @@ export default function Portfolios() {
 						<Style.PortfolioPrivacySection>공개 여부</Style.PortfolioPrivacySection>
 						<Style.PortfolioAssetSection>총 자산</Style.PortfolioAssetSection>
 					</ListPage.ListHeaderContainer>
-					<PortfolioList
-						portfolioList={portfolios}
-						isLoading={isLoading}
-						defaultPortfolioId={defaultPortfolioId}
-					/>
+					<QueryErrorBoundary
+						errorMessage="에러가 발생했습니다."
+						isError={portfolios.isError}
+						refetch={portfolios.refetch}
+					>
+						<PortfolioList
+							portfolioList={portfolios.data}
+							isLoading={portfolios.isLoading}
+							defaultPortfolioId={defaultPortfolioId}
+						/>
+					</QueryErrorBoundary>
 				</ListPage.ListContainer>
 			</ListPage.LowerSection>
 		</>
