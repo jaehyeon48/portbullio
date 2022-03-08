@@ -1,11 +1,10 @@
 import { SyntheticEvent, useState } from 'react';
-import { useQueryClient } from 'react-query';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
-import { editPortfolioName } from '@api/portfolio';
 import { TextInput } from '@components/Form';
 import toast from '@lib/toast';
 import { CloseModalFn } from '@types';
 import * as Style from './styles';
+import useEditPortfolioName from '../queries/useEditPortfolioName';
 
 interface Props {
 	prevName: string;
@@ -13,9 +12,9 @@ interface Props {
 	closeFunction?: CloseModalFn;
 }
 
-export default function EditPortfolio({ prevName, portfolioId, closeFunction }: Props) {
-	const queryClient = useQueryClient();
+export default function EditPortfolioName({ prevName, portfolioId, closeFunction }: Props) {
 	const [newName, setNewName] = useState(prevName);
+	const editPortfolioNameMutation = useEditPortfolioName();
 
 	async function handleSubmit(e: SyntheticEvent) {
 		e.preventDefault();
@@ -30,14 +29,16 @@ export default function EditPortfolio({ prevName, portfolioId, closeFunction }: 
 			return;
 		}
 
-		const editRes = await editPortfolioName(portfolioId, newName);
-		if (!editRes) {
-			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
-			return;
-		}
-		toast.success({ message: '성공적으로 포트폴리오 이름을 변경했습니다.' });
-		queryClient.invalidateQueries('portfolioList');
-		closeFunction!(e, false);
+		editPortfolioNameMutation.mutate(
+			{ portfolioId, newName },
+			{
+				onSuccess: () => {
+					toast.success({ message: '성공적으로 포트폴리오 이름을 변경했습니다.' });
+					closeFunction!(e, false);
+				},
+				onError: () => toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' })
+			}
+		);
 	}
 
 	function handleChangeNewName(e: SyntheticEvent) {

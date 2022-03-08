@@ -9,7 +9,7 @@ import { Portfolio } from '@types';
 import { formatCurrency } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
-import EditPortfolio from '../ModalPage/EditPortfolio';
+import EditPortfolioName from '../ModalPage/EditPortfolioName';
 import DeleteConfirm from '../ModalPage/DeleteConfirm';
 
 interface Props {
@@ -23,7 +23,7 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 	const { openModal, closeModal } = useModal();
 
 	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
-		openModal(e, <EditPortfolio portfolioId={portfolioId} prevName={prevName} />);
+		openModal(e, <EditPortfolioName portfolioId={portfolioId} prevName={prevName} />);
 	}
 
 	function openDeleteConfirmModal(
