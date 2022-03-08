@@ -7,6 +7,9 @@
     "noEmit": true,
     "composite": true,
     "paths": {
+      "@prisma/client": [
+        "../server/node_modules/@prisma/client/index"
+      ],
       "@portbullio/library/*": [
         "../library/*"
       ],
