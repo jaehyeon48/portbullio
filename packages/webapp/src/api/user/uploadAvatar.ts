@@ -16,19 +16,13 @@ export default async function uploadAvatar(avatarFile: File) {
 		},
 		withCredentials: true
 	};
+	const avatarData = new FormData();
+	avatarData.append('avatar', avatarFile);
 
-	try {
-		const avatarData = new FormData();
-		avatarData.append('avatar', avatarFile);
-
-		const { data }: UploadAvatarRes = await axios.put(
-			`${serverEndPoint}/user/avatar`,
-			avatarData,
-			config
-		);
-
-		return data.uploadedFileName;
-	} catch (error) {
-		return '';
-	}
+	const { data }: UploadAvatarRes = await axios.put(
+		`${serverEndPoint}/user/avatar`,
+		avatarData,
+		config
+	);
+	return data.uploadedFileName;
 }

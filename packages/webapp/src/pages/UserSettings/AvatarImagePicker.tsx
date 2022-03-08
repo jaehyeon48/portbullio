@@ -1,12 +1,13 @@
 import { SyntheticEvent, useRef, useState, useEffect } from 'react';
 import { useQuery, useQueryClient } from 'react-query';
 import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
-import { getAvatar, uploadAvatar, deleteAvatar } from '@api/user';
+import { getAvatar, deleteAvatar } from '@api/user';
 import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
 import toast from '@lib/toast';
 import * as Style from './styles';
 import DeleteConfirmTriggerButton from './DeleteConfirmTriggerButton';
 import UploadButton from './UploadButton';
+import { useUpdateAvatar } from './queries';
 
 export default function AvatarImagePicker() {
 	const queryClient = useQueryClient();
@@ -17,6 +18,7 @@ export default function AvatarImagePicker() {
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const [isValidMIMEType, setIsValidMIMEType] = useState(true);
 	const [isDeleteImageButtonDisabled, setIsDeleteImageButtonDisabled] = useState(false);
+	const uploadAvatarMutation = useUpdateAvatar();
 
 	useEffect(() => {
 		if (!newAvatarImage) return;
@@ -75,17 +77,17 @@ export default function AvatarImagePicker() {
 		}
 
 		setIsUploadingImage(true);
-		const uploadResponse = await uploadAvatar(newAvatarImage);
-		setIsUploadingImage(false);
-		if (uploadResponse === '') {
-			toast.error({ message: '아바타 이미지 업데이트에 실패했습니다. 다시 시도해 주세요.' });
-			return;
-		}
-
-		resetImageStates();
-		toast.success({ message: '아바타 이미지가 업데이트 되었습니다.' });
-		queryClient.setQueryData('avatarUrl', uploadResponse);
-		imageInputRef.current.value = '';
+		uploadAvatarMutation.mutate(newAvatarImage, {
+			onSuccess: () => {
+				toast.success({ message: '아바타 이미지가 업데이트 되었습니다.' });
+				resetImageStates();
+				if (!imageInputRef.current) return;
+				imageInputRef.current.value = '';
+			},
+			onError: () =>
+				toast.error({ message: '아바타 이미지 업데이트에 실패했습니다. 다시 시도해 주세요.' }),
+			onSettled: () => setIsUploadingImage(false)
+		});
 	}
 
 	async function handleDeleteAvatar() {
