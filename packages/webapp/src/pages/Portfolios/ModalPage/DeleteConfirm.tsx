@@ -1,9 +1,8 @@
 import { SyntheticEvent } from 'react';
-import { useQueryClient } from 'react-query';
 import { CloseModalFn } from '@src/types';
-import { deletePortfolio } from '@api/portfolio';
 import toast from '@lib/toast';
 import * as Style from './styles';
+import { useDeletePortfolio } from '../queries';
 
 interface Props {
 	closeFunction?: CloseModalFn;
@@ -18,18 +17,19 @@ export default function DeleteConfirm({
 	portfolioName,
 	isDefaultPortfolio
 }: Props) {
-	const queryClient = useQueryClient();
+	const deletePortfolioMutation = useDeletePortfolio();
 
 	async function handleDeletePortfolio(e: SyntheticEvent) {
-		const createRes = await deletePortfolio(portfolioId, isDefaultPortfolio);
-		if (!createRes) {
-			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
-			return;
-		}
-		toast.success({ message: `${portfolioName}을(를) 삭제했습니다.` });
-		queryClient.invalidateQueries('portfolioList');
-		queryClient.invalidateQueries('defaultPortfolio');
-		closeFunction!(e, false);
+		deletePortfolioMutation.mutate(
+			{ portfolioId, isDefaultPortfolio },
+			{
+				onSuccess: () => {
+					toast.success({ message: `${portfolioName}을(를) 삭제했습니다.` });
+					closeFunction!(e, false);
+				},
+				onError: () => toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' })
+			}
+		);
 	}
 
 	return (

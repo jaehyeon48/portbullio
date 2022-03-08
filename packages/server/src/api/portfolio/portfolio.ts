@@ -252,8 +252,8 @@ export default (): express.Router => {
 					);
 				}
 
-				const deletedPortfolio = await portfolioService.deletePortfolio(Number(portfolioId));
-				res.status(200).json({ deletedId: deletedPortfolio.id });
+				const deletedPortfolioId = await portfolioService.deletePortfolio(Number(portfolioId));
+				res.status(200).json({ deletedId: deletedPortfolioId });
 			} catch (error) {
 				next(error);
 			}
