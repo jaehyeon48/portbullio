@@ -1,5 +1,12 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { Portfolio } from '@prisma/client';
 import envConfig from '@configs/env';
+
+interface EditPortfolioNameRes {
+	data: {
+		modifiedPortfolio: Portfolio;
+	};
+}
 
 export default async function editPortfolioName(portfolioId: number, newPortfolioName: string) {
 	const { serverEndPoint } = envConfig;
@@ -12,5 +19,10 @@ export default async function editPortfolioName(portfolioId: number, newPortfoli
 	};
 
 	const formData = JSON.stringify({ newPortfolioName });
-	await axios.patch(`${serverEndPoint}/portfolios/${portfolioId}/name`, formData, config);
+	const { data: modifiedPortfolio }: EditPortfolioNameRes = await axios.patch(
+		`${serverEndPoint}/portfolios/${portfolioId}/name`,
+		formData,
+		config
+	);
+	return modifiedPortfolio;
 }
