@@ -3,7 +3,7 @@ import { useQueryClient } from 'react-query';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
-import { editDefaultPortfolio, editPortfolioPrivacy } from '@api/portfolio';
+import { editPortfolioPrivacy } from '@api/portfolio';
 import { useModal } from '@hooks/index';
 import { Portfolio } from '@types';
 import { formatCurrency } from '@utils';
@@ -11,6 +11,7 @@ import toast from '@lib/toast';
 import * as Style from './styles';
 import EditPortfolioName from '../ModalPage/EditPortfolioName';
 import DeleteConfirm from '../ModalPage/DeleteConfirm';
+import useEditDefaultPortfolio from '../queries/useEditDefaultPortfolio';
 
 interface Props {
 	portfolioList: Portfolio[] | undefined;
@@ -21,6 +22,7 @@ interface Props {
 export default function PortfolioList({ portfolioList, isLoading, defaultPortfolioId }: Props) {
 	const queryClient = useQueryClient();
 	const { openModal, closeModal } = useModal();
+	const editDefaultPortfolioMutation = useEditDefaultPortfolio();
 
 	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
 		openModal(e, <EditPortfolioName portfolioId={portfolioId} prevName={prevName} />);
@@ -67,13 +69,17 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 			return;
 		}
 
-		const editRes = await editDefaultPortfolio(defaultPortfolioId, newPortfolioId);
-		if (!editRes) {
-			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
-			return;
-		}
-		toast.success({ message: `${portfolioName}을(를) 기본 포트폴리오로 설정했습니다.` });
-		queryClient.invalidateQueries('defaultPortfolio');
+		editDefaultPortfolioMutation.mutate(
+			{
+				prevPortfolioId: defaultPortfolioId,
+				newPortfolioId
+			},
+			{
+				onSuccess: () =>
+					toast.success({ message: `${portfolioName}을(를) 기본 포트폴리오로 설정했습니다.` }),
+				onError: () => toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' })
+			}
+		);
 	}
 
 	if (isLoading) {
