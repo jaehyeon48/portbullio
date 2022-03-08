@@ -17,10 +17,6 @@ export default async function createPortfolio(portfolioName: string, privacy: Po
 		privacy
 	});
 
-	try {
-		await axios.post(`${serverEndPoint}/portfolios`, formData, config);
-		return true;
-	} catch (error) {
-		return false;
-	}
+	await axios.post(`${serverEndPoint}/portfolios`, formData, config);
+	return true;
 }

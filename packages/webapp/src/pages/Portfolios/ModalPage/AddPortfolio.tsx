@@ -1,12 +1,11 @@
 import { SyntheticEvent, useState } from 'react';
-import { useQueryClient } from 'react-query';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import { TextInput } from '@components/Form';
 import { LockClose, LockOpen } from '@components/Icon';
 import toast from '@lib/toast';
-import { createPortfolio } from '@api/portfolio';
 import { CloseModalFn } from '@types';
+import useCreatePortfolio from '../queries/useCreatePortfolio';
 import * as Style from './styles';
 
 interface Props {
@@ -14,9 +13,9 @@ interface Props {
 }
 
 export default function AddPortfolio({ closeFunction }: Props) {
-	const queryClient = useQueryClient();
 	const [newName, setNewName] = useState('');
 	const [privacy, setPrivacy] = useState<PortfolioPrivacy>('public');
+	const createPortfolioMutation = useCreatePortfolio();
 
 	function handleChangeNewName(e: SyntheticEvent) {
 		const target = e.target as HTMLInputElement;
@@ -45,15 +44,16 @@ export default function AddPortfolio({ closeFunction }: Props) {
 			return;
 		}
 
-		const createRes = await createPortfolio(newName, privacy);
-		if (!createRes) {
-			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
-			return;
-		}
-		toast.success({ message: '성공적으로 포트폴리오를 추가했습니다.' });
-		queryClient.invalidateQueries('portfolioList');
-		queryClient.invalidateQueries('defaultPortfolio');
-		closeFunction!(e, false);
+		createPortfolioMutation.mutate(
+			{ name: newName, privacy },
+			{
+				onSuccess: () => {
+					toast.success({ message: '성공적으로 포트폴리오를 추가했습니다.' });
+					closeFunction!(e, false);
+				},
+				onError: () => toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' })
+			}
+		);
 	}
 
 	return (
