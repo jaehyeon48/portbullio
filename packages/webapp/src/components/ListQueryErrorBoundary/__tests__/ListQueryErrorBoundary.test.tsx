@@ -1,13 +1,13 @@
 import { CustomWrapper, render, screen, userEvent } from '@api/testingLibrary';
-import QueryErrorBoundary from '../QueryErrorBoundary';
+import ListQueryErrorBoundary from '../ListQueryErrorBoundary';
 
-describe('QueryErrorBoundary layout test', () => {
+describe('ListQueryErrorBoundary layout test', () => {
 	test('Should have a correct error message', () => {
 		render(
 			<CustomWrapper>
-				<QueryErrorBoundary errorMessage="에러 메시지 에러 메시지" isError refetch={jest.fn()}>
+				<ListQueryErrorBoundary errorMessage="에러 메시지 에러 메시지" isError refetch={jest.fn()}>
 					<></>
-				</QueryErrorBoundary>
+				</ListQueryErrorBoundary>
 			</CustomWrapper>
 		);
 
@@ -17,13 +17,13 @@ describe('QueryErrorBoundary layout test', () => {
 	test('Should render a children component when there is no error', () => {
 		render(
 			<CustomWrapper>
-				<QueryErrorBoundary
+				<ListQueryErrorBoundary
 					errorMessage="에러 메시지 에러 메시지"
 					isError={false}
 					refetch={jest.fn()}
 				>
 					<div>자식 컴포넌트를 렌더링 해야 합니다.</div>
-				</QueryErrorBoundary>
+				</ListQueryErrorBoundary>
 			</CustomWrapper>
 		);
 
@@ -34,9 +34,13 @@ describe('QueryErrorBoundary layout test', () => {
 		const refetchFnMock = jest.fn();
 		render(
 			<CustomWrapper>
-				<QueryErrorBoundary errorMessage="에러 메시지 에러 메시지" isError refetch={refetchFnMock}>
+				<ListQueryErrorBoundary
+					errorMessage="에러 메시지 에러 메시지"
+					isError
+					refetch={refetchFnMock}
+				>
 					<></>
-				</QueryErrorBoundary>
+				</ListQueryErrorBoundary>
 			</CustomWrapper>
 		);
 

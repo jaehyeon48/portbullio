@@ -13,7 +13,12 @@ interface Props {
 	) => Promise<QueryObserverResult<any[], unknown>>;
 }
 
-export default function QueryErrorBoundary({ errorMessage, children, isError, refetch }: Props) {
+export default function ListQueryErrorBoundary({
+	errorMessage,
+	children,
+	isError,
+	refetch
+}: Props) {
 	return (
 		<>
 			{isError ? (

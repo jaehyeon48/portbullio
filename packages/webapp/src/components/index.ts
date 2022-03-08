@@ -13,4 +13,4 @@ export { default as AvatarImage } from './AvatarImage/AvatarImage';
 export * from './ListPage/styles';
 export * from './PortfolioSelect';
 export { default as SearchStocks } from './SearchStocks/SearchStocks';
-export { default as QueryErrorBoundary } from './QueryErrorBoundary/QueryErrorBoundary';
+export { default as ListQueryErrorBoundary } from './ListQueryErrorBoundary/ListQueryErrorBoundary';

@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react';
 import { useQuery } from 'react-query';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
-import { QueryErrorBoundary } from '@components/index';
+import { ListQueryErrorBoundary } from '@components/index';
 import { getDefaultPortfolio } from '@api/portfolio';
 import { useModal } from '@hooks/Modal';
 import * as Style from './styles';
@@ -50,7 +50,7 @@ export default function Portfolios() {
 						<Style.PortfolioPrivacySection>공개 여부</Style.PortfolioPrivacySection>
 						<Style.PortfolioAssetSection>총 자산</Style.PortfolioAssetSection>
 					</ListPage.ListHeaderContainer>
-					<QueryErrorBoundary
+					<ListQueryErrorBoundary
 						errorMessage="에러가 발생했습니다."
 						isError={portfolios.isError}
 						refetch={portfolios.refetch}
@@ -60,7 +60,7 @@ export default function Portfolios() {
 							isLoading={portfolios.isLoading}
 							defaultPortfolioId={defaultPortfolioId}
 						/>
-					</QueryErrorBoundary>
+					</ListQueryErrorBoundary>
 				</ListPage.ListContainer>
 			</ListPage.LowerSection>
 		</>
