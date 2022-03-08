@@ -1,5 +1,5 @@
 import { CustomWrapper, render, screen } from '@api/testingLibrary';
-import { Portfolio } from '@types';
+import { Portfolio } from '@prisma/client';
 import PortfolioList from '../Main/PortfolioList';
 
 describe('Portfolio list layout', () => {

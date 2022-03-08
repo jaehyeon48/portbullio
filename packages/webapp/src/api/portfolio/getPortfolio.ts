@@ -1,6 +1,6 @@
 import axios from 'axios';
 import envConfig from '@configs/env';
-import { Portfolio } from '@types';
+import { Portfolio } from '@prisma/client';
 
 interface GetPortfolioRes {
 	data: {

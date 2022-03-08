@@ -1,9 +1,9 @@
 import { SyntheticEvent } from 'react';
-import { PortfolioPrivacy } from '@prisma/client';
+import { PortfolioPrivacy, Portfolio } from '@prisma/client';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { useModal } from '@hooks/index';
-import { Portfolio } from '@types';
+
 import { formatCurrency } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
