@@ -218,12 +218,12 @@ export default (): express.Router => {
 					res.status(400).json({ error: 'User does not have the portfolio.' });
 					return;
 				}
-				await portfolioService.editDefaultPortfolio(
+				const modifiedId = await portfolioService.editDefaultPortfolio(
 					Number(prevPortfolioId),
 					Number(newPortfolioId),
 					Number(userId)
 				);
-				res.send();
+				res.json({ modifiedId });
 			} catch (error) {
 				next(error);
 			}

@@ -6,14 +6,16 @@ interface CreatePortfolioArgs {
 	newPortfolioId: number;
 }
 
-export default function useCreatePortfolio() {
+export default function useEditDefaultPortfolio() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
 		({ prevPortfolioId, newPortfolioId }: CreatePortfolioArgs) =>
 			editDefaultPortfolio(prevPortfolioId, newPortfolioId),
 		{
-			onSuccess: () => queryClient.invalidateQueries('defaultPortfolio')
+			onSuccess: res => {
+				queryClient.setQueryData<number>('defaultPortfolio', () => res);
+			}
 		}
 	);
 }

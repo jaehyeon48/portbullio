@@ -5,9 +5,9 @@ export default async function editDefaultPortfolio(
 	newPortfolioId: number,
 	userId: number
 ) {
-	await prisma.defaultPortfolio.update({
+	const modifiedDefaultPortfolio = await prisma.defaultPortfolio.update({
 		where: { userId_portfolioId: { userId, portfolioId: prevPortfolioId } },
 		data: { portfolioId: newPortfolioId }
 	});
-	return;
+	return modifiedDefaultPortfolio.portfolioId;
 }
