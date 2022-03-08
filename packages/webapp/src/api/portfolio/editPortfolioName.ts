@@ -19,10 +19,10 @@ export default async function editPortfolioName(portfolioId: number, newPortfoli
 	};
 
 	const formData = JSON.stringify({ newPortfolioName });
-	const { data: modifiedPortfolio }: EditPortfolioNameRes = await axios.patch(
+	const { data }: EditPortfolioNameRes = await axios.patch(
 		`${serverEndPoint}/portfolios/${portfolioId}/name`,
 		formData,
 		config
 	);
-	return modifiedPortfolio;
+	return data.modifiedPortfolio;
 }

@@ -160,8 +160,11 @@ export default (): express.Router => {
 					res.status(404).json({ error: 'Portfolio not found.' });
 					return;
 				}
-				await portfolioService.editPortfolioName(Number(portfolioId), newPortfolioName);
-				res.status(200).json({ newPortfolioName });
+				const modifiedPortfolio = await portfolioService.editPortfolioName(
+					Number(portfolioId),
+					newPortfolioName
+				);
+				res.status(200).json({ modifiedPortfolio });
 			} catch (error) {
 				next(error);
 			}

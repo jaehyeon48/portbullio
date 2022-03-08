@@ -2,11 +2,11 @@ import prisma from '@lib/prisma';
 import { PortfolioPrivacy } from '@prisma/client';
 
 export async function editPortfolioName(portfolioId: number, newName: string) {
-	await prisma.portfolio.update({
+	const modifiedPortfolio = await prisma.portfolio.update({
 		where: { id: portfolioId },
 		data: { name: newName }
 	});
-	return;
+	return modifiedPortfolio;
 }
 
 export async function editPortfolioPrivacy(portfolioId: number, newPrivacy: PortfolioPrivacy) {
