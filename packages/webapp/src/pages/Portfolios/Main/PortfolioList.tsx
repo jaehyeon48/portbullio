@@ -1,9 +1,7 @@
 import { SyntheticEvent } from 'react';
-import { useQueryClient } from 'react-query';
 import { PortfolioPrivacy } from '@portbullio/shared/src/types';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
-import { editPortfolioPrivacy } from '@api/portfolio';
 import { useModal } from '@hooks/index';
 import { Portfolio } from '@types';
 import { formatCurrency } from '@utils';
@@ -11,7 +9,7 @@ import toast from '@lib/toast';
 import * as Style from './styles';
 import EditPortfolioName from '../ModalPage/EditPortfolioName';
 import DeleteConfirm from '../ModalPage/DeleteConfirm';
-import useEditDefaultPortfolio from '../queries/useEditDefaultPortfolio';
+import { useEditPortfolioPrivacy, useEditDefaultPortfolio } from '../queries/index';
 
 interface Props {
 	portfolioList: Portfolio[] | undefined;
@@ -20,8 +18,8 @@ interface Props {
 }
 
 export default function PortfolioList({ portfolioList, isLoading, defaultPortfolioId }: Props) {
-	const queryClient = useQueryClient();
 	const { openModal, closeModal } = useModal();
+	const editPortfolioPrivacyMutation = useEditPortfolioPrivacy();
 	const editDefaultPortfolioMutation = useEditDefaultPortfolio();
 
 	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
@@ -51,15 +49,18 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 		prevPrivacy: PortfolioPrivacy
 	) {
 		const newPrivacy = prevPrivacy === 'public' ? 'private' : 'public';
-		const editRes = await editPortfolioPrivacy(portfolioId, newPrivacy);
-		if (!editRes) {
-			toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' });
-			return;
-		}
-
-		toast.success({ message: `${portfolioName}을(를) ${privacyKor[newPrivacy]}로 전환했습니다.` });
-		queryClient.invalidateQueries('portfolioList');
-		closeModal(e, false);
+		editPortfolioPrivacyMutation.mutate(
+			{ portfolioId, newPrivacy },
+			{
+				onSuccess: () => {
+					toast.success({
+						message: `${portfolioName}을(를) ${privacyKor[newPrivacy]}로 전환했습니다.`
+					});
+					closeModal(e, false);
+				},
+				onError: () => toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' })
+			}
+		);
 	}
 
 	async function handleEditDefaultPortfolio(newPortfolioId: number, portfolioName: string) {
