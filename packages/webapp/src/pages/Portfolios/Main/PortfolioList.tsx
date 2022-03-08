@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { PortfolioPrivacy } from '@prisma/client';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { useModal } from '@hooks/index';
@@ -97,7 +97,7 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 					<Style.PortfolioNameSection>{name}</Style.PortfolioNameSection>
 					<Style.PortfolioPrivacySection>
 						{privacy === 'public' ? <Icon.LockOpen /> : <Icon.LockClose />}
-						{privacyKor[privacy]}
+						{privacyKor[privacy as keyof typeof PortfolioPrivacy]}
 						<Style.TogglePrivacyButton
 							type="button"
 							onClick={e => handleTogglePrivacy(e, id, name, privacy)}
@@ -136,4 +136,4 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 const privacyKor = {
 	public: '공개',
 	private: '비공개'
-};
+} as const;

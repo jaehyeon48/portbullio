@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { PortfolioPrivacy } from '@prisma/client';
 import { createPortfolio } from '@api/portfolio';
 
 interface CreatePortfolioArgs {

@@ -1,6 +1,5 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
-import { Portfolio } from '@prisma/client';
+import { Portfolio, PortfolioPrivacy } from '@prisma/client';
 import { editPortfolioPrivacy } from '@api/portfolio';
 import { updateArray } from '@utils';
 

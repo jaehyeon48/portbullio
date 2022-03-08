@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { PortfolioPrivacy } from '@prisma/client';
 import envConfig from '@configs/env';
 
 export default async function createPortfolio(portfolioName: string, privacy: PortfolioPrivacy) {

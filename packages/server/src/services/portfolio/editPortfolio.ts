@@ -1,5 +1,5 @@
 import prisma from '@lib/prisma';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { PortfolioPrivacy } from '@prisma/client';
 
 export async function editPortfolioName(portfolioId: number, newName: string) {
 	await prisma.portfolio.update({

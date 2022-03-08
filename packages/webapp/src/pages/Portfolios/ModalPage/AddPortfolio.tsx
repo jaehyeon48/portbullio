@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { PortfolioPrivacy } from '@prisma/client';
 import { TextInput } from '@components/Form';
 import { LockClose, LockOpen } from '@components/Icon';
 import toast from '@lib/toast';

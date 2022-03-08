@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { PortfolioPrivacy } from '@prisma/client';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
 import * as portfolioService from '@services/portfolio';
 import { sessionValidator } from '@middlewares';

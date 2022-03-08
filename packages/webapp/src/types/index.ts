@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
+import { PortfolioPrivacy } from '@prisma/client';
 
 export type Theme = 'light' | 'dark';
 export type AuthType = 'google' | 'naver' | 'kakao';

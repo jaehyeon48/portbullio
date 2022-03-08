@@ -1,6 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { PortfolioPrivacy } from '@portbullio/shared/src/types';
-import { Portfolio } from '@prisma/client';
+import { Portfolio, PortfolioPrivacy } from '@prisma/client';
 import envConfig from '@configs/env';
 
 interface EditPortfolioPrivacyRes {
