@@ -1,6 +1,7 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { Portfolio } from '@prisma/client';
 import { deletePortfolio } from '@api/portfolio';
+import { portfolioKeys } from '@lib/index';
 
 interface DeletePortfolioArgs {
 	portfolioId: number;
@@ -15,10 +16,10 @@ export default function useDeletePortfolio() {
 			deletePortfolio(portfolioId, isDefaultPortfolio),
 		{
 			onSuccess: (deletedId, { isDefaultPortfolio }) => {
-				queryClient.setQueryData<Portfolio[]>('portfolioList', data =>
+				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, data =>
 					data ? data.filter(({ id }) => id !== deletedId) : []
 				);
-				if (isDefaultPortfolio) queryClient.invalidateQueries('defaultPortfolio');
+				if (isDefaultPortfolio) queryClient.invalidateQueries(portfolioKeys.defaultId());
 			}
 		}
 	);

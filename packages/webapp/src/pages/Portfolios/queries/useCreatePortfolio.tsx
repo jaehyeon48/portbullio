@@ -1,6 +1,7 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { Portfolio, PortfolioPrivacy } from '@prisma/client';
 import { createPortfolio } from '@api/portfolio';
+import { portfolioKeys } from '@lib/index';
 
 interface CreatePortfolioArgs {
 	name: string;
@@ -12,10 +13,10 @@ export default function useCreatePortfolio() {
 
 	return useMutation(({ name, privacy }: CreatePortfolioArgs) => createPortfolio(name, privacy), {
 		onSuccess: res => {
-			queryClient.setQueryData<Portfolio[]>('portfolioList', data =>
+			queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, data =>
 				data ? [...data, res] : [res]
 			);
-			queryClient.invalidateQueries('defaultPortfolio');
+			queryClient.invalidateQueries(portfolioKeys.defaultId());
 		}
 	});
 }

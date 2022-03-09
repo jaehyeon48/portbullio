@@ -1,5 +1,6 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { editDefaultPortfolio } from '@api/portfolio';
+import { portfolioKeys } from '@lib/index';
 
 interface EditDefaultPortfolioArgs {
 	prevPortfolioId: number;
@@ -14,7 +15,7 @@ export default function useEditDefaultPortfolio() {
 			editDefaultPortfolio(prevPortfolioId, newPortfolioId),
 		{
 			onSuccess: res => {
-				queryClient.setQueryData<number>('defaultPortfolio', () => res);
+				queryClient.setQueryData<number>(portfolioKeys.defaultId(), () => res);
 			}
 		}
 	);
