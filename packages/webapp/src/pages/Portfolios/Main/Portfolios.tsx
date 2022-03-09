@@ -1,9 +1,7 @@
 import { SyntheticEvent } from 'react';
-import { useQuery } from 'react-query';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary } from '@components/index';
-import { getDefaultPortfolio } from '@api/portfolio';
 import { useModal } from '@hooks/Modal';
 import * as Style from './styles';
 import PortfolioList from './PortfolioList';
@@ -12,9 +10,6 @@ import { usePortfolioList } from '../queries';
 
 export default function Portfolios() {
 	const portfolios = usePortfolioList();
-	const { data: defaultPortfolioId } = useQuery('defaultPortfolio', getDefaultPortfolio, {
-		staleTime: Infinity
-	});
 
 	const { openModal } = useModal();
 
@@ -55,11 +50,7 @@ export default function Portfolios() {
 						isError={portfolios.isError}
 						refetch={portfolios.refetch}
 					>
-						<PortfolioList
-							portfolioList={portfolios.data}
-							isLoading={portfolios.isLoading}
-							defaultPortfolioId={defaultPortfolioId}
-						/>
+						<PortfolioList portfolioList={portfolios.data} isLoading={portfolios.isLoading} />
 					</ListQueryErrorBoundary>
 				</ListPage.ListContainer>
 			</ListPage.LowerSection>

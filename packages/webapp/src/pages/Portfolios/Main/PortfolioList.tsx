@@ -3,24 +3,23 @@ import { PortfolioPrivacy, Portfolio } from '@prisma/client';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { useModal } from '@hooks/index';
-
 import { formatCurrency } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
+import SetDefaultButton from './SetDefaultButton';
 import EditPortfolioName from '../ModalPage/EditPortfolioName';
 import DeleteConfirm from '../ModalPage/DeleteConfirm';
-import { useEditPortfolioPrivacy, useEditDefaultPortfolio } from '../queries/index';
+import { useDefaultPortfolioId, useEditPortfolioPrivacy } from '../queries/index';
 
 interface Props {
 	portfolioList: Portfolio[] | undefined;
 	isLoading: boolean;
-	defaultPortfolioId: number | undefined;
 }
 
-export default function PortfolioList({ portfolioList, isLoading, defaultPortfolioId }: Props) {
+export default function PortfolioList({ portfolioList, isLoading }: Props) {
 	const { openModal, closeModal } = useModal();
+	const defaultPortfolioId = useDefaultPortfolioId();
 	const editPortfolioPrivacyMutation = useEditPortfolioPrivacy();
-	const editDefaultPortfolioMutation = useEditDefaultPortfolio();
 
 	function openEditPortfolioModal(e: SyntheticEvent, portfolioId: number, prevName: string) {
 		openModal(e, <EditPortfolioName portfolioId={portfolioId} prevName={prevName} />);
@@ -63,26 +62,6 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 		);
 	}
 
-	async function handleEditDefaultPortfolio(newPortfolioId: number, portfolioName: string) {
-		if (newPortfolioId === defaultPortfolioId) return;
-		if (defaultPortfolioId === undefined) {
-			toast.error({ message: '기본으로 설정된 포트폴리오가 없습니다.' });
-			return;
-		}
-
-		editDefaultPortfolioMutation.mutate(
-			{
-				prevPortfolioId: defaultPortfolioId,
-				newPortfolioId
-			},
-			{
-				onSuccess: () =>
-					toast.success({ message: `${portfolioName}을(를) 기본 포트폴리오로 설정했습니다.` }),
-				onError: () => toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' })
-			}
-		);
-	}
-
 	if (isLoading) {
 		return <EmptyListNotice>로딩 중...</EmptyListNotice>;
 	}
@@ -107,25 +86,30 @@ export default function PortfolioList({ portfolioList, isLoading, defaultPortfol
 					</Style.PortfolioPrivacySection>
 					<Style.PortfolioAssetSection>{formatCurrency(123456, 'usd')}</Style.PortfolioAssetSection>
 					<Style.PortfolioActionSection>
-						<Style.SetDefaultButton
-							type="button"
-							isDefault={id === defaultPortfolioId}
-							onClick={() => handleEditDefaultPortfolio(id, name)}
-						>
-							<Icon.CircleCheck width={20} height={20} />
-							{id === defaultPortfolioId ? '기본 포트폴리오' : '기본으로 설정'}
-						</Style.SetDefaultButton>
-						<Style.EditNameButton type="button" onClick={e => openEditPortfolioModal(e, id, name)}>
-							<Icon.Pencil width={16} height={16} />
-							이름 수정
-						</Style.EditNameButton>
-						<Style.DeletePortfolioButton
-							type="button"
-							onClick={e => openDeleteConfirmModal(e, id, name, id === defaultPortfolioId)}
-						>
-							<Icon.TrashCan width={16} height={16} />
-							삭제
-						</Style.DeletePortfolioButton>
+						<SetDefaultButton
+							defaultPortfolioId={defaultPortfolioId.data}
+							portfolioId={id}
+							portfolioName={name}
+							isLoading={defaultPortfolioId.isLoading}
+							isError={defaultPortfolioId.isError}
+							refetch={defaultPortfolioId.refetch}
+						/>
+						<div>
+							<Style.EditNameButton
+								type="button"
+								onClick={e => openEditPortfolioModal(e, id, name)}
+							>
+								<Icon.Pencil width={16} height={16} />
+								이름 수정
+							</Style.EditNameButton>
+							<Style.DeletePortfolioButton
+								type="button"
+								onClick={e => openDeleteConfirmModal(e, id, name, id === defaultPortfolioId.data)}
+							>
+								<Icon.TrashCan width={16} height={16} />
+								삭제
+							</Style.DeletePortfolioButton>
+						</div>
 					</Style.PortfolioActionSection>
 				</ListItem>
 			))}

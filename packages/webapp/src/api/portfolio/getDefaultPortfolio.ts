@@ -9,17 +9,9 @@ interface GetDefaultPortfolioRes {
 
 export default async function getDefaultPortfolio(): Promise<number | undefined> {
 	const { serverEndPoint } = envConfig;
+	const { data }: GetDefaultPortfolioRes = await axios.get(`${serverEndPoint}/portfolios/default`, {
+		withCredentials: true
+	});
 
-	try {
-		const { data }: GetDefaultPortfolioRes = await axios.get(
-			`${serverEndPoint}/portfolios/default`,
-			{
-				withCredentials: true
-			}
-		);
-
-		return data.defaultPortfolioId;
-	} catch (error) {
-		return undefined;
-	}
+	return data.defaultPortfolioId;
 }

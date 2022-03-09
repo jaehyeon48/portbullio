@@ -1,16 +1,13 @@
 import { CustomWrapper, render, screen } from '@api/testingLibrary';
 import { Portfolio } from '@prisma/client';
 import PortfolioList from '../Main/PortfolioList';
+import SetDefaultButton from '../Main/SetDefaultButton';
 
 describe('Portfolio list layout', () => {
 	test('Should have a loading indicator', () => {
 		render(
 			<CustomWrapper>
-				<PortfolioList
-					isLoading
-					portfolioList={dummyPortfolioList}
-					defaultPortfolioId={undefined}
-				/>
+				<PortfolioList isLoading portfolioList={dummyPortfolioList} />
 			</CustomWrapper>
 		);
 
@@ -20,7 +17,7 @@ describe('Portfolio list layout', () => {
 	test('Should have an empty portfolio notice', () => {
 		render(
 			<CustomWrapper>
-				<PortfolioList isLoading={false} portfolioList={[]} defaultPortfolioId={undefined} />
+				<PortfolioList isLoading={false} portfolioList={[]} />
 			</CustomWrapper>
 		);
 
@@ -30,11 +27,7 @@ describe('Portfolio list layout', () => {
 	test('Should have a correct portfolio item layout', () => {
 		render(
 			<CustomWrapper>
-				<PortfolioList
-					isLoading={false}
-					portfolioList={dummyPortfolioList}
-					defaultPortfolioId={undefined}
-				/>
+				<PortfolioList isLoading={false} portfolioList={dummyPortfolioList} />
 			</CustomWrapper>
 		);
 
@@ -44,18 +37,31 @@ describe('Portfolio list layout', () => {
 		expect(screen.getByRole('button', { name: /삭제/ })).toBeInTheDocument();
 	});
 
+	test('Should indicate a default portfolio loading message', () => {
+		render(
+			<CustomWrapper>
+				<PortfolioList isLoading={false} portfolioList={dummyPortfolioList} />
+			</CustomWrapper>
+		);
+
+		expect(screen.getByText(/로딩중/)).toBeInTheDocument();
+	});
+
 	test('Should indicate a default portfolio', () => {
 		render(
 			<CustomWrapper>
-				<PortfolioList
-					isLoading={false}
-					portfolioList={dummyPortfolioList}
+				<SetDefaultButton
 					defaultPortfolioId={1}
+					portfolioId={1}
+					portfolioName=""
+					isError={false}
+					isLoading={false}
+					refetch={jest.fn()}
 				/>
 			</CustomWrapper>
 		);
 
-		expect(screen.getByRole('button', { name: /기본/ })).toBeInTheDocument();
+		expect(screen.getByRole('button', { name: /기본 포트폴리오/ })).toBeInTheDocument();
 	});
 });
 

@@ -4,30 +4,32 @@ import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 
 interface SetDefaultButtonProps {
 	isDefault: boolean;
+	isError: boolean;
 }
 
 export const PortfolioNameSection = styled.div`
-	width: 25%;
 	min-width: 220px;
 `;
 
 export const PortfolioPrivacySection = styled.div`
-	width: 15%;
 	display: flex;
 	align-items: center;
-	min-width: 140px;
+	min-width: 160px;
 `;
 
 export const PortfolioAssetSection = styled.div`
-	width: 25%;
-	min-width: 200px;
+	min-width: 240px;
 `;
 
 export const PortfolioActionSection = styled.div`
-	width: 35%;
 	display: flex;
+	align-items: center;
 	justify-content: space-evenly;
-	min-width: 320px;
+	min-width: 300px;
+
+	& > div {
+		display: flex;
+	}
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
 		justify-content: space-between;
@@ -47,15 +49,24 @@ const portfolioActionButtonStyle = css`
 	}
 `;
 
-export const SetDefaultButton = styled.button<SetDefaultButtonProps>`
+export const DefaultPortfolioButton = styled.button<SetDefaultButtonProps>`
 	${portfolioActionButtonStyle};
-	width: 142px;
 	color: ${({ isDefault }) => (isDefault ? 'var(--primary)' : 'var(--gray)')};
+	color: ${({ isError }) => isError && 'var(--deepRed)'};
+	text-decoration: ${({ isError }) => (isError ? 'underline' : '')};
+	min-width: 170px;
+`;
+
+export const DefaultPortfolioRetryButton = styled.button`
+	${buttonMixin};
+	color: inherit;
+	text-decoration: underline;
 `;
 
 export const EditNameButton = styled.button`
 	${portfolioActionButtonStyle};
 	color: var(--deepOrange);
+	margin-right: 14px;
 `;
 
 export const DeletePortfolioButton = styled.button`
