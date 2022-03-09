@@ -1,6 +1,10 @@
 import '@testing-library/jest-dom/';
+import server from '@lib/msw/server';
+import '@configs/env';
 
 beforeAll(() => {
+	server.listen();
+	process.env.SERVER_END_POINT = 'https://localhost:5000/api';
 	Object.defineProperty(window, 'matchMedia', {
 		writable: true,
 		value: jest.fn().mockImplementation(query => ({
@@ -15,3 +19,6 @@ beforeAll(() => {
 		}))
 	});
 });
+
+afterEach(() => server.resetHandlers());
+afterAll(() => server.close());
