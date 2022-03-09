@@ -3,6 +3,7 @@ import envConfig from '@configs/env';
 import * as portfolioMock from './portfolio';
 
 const handlers = [
+	rest.get(`${envConfig.serverEndPoint}/portfolios`, portfolioMock.getPortfolioList),
 	rest.get(`${envConfig.serverEndPoint}/portfolios/default`, portfolioMock.getDefaultPortfolio)
 ];
 
