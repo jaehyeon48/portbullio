@@ -1,4 +1,4 @@
-import { CustomWrapper, render, screen } from '@api/testingLibrary';
+import { CustomWrapper, render, screen } from '@lib/testingLibrary/react';
 import AddStockTransactionPage from '../ModalPage/AddNewStockTransaction';
 
 describe('Add stock transaction page layout', () => {

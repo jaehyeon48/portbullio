@@ -1,4 +1,4 @@
-import { CustomWrapper, screen, render } from '@api/testingLibrary';
+import { CustomWrapper, screen, render } from '@lib/testingLibrary/react';
 import Home from '../Home';
 
 describe('Home page', () => {

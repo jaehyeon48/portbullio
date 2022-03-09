@@ -1,4 +1,4 @@
-import { CustomWrapper, render, screen } from '@api/testingLibrary';
+import { CustomWrapper, render, screen } from '@lib/testingLibrary/react';
 import AddPortfolioPage from '../ModalPage/AddPortfolio';
 
 describe('Add portfolio page layout', () => {

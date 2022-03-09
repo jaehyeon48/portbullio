@@ -1,4 +1,4 @@
-import { CustomWrapper, render, screen } from '@api/testingLibrary';
+import { CustomWrapper, render, screen } from '@lib/testingLibrary/react';
 import DeleteConfirm from '../ModalPage/DeleteConfirm';
 
 describe('Portfolio delete confirm page', () => {

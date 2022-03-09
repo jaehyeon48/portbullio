@@ -1,4 +1,4 @@
-import { CustomWrapper, screen, render, userEvent } from '@api/testingLibrary';
+import { CustomWrapper, screen, render, userEvent } from '@lib/testingLibrary/react';
 import UserSettings from '../UserSettings';
 
 describe('User settings page', () => {
