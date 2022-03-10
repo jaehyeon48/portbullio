@@ -1,2 +1,2 @@
 export { default as toast } from './toast';
-export * from './react-query/queryKeyFactories';
+export * from './reactQuery/queryKeyFactories';
