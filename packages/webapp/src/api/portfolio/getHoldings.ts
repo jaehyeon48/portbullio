@@ -12,15 +12,11 @@ export async function getAllHoldings(portfolioId: number | undefined): Promise<H
 	if (!portfolioId) return [];
 	const { serverEndPoint } = envConfig;
 
-	try {
-		const { data }: GetAllHoldingsRes = await axios.get(
-			`${serverEndPoint}/portfolios/${portfolioId}/holdings`,
-			{
-				withCredentials: true
-			}
-		);
-		return data.holdings;
-	} catch (error) {
-		return [];
-	}
+	const { data }: GetAllHoldingsRes = await axios.get(
+		`${serverEndPoint}/portfolios/${portfolioId}/holdings`,
+		{
+			withCredentials: true
+		}
+	);
+	return data.holdings;
 }

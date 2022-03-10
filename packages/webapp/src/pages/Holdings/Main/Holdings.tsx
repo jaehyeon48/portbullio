@@ -1,26 +1,19 @@
 import { SyntheticEvent } from 'react';
-import { useQuery } from 'react-query';
-import { getAllHoldings } from '@api/portfolio';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
-import { PortfolioSelect, usePortfolioSelectId } from '@components/PortfolioSelect';
+import { PortfolioSelect, usePortfolioSelectId, ListQueryErrorBoundary } from '@components/index';
 import { useModal } from '@hooks/Modal';
 import { formatNum } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
 import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
+import { useHoldingsList } from '../queries';
 
 export default function Holdings() {
 	const [selectedPortfolioId, handleSelectedPortfolioId] = usePortfolioSelectId();
+	const holdingsList = useHoldingsList(selectedPortfolioId);
 	const { openModal } = useModal();
-	const { data: holdings, isLoading } = useQuery(
-		`holdingsOf${selectedPortfolioId}`,
-		() => getAllHoldings(selectedPortfolioId),
-		{
-			staleTime: !selectedPortfolioId ? 0 : Infinity
-		}
-	);
 
 	function openAddNewStockTransactionModal(e: SyntheticEvent) {
 		if (!selectedPortfolioId) {
@@ -61,7 +54,13 @@ export default function Holdings() {
 						<Style.HoldingDailyGainSection>일일 손익</Style.HoldingDailyGainSection>
 						<Style.HoldingTotalGainSection>총 손익</Style.HoldingTotalGainSection>
 					</ListPage.ListHeaderContainer>
-					<HoldingsList holdingsList={holdings} isLoading={isLoading} />
+					<ListQueryErrorBoundary
+						errorMessage="에러가 발생했습니다."
+						isError={holdingsList.isError}
+						refetch={holdingsList.refetch}
+					>
+						<HoldingsList holdingsList={holdingsList.data} isLoading={holdingsList.isLoading} />
+					</ListQueryErrorBoundary>
 				</ListPage.ListContainer>
 			</ListPage.LowerSection>
 		</>
