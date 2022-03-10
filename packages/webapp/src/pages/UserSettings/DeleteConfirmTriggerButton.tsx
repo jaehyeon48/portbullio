@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import { useAvatarUrl } from '@hooks/reactQuery';
 import * as Style from './styles';
 
 interface Props {
-	isButtonDisabled: boolean;
 	onDelete: any;
+	newAvatarFile: null | File;
 }
 
-export default function DeleteConfirmTriggerButton({ isButtonDisabled, onDelete }: Props) {
+export default function DeleteConfirmTriggerButton({ newAvatarFile, onDelete }: Props) {
+	const avatarUrl = useAvatarUrl();
 	const [isOpenImageDeleteConfirm, setIsOpenImageDeleteConfirm] = useState(false);
+	const isButtonDisabled = (!avatarUrl.isLoading && !avatarUrl.data) || !!newAvatarFile;
 
 	function openDeleteImageConfirm() {
 		setIsOpenImageDeleteConfirm(true);

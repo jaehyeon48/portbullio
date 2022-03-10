@@ -1,7 +1,5 @@
 import { SyntheticEvent, useRef, useState, useEffect } from 'react';
-import { useQuery } from 'react-query';
 import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
-import { getAvatar } from '@api/user';
 import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
 import toast from '@lib/toast';
 import * as Style from './styles';
@@ -10,13 +8,11 @@ import UploadButton from './UploadButton';
 import { useUpdateAvatar, useDeleteAvatar } from './queries';
 
 export default function AvatarImagePicker() {
-	const { data: avatarURL, isLoading } = useQuery('avatarUrl', getAvatar, { staleTime: Infinity });
 	const imageInputRef = useRef<HTMLInputElement>(null);
 	const [isUploadingImage, setIsUploadingImage] = useState(false);
 	const [newAvatarImage, setNewAvatarImage] = useState<File | null>(null);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const [isValidMIMEType, setIsValidMIMEType] = useState(true);
-	const [isDeleteImageButtonDisabled, setIsDeleteImageButtonDisabled] = useState(false);
 	const uploadAvatarMutation = useUpdateAvatar();
 	const deleteAvatarMutation = useDeleteAvatar();
 
@@ -28,10 +24,6 @@ export default function AvatarImagePicker() {
 		};
 		fileReader.readAsDataURL(newAvatarImage);
 	}, [newAvatarImage]);
-
-	useEffect(() => {
-		setIsDeleteImageButtonDisabled((!isLoading && !avatarURL) || !!newAvatarImage);
-	}, [avatarURL, isLoading, newAvatarImage]);
 
 	function openFilePicker() {
 		if (!imageInputRef.current) return;
@@ -124,10 +116,7 @@ export default function AvatarImagePicker() {
 				</Style.NoticeNotSupportedImageType>
 			)}
 			<Style.UploadButtonContainer>
-				<DeleteConfirmTriggerButton
-					isButtonDisabled={isDeleteImageButtonDisabled}
-					onDelete={handleDeleteAvatar}
-				/>
+				<DeleteConfirmTriggerButton newAvatarFile={newAvatarImage} onDelete={handleDeleteAvatar} />
 				<UploadButton
 					shouldRenderButtons={!!(isValidMIMEType && newAvatarImage)}
 					onCancel={cancelUpload}

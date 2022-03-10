@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState, useEffect } from 'react';
 import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
 import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
-import { ProfileThumbnail } from '@components/index';
+import { AvatarImage } from '@components/index';
 import * as Icon from '@components/Icon';
 import { AuthPage, LogOutPage, UserSettingsPage } from '@pages/index';
 import { useModal, useAuth, useThemeMode } from '@hooks/index';
@@ -95,7 +95,9 @@ export default function Navbar() {
 						type="button"
 						onClick={handleOpenNavDropdown}
 					>
-						<ProfileThumbnail />
+						<Style.ProfileImageContainer>
+							<AvatarImage userIconWidth={36} userIconHeight={36} />
+						</Style.ProfileImageContainer>
 					</Style.Button>
 				) : (
 					<Style.Button type="button" onClick={handleOpenLogInModal}>

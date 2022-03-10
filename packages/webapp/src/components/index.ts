@@ -8,7 +8,6 @@ export { default as Modal } from './Modal';
 export { default as Navbar } from './Navbar';
 export { default as SVG } from './SVG/SVG';
 export { default as TradingViewWidget } from './TradingViewWidget/TradingViewWidget';
-export { default as ProfileThumbnail } from './ProfileThumbnail/ProfileThumbnail';
 export { default as AvatarImage } from './AvatarImage/AvatarImage';
 export * from './ListPage/styles';
 export * from './PortfolioSelect';

@@ -1,7 +1,6 @@
-import { useQuery } from 'react-query';
 import envConfig from '@configs/env';
 import { User as UserIcon } from '@components/Icon';
-import { getAvatar } from '@api/user';
+import { useAvatarUrl } from '@hooks/reactQuery';
 import Image from './styles';
 
 interface Props {
@@ -10,11 +9,11 @@ interface Props {
 }
 
 export default function AvatarImage({ userIconWidth, userIconHeight }: Props) {
-	const { data: avatarURL, isLoading } = useQuery('avatarUrl', getAvatar, { staleTime: Infinity });
+	const avatarUrl = useAvatarUrl();
 
-	return isLoading || !avatarURL ? (
+	return avatarUrl.isLoading || !avatarUrl.data ? (
 		<UserIcon width={userIconWidth} height={userIconHeight} />
 	) : (
-		<Image src={`${envConfig.avatarImageEndPoint}/${avatarURL}`} alt="user avatar" />
+		<Image src={`${envConfig.avatarImageEndPoint}/${avatarUrl.data}`} alt="user avatar" />
 	);
 }
