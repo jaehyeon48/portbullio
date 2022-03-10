@@ -55,6 +55,7 @@ const RefetchRequestButton = styled.button`
 	color: var(--white);
 	font-size: 14px;
 	padding: 0.3em 0.5em;
+	margin-bottom: 12px;
 	border-radius: 4px;
 
 	& > svg {
