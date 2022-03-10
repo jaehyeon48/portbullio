@@ -3,13 +3,15 @@ import DynamicCaret from '@components/DynamicCaret';
 import { Holding } from '@types';
 import { formatNum, formatCurrency } from '@utils';
 import * as Style from './styles';
+import HoldingDetailsOpener from './HoldingDetailsOpener';
 
 interface Props {
+	portfolioId: number;
 	holdingsList: Holding[] | undefined;
 	isLoading: boolean;
 }
 
-export default function HoldingsList({ holdingsList, isLoading }: Props) {
+export default function HoldingsList({ portfolioId, holdingsList, isLoading }: Props) {
 	if (isLoading) {
 		return <EmptyListNotice>로딩 중...</EmptyListNotice>;
 	}
@@ -19,9 +21,10 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 			isListEmpty={!holdingsList || holdingsList.length === 0}
 			emptyListNoticeMessage="보유종목이 없습니다."
 		>
-			{(holdingsList ?? []).map(({ ticker, avgCost, quantity }, idx) => (
-				<ListItem key={ticker} isFirstList={idx === 0}>
+			{(holdingsList ?? []).map(({ ticker, avgCost, quantity }) => (
+				<ListItem key={ticker}>
 					<Style.HoldingTickerSection>{ticker}</Style.HoldingTickerSection>
+					<HoldingDetailsOpener portfolioId={portfolioId} ticker={ticker} />
 					<Style.HoldingCurrentPriceSection value={1}>
 						<DynamicCaret width={20} height={20} value={1} marginTop={2} />
 						{formatCurrency(123.45, 'usd')}&#40;+12.34%&#41;

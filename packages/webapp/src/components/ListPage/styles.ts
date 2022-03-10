@@ -1,10 +1,6 @@
 import styled, { css } from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
 
-interface ListItemProp {
-	isFirstList: boolean;
-}
-
 const LIST_ITEM_LEFT_RIGHT_PADDING_PX = 6;
 
 const sectionStyle = css`
@@ -128,10 +124,13 @@ export const ListItemsContainer = styled.ul`
 	}
 `;
 
-export const ListItem = styled.li<ListItemProp>`
+export const ListItem = styled.li`
 	display: flex;
 	padding: 1em ${LIST_ITEM_LEFT_RIGHT_PADDING_PX}px;
-	${({ isFirstList }) => !isFirstList && 'border-top: 1px solid var(--baseBorderColor)'};
+
+	& + & {
+		border-top: 1px solid var(--baseBorderColor);
+	}
 `;
 
 export const EmptyListNotice = styled.p`
