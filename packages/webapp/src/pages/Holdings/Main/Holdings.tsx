@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
-import { PortfolioSelect, usePortfolioSelectId, ListQueryErrorBoundary } from '@components/index';
+import { PortfolioSelect, ListQueryErrorBoundary, useSelectPortfolioId } from '@components/index';
 import { useModal } from '@hooks/Modal';
 import { formatNum } from '@utils';
 import toast from '@lib/toast';
@@ -11,7 +11,7 @@ import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
 import { useHoldingsList } from '../queries';
 
 export default function Holdings() {
-	const [selectedPortfolioId, handleSelectedPortfolioId] = usePortfolioSelectId();
+	const selectedPortfolioId = useSelectPortfolioId();
 	const holdingsList = useHoldingsList(selectedPortfolioId);
 	const { openModal } = useModal();
 
@@ -29,7 +29,7 @@ export default function Holdings() {
 				<ListPage.MainHeader>보유종목</ListPage.MainHeader>
 				<ListPage.NumOfItems data-testid="num-of-holdings">{formatNum(24)}개</ListPage.NumOfItems>
 				<ListPage.UpperSectionButtonContainer>
-					<PortfolioSelect value={selectedPortfolioId} onChange={handleSelectedPortfolioId} />
+					<PortfolioSelect />
 					<ListPage.SearchFilterButton type="button">
 						<Icon.Filter width={20} height={20} />
 						필터
@@ -47,6 +47,7 @@ export default function Holdings() {
 				<ListPage.ListContainer>
 					<ListPage.ListHeaderContainer>
 						<Style.HoldingTickerSection>티커</Style.HoldingTickerSection>
+						<Style.HoldingDetailsSection />
 						<Style.HoldingCurrentPriceSection>현재가</Style.HoldingCurrentPriceSection>
 						<Style.HoldingAvgPriceSection>평단가</Style.HoldingAvgPriceSection>
 						<Style.HoldingQuantitySection>보유수량</Style.HoldingQuantitySection>

@@ -26,9 +26,9 @@ export async function editStockTransactionPriceQuantityType({
 }
 
 export async function editStockTransactionMemo(stockTransactionId: number, memo: string) {
-	await prisma.stockTransactionLog.update({
+	const modifiedStockTransaction = await prisma.stockTransactionLog.update({
 		where: { id: stockTransactionId },
 		data: { memo }
 	});
-	return;
+	return modifiedStockTransaction;
 }

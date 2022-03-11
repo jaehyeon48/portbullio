@@ -26,3 +26,5 @@ export { default as LockClose } from './LockClose';
 export { default as CandleChart } from './CandleChart';
 export { default as Reset } from './Reset';
 export { default as CircleCross } from './CircleCross';
+export { default as StickyNote } from './StickyNote';
+export { default as SquareFill } from './SquareFill';

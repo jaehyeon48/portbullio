@@ -135,8 +135,11 @@ export default (): express.Router => {
 			const { memo } = req.body as unknown as UpdateStockTransactionMemoReqBody;
 
 			try {
-				await stockTransactionService.editStockTransactionMemo(Number(stockTransactionId), memo);
-				res.send();
+				const modifiedStockTransaction = await stockTransactionService.editStockTransactionMemo(
+					Number(stockTransactionId),
+					memo
+				);
+				res.json({ result: modifiedStockTransaction });
 			} catch (error) {
 				next(error);
 			}
