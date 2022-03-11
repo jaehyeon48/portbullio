@@ -14,8 +14,8 @@ export default function useEditDefaultPortfolio() {
 		({ prevPortfolioId, newPortfolioId }: EditDefaultPortfolioArgs) =>
 			editDefaultPortfolio(prevPortfolioId, newPortfolioId),
 		{
-			onSuccess: res => {
-				queryClient.setQueryData<number>(portfolioKeys.defaultId(), () => res);
+			onSuccess: newDefaultPortfolioId => {
+				queryClient.setQueryData<number>(portfolioKeys.defaultId(), () => newDefaultPortfolioId);
 			}
 		}
 	);

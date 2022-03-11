@@ -12,9 +12,9 @@ export default function useCreatePortfolio() {
 	const queryClient = useQueryClient();
 
 	return useMutation(({ name, privacy }: CreatePortfolioArgs) => createPortfolio(name, privacy), {
-		onSuccess: res => {
-			queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, data =>
-				data ? [...data, res] : [res]
+		onSuccess: createdPortfolio => {
+			queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, portfolios =>
+				portfolios ? [...portfolios, createdPortfolio] : [createdPortfolio]
 			);
 			queryClient.invalidateQueries(portfolioKeys.defaultId());
 		}

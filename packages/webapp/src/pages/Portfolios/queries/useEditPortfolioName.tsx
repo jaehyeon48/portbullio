@@ -15,9 +15,9 @@ export default function useEditPortfolioName() {
 	return useMutation(
 		({ portfolioId, newName }: EditPortfolioNameArgs) => editPortfolioName(portfolioId, newName),
 		{
-			onSuccess: res => {
-				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, data =>
-					updateArray(data, res, element => element.id === res.id)
+			onSuccess: updatedPortfolio => {
+				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, portfolios =>
+					updateArray(portfolios, updatedPortfolio, element => element.id === updatedPortfolio.id)
 				);
 			}
 		}
