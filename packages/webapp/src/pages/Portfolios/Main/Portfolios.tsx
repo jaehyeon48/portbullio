@@ -3,7 +3,7 @@ import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary } from '@components/index';
 import { useModal } from '@hooks/Modal';
-import { usePortfolioList } from '@hooks/reactQuery';
+import { usePortfolioList } from '@hooks/ReactQuery';
 import * as Style from './styles';
 import PortfolioList from './PortfolioList';
 import AddPortfolio from '../ModalPage/AddPortfolio';

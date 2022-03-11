@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useAvatarUrl } from '@hooks/reactQuery';
+import { useAvatarUrl } from '@hooks/ReactQuery';
 import * as Style from './styles';
 
 interface Props {
