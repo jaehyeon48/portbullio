@@ -71,7 +71,7 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 			isListEmpty={!portfolioList || portfolioList.length === 0}
 			emptyListNoticeMessage="포트폴리오가 없습니다."
 		>
-			{(portfolioList ?? []).map(({ id, name, privacy }) => (
+			{portfolioList?.map(({ id, name, privacy }) => (
 				<ListItem key={id}>
 					<Style.PortfolioNameSection>{name}</Style.PortfolioNameSection>
 					<Style.PortfolioPrivacySection>
