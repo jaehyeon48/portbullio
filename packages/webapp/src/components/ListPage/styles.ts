@@ -1,6 +1,10 @@
 import styled, { css } from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
 
+interface ListItemsContainerProps {
+	maxHeight?: string;
+}
+
 const LIST_ITEM_LEFT_RIGHT_PADDING_PX = 6;
 
 const sectionStyle = css`
@@ -109,14 +113,14 @@ export const ListHeaderContainer = styled.div`
 	padding: 0 ${LIST_ITEM_LEFT_RIGHT_PADDING_PX}px 0.5em;
 `;
 
-export const ListItemsContainer = styled.ul`
+export const ListItemsContainer = styled.ul<ListItemsContainerProps>`
 	position: relative;
 	width: fit-content;
 	min-width: 100%;
 	list-style-type: none;
 	margin: 0;
 	padding: 0;
-	max-height: 50vh;
+	max-height: ${({ maxHeight }) => maxHeight ?? '50vh'};
 	overflow-y: scroll;
 
 	::-webkit-scrollbar {
