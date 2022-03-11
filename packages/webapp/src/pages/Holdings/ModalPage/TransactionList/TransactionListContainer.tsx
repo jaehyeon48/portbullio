@@ -20,7 +20,7 @@ export default function TransactionListContainer({ portfolioId, ticker }: Props)
 				<Style.TransactionTypeSection>종류</Style.TransactionTypeSection>
 				<Style.PriceSection>가격</Style.PriceSection>
 				<Style.QuantitySection>수량</Style.QuantitySection>
-				<Style.MemoSection />
+				<Style.MemoSection>메모</Style.MemoSection>
 			</ListPage.ListHeaderContainer>
 			<ListQueryErrorBoundary
 				errorMessage="에러가 발생했습니다."

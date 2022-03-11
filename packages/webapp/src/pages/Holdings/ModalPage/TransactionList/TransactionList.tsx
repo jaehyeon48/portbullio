@@ -42,6 +42,7 @@ export default function TransactionList({
 			<ListItems
 				isListEmpty={!transactionList || transactionList.length === 0}
 				emptyListNoticeMessage="거래 내역이 없습니다."
+				maxHeight="30vh"
 			>
 				{transactionList?.map(({ id, createdAt, transactionType, price, quantity, memo }) => (
 					<ListItem key={id}>
