@@ -1,26 +1,25 @@
-import { ChangeEventHandler } from 'react';
 import styled from 'styled-components';
-import { useQuery } from 'react-query';
-import { getPortfolios } from '@api/portfolio';
-
-interface Props {
-	value: number | undefined;
-	onChange: ChangeEventHandler;
-}
+import { usePortfolioList } from '@hooks/reactQuery';
+import { useSelectPortfolioId, useSelectPortfolioIdUpdate } from './usePortfolioSelectId';
 
 interface SelectMarginProps {
 	margin?: string;
 }
 
-export default function PortfolioSelect({ value, onChange }: Props) {
-	const { data: portfolios } = useQuery('portfolioList', getPortfolios, {
-		staleTime: Infinity
-	});
+export default function PortfolioSelect() {
+	const portfolios = usePortfolioList();
+	const selectedPortfolioId = useSelectPortfolioId();
+	const handleChangeSelect = useSelectPortfolioIdUpdate();
 
 	return (
-		<Select value={value} onChange={onChange} defaultValue={-1} data-testid="select-portfolio">
+		<Select
+			value={selectedPortfolioId}
+			onChange={handleChangeSelect}
+			defaultValue={-1}
+			data-testid="select-portfolio"
+		>
 			<PlaceHolderOption value={-1}>포트폴리오 선택</PlaceHolderOption>
-			{(portfolios ?? []).map(({ id, name }) => (
+			{portfolios.data?.map(({ id, name }) => (
 				<option key={id} value={id}>
 					{name}
 				</option>
