@@ -13,9 +13,8 @@ export default function PortfolioSelect() {
 
 	return (
 		<Select
-			value={selectedPortfolioId}
+			value={selectedPortfolioId ?? -1}
 			onChange={handleChangeSelect}
-			defaultValue={-1}
 			data-testid="select-portfolio"
 		>
 			<PlaceHolderOption value={-1}>포트폴리오 선택</PlaceHolderOption>
