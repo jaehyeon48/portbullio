@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { useQuery } from 'react-query';
-import { getDefaultPortfolio } from '@api/portfolio';
+import { useDefaultPortfolioId } from '@hooks/ReactQuery';
 
 type PortfolioIdUpdateFn = (e: React.SyntheticEvent) => void;
 
@@ -12,14 +11,12 @@ const PortfolioIdContext = React.createContext<number | undefined>(undefined);
 const PortfolioIdUpdateContext = React.createContext<PortfolioIdUpdateFn | null>(null);
 
 export function SelectPortfolioIdContextProvider({ children }: ProviderProps) {
-	const { data: defaultPortfolioId } = useQuery('defaultPortfolio', getDefaultPortfolio, {
-		staleTime: Infinity
-	});
-	const [selectedPortfolioId, setSelectedPortfolioId] = React.useState(defaultPortfolioId);
+	const defaultPortfolioId = useDefaultPortfolioId(false);
+	const [selectedPortfolioId, setSelectedPortfolioId] = React.useState(defaultPortfolioId.data);
 
 	React.useEffect(() => {
-		setSelectedPortfolioId(defaultPortfolioId);
-	}, [defaultPortfolioId]);
+		setSelectedPortfolioId(defaultPortfolioId.data);
+	}, [defaultPortfolioId.data]);
 
 	const handleSelectedPortfolioId = React.useCallback((e: React.SyntheticEvent) => {
 		const target = e.target as HTMLOptionElement;

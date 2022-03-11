@@ -2,14 +2,14 @@ import { SyntheticEvent } from 'react';
 import { PortfolioPrivacy, Portfolio } from '@prisma/client';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
-import { useModal } from '@hooks/index';
+import { useModal, useDefaultPortfolioId } from '@hooks/index';
 import { formatCurrency } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
 import SetDefaultButton from './SetDefaultButton';
 import EditPortfolioName from '../ModalPage/EditPortfolioName';
 import DeleteConfirm from '../ModalPage/DeleteConfirm';
-import { useDefaultPortfolioId, useEditPortfolioPrivacy } from '../queries/index';
+import { useEditPortfolioPrivacy } from '../queries/index';
 
 interface Props {
 	portfolioList: Portfolio[] | undefined;
