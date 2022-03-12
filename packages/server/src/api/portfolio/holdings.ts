@@ -44,11 +44,11 @@ export default (): express.Router => {
 			const { portfolioId } = req.params as unknown as PortfolioIdParam;
 
 			try {
-				const transactions = await stockTransactionService.getAllStockTransactions(
+				const allStockTransactions = await stockTransactionService.getAllStockTransactions(
 					Number(portfolioId)
 				);
 
-				const holdings = await stockTransactionService.calculateAvgCost(transactions);
+				const holdings = await stockTransactionService.calculateAvgCost(allStockTransactions);
 				res.json({ holdings });
 			} catch (error) {
 				next(error);
