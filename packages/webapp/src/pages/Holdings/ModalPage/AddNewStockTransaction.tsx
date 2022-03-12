@@ -1,12 +1,11 @@
 import { SyntheticEvent, useState } from 'react';
-import { useQueryClient } from 'react-query';
 import { StockTransactionType } from '@portbullio/shared/src/types';
 import { SearchStocks, TextInput } from '@components/index';
-import { addStockTransaction } from '@api/holdings';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, isValidInteger } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
+import { useAddStockTransaction } from '../queries/index';
 
 interface Props {
 	portfolioId: number;
@@ -14,7 +13,7 @@ interface Props {
 }
 
 export default function AddNewStockTransaction({ portfolioId, closeFunction }: Props) {
-	const queryClient = useQueryClient();
+	const addStockTransactionMutation = useAddStockTransaction();
 	const [transactionTypeInput, setTransactionTypeInput] = useState<StockTransactionType>('buy');
 	const [tickerInput, setTickerInput] = useState('');
 	const [priceInput, setPriceInput] = useState('');
@@ -64,22 +63,22 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 		e.preventDefault();
 		if (!validateInputs()) return;
 
-		const addRes = await addStockTransaction({
-			portfolioId,
-			ticker: tickerInput,
-			price: Number(priceInput),
-			quantity: Number(quantityInput),
-			type: transactionTypeInput
-		});
-
-		if (!addRes) {
-			toast.error({ message: '오류가 발생했습니다. 다시 시도해 주세요.' });
-			return;
-		}
-
-		toast.success({ message: '성공적으로 거래내역을 추가했습니다.' });
-		queryClient.invalidateQueries(`holdingsOf${portfolioId}`);
-		closeFunction!(e, false);
+		addStockTransactionMutation.mutate(
+			{
+				portfolioId,
+				ticker: tickerInput,
+				price: Number(priceInput),
+				quantity: Number(quantityInput),
+				type: transactionTypeInput
+			},
+			{
+				onSuccess: () => {
+					toast.success({ message: '성공적으로 거래내역을 추가했습니다.' });
+					closeFunction!(e, false);
+				},
+				onError: () => toast.error({ message: '오류가 발생했습니다. 다시 시도해 주세요.' })
+			}
+		);
 	}
 
 	return (

@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { StockTransactionType } from '@portbullio/shared/src/types';
+import { StockTransactionLog, StockTransactionType } from '@prisma/client';
+import { Holding } from '@types';
 import envConfig from '@configs/env';
 
 interface AddStockTransactionArgs {
@@ -8,6 +9,15 @@ interface AddStockTransactionArgs {
 	price: number;
 	quantity: number;
 	type: StockTransactionType;
+}
+
+export interface AddStockTransactionReturnType {
+	newStockTransaction: StockTransactionLog;
+	holdingsOfTicker: Holding[];
+}
+
+interface AddStockTransactionRes {
+	data: AddStockTransactionReturnType;
 }
 
 export default async function addStockTransaction({
@@ -33,10 +43,14 @@ export default async function addStockTransaction({
 		type
 	});
 
-	try {
-		await axios.post(`${serverEndPoint}/portfolios/${portfolioId}/holdings`, formData, config);
-		return true;
-	} catch (error) {
-		return false;
-	}
+	const { data }: AddStockTransactionRes = await axios.post(
+		`${serverEndPoint}/portfolios/${portfolioId}/holdings`,
+		formData,
+		config
+	);
+
+	return {
+		newStockTransaction: data.newStockTransaction,
+		holdingsOfTicker: data.holdingsOfTicker
+	};
 }

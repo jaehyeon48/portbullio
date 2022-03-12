@@ -98,7 +98,12 @@ export default (): express.Router => {
 					type,
 					priceDiff
 				});
-				res.status(201).json({ newStockTransaction });
+				const allStockTransactionsOfTicker =
+					await stockTransactionService.getStockTransactionsOfATicker(Number(portfolioId), ticker);
+				const holdingsOfTicker = await stockTransactionService.calculateAvgCost(
+					allStockTransactionsOfTicker
+				);
+				res.status(201).json({ newStockTransaction, holdingsOfTicker });
 			} catch (error) {
 				next(error);
 			}
