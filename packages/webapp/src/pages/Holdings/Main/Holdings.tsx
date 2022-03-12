@@ -27,7 +27,9 @@ export default function Holdings() {
 		<>
 			<ListPage.UpperSection>
 				<ListPage.MainHeader>보유종목</ListPage.MainHeader>
-				<ListPage.NumOfItems data-testid="num-of-holdings">{formatNum(24)}개</ListPage.NumOfItems>
+				<ListPage.NumOfItems data-testid="num-of-holdings">
+					{formatNum(holdingsList.data?.length ?? 0)}개
+				</ListPage.NumOfItems>
 				<ListPage.UpperSectionButtonContainer>
 					<PortfolioSelect />
 					<ListPage.SearchFilterButton type="button">
