@@ -51,7 +51,7 @@ model Portfolio {
 
 model FavoriteStock {
   userId  Int    @map("user_id")
-  ticker  String @db.VarChar(7)
+  ticker  String @db.VarChar(5)
   user    User   @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_favorite_stock_user_user_id")
 
   @@map("favorite_stock")
@@ -85,7 +85,7 @@ model DefaultPortfolio {
 model StockTransactionLog {
   id                  Int                  @id @default(autoincrement()) @map("stock_transaction_id")
   portfolioId         Int                  @map("portfolio_id")
-  ticker              String               @db.VarChar(7)
+  ticker              String               @db.VarChar(5)
   price               Float
   quantity            Int
   memo                String?              @db.Text
