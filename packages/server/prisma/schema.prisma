@@ -90,7 +90,7 @@ model StockTransactionLog {
   quantity            Int
   memo                String?              @db.Text
   transactionType     StockTransactionType @map("transaction_type")
-  isRealized          Boolean              @default(false) @map("is_realized")
+  priceDiff           Int?                 @map("price_diff")
   createdAt           DateTime             @default(now()) @db.Timestamp(0) @map("created_at")
   portfolio           Portfolio            @relation(fields: [portfolioId], references: [id], onDelete: Cascade, map: "fk_stock_transaction_log_portfolio_portfolio_id")
 

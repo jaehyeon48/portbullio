@@ -8,7 +8,7 @@ interface AddStockTransactionArgs {
 	quantity: number;
 	memo?: string;
 	type: StockTransactionType;
-	isRealized: boolean;
+	priceDiff?: number;
 }
 
 export default async function addStockTransaction({
@@ -18,7 +18,7 @@ export default async function addStockTransaction({
 	quantity,
 	memo = '',
 	type,
-	isRealized
+	priceDiff
 }: AddStockTransactionArgs) {
 	const newLog = await prisma.stockTransactionLog.create({
 		data: {
@@ -28,8 +28,8 @@ export default async function addStockTransaction({
 			quantity,
 			memo,
 			transactionType: type,
-			isRealized
+			priceDiff
 		}
 	});
-	return newLog.id;
+	return newLog;
 }

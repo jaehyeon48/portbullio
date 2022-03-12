@@ -21,7 +21,7 @@ interface AddStockTransactionReqBody {
 	quantity: number;
 	memo?: string;
 	type: StockTransactionType;
-	isRealized: boolean;
+	priceDiff?: number;
 }
 
 interface UpdateStockTransactionPriceQuantityTypeReqBody {
@@ -85,20 +85,20 @@ export default (): express.Router => {
 				quantity,
 				memo = '',
 				type,
-				isRealized
+				priceDiff
 			} = req.body as unknown as AddStockTransactionReqBody;
 
 			try {
-				const newStockTransactionId = await stockTransactionService.addStockTransaction({
+				const newStockTransaction = await stockTransactionService.addStockTransaction({
 					portfolioId: Number(portfolioId),
 					ticker,
 					price,
 					quantity,
 					memo,
 					type,
-					isRealized
+					priceDiff
 				});
-				res.status(201).json({ newStockTransactionId });
+				res.status(201).json({ newStockTransaction });
 			} catch (error) {
 				next(error);
 			}
