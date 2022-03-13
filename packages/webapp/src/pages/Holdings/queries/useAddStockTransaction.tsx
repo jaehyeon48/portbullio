@@ -11,16 +11,19 @@ interface AddStockTransactionArgs {
 	price: number;
 	quantity: number;
 	type: StockTransactionType;
+	priceDiff?: number;
 }
 
 export default function useAddStockTransaction() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		({ portfolioId, ticker, price, quantity, type }: AddStockTransactionArgs) =>
-			addStockTransaction({ portfolioId, price, quantity, ticker, type }),
+		({ portfolioId, ticker, price, quantity, type, priceDiff }: AddStockTransactionArgs) =>
+			addStockTransaction({ portfolioId, price, quantity, ticker, type, priceDiff }),
 		{
 			onSuccess: ({ holdingsOfTicker, newStockTransaction }, { portfolioId, ticker }) => {
+				let shouldInvalidateTransactionQuery = false;
+
 				queryClient.setQueryData<Holding[]>(
 					portfolioKeys.holdings(portfolioId),
 					prevHoldingsOfTicker =>
@@ -33,11 +36,16 @@ export default function useAddStockTransaction() {
 
 				queryClient.setQueryData<StockTransactionLog[]>(
 					portfolioKeys.stockTransactions(portfolioId, ticker),
-					stockTransactionLogs =>
-						stockTransactionLogs
-							? [...stockTransactionLogs, newStockTransaction]
-							: [newStockTransaction]
+					stockTransactionLogs => {
+						if (stockTransactionLogs) return [...stockTransactionLogs, newStockTransaction];
+						shouldInvalidateTransactionQuery = true;
+						return [];
+					}
 				);
+
+				if (shouldInvalidateTransactionQuery) {
+					queryClient.invalidateQueries(portfolioKeys.stockTransactions(portfolioId, ticker));
+				}
 			}
 		}
 	);

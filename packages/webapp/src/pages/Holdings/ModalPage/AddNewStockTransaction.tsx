@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import { StockTransactionType } from '@portbullio/shared/src/types';
 import { SearchStocks, TextInput } from '@components/index';
-import { CloseModalFn } from '@types';
+import { CloseModalFn, Holding } from '@types';
 import { isValidRealNumber, isValidInteger } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
@@ -42,9 +42,9 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 	}
 
 	function isValidSellQuantity(ticker: string, sellQuantity: number) {
-		const holdingInfo = holdingsList.data?.filter(holding => holding.ticker === ticker);
-		if (!holdingInfo || holdingInfo.length === 0) return false;
-		return holdingInfo[0].quantity >= sellQuantity;
+		const holdingInfo = getTickerHolding(holdingsList.data, ticker);
+		if (!holdingInfo) return false;
+		return holdingInfo.quantity >= sellQuantity;
 	}
 
 	function validateInputs() {
@@ -77,13 +77,22 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 		e.preventDefault();
 		if (!validateInputs()) return;
 
+		const priceDiff =
+			transactionTypeInput === 'buy'
+				? undefined
+				: truncateDecimalPoint(
+						Number(priceInput) - getTickerHolding(holdingsList.data, tickerInput)?.avgCost!,
+						3
+				  );
+
 		addStockTransactionMutation.mutate(
 			{
 				portfolioId,
 				ticker: tickerInput,
 				price: Number(priceInput),
 				quantity: Number(quantityInput),
-				type: transactionTypeInput
+				type: transactionTypeInput,
+				priceDiff
 			},
 			{
 				onSuccess: () => {
@@ -144,4 +153,12 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 			</Style.Form>
 		</Style.Container>
 	);
+}
+
+function getTickerHolding(holdingsList: Holding[] | undefined, ticker: string) {
+	return holdingsList?.filter(holding => holding.ticker === ticker)[0] ?? undefined;
+}
+
+function truncateDecimalPoint(number: number, fractionDigits: number) {
+	return Number(number.toFixed(fractionDigits));
 }
