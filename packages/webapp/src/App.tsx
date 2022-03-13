@@ -37,6 +37,7 @@ function App(): ReactElement {
 						<Route path="overview" element={<Page.StockOverviewPage />} />
 					</Route>
 					<Route path="holdings" element={<Page.HoldingsPage />} />
+					<Route path="stock-transactions/:ticker" element={<Page.StockTransactionsPage />} />
 					<Route path="portfolios" element={<Page.PortfoliosPage />} />
 				</Route>
 			</Routes>

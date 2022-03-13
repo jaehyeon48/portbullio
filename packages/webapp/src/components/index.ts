@@ -9,7 +9,7 @@ export { default as Navbar } from './Navbar';
 export { default as SVG } from './SVG/SVG';
 export { default as TradingViewWidget } from './TradingViewWidget/TradingViewWidget';
 export { default as AvatarImage } from './AvatarImage/AvatarImage';
-export * from './ListPage/styles';
+export * from './ListPage';
 export * from './PortfolioSelect';
 export { default as SearchStocks } from './SearchStocks/SearchStocks';
 export { default as ListQueryErrorBoundary } from './ListQueryErrorBoundary/ListQueryErrorBoundary';

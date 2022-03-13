@@ -6,4 +6,5 @@ export { default as WelcomePage } from './Welcome/Welcome';
 export { default as UserSettingsPage } from './UserSettings/UserSettings';
 export { default as PortfoliosPage } from './Portfolios/Main/Portfolios';
 export { default as HoldingsPage } from './Holdings/Main/Holdings';
+export { default as StockTransactionsPage } from './StockTransactions/Main/StockTransactions';
 export * from './Stock';

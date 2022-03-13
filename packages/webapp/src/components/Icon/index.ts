@@ -28,3 +28,4 @@ export { default as Reset } from './Reset';
 export { default as CircleCross } from './CircleCross';
 export { default as StickyNote } from './StickyNote';
 export { default as SquareFill } from './SquareFill';
+export { default as ArrowBack } from './ArrowBack';

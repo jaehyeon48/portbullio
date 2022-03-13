@@ -3,7 +3,6 @@ import DynamicCaret from '@components/DynamicCaret';
 import { Holding } from '@types';
 import { formatNum, formatCurrency } from '@utils';
 import * as Style from './styles';
-import HoldingDetailsOpener from './HoldingDetailsOpener';
 
 interface Props {
 	holdingsList: Holding[] | undefined;
@@ -23,7 +22,11 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 			{holdingsList?.map(({ ticker, avgCost, quantity }) => (
 				<ListItem key={ticker}>
 					<Style.HoldingTickerSection>{ticker}</Style.HoldingTickerSection>
-					<HoldingDetailsOpener ticker={ticker} />
+					<Style.HoldingDetailsSection>
+						<Style.HoldingDetailsOpenButton to={`/stock-transactions/${ticker}`}>
+							거래내역 자세히 보기
+						</Style.HoldingDetailsOpenButton>
+					</Style.HoldingDetailsSection>
 					<Style.HoldingCurrentPriceSection value={1}>
 						<DynamicCaret width={20} height={20} value={1} marginTop={2} />
 						{formatCurrency(123.45, 'usd')}&#40;+12.34%&#41;

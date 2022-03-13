@@ -26,6 +26,7 @@ export const LowerSection = styled.section`
 export const MainHeader = styled.h1`
 	font-size: 48px;
 	font-weight: 700;
+	line-height: 1.2;
 `;
 
 export const NumOfItems = styled.p`
@@ -140,4 +141,17 @@ export const ListItem = styled.li`
 export const EmptyListNotice = styled.p`
 	margin-top: 20px;
 	text-align: center;
+`;
+
+export const listActionButtonStyle = css`
+	background: none;
+	outline: none;
+	border: none;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+
+	& > svg {
+		margin: 2px 2px 0 0;
+	}
 `;

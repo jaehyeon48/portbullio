@@ -1,6 +1,7 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
+import { listActionButtonStyle } from '@components/ListPage';
 
 interface SetDefaultButtonProps {
 	isDefault: boolean;
@@ -36,21 +37,8 @@ export const PortfolioActionSection = styled.div`
 	}
 `;
 
-const portfolioActionButtonStyle = css`
-	background: none;
-	outline: none;
-	border: none;
-	display: flex;
-	align-items: center;
-	cursor: pointer;
-
-	& > svg {
-		margin: 2px 2px 0 0;
-	}
-`;
-
 export const DefaultPortfolioButton = styled.button<SetDefaultButtonProps>`
-	${portfolioActionButtonStyle};
+	${listActionButtonStyle};
 	color: ${({ isDefault }) => (isDefault ? 'var(--primary)' : 'var(--gray)')};
 	color: ${({ isError }) => isError && 'var(--deepRed)'};
 	text-decoration: ${({ isError }) => (isError ? 'underline' : '')};
@@ -64,13 +52,13 @@ export const DefaultPortfolioRetryButton = styled.button`
 `;
 
 export const EditNameButton = styled.button`
-	${portfolioActionButtonStyle};
+	${listActionButtonStyle};
 	color: var(--deepOrange);
 	margin-right: 14px;
 `;
 
 export const DeletePortfolioButton = styled.button`
-	${portfolioActionButtonStyle};
+	${listActionButtonStyle};
 	color: var(--deepRed);
 `;
 

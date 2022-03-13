@@ -24,13 +24,11 @@ export default function useAddStockTransaction() {
 				queryClient.setQueryData<Holding[]>(
 					portfolioKeys.holdings(portfolioId),
 					prevHoldingsOfTicker =>
-						prevHoldingsOfTicker
-							? updateArray(
-									prevHoldingsOfTicker,
-									holdingsOfTicker[0],
-									el => el.ticker === holdingsOfTicker[0].ticker
-							  )
-							: [holdingsOfTicker[0]]
+						updateArray(
+							prevHoldingsOfTicker,
+							holdingsOfTicker[0],
+							el => el.ticker === holdingsOfTicker[0].ticker
+						).sort(sortByTicker)
 				);
 
 				queryClient.setQueryData<StockTransactionLog[]>(
@@ -43,4 +41,9 @@ export default function useAddStockTransaction() {
 			}
 		}
 	);
+}
+
+const enCollator = new Intl.Collator('en');
+function sortByTicker(a: Holding, b: Holding) {
+	return enCollator.compare(a.ticker, b.ticker);
 }

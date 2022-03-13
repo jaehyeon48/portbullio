@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { buttonMixin, priceColorMixin } from '@styles/Mixins';
 
 export const HoldingTickerSection = styled.div`
@@ -9,7 +10,7 @@ export const HoldingDetailsSection = styled.div`
 	min-width: 170px;
 `;
 
-export const HoldingDetailsOpenButton = styled.button`
+export const HoldingDetailsOpenButton = styled(Link)`
 	${buttonMixin};
 	color: var(--gray);
 	font-size: 14px;
