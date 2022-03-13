@@ -34,7 +34,9 @@ export const MemoOpenButton = styled.button`
 
 export const RealizedProfitAndLossSection = styled.div`
 	${priceColorMixin};
-	min-width: 210px;
+	display: flex;
+	align-items: center;
+	width: 240px;
 `;
 
 export const StockTransactionActionsSection = styled.div`

@@ -11,15 +11,15 @@ interface AddStockTransactionArgs {
 	price: number;
 	quantity: number;
 	type: StockTransactionType;
-	priceDiff?: number;
+	avgBuyCost?: number;
 }
 
 export default function useAddStockTransaction() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		({ portfolioId, ticker, price, quantity, type, priceDiff }: AddStockTransactionArgs) =>
-			addStockTransaction({ portfolioId, price, quantity, ticker, type, priceDiff }),
+		({ portfolioId, ticker, price, quantity, type, avgBuyCost }: AddStockTransactionArgs) =>
+			addStockTransaction({ portfolioId, price, quantity, ticker, type, avgBuyCost }),
 		{
 			onSuccess: ({ holdingsOfTicker, newStockTransaction }, { portfolioId, ticker }) => {
 				let shouldInvalidateTransactionQuery = false;

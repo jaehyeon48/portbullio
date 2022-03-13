@@ -1,5 +1,5 @@
 import prisma from '@lib/prisma';
-import { StockTransactionType } from '@portbullio/shared/src/types';
+import { StockTransactionType } from '@prisma/client';
 
 interface AddStockTransactionArgs {
 	portfolioId: number;
@@ -8,7 +8,7 @@ interface AddStockTransactionArgs {
 	quantity: number;
 	memo?: string;
 	type: StockTransactionType;
-	priceDiff?: number;
+	avgBuyCost?: number;
 }
 
 export default async function addStockTransaction({
@@ -18,7 +18,7 @@ export default async function addStockTransaction({
 	quantity,
 	memo = '',
 	type,
-	priceDiff
+	avgBuyCost
 }: AddStockTransactionArgs) {
 	const newLog = await prisma.stockTransactionLog.create({
 		data: {
@@ -28,7 +28,7 @@ export default async function addStockTransaction({
 			quantity,
 			memo,
 			transactionType: type,
-			priceDiff
+			avgBuyCost
 		}
 	});
 	return newLog;

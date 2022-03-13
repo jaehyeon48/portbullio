@@ -26,6 +26,8 @@ interface OpenMemoModalProps {
 	memo: string | null;
 }
 
+const DECIMAL_DIGITS = 3;
+
 export default function StockTransactionList({ stockTransactionList, isLoading }: Props) {
 	const { openModal } = useModal();
 	const portfolioId = useSelectPortfolioId() ?? 0;
@@ -53,7 +55,7 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 				emptyListNoticeMessage="거래 내역이 없습니다."
 			>
 				{stockTransactionList?.map(
-					({ id, createdAt, ticker, transactionType, price, quantity, memo, priceDiff }) => (
+					({ id, createdAt, ticker, transactionType, price, quantity, memo, avgBuyCost }) => (
 						<ListItem key={id}>
 							<Style.DateSection>{formatDate(createdAt as unknown as string)}</Style.DateSection>
 							<Style.TransactionTypeSection>
@@ -69,9 +71,22 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 									<StickyNoteIcon />
 								</Style.MemoOpenButton>
 							</Style.MemoSection>
-							<Style.RealizedProfitAndLossSection value={priceDiff ?? 0}>
-								<DynamicCaret value={priceDiff ?? 0} />
-								{priceDiff && priceDiff * quantity}
+							<Style.RealizedProfitAndLossSection value={avgBuyCost ? price - avgBuyCost : 0}>
+								<DynamicCaret
+									value={avgBuyCost ? price - avgBuyCost : 0}
+									width={20}
+									height={20}
+									marginTop={0}
+								/>
+								{avgBuyCost &&
+									formatCurrency(
+										truncateDecimalPoint((price - avgBuyCost) * quantity, DECIMAL_DIGITS),
+										'usd'
+									)}
+								{avgBuyCost &&
+									` (${formatNum(
+										truncateDecimalPoint(((price - avgBuyCost) / avgBuyCost) * 100, DECIMAL_DIGITS)
+									)}%)`}
 							</Style.RealizedProfitAndLossSection>
 							<Style.StockTransactionActionsSection>
 								<Style.StockTransactionEditButton type="button">
@@ -95,3 +110,7 @@ const stockTransactionTypeKor = {
 	buy: '매수',
 	sell: '매도'
 } as const;
+
+function truncateDecimalPoint(number: number, fractionDigits: number) {
+	return Number(number.toFixed(fractionDigits));
+}

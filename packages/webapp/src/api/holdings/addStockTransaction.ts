@@ -9,7 +9,7 @@ interface AddStockTransactionArgs {
 	price: number;
 	quantity: number;
 	type: StockTransactionType;
-	priceDiff?: number;
+	avgBuyCost?: number;
 }
 
 export interface AddStockTransactionReturnType {
@@ -27,7 +27,7 @@ export default async function addStockTransaction({
 	price,
 	quantity,
 	type,
-	priceDiff
+	avgBuyCost
 }: AddStockTransactionArgs) {
 	const { serverEndPoint } = envConfig;
 
@@ -43,7 +43,7 @@ export default async function addStockTransaction({
 		price,
 		quantity,
 		type,
-		priceDiff
+		avgBuyCost
 	});
 
 	const { data }: AddStockTransactionRes = await axios.post(

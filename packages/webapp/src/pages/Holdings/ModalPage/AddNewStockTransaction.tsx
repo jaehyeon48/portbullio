@@ -77,13 +77,10 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 		e.preventDefault();
 		if (!validateInputs()) return;
 
-		const priceDiff =
+		const avgBuyCost =
 			transactionTypeInput === 'buy'
 				? undefined
-				: truncateDecimalPoint(
-						Number(priceInput) - getTickerHolding(holdingsList.data, tickerInput)?.avgCost!,
-						3
-				  );
+				: getTickerHolding(holdingsList.data, tickerInput)?.avgCost!;
 
 		addStockTransactionMutation.mutate(
 			{
@@ -92,7 +89,7 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 				price: Number(priceInput),
 				quantity: Number(quantityInput),
 				type: transactionTypeInput,
-				priceDiff
+				avgBuyCost
 			},
 			{
 				onSuccess: () => {
@@ -157,8 +154,4 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 
 function getTickerHolding(holdingsList: Holding[] | undefined, ticker: string) {
 	return holdingsList?.filter(holding => holding.ticker === ticker)[0] ?? undefined;
-}
-
-function truncateDecimalPoint(number: number, fractionDigits: number) {
-	return Number(number.toFixed(fractionDigits));
 }

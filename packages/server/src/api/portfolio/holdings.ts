@@ -21,7 +21,7 @@ interface AddStockTransactionReqBody {
 	quantity: number;
 	memo?: string;
 	type: StockTransactionType;
-	priceDiff?: number;
+	avgBuyCost?: number;
 }
 
 interface UpdateStockTransactionPriceQuantityTypeReqBody {
@@ -85,7 +85,7 @@ export default (): express.Router => {
 				quantity,
 				memo = '',
 				type,
-				priceDiff
+				avgBuyCost
 			} = req.body as unknown as AddStockTransactionReqBody;
 
 			try {
@@ -96,7 +96,7 @@ export default (): express.Router => {
 					quantity,
 					memo,
 					type,
-					priceDiff
+					avgBuyCost
 				});
 				const allStockTransactionsOfTicker =
 					await stockTransactionService.getStockTransactionsOfATicker(
