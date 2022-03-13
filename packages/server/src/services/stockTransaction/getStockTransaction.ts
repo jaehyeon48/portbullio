@@ -1,7 +1,14 @@
 import prisma from '@lib/prisma';
 
-export async function getStockTransactionsOfATicker(portfolioId: number, ticker: string) {
+type SortOrder = 'asc' | 'desc';
+
+export async function getStockTransactionsOfATicker(
+	portfolioId: number,
+	ticker: string,
+	orderByType: SortOrder = 'asc'
+) {
 	const stockTransactions = await prisma.stockTransactionLog.findMany({
+		orderBy: { transactionType: orderByType },
 		where: {
 			portfolioId,
 			ticker

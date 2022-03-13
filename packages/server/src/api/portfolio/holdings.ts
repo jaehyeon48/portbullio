@@ -99,7 +99,11 @@ export default (): express.Router => {
 					priceDiff
 				});
 				const allStockTransactionsOfTicker =
-					await stockTransactionService.getStockTransactionsOfATicker(Number(portfolioId), ticker);
+					await stockTransactionService.getStockTransactionsOfATicker(
+						Number(portfolioId),
+						ticker,
+						'desc'
+					);
 				const holdingsOfTicker = await stockTransactionService.calculateAvgCost(
 					allStockTransactionsOfTicker
 				);
