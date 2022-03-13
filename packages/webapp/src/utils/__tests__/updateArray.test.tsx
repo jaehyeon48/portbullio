@@ -1,25 +1,18 @@
 import updateArray from '../updateArray';
 
 describe('updateArray test', () => {
-	test('Should return an empty array when given array is null or undefined', () => {
-		expect(updateArray(null, 1, el => el === 1)).toStrictEqual([]);
-		expect(updateArray(undefined, 1, el => el === 1)).toStrictEqual([]);
-	});
-
 	test('Should update array of numbers immutably', () => {
 		const originalArray = [1, 2, 3];
 
 		expect(updateArray(originalArray, 10, el => el === 1)).toStrictEqual([10, 2, 3]);
 		expect(updateArray(originalArray, 10, el => el === 2)).toStrictEqual([1, 10, 3]);
 		expect(updateArray(originalArray, 10, el => el === 3)).toStrictEqual([1, 2, 10]);
-		expect(updateArray(originalArray, 10, el => el === 100)).toStrictEqual(originalArray);
 	});
 
 	test('Should update array of strings immutably', () => {
 		const originalArray = ['a', 'b', 'c'];
 
 		expect(updateArray(originalArray, 'z', el => el === 'b')).toStrictEqual(['a', 'z', 'c']);
-		expect(updateArray(originalArray, 'z', el => el === 'bb')).toStrictEqual(originalArray);
 	});
 
 	test('Should update array of objects immutably', () => {
@@ -74,5 +67,24 @@ describe('updateArray test', () => {
 		expect(updateArray(originalArray, [1, 2, 3, 4, 5, 6, 7], (_, idx) => idx === 0)).toStrictEqual(
 			expectedCase2
 		);
+	});
+
+	test('Should update an empty array', () => {
+		expect(updateArray(null, 100, () => true)).toStrictEqual([100]);
+		expect(updateArray(undefined, 100, () => true)).toStrictEqual([100]);
+		expect(updateArray([], 100, () => true)).toStrictEqual([100]);
+	});
+
+	test(`Should append an element when there's no matching element`, () => {
+		const originalArray = [
+			{ id: 1, value: 'a' },
+			{ id: 2, value: 'b' }
+		];
+
+		expect(updateArray([1, 2, 3], 100, el => el === 4)).toStrictEqual([1, 2, 3, 100]);
+		expect(updateArray(originalArray, { id: 3, value: 'c' }, el => el.id === 4)).toStrictEqual([
+			...originalArray,
+			{ id: 3, value: 'c' }
+		]);
 	});
 });
