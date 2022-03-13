@@ -50,6 +50,8 @@
     "@typescript-eslint/no-explicit-any": "off",
     "no-useless-return": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
-    "jsx-a11y/label-has-associated-control": "off"
+    "jsx-a11y/label-has-associated-control": "off",
+    "no-unsafe-optional-chaining": "off",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "off"
   }
 }
