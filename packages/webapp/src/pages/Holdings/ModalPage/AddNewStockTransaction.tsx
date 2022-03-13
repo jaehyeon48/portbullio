@@ -5,7 +5,7 @@ import { CloseModalFn } from '@types';
 import { isValidRealNumber, isValidInteger } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
-import { useAddStockTransaction } from '../queries/index';
+import { useAddStockTransaction, useHoldingsList } from '../queries/index';
 
 interface Props {
 	portfolioId: number;
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function AddNewStockTransaction({ portfolioId, closeFunction }: Props) {
+	const holdingsList = useHoldingsList(portfolioId);
 	const addStockTransactionMutation = useAddStockTransaction();
 	const [transactionTypeInput, setTransactionTypeInput] = useState<StockTransactionType>('buy');
 	const [tickerInput, setTickerInput] = useState('');
@@ -40,6 +41,12 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 		setTickerInput(ticker);
 	}
 
+	function isValidSellQuantity(ticker: string, sellQuantity: number) {
+		const holdingInfo = holdingsList.data?.filter(holding => holding.ticker === ticker);
+		if (!holdingInfo || holdingInfo.length === 0) return false;
+		return holdingInfo[0].quantity >= sellQuantity;
+	}
+
 	function validateInputs() {
 		if (tickerInput === '') {
 			toast.error({ message: '티커를 입력해 주세요.' });
@@ -56,6 +63,13 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 			return false;
 		}
 
+		if (
+			transactionTypeInput === 'sell' &&
+			!isValidSellQuantity(tickerInput, Number(quantityInput))
+		) {
+			toast.error({ message: '매도 수량이 현재 보유 수량보다 많습니다.' });
+			return false;
+		}
 		return true;
 	}
 
