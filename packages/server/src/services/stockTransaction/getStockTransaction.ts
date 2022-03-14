@@ -2,13 +2,26 @@ import prisma from '@lib/prisma';
 
 type SortOrder = 'asc' | 'desc';
 
-export async function getStockTransactionsOfATicker(
-	portfolioId: number,
-	ticker: string,
-	orderByType: SortOrder = 'asc'
-) {
+interface GetStockTransactionsOfATickerArgs {
+	portfolioId: number;
+	ticker: string;
+	orderByDate?: SortOrder;
+	orderByType?: SortOrder;
+}
+
+export async function getStockTransactionsOfATicker({
+	portfolioId,
+	ticker,
+	orderByDate = 'asc',
+	orderByType = 'asc'
+}: GetStockTransactionsOfATickerArgs) {
+	const orderBy =
+		orderByType === 'desc'
+			? [{ transactionType: orderByType }, { createdAt: orderByDate }]
+			: [{ createdAt: orderByDate }, { transactionType: orderByType }];
+
 	const stockTransactions = await prisma.stockTransactionLog.findMany({
-		orderBy: [{ createdAt: 'desc' }, { transactionType: orderByType }],
+		orderBy,
 		where: {
 			portfolioId,
 			ticker

@@ -70,10 +70,11 @@ export default (): express.Router => {
 			const { portfolioId, ticker } = req.params as unknown as GetStockTransactionOfATickerParam;
 
 			try {
-				const transactions = await stockTransactionService.getStockTransactionsOfATicker(
-					Number(portfolioId),
-					ticker
-				);
+				const transactions = await stockTransactionService.getStockTransactionsOfATicker({
+					portfolioId: Number(portfolioId),
+					ticker,
+					orderByDate: 'desc'
+				});
 				res.json({ transactions });
 			} catch (error) {
 				next(error);
@@ -106,11 +107,11 @@ export default (): express.Router => {
 					avgBuyCost
 				});
 				const allStockTransactionsOfTicker =
-					await stockTransactionService.getStockTransactionsOfATicker(
-						Number(portfolioId),
+					await stockTransactionService.getStockTransactionsOfATicker({
+						portfolioId: Number(portfolioId),
 						ticker,
-						'desc'
-					);
+						orderByType: 'desc'
+					});
 				const holdingsOfTicker = await stockTransactionService.calculateAvgCost(
 					allStockTransactionsOfTicker
 				);
@@ -141,11 +142,11 @@ export default (): express.Router => {
 						date
 					});
 				const allStockTransactionsOfTicker =
-					await stockTransactionService.getStockTransactionsOfATicker(
-						Number(portfolioId),
+					await stockTransactionService.getStockTransactionsOfATicker({
+						portfolioId: Number(portfolioId),
 						ticker,
-						'desc'
-					);
+						orderByType: 'desc'
+					});
 				const holdingsOfTicker = await stockTransactionService.calculateAvgCost(
 					allStockTransactionsOfTicker
 				);
