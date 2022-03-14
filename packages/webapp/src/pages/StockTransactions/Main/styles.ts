@@ -30,6 +30,11 @@ export const MemoSection = styled.div`
 
 export const MemoOpenButton = styled.button`
 	${buttonMixin}
+	padding: 0;
+
+	& > svg {
+		fill: var(--baseTextColor);
+	}
 `;
 
 export const RealizedProfitAndLossSection = styled.div`
