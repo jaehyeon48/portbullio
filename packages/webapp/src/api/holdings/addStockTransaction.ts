@@ -3,7 +3,7 @@ import { StockTransactionLog, StockTransactionType } from '@prisma/client';
 import { Holding } from '@types';
 import envConfig from '@configs/env';
 
-interface AddStockTransactionArgs {
+export interface AddStockTransactionArgs {
 	portfolioId: number;
 	ticker: string;
 	price: number;
@@ -12,16 +12,14 @@ interface AddStockTransactionArgs {
 	avgBuyCost?: number;
 }
 
-export interface AddStockTransactionReturnType {
-	newStockTransaction: StockTransactionLog;
-	holdingsOfTicker: Holding[];
-}
-
 interface AddStockTransactionRes {
-	data: AddStockTransactionReturnType;
+	data: {
+		newStockTransaction: StockTransactionLog;
+		holdingsOfTicker: Holding[];
+	};
 }
 
-export default async function addStockTransaction({
+export async function addStockTransaction({
 	portfolioId,
 	ticker,
 	price,

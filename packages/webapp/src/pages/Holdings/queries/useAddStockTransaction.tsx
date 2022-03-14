@@ -1,18 +1,9 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { StockTransactionType, StockTransactionLog } from '@prisma/client';
+import { StockTransactionLog } from '@prisma/client';
 import { Holding } from '@types';
-import { addStockTransaction } from '@api/holdings';
+import { addStockTransaction, AddStockTransactionArgs } from '@api/holdings';
 import { updateArray } from '@utils';
 import { portfolioKeys } from '@lib/index';
-
-interface AddStockTransactionArgs {
-	portfolioId: number;
-	ticker: string;
-	price: number;
-	quantity: number;
-	type: StockTransactionType;
-	avgBuyCost?: number;
-}
 
 export default function useAddStockTransaction() {
 	const queryClient = useQueryClient();

@@ -1,4 +1,4 @@
-export { default as addStockTransaction } from './addStockTransaction';
+export * from './addStockTransaction';
 export * from './editStockTransaction';
 export { default as editStockTransactionMemo } from './editStockTransactionMemo';
 export * from './getHoldings';
