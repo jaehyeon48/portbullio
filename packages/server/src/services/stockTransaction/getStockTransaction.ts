@@ -8,7 +8,7 @@ export async function getStockTransactionsOfATicker(
 	orderByType: SortOrder = 'asc'
 ) {
 	const stockTransactions = await prisma.stockTransactionLog.findMany({
-		orderBy: { transactionType: orderByType },
+		orderBy: [{ createdAt: 'desc' }, { transactionType: orderByType }],
 		where: {
 			portfolioId,
 			ticker

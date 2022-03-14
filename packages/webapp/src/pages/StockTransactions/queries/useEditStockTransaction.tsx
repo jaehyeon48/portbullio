@@ -2,7 +2,7 @@ import { useQueryClient, useMutation } from 'react-query';
 import { StockTransactionLog } from '@prisma/client';
 import { Holding } from '@types';
 import { editStockTransaction, EditStockTransactionArgs } from '@api/holdings';
-import { updateArray, sortByString } from '@utils';
+import { updateArray, sortByString, sortByDate } from '@utils';
 import { portfolioKeys } from '@lib/index';
 
 export default function useEditStockTransaction() {
@@ -48,7 +48,7 @@ export default function useEditStockTransaction() {
 							prevStockTransactions,
 							modifiedStockTransaction,
 							el => el.id === modifiedStockTransaction.id
-						)
+						).sort((a, b) => sortByDate(a.createdAt, b.createdAt, 'desc'))
 				);
 			}
 		}
