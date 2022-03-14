@@ -11,6 +11,10 @@ interface StockTransactionIdParam {
 	stockTransactionId: string;
 }
 
+interface ModifyAndDeleteStockTransactionParam extends PortfolioIdParam {
+	stockTransactionId: string;
+}
+
 interface GetStockTransactionOfATickerParam extends PortfolioIdParam {
 	ticker: string;
 }
@@ -25,9 +29,12 @@ interface AddStockTransactionReqBody {
 }
 
 interface UpdateStockTransactionPriceQuantityTypeReqBody {
+	ticker: string;
 	price: number;
 	quantity: number;
 	type: StockTransactionType;
+	avgBuyCost?: number;
+	date: string;
 }
 
 interface UpdateStockTransactionMemoReqBody {
@@ -115,21 +122,34 @@ export default (): express.Router => {
 	);
 
 	router.patch(
-		'/holdings/:stockTransactionId',
+		'/:portfolioId/holdings/:stockTransactionId',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { stockTransactionId } = req.params as unknown as StockTransactionIdParam;
-			const { price, quantity, type } =
+			const { portfolioId, stockTransactionId } =
+				req.params as unknown as ModifyAndDeleteStockTransactionParam;
+			const { ticker, price, quantity, type, avgBuyCost, date } =
 				req.body as unknown as UpdateStockTransactionPriceQuantityTypeReqBody;
 
 			try {
-				await stockTransactionService.editStockTransactionPriceQuantityType({
-					stockTransactionId: Number(stockTransactionId),
-					price,
-					quantity,
-					type
-				});
-				res.send();
+				const modifiedStockTransaction =
+					await stockTransactionService.editStockTransactionPriceQuantityType({
+						stockTransactionId: Number(stockTransactionId),
+						price,
+						quantity,
+						type,
+						avgBuyCost,
+						date
+					});
+				const allStockTransactionsOfTicker =
+					await stockTransactionService.getStockTransactionsOfATicker(
+						Number(portfolioId),
+						ticker,
+						'desc'
+					);
+				const holdingsOfTicker = await stockTransactionService.calculateAvgCost(
+					allStockTransactionsOfTicker
+				);
+				res.json({ modifiedStockTransaction, holdingsOfTicker });
 			} catch (error) {
 				next(error);
 			}

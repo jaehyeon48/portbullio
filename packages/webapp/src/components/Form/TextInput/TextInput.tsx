@@ -2,7 +2,16 @@ import { ChangeEventHandler } from 'react';
 import { ExclamationMark } from '@components/index';
 import * as Style from '../styles';
 
-type TextInputType = 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'url';
+type TextInputType =
+	| 'email'
+	| 'number'
+	| 'password'
+	| 'search'
+	| 'tel'
+	| 'text'
+	| 'url'
+	| 'date'
+	| 'datetime-local';
 
 interface Props {
 	htmlFor: string;

@@ -13,6 +13,7 @@ import {
 } from '@components/index';
 import * as Style from './styles';
 import StockMemoEditPage from '../ModalPage/StockMemoEdit';
+import EditStockTransactionPage from '../ModalPage/EditStockTransaction';
 
 interface Props {
 	stockTransactionList: StockTransactionLog[] | undefined;
@@ -24,6 +25,16 @@ interface OpenMemoModalProps {
 	stockTransactionId: number;
 	ticker: string;
 	memo: string | null;
+}
+
+interface OpenEditModalProps {
+	e: SyntheticEvent;
+	stockTransactionId: number;
+	ticker: string;
+	price: number;
+	quantity: number;
+	type: StockTransactionType;
+	date: string;
 }
 
 const DECIMAL_DIGITS = 3;
@@ -40,6 +51,25 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 				ticker={ticker}
 				stockTransactionId={stockTransactionId}
 				memo={memo}
+			/>
+		);
+	}
+
+	function handleOpenEditTransactionModal({
+		e,
+		stockTransactionId,
+		ticker,
+		price,
+		quantity,
+		type,
+		date
+	}: OpenEditModalProps) {
+		openModal(
+			e,
+			<EditStockTransactionPage
+				stockTransactionId={stockTransactionId}
+				portfolioId={portfolioId}
+				initialInputs={{ ticker, price, quantity, type, date }}
 			/>
 		);
 	}
@@ -89,7 +119,20 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 									)}%)`}
 							</Style.RealizedProfitAndLossSection>
 							<Style.StockTransactionActionsSection>
-								<Style.StockTransactionEditButton type="button">
+								<Style.StockTransactionEditButton
+									type="button"
+									onClick={e =>
+										handleOpenEditTransactionModal({
+											e,
+											stockTransactionId: id,
+											ticker,
+											price,
+											quantity,
+											type: transactionType,
+											date: createdAt as unknown as string
+										})
+									}
+								>
 									<PencilIcon width={16} height={16} />
 									내역 수정
 								</Style.StockTransactionEditButton>
