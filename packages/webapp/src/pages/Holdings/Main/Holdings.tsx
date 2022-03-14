@@ -5,10 +5,10 @@ import { PortfolioSelect, ListQueryErrorBoundary, useSelectPortfolioId } from '@
 import { useModal } from '@hooks/Modal';
 import { formatNum } from '@utils';
 import toast from '@lib/toast';
+import { useHoldingsList } from '@hooks/ReactQuery';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
 import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
-import { useHoldingsList } from '../queries';
 
 export default function Holdings() {
 	const selectedPortfolioId = useSelectPortfolioId();

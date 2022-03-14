@@ -4,8 +4,9 @@ import { SearchStocks, TextInput } from '@components/index';
 import { CloseModalFn, Holding } from '@types';
 import { isValidRealNumber, isValidInteger } from '@utils';
 import toast from '@lib/toast';
+import { useHoldingsList } from '@hooks/ReactQuery';
 import * as Style from './styles';
-import { useAddStockTransaction, useHoldingsList } from '../queries/index';
+import { useAddStockTransaction } from '../queries';
 
 interface Props {
 	portfolioId: number;
