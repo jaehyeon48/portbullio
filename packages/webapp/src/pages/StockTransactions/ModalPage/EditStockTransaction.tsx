@@ -1,8 +1,8 @@
 import { SyntheticEvent, useState } from 'react';
-import { StockTransactionType, Holding } from '@portbullio/shared/src/types';
+import { StockTransactionType } from '@portbullio/shared/src/types';
 import { TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
-import { isValidRealNumber, isValidInteger } from '@utils';
+import { isValidRealNumber, isValidInteger, getHoldingOfTicker } from '@utils';
 import toast from '@lib/toast';
 import { useHoldingsList } from '@hooks/ReactQuery';
 import { useEditStockTransaction } from '../queries';
@@ -61,7 +61,7 @@ export default function EditStockTransaction({
 	}
 
 	function isValidSellQuantity(sellQuantity: number) {
-		const holdingInfo = getTickerHolding(holdingsList.data, initialInputs.ticker);
+		const holdingInfo = getHoldingOfTicker(holdingsList.data, initialInputs.ticker);
 		if (!holdingInfo) return false;
 		return holdingInfo.buyQuantity - holdingInfo.sellQuantity >= sellQuantity;
 	}
@@ -91,7 +91,7 @@ export default function EditStockTransaction({
 		const avgBuyCost =
 			transactionTypeInput === 'buy'
 				? undefined
-				: getTickerHolding(holdingsList.data, initialInputs.ticker)?.avgCost!;
+				: getHoldingOfTicker(holdingsList.data, initialInputs.ticker)?.avgCost!;
 
 		editStockTransactionMutation.mutate(
 			{
@@ -173,8 +173,4 @@ export default function EditStockTransaction({
 			</Style.EditTransactionForm>
 		</Style.EditTransactionContainer>
 	);
-}
-
-function getTickerHolding(holdingsList: Holding[] | undefined, ticker: string) {
-	return holdingsList?.filter(holding => holding.ticker === ticker)[0] ?? undefined;
 }
