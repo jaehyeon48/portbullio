@@ -1,8 +1,15 @@
 import { SyntheticEvent } from 'react';
 import { Pencil as PencilIcon, TrashCan as TrashCanIcon } from '@components/Icon';
 import { StockTransactionLog, StockTransactionType } from '@prisma/client';
-import { formatDate, formatCurrency, formatNum, truncateDecimalPoint } from '@utils';
 import { useModal } from '@hooks/Modal';
+import { DECIMAL_DIGITS } from '@constants/index';
+import {
+	formatDate,
+	formatCurrency,
+	formatNum,
+	truncateDecimalPoint,
+	prefixPlusChar
+} from '@utils';
 import {
 	ListItems,
 	ListItem,
@@ -11,7 +18,6 @@ import {
 	DynamicCaret,
 	useSelectPortfolioId
 } from '@components/index';
-import { DECIMAL_DIGITS } from '@constants/index';
 import * as Style from './styles';
 import StockMemoEditPage from '../ModalPage/StockMemoEdit';
 import EditStockTransactionPage from '../ModalPage/EditStockTransaction';
@@ -145,7 +151,7 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 											'usd'
 										)}
 									{avgBuyCost &&
-										` (${realizedProfitLossPercent > 0 ? '+' : ''}${formatNum(
+										` (${prefixPlusChar(realizedProfitLossPercent)}${formatNum(
 											truncateDecimalPoint(realizedProfitLossPercent, DECIMAL_DIGITS)
 										)}%)`}
 								</Style.RealizedProfitAndLossSection>
