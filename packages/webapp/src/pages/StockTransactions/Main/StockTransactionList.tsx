@@ -14,6 +14,7 @@ import {
 import * as Style from './styles';
 import StockMemoEditPage from '../ModalPage/StockMemoEdit';
 import EditStockTransactionPage from '../ModalPage/EditStockTransaction';
+import DeleteConfirmPage from '../ModalPage/DeleteStockTransactionConfirm';
 
 interface Props {
 	stockTransactionList: StockTransactionLog[] | undefined;
@@ -35,6 +36,14 @@ interface OpenEditModalProps {
 	quantity: number;
 	type: StockTransactionType;
 	date: string;
+}
+
+interface OpenDeleteModalProps {
+	e: SyntheticEvent;
+	stockTransactionId: number;
+	ticker: string;
+	quantityToDelete: number;
+	type: StockTransactionType;
 }
 
 const DECIMAL_DIGITS = 3;
@@ -70,6 +79,24 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 				stockTransactionId={stockTransactionId}
 				portfolioId={portfolioId}
 				initialInputs={{ ticker, price, quantity, type, date }}
+			/>
+		);
+	}
+
+	function handleOpenDeleteConfirmModal({
+		e,
+		stockTransactionId,
+		ticker,
+		quantityToDelete,
+		type
+	}: OpenDeleteModalProps) {
+		openModal(
+			e,
+			<DeleteConfirmPage
+				stockTransactionId={stockTransactionId}
+				ticker={ticker}
+				quantityToDelete={quantityToDelete}
+				type={type}
 			/>
 		);
 	}
@@ -136,7 +163,18 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 									<PencilIcon width={16} height={16} />
 									내역 수정
 								</Style.StockTransactionEditButton>
-								<Style.StockTransactionDeleteButton type="button">
+								<Style.StockTransactionDeleteButton
+									type="button"
+									onClick={e =>
+										handleOpenDeleteConfirmModal({
+											e,
+											stockTransactionId: id,
+											ticker,
+											quantityToDelete: quantity,
+											type: transactionType
+										})
+									}
+								>
 									<TrashCanIcon width={16} height={16} />
 									삭제
 								</Style.StockTransactionDeleteButton>

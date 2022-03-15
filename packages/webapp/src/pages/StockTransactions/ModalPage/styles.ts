@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { buttonMixin } from '@styles/Mixins';
 
 interface SubmitButtonProps {
@@ -77,4 +77,39 @@ export const EditTransactionSubmitButton = styled.button<SubmitButtonProps>`
 	width: 100%;
 	border-radius: 4px;
 	padding: 0.4em 0;
+`;
+
+export const DeleteConfirmHeader = styled.header`
+	font-size: 24px;
+	text-align: center;
+	padding-bottom: 1em;
+`;
+
+export const DeleteConfirmMessage = styled.p`
+	text-align: center;
+	margin-bottom: 20px;
+`;
+
+export const DeleteConfirmButtonContainer = styled.div`
+	display: flex;
+	align-items: center;
+	justify-content: space-evenly;
+`;
+
+const DeleteConfirmButtonStyle = css`
+	padding: 0.4em 0.6em;
+	border-radius: 4px;
+	color: var(--white);
+`;
+
+export const DeleteCancelButton = styled.button`
+	${buttonMixin};
+	${DeleteConfirmButtonStyle};
+	background-color: var(--gray);
+`;
+
+export const DeletePortfolioButton = styled.button`
+	${buttonMixin};
+	${DeleteConfirmButtonStyle};
+	background-color: var(--deepRed);
 `;
