@@ -1,6 +1,6 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { StockTransactionLog } from '@prisma/client';
-import { Holding } from '@types';
+import { Holding } from '@portbullio/shared/src/types';
 import { addStockTransaction, AddStockTransactionArgs } from '@api/holdings';
 import { updateArray, sortByString } from '@utils';
 import { portfolioKeys } from '@lib/index';

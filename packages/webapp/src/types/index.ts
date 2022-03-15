@@ -18,12 +18,6 @@ export interface HorizontalScrollBarThumbProps {
 	width: number;
 }
 
-export interface Holding {
-	ticker: string;
-	avgCost: number;
-	quantity: number;
-}
-
 type StockType = 'ad' | 'cs' | 'et' | 'ps' | 'rt' | 'struct' | 'ut' | 'wt';
 
 export interface SearchSymbolItem {

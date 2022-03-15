@@ -1,6 +1,6 @@
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import DynamicCaret from '@components/DynamicCaret';
-import { Holding } from '@types';
+import { Holding } from '@portbullio/shared/src/types';
 import { formatNum, formatCurrency } from '@utils';
 import * as Style from './styles';
 

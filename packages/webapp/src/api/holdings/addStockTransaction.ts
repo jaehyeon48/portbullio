@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { StockTransactionLog, StockTransactionType } from '@prisma/client';
-import { Holding } from '@types';
+import { Holding } from '@portbullio/shared/src/types';
 import envConfig from '@configs/env';
 
 export interface AddStockTransactionArgs {

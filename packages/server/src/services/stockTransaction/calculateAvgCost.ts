@@ -1,7 +1,9 @@
 import { Worker } from 'worker_threads';
+import { StockTransactionLog } from '@prisma/client';
+import { Holding } from '@portbullio/shared/src/types';
 
-export default function calculateAvgCost(transactions: any) {
-	return new Promise((resolve, reject) => {
+export default function calculateAvgCost(transactions: StockTransactionLog[]) {
+	return new Promise<Holding[]>((resolve, reject) => {
 		const worker = new Worker('./src/worker/worker.js', { workerData: transactions });
 		worker.once('message', resolve);
 		worker.on('error', reject);

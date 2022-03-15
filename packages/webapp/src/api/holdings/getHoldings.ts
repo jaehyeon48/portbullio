@@ -1,6 +1,6 @@
 import axios from 'axios';
 import envConfig from '@configs/env';
-import { Holding } from '@types';
+import { Holding } from '@portbullio/shared/src/types';
 import { StockTransactionLog } from '@prisma/client';
 
 interface GetAllHoldingsRes {

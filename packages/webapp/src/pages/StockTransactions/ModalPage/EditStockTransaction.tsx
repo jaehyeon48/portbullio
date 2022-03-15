@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
-import { StockTransactionType } from '@portbullio/shared/src/types';
+import { StockTransactionType, Holding } from '@portbullio/shared/src/types';
 import { TextInput } from '@components/index';
-import { CloseModalFn, Holding } from '@types';
+import { CloseModalFn } from '@types';
 import { isValidRealNumber, isValidInteger } from '@utils';
 import toast from '@lib/toast';
 import { useHoldingsList } from '@hooks/ReactQuery';
