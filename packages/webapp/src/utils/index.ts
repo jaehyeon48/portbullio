@@ -8,3 +8,4 @@ export { default as updateArray } from './updateArray';
 export { default as sortByDate } from './sortByDate';
 export { default as sortByString } from './sortByString';
 export { default as getHoldingOfTicker } from './getHoldingOfTicker';
+export { default as truncateDecimalPoint } from './truncateDecimalPoint';
