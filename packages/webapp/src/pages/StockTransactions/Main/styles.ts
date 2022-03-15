@@ -41,7 +41,7 @@ export const RealizedProfitAndLossSection = styled.div`
 	${priceColorMixin};
 	display: flex;
 	align-items: center;
-	width: 240px;
+	width: 300px;
 `;
 
 export const StockTransactionActionsSection = styled.div`
