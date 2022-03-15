@@ -19,7 +19,7 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 			isListEmpty={!holdingsList || holdingsList.length === 0}
 			emptyListNoticeMessage="보유종목이 없습니다."
 		>
-			{holdingsList?.map(({ ticker, avgCost, quantity }) => (
+			{holdingsList?.map(({ ticker, avgCost, buyQuantity, sellQuantity }) => (
 				<ListItem key={ticker}>
 					<Style.HoldingTickerSection>{ticker}</Style.HoldingTickerSection>
 					<Style.HoldingDetailsSection>
@@ -34,7 +34,9 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 					<Style.HoldingAvgPriceSection>
 						{formatCurrency(avgCost, 'usd')}
 					</Style.HoldingAvgPriceSection>
-					<Style.HoldingQuantitySection>{formatNum(quantity)}</Style.HoldingQuantitySection>
+					<Style.HoldingQuantitySection>
+						{formatNum(buyQuantity - sellQuantity)}
+					</Style.HoldingQuantitySection>
 					<Style.HoldingTotalValueSection>
 						{formatCurrency(123456789, 'usd')}
 					</Style.HoldingTotalValueSection>

@@ -63,7 +63,7 @@ export default function EditStockTransaction({
 	function isValidSellQuantity(sellQuantity: number) {
 		const holdingInfo = getTickerHolding(holdingsList.data, initialInputs.ticker);
 		if (!holdingInfo) return false;
-		return holdingInfo.quantity >= sellQuantity;
+		return holdingInfo.buyQuantity - holdingInfo.sellQuantity >= sellQuantity;
 	}
 
 	function validateInputs() {

@@ -45,7 +45,7 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 	function isValidSellQuantity(ticker: string, sellQuantity: number) {
 		const holdingInfo = getTickerHolding(holdingsList.data, ticker);
 		if (!holdingInfo) return false;
-		return holdingInfo.quantity >= sellQuantity;
+		return holdingInfo.buyQuantity - holdingInfo.sellQuantity >= sellQuantity;
 	}
 
 	function validateInputs() {
