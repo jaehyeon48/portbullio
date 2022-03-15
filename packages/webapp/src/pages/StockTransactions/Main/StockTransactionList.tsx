@@ -11,6 +11,7 @@ import {
 	DynamicCaret,
 	useSelectPortfolioId
 } from '@components/index';
+import { DECIMAL_DIGITS } from '@constants/index';
 import * as Style from './styles';
 import StockMemoEditPage from '../ModalPage/StockMemoEdit';
 import EditStockTransactionPage from '../ModalPage/EditStockTransaction';
@@ -45,8 +46,6 @@ interface OpenDeleteModalProps {
 	quantityToDelete: number;
 	type: StockTransactionType;
 }
-
-const DECIMAL_DIGITS = 3;
 
 export default function StockTransactionList({ stockTransactionList, isLoading }: Props) {
 	const { openModal } = useModal();
