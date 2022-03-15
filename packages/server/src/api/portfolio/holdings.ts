@@ -15,6 +15,10 @@ interface ModifyAndDeleteStockTransactionParam extends PortfolioIdParam {
 	stockTransactionId: string;
 }
 
+interface TickerQuery {
+	ticker: string;
+}
+
 interface GetStockTransactionOfATickerParam extends PortfolioIdParam {
 	ticker: string;
 }
@@ -177,14 +181,27 @@ export default (): express.Router => {
 	);
 
 	router.delete(
-		'/holdings/:stockTransactionId',
+		'/:portfolioId/holdings/:stockTransactionId',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { stockTransactionId } = req.params as unknown as StockTransactionIdParam;
+			const { portfolioId, stockTransactionId } =
+				req.params as unknown as ModifyAndDeleteStockTransactionParam;
+			const { ticker } = req.query as unknown as TickerQuery;
 
 			try {
-				await stockTransactionService.deleteStockTransaction(Number(stockTransactionId));
-				res.send();
+				const deletedStockTransaction = await stockTransactionService.deleteStockTransaction(
+					Number(stockTransactionId)
+				);
+				const allStockTransactionsOfTicker =
+					await stockTransactionService.getStockTransactionsOfATicker({
+						portfolioId: Number(portfolioId),
+						ticker,
+						orderByType: 'desc'
+					});
+				const holdingsOfTicker = await stockTransactionService.calculateAvgCost(
+					allStockTransactionsOfTicker
+				);
+				res.json({ deletedStockTransaction, holdingsOfTicker });
 			} catch (error) {
 				next(error);
 			}
