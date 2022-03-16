@@ -10,3 +10,4 @@ export { default as sortByString } from './sortByString';
 export { default as getHoldingOfTicker } from './getHoldingOfTicker';
 export { default as truncateDecimalPoint } from './truncateDecimalPoint';
 export { default as prefixPlusChar } from './prefixPlusChar';
+export { default as datetimeLocalFormat } from './datetimeLocalFormat';
