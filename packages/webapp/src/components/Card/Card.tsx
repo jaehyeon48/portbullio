@@ -9,7 +9,7 @@ const Card = styled.div<CardStyleProps>`
 	position: relative;
 	background-color: var(--cardBgColor);
 	color: var(--baseTextColor);
-	border-radius: 8px;
+	border-radius: 4px;
 	box-shadow: var(--cardBoxShadow);
 	width: ${({ width }) => width ?? '100%'};
 	height: ${({ height }) => height ?? '100%'};
