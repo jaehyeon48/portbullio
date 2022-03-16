@@ -1,21 +1,28 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { buttonMixin, priceColorMixin } from '@styles/Mixins';
-import { listActionButtonStyle } from '@components/ListPage';
+import { listActionButtonStyle, Card } from '@components/index';
 
-export const TotalRealizedProfitLossSection = styled.div`
-	margin-bottom: 12px;
+export const TotalRealizedProfitLossSection = styled(Card)`
+	padding: 7px 5px;
+	margin-bottom: 18px;
 `;
 
 export const TotalRealizedProfitLossAmount = styled.div`
 	${priceColorMixin};
+	margin-bottom: 6px;
 
 	& > span {
 		color: var(--baseTextColor);
+		font-weight: 500;
 	}
 `;
 
-export const CurrentAvgCost = styled.div``;
+export const CurrentAvgCost = styled.div`
+	& > span {
+		font-weight: 500;
+	}
+`;
 
 export const SubHeader = styled.h2`
 	line-height: 1;
