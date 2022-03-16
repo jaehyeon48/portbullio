@@ -2,7 +2,7 @@ import { SyntheticEvent, useState } from 'react';
 import { StockTransactionType } from '@prisma/client';
 import { TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
-import { isValidRealNumber, isValidInteger, getHoldingOfTicker } from '@utils';
+import { isValidRealNumber, isValidInteger, getHoldingOfTicker, datetimeLocalFormat } from '@utils';
 import toast from '@lib/toast';
 import { useHoldingsList } from '@hooks/ReactQuery';
 import { useEditStockTransaction } from '../queries';
@@ -164,7 +164,7 @@ export default function EditStockTransaction({
 					type="datetime-local"
 					htmlFor="edit-stock-transaction-date"
 					labelName="날짜"
-					value={new Date(dateInput).toISOString().slice(0, -1)}
+					value={datetimeLocalFormat(dateInput)}
 					handleChange={handleChangeDate}
 				/>
 				<Style.EditTransactionSubmitButton type="submit" backgroundColor="var(--deepOrange)">
