@@ -19,9 +19,9 @@ export default function useEditStockTransactionMemo(portfolioId: number, ticker:
 			onSuccess: updatedTransaction => {
 				queryClient.setQueryData<StockTransactionLog[]>(
 					portfolioKeys.stockTransactions(portfolioId, ticker),
-					stockTransactions =>
+					prevStockTransactions =>
 						updateArray(
-							stockTransactions,
+							prevStockTransactions,
 							updatedTransaction,
 							element => element.id === updatedTransaction.id
 						)

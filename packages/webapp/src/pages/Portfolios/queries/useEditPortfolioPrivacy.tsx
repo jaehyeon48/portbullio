@@ -17,8 +17,12 @@ export default function useEditPortfolioPrivacy() {
 			editPortfolioPrivacy(portfolioId, newPrivacy),
 		{
 			onSuccess: updatedPortfolio => {
-				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, portfolios =>
-					updateArray(portfolios, updatedPortfolio, element => element.id === updatedPortfolio.id)
+				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, prevPortfolios =>
+					updateArray(
+						prevPortfolios,
+						updatedPortfolio,
+						element => element.id === updatedPortfolio.id
+					)
 				);
 			}
 		}

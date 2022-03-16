@@ -13,8 +13,8 @@ export default function useCreatePortfolio() {
 
 	return useMutation(({ name, privacy }: CreatePortfolioArgs) => createPortfolio(name, privacy), {
 		onSuccess: createdPortfolio => {
-			queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, portfolios =>
-				portfolios ? [...portfolios, createdPortfolio] : [createdPortfolio]
+			queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, prevPortfolios =>
+				prevPortfolios ? [...prevPortfolios, createdPortfolio] : [createdPortfolio]
 			);
 			queryClient.invalidateQueries(portfolioKeys.defaultId());
 		}

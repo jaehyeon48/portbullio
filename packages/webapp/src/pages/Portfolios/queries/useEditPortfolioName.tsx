@@ -16,8 +16,12 @@ export default function useEditPortfolioName() {
 		({ portfolioId, newName }: EditPortfolioNameArgs) => editPortfolioName(portfolioId, newName),
 		{
 			onSuccess: updatedPortfolio => {
-				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, portfolios =>
-					updateArray(portfolios, updatedPortfolio, element => element.id === updatedPortfolio.id)
+				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, prevPortfolios =>
+					updateArray(
+						prevPortfolios,
+						updatedPortfolio,
+						element => element.id === updatedPortfolio.id
+					)
 				);
 			}
 		}

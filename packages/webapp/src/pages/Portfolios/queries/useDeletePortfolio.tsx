@@ -16,8 +16,8 @@ export default function useDeletePortfolio() {
 			deletePortfolio(portfolioId, isDefaultPortfolio),
 		{
 			onSuccess: (deletedId, { isDefaultPortfolio }) => {
-				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, portfolios =>
-					portfolios ? portfolios.filter(({ id }) => id !== deletedId) : []
+				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, prevPortfolios =>
+					prevPortfolios ? prevPortfolios.filter(({ id }) => id !== deletedId) : []
 				);
 				if (isDefaultPortfolio) queryClient.invalidateQueries(portfolioKeys.defaultId());
 			}
