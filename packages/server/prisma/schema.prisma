@@ -63,6 +63,7 @@ model CashTransactionLog {
   portfolioId         Int                 @map("portfolio_id")
   amount              Float
   memo                String?             @db.Text
+  note                String?             @db.Text
   transactionType     CashTransactionType @map("transaction_type")
   createdAt           DateTime            @default(now()) @db.Timestamp(0) @map("created_at")
   portfolio           Portfolio           @relation(fields: [portfolioId], references: [id], onDelete: Cascade, map: "fk_cash_transaction_log_portfolio_portfolio_id")
