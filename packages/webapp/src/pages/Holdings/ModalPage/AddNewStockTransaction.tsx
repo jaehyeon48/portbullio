@@ -3,7 +3,7 @@ import { StockTransactionType } from '@prisma/client';
 import { Holding } from '@portbullio/shared/src/types';
 import { SearchStocks, TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
-import { isValidRealNumber, isValidInteger } from '@utils';
+import { isValidRealNumber, isValidInteger, datetimeLocalFormat } from '@utils';
 import toast from '@lib/toast';
 import { useHoldingsList } from '@hooks/ReactQuery';
 import * as Style from './styles';
@@ -21,6 +21,7 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 	const [tickerInput, setTickerInput] = useState('');
 	const [priceInput, setPriceInput] = useState('');
 	const [quantityInput, setQuantityInput] = useState('');
+	const [dateInput, setDateInput] = useState(datetimeLocalFormat());
 
 	function handleChangeTransactionType(e: SyntheticEvent) {
 		const target = e.target as HTMLInputElement;
@@ -37,6 +38,11 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 		const target = e.target as HTMLInputElement;
 		if (!isValidInteger(target.value)) return;
 		setQuantityInput(target.value);
+	}
+
+	function handleChangeDate(e: SyntheticEvent) {
+		const target = e.target as HTMLInputElement;
+		setDateInput(target.value);
 	}
 
 	function handleClickSearchStockItem(ticker: string) {
@@ -91,7 +97,8 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 				price: Number(priceInput),
 				quantity: Number(quantityInput),
 				type: transactionTypeInput,
-				avgBuyCost
+				avgBuyCost,
+				date: dateInput
 			},
 			{
 				onSuccess: () => {
@@ -145,6 +152,13 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 					labelName="수량"
 					value={quantityInput}
 					handleChange={handleChangeQuantity}
+				/>
+				<TextInput
+					type="datetime-local"
+					htmlFor="new-stock-transaction-date"
+					labelName="날짜"
+					value={dateInput}
+					handleChange={handleChangeDate}
 				/>
 				<Style.SubmitButton type="submit" backgroundColor="var(--primary)">
 					추가하기

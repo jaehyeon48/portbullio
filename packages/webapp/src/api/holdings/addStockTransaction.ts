@@ -10,6 +10,7 @@ export interface AddStockTransactionArgs {
 	quantity: number;
 	type: StockTransactionType;
 	avgBuyCost?: number;
+	date: string;
 }
 
 interface AddStockTransactionRes {
@@ -25,7 +26,8 @@ export async function addStockTransaction({
 	price,
 	quantity,
 	type,
-	avgBuyCost
+	avgBuyCost,
+	date
 }: AddStockTransactionArgs) {
 	const { serverEndPoint } = envConfig;
 
@@ -41,7 +43,8 @@ export async function addStockTransaction({
 		price,
 		quantity,
 		type,
-		avgBuyCost
+		avgBuyCost,
+		date
 	});
 
 	const { data }: AddStockTransactionRes = await axios.post(

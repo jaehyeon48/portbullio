@@ -9,8 +9,8 @@ export default function useAddStockTransaction() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		({ portfolioId, ticker, price, quantity, type, avgBuyCost }: AddStockTransactionArgs) =>
-			addStockTransaction({ portfolioId, price, quantity, ticker, type, avgBuyCost }),
+		({ portfolioId, ticker, price, quantity, type, avgBuyCost, date }: AddStockTransactionArgs) =>
+			addStockTransaction({ portfolioId, price, quantity, ticker, type, avgBuyCost, date }),
 		{
 			onSuccess: ({ holdingsOfTicker, newStockTransaction }, { portfolioId, ticker }) => {
 				let shouldInvalidateTransactionQuery = false;

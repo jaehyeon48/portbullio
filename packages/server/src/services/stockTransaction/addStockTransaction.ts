@@ -9,6 +9,7 @@ interface AddStockTransactionArgs {
 	memo?: string;
 	type: StockTransactionType;
 	avgBuyCost?: number;
+	date: string;
 }
 
 export default async function addStockTransaction({
@@ -18,7 +19,8 @@ export default async function addStockTransaction({
 	quantity,
 	memo = '',
 	type,
-	avgBuyCost
+	avgBuyCost,
+	date
 }: AddStockTransactionArgs) {
 	const newLog = await prisma.stockTransactionLog.create({
 		data: {
@@ -28,7 +30,8 @@ export default async function addStockTransaction({
 			quantity,
 			memo,
 			transactionType: type,
-			avgBuyCost
+			avgBuyCost,
+			createdAt: new Date(date)
 		}
 	});
 	return newLog;
