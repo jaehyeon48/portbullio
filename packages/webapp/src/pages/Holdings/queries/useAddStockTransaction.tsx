@@ -2,7 +2,7 @@ import { useQueryClient, useMutation } from 'react-query';
 import { StockTransactionLog } from '@prisma/client';
 import { Holding } from '@portbullio/shared/src/types';
 import { addStockTransaction, AddStockTransactionArgs } from '@api/holdings';
-import { updateArray, sortByString } from '@utils';
+import { updateArray, sortByString, sortByDate } from '@utils';
 import { portfolioKeys } from '@lib/index';
 
 export default function useAddStockTransaction() {
@@ -27,8 +27,15 @@ export default function useAddStockTransaction() {
 
 				queryClient.setQueryData<StockTransactionLog[]>(
 					portfolioKeys.stockTransactions(portfolioId, ticker),
-					stockTransactionLogs => {
-						if (stockTransactionLogs) return [...stockTransactionLogs, newStockTransaction];
+					prevStockTransactionLogs => {
+						if (prevStockTransactionLogs) {
+							return [...prevStockTransactionLogs, newStockTransaction].sort((a, b) =>
+								sortByDate(a.createdAt, b.createdAt, 'desc')
+							);
+						}
+
+						// 해당 종목의 거래내역을 처음으로 추가한 것인지, 아니면 단순히 캐시가 존재하지
+						// 않는 것인지 모르므로 거래내역을 invalidate 함.
 						shouldInvalidateTransactionQuery = true;
 						return [];
 					}
