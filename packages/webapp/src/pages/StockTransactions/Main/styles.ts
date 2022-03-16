@@ -3,6 +3,20 @@ import { Link } from 'react-router-dom';
 import { buttonMixin, priceColorMixin } from '@styles/Mixins';
 import { listActionButtonStyle } from '@components/ListPage';
 
+export const TotalRealizedProfitLossSection = styled.div`
+	margin-bottom: 12px;
+`;
+
+export const TotalRealizedProfitLossAmount = styled.div`
+	${priceColorMixin};
+
+	& > span {
+		color: var(--baseTextColor);
+	}
+`;
+
+export const CurrentAvgCost = styled.div``;
+
 export const SubHeader = styled.h2`
 	line-height: 1;
 	font-size: 28px;

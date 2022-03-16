@@ -1,13 +1,21 @@
 import { useParams } from 'react-router-dom';
+import { StockTransactionLog } from '@prisma/client';
 import * as ListPage from '@components/ListPage';
+import { usePortfolioList, useHoldingsList } from '@hooks/ReactQuery';
+import { DECIMAL_DIGITS } from '@constants/index';
 import {
 	ListQueryErrorBoundary,
 	Filter as FilterIcon,
 	ArrowBack as ArrowBackIcon,
 	useSelectPortfolioId
 } from '@components/index';
-import { usePortfolioList } from '@hooks/ReactQuery';
-import { formatNum } from '@utils';
+import {
+	formatNum,
+	formatCurrency,
+	getHoldingOfTicker,
+	prefixPlusChar,
+	truncateDecimalPoint
+} from '@utils';
 import * as Style from './styles';
 import StockTransactionList from './StockTransactionList';
 import { useStockTransactions } from '../queries';
@@ -17,7 +25,13 @@ export default function StockTransactions() {
 	const portfolioId = useSelectPortfolioId() ?? 0;
 	const stockTransactionList = useStockTransactions(portfolioId, ticker);
 	const portfolioList = usePortfolioList();
+	const holdingsList = useHoldingsList(portfolioId);
+	const holdingInfo = getHoldingOfTicker(holdingsList.data, ticker);
 
+	const totalRealizedProfitLossAmount = totalRealizedProfitAndLoss(stockTransactionList.data);
+	const totalRealizedProfitLossPercent = calcRealizedProfitAndLossPercent(
+		stockTransactionList.data
+	);
 	return (
 		<>
 			<ListPage.UpperSection>
@@ -39,6 +53,21 @@ export default function StockTransactions() {
 				</ListPage.UpperSectionButtonContainer>
 			</ListPage.UpperSection>
 			<ListPage.LowerSection>
+				<Style.TotalRealizedProfitLossSection>
+					<Style.TotalRealizedProfitLossAmount value={totalRealizedProfitLossAmount}>
+						<span>총 실현손익: </span>
+						{formatCurrency(
+							truncateDecimalPoint(totalRealizedProfitLossAmount, DECIMAL_DIGITS),
+							'usd'
+						)}
+						&nbsp;&#40;{prefixPlusChar(totalRealizedProfitLossPercent)}
+						{formatNum(truncateDecimalPoint(totalRealizedProfitLossPercent, DECIMAL_DIGITS))}%&#41;
+					</Style.TotalRealizedProfitLossAmount>
+					<Style.CurrentAvgCost>
+						<span>평단가: </span>
+						{formatCurrency(truncateDecimalPoint(holdingInfo?.avgCost ?? 0, DECIMAL_DIGITS), 'usd')}
+					</Style.CurrentAvgCost>
+				</Style.TotalRealizedProfitLossSection>
 				<ListPage.ListContainer>
 					<ListPage.ListHeaderContainer>
 						<Style.DateSection>날짜</Style.DateSection>
@@ -63,4 +92,30 @@ export default function StockTransactions() {
 			</ListPage.LowerSection>
 		</>
 	);
+}
+
+function totalRealizedProfitAndLoss(transactionList: StockTransactionLog[] | undefined) {
+	if (!transactionList || transactionList.length === 0) return 0;
+	return transactionList.reduce(sumTotalRealizedProfitLoss, 0);
+}
+
+function calcRealizedProfitAndLossPercent(transactionList: StockTransactionLog[] | undefined) {
+	if (!transactionList || transactionList.length === 0) return 0;
+	const sumProfitAndLoss = totalRealizedProfitAndLoss(transactionList);
+	const sumCost = transactionList.reduce(sumTotalRealizedCost, 0);
+	if (sumCost <= 0) return 0;
+	return (sumProfitAndLoss / sumCost) * 100;
+}
+
+function sumTotalRealizedProfitLoss(
+	acc: number,
+	{ avgBuyCost, price, quantity }: StockTransactionLog
+) {
+	if (!avgBuyCost) return acc;
+	return acc + (price - avgBuyCost) * quantity;
+}
+
+function sumTotalRealizedCost(acc: number, { avgBuyCost, quantity }: StockTransactionLog) {
+	if (!avgBuyCost) return acc;
+	return acc + avgBuyCost * quantity;
 }
