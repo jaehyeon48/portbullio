@@ -1,5 +1,6 @@
 import { SyntheticEvent, useState } from 'react';
-import { StockTransactionType, Holding } from '@portbullio/shared/src/types';
+import { StockTransactionType } from '@prisma/client';
+import { Holding } from '@portbullio/shared/src/types';
 import { SearchStocks, TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, isValidInteger } from '@utils';

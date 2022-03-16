@@ -1,5 +1,5 @@
 import prisma from '@lib/prisma';
-import { StockTransactionType } from '@portbullio/shared/src/types';
+import { StockTransactionType } from '@prisma/client';
 
 interface UpdateStockTransactionArgs {
 	stockTransactionId: number;

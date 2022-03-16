@@ -1,5 +1,5 @@
 import express, { NextFunction, Request, Response } from 'express';
-import { StockTransactionType } from '@portbullio/shared/src/types';
+import { StockTransactionType } from '@prisma/client';
 import { sessionValidator } from '@middlewares';
 import * as stockTransactionService from '@services/stockTransaction';
 

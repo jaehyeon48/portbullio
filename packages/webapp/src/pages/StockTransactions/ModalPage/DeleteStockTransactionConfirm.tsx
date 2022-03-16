@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
 import { useSelectPortfolioId } from '@components/PortfolioSelect';
-import { StockTransactionType } from '@portbullio/shared/src/types';
+import { StockTransactionType } from '@prisma/client';
 import { CloseModalFn } from '@src/types';
 import { useHoldingsList } from '@hooks/ReactQuery';
 import { getHoldingOfTicker } from '@utils';
