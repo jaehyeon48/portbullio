@@ -1,7 +1,7 @@
 import { SyntheticEvent } from 'react';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
-import { ListQueryErrorBoundary, useSelectPortfolioId } from '@components/index';
+import { ListQueryErrorBoundary, PortfolioSelect, useSelectPortfolioId } from '@components/index';
 import { useModal } from '@hooks/Modal';
 import { useCashTransactionList } from '../queries';
 import * as Style from './styles';
@@ -26,6 +26,7 @@ export default function Cash() {
 					{cashTransactions.data?.length ?? 0}개
 				</ListPage.NumOfItems>
 				<ListPage.UpperSectionButtonContainer>
+					<PortfolioSelect />
 					<ListPage.SearchFilterButton type="button">
 						<Icon.Filter width={20} height={20} />
 						필터
