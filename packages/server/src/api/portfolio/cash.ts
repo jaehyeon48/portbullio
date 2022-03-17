@@ -17,6 +17,10 @@ interface AddAndEditCashTransactionReqBody {
 	date: string;
 }
 
+interface EditCashTransactionMemoReqBody {
+	memo: string;
+}
+
 export default (): express.Router => {
 	const router = express.Router();
 
@@ -70,6 +74,26 @@ export default (): express.Router => {
 					type,
 					date
 				});
+
+				res.json({ editedCashTransaction });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
+	router.patch(
+		'/cash/:cashTransactionId/memo',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { cashTransactionId } = req.params as unknown as CashTransactionIdParam;
+			const { memo } = req.body as unknown as EditCashTransactionMemoReqBody;
+
+			try {
+				const editedCashTransaction = await cashService.editCashTransactionMemo(
+					Number(cashTransactionId),
+					memo
+				);
 
 				res.json({ editedCashTransaction });
 			} catch (error) {
