@@ -78,5 +78,22 @@ export default (): express.Router => {
 		}
 	);
 
+	router.delete(
+		'/cash/:cashTransactionId',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { cashTransactionId } = req.params as unknown as CashTransactionIdParam;
+
+			try {
+				const deletedCashTransaction = await cashService.deleteCashTransaction(
+					Number(cashTransactionId)
+				);
+				res.json({ deletedCashTransaction });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
 	return router;
 };
