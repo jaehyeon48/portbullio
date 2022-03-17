@@ -6,7 +6,6 @@ interface AddStockTransactionArgs {
 	ticker: string;
 	price: number;
 	quantity: number;
-	memo?: string;
 	type: StockTransactionType;
 	avgBuyCost?: number;
 	date: string;
@@ -17,7 +16,6 @@ export default async function addStockTransaction({
 	ticker,
 	price,
 	quantity,
-	memo = '',
 	type,
 	avgBuyCost,
 	date
@@ -28,7 +26,6 @@ export default async function addStockTransaction({
 			ticker,
 			price,
 			quantity,
-			memo,
 			transactionType: type,
 			avgBuyCost,
 			createdAt: new Date(date)

@@ -27,7 +27,6 @@ interface AddStockTransactionReqBody {
 	ticker: string;
 	price: number;
 	quantity: number;
-	memo?: string;
 	type: StockTransactionType;
 	relateCash: boolean;
 	avgBuyCost?: number;
@@ -93,16 +92,8 @@ export default (): express.Router => {
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
 			const { portfolioId } = req.params as unknown as PortfolioIdParam;
-			const {
-				ticker,
-				price,
-				quantity,
-				memo = '',
-				type,
-				relateCash,
-				avgBuyCost,
-				date
-			} = req.body as unknown as AddStockTransactionReqBody;
+			const { ticker, price, quantity, type, relateCash, avgBuyCost, date } =
+				req.body as unknown as AddStockTransactionReqBody;
 
 			try {
 				const newStockTransaction = await stockTransactionService.addStockTransaction({
@@ -110,7 +101,6 @@ export default (): express.Router => {
 					ticker,
 					price,
 					quantity,
-					memo,
 					type,
 					avgBuyCost,
 					date
@@ -129,12 +119,12 @@ export default (): express.Router => {
 
 				let newCashTransaction;
 				if (relateCash) {
-					const note = `${ticker} ${quantity}주 ${type === 'buy' ? '매수' : '매도'}`;
+					const memo = `${ticker} ${quantity}주 ${type === 'buy' ? '매수' : '매도'}`;
 					const stockTransactionType = type;
 					newCashTransaction = await cashService.addCashTransaction({
 						portfolioId: Number(portfolioId),
 						amount: Number(price) * Number(quantity),
-						memo: note,
+						memo,
 						type: stockTransactionType === 'buy' ? 'purchased' : 'sold',
 						date
 					});
