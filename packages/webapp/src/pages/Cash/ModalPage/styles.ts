@@ -95,7 +95,7 @@ export const EditTransactionRadioInput = styled.input`
 
 export const EditTransactionRadioInputLabel = styled.label`
 	cursor: pointer;
-	width: 45%;
+	width: 18%;
 	padding: 0.4em 0.8em;
 	border: 1px solid var(--baseBorderColor);
 	border-radius: 4px;

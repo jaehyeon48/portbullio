@@ -82,7 +82,7 @@ export default function EditCashTransaction({
 
 	return (
 		<Style.EditTransactionContainer>
-			<Style.EditTransactionHeader>거래내역 수정</Style.EditTransactionHeader>
+			<Style.EditTransactionHeader>현금 거래내역 수정</Style.EditTransactionHeader>
 			<Style.EditTransactionForm onSubmit={handleSubmitNewStockTransaction}>
 				<Style.EditTransactionRadioInputContainer>
 					<Style.EditTransactionRadioInput
