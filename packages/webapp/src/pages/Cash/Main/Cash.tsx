@@ -6,6 +6,7 @@ import { useModal } from '@hooks/Modal';
 import { useCashTransactionList } from '../queries';
 import * as Style from './styles';
 import CashTransactionList from './CashTransactionList';
+import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
 
 export default function Cash() {
 	const selectedPortfolioId = useSelectPortfolioId();
@@ -14,7 +15,7 @@ export default function Cash() {
 	const { openModal } = useModal();
 
 	function openAddCashTransactionModal(e: SyntheticEvent) {
-		openModal(e, <div />);
+		openModal(e, <AddNewCashTransaction portfolioId={selectedPortfolioId ?? 0} />);
 	}
 
 	return (
