@@ -10,6 +10,7 @@ import {
 } from '@components/Icon';
 import * as Style from './styles';
 import EditCashTransaction from '../ModalPage/EditCashTransaction';
+import EditCashTransactionMemo from '../ModalPage/CashMemoEdit';
 import DeleteCashTransactionConfirm from '../ModalPage/DeleteCashTransactionConfirm';
 
 interface Props {
@@ -24,6 +25,12 @@ interface OpenEditModalArgs {
 	amount: number;
 	type: CashTransactionType;
 	date: string;
+}
+
+interface OpenEditMemoModalArgs {
+	e: SyntheticEvent;
+	cashTransactionId: number;
+	memo: string | null;
 }
 
 export default function CashTransactionList({ portfolioId, cashList, isLoading }: Props) {
@@ -42,6 +49,17 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 				cashTransactionId={cashTransactionId}
 				portfolioId={portfolioId}
 				initialInputs={{ amount, type, date }}
+			/>
+		);
+	}
+
+	function openEditCashMemoModal({ e, cashTransactionId, memo }: OpenEditMemoModalArgs) {
+		openModal(
+			e,
+			<EditCashTransactionMemo
+				portfolioId={portfolioId}
+				cashTransactionId={cashTransactionId}
+				memo={memo}
 			/>
 		);
 	}
@@ -74,7 +92,11 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 						{formatCurrency(amount, 'usd')}
 					</Style.AmountSection>
 					<Style.MemoSection>
-						<Style.MemoOpenButton type="button" isMemoExist={memo !== null}>
+						<Style.MemoOpenButton
+							type="button"
+							isMemoExist={!!memo}
+							onClick={e => openEditCashMemoModal({ e, cashTransactionId: id, memo })}
+						>
 							<StickyNoteIcon />
 						</Style.MemoOpenButton>
 					</Style.MemoSection>
