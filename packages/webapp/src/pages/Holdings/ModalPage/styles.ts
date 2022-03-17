@@ -17,9 +17,11 @@ export const Container = styled.div`
 
 export const Form = styled.form`
 	width: 450px;
+
 	& input {
 		margin-bottom: 16px;
 		width: 100%;
+		padding: 1.5em 0.5em 0.25em;
 	}
 
 	& > div {
@@ -30,7 +32,7 @@ export const Form = styled.form`
 export const RadioInputContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 0 16px;
+	margin: 12px 0;
 `;
 
 export const RadioInput = styled.input`
@@ -75,4 +77,8 @@ export const RelateCashSection = styled.div`
 export const CurrentTotalCashSection = styled.div`
 	font-size: 14px;
 	margin-bottom: 16px;
+`;
+
+export const TotalCostSection = styled.div`
+	margin-bottom: 2px;
 `;

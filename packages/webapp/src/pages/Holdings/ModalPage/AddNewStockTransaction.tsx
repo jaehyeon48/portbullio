@@ -200,6 +200,9 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 					value={dateInput}
 					handleChange={handleChangeDate}
 				/>
+				<Style.TotalCostSection>
+					총 합계: {formatCurrency(Number(priceInput) * Number(quantityInput), 'usd')}
+				</Style.TotalCostSection>
 				<Style.SubmitButton type="submit" backgroundColor="var(--primary)">
 					추가하기
 				</Style.SubmitButton>
