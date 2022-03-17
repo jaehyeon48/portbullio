@@ -45,7 +45,7 @@ export default function Cash() {
 					<ListPage.ListHeaderContainer>
 						<Style.DateSection>날짜</Style.DateSection>
 						<Style.CashTypeSection>종류</Style.CashTypeSection>
-						<Style.AmountSection>수량</Style.AmountSection>
+						<Style.AmountSection>금액</Style.AmountSection>
 						<Style.MemoSection>메모</Style.MemoSection>
 						<Style.ActionsSection />
 					</ListPage.ListHeaderContainer>

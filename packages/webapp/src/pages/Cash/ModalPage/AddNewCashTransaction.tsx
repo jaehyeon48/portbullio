@@ -90,7 +90,7 @@ export default function AddCashTransaction({ portfolioId, closeFunction }: Props
 				</Style.RadioInputContainer>
 				<TextInput
 					htmlFor="new-cash-transaction-amount"
-					labelName="수량"
+					labelName="금액"
 					value={amountInput}
 					handleChange={handleChangeAmount}
 				/>

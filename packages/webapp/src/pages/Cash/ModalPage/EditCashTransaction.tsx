@@ -144,7 +144,7 @@ export default function EditCashTransaction({
 
 				<TextInput
 					htmlFor="edit-stock-transaction-quantity"
-					labelName="수량"
+					labelName="금액"
 					value={amountInput}
 					handleChange={handleChangeAmount}
 				/>
