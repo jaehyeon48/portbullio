@@ -4,7 +4,7 @@ import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary, PortfolioSelect, useSelectPortfolioId } from '@components/index';
 import { useModal } from '@hooks/Modal';
 import { formatCurrency, calcTotalCashAmount } from '@utils';
-import { useCashTransactionList } from '../queries';
+import { useCashTransactionList } from '@hooks/ReactQuery';
 import * as Style from './styles';
 import CashTransactionList from './CashTransactionList';
 import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';

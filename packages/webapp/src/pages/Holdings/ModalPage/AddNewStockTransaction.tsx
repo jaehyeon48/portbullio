@@ -2,9 +2,16 @@ import { SyntheticEvent, useState } from 'react';
 import { StockTransactionType } from '@prisma/client';
 import { SearchStocks, TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
-import { isValidRealNumber, isValidInteger, datetimeLocalFormat, getHoldingOfTicker } from '@utils';
 import toast from '@lib/toast';
-import { useHoldingsList } from '@hooks/ReactQuery';
+import { useHoldingsList, useCashTransactionList } from '@hooks/ReactQuery';
+import {
+	isValidRealNumber,
+	isValidInteger,
+	datetimeLocalFormat,
+	getHoldingOfTicker,
+	calcTotalCashAmount,
+	formatCurrency
+} from '@utils';
 import * as Style from './styles';
 import { useAddStockTransaction } from '../queries';
 
@@ -15,8 +22,10 @@ interface Props {
 
 export default function AddNewStockTransaction({ portfolioId, closeFunction }: Props) {
 	const holdingsList = useHoldingsList(portfolioId);
+	const cashList = useCashTransactionList(portfolioId);
 	const addStockTransactionMutation = useAddStockTransaction();
 	const [transactionTypeInput, setTransactionTypeInput] = useState<StockTransactionType>('buy');
+	const [relateCashInput, setRelateCashInput] = useState(false);
 	const [tickerInput, setTickerInput] = useState('');
 	const [priceInput, setPriceInput] = useState('');
 	const [quantityInput, setQuantityInput] = useState('');
@@ -25,6 +34,10 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 	function handleChangeTransactionType(e: SyntheticEvent) {
 		const target = e.target as HTMLInputElement;
 		setTransactionTypeInput(target.value as StockTransactionType);
+	}
+
+	function handleRelateCash() {
+		setRelateCashInput(prev => !prev);
 	}
 
 	function handleChangePrice(e: SyntheticEvent) {
@@ -54,6 +67,11 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 		return holdingInfo.buyQuantity - holdingInfo.sellQuantity >= sellQuantity;
 	}
 
+	function isCashAmountEnough() {
+		const totalCashAmount = calcTotalCashAmount(cashList.data);
+		return totalCashAmount >= Number(priceInput) * Number(quantityInput);
+	}
+
 	function validateInputs() {
 		if (tickerInput === '') {
 			toast.error({ message: '티커를 입력해 주세요.' });
@@ -77,6 +95,11 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 			toast.error({ message: '매도 수량이 현재 보유 수량보다 많습니다.' });
 			return false;
 		}
+
+		if (relateCashInput && transactionTypeInput === 'buy' && !isCashAmountEnough()) {
+			toast.error({ message: '현금 보유량이 부족합니다.' });
+			return false;
+		}
 		return true;
 	}
 
@@ -96,6 +119,7 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 				price: Number(priceInput),
 				quantity: Number(quantityInput),
 				type: transactionTypeInput,
+				relateCash: relateCashInput,
 				avgBuyCost,
 				date: dateInput
 			},
@@ -111,7 +135,7 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 
 	return (
 		<Style.Container>
-			<Style.Header>거래내역 추가</Style.Header>
+			<Style.Header>주식 거래내역 추가</Style.Header>
 			<SearchStocks onResultClick={handleClickSearchStockItem} />
 			<Style.Form onSubmit={handleSubmitNewStockTransaction}>
 				<Style.RadioInputContainer>
@@ -134,6 +158,23 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 					/>
 					<Style.RadioInputLabel htmlFor="radio-sell-stock">매도</Style.RadioInputLabel>
 				</Style.RadioInputContainer>
+				<Style.RelateCashSection>
+					<input
+						id="relate-cash"
+						type="checkbox"
+						checked={relateCashInput}
+						onChange={handleRelateCash}
+					/>
+					<label htmlFor="relate-cash">
+						{transactionTypeInput === 'buy'
+							? '보유현금에서 금액만큼 차감하기'
+							: '보유현금에 금액만큼 예치하기'}
+					</label>
+				</Style.RelateCashSection>
+				<Style.CurrentTotalCashSection>
+					<span>현재 보유현금: </span>
+					{formatCurrency(calcTotalCashAmount(cashList.data), 'usd')}
+				</Style.CurrentTotalCashSection>
 				<TextInput
 					htmlFor="new-stock-transaction-ticker"
 					labelName="종목 티커"

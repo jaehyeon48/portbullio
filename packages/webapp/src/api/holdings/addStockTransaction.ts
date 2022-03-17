@@ -1,5 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { StockTransactionLog, StockTransactionType } from '@prisma/client';
+import { StockTransactionLog, StockTransactionType, CashTransactionLog } from '@prisma/client';
 import { Holding } from '@portbullio/shared/src/types';
 import envConfig from '@configs/env';
 
@@ -9,6 +9,7 @@ export interface AddStockTransactionArgs {
 	price: number;
 	quantity: number;
 	type: StockTransactionType;
+	relateCash: boolean;
 	avgBuyCost?: number;
 	date: string;
 }
@@ -16,6 +17,7 @@ export interface AddStockTransactionArgs {
 interface AddStockTransactionRes {
 	data: {
 		newStockTransaction: StockTransactionLog;
+		newCashTransaction?: CashTransactionLog;
 		holdingsOfTicker: Holding[];
 	};
 }
@@ -26,6 +28,7 @@ export async function addStockTransaction({
 	price,
 	quantity,
 	type,
+	relateCash,
 	avgBuyCost,
 	date
 }: AddStockTransactionArgs) {
@@ -43,6 +46,7 @@ export async function addStockTransaction({
 		price,
 		quantity,
 		type,
+		relateCash,
 		avgBuyCost,
 		date
 	});
@@ -53,8 +57,5 @@ export async function addStockTransaction({
 		config
 	);
 
-	return {
-		newStockTransaction: data.newStockTransaction,
-		holdingsOfTicker: data.holdingsOfTicker
-	};
+	return { ...data };
 }

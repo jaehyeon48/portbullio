@@ -1,7 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { StockTransactionType } from '@prisma/client';
 import { sessionValidator } from '@middlewares';
-import * as stockTransactionService from '@services/stockTransaction';
+import { cashService, stockTransactionService } from '@services/index';
 
 interface PortfolioIdParam {
 	portfolioId: string;
@@ -29,6 +29,7 @@ interface AddStockTransactionReqBody {
 	quantity: number;
 	memo?: string;
 	type: StockTransactionType;
+	relateCash: boolean;
 	avgBuyCost?: number;
 	date: string;
 }
@@ -98,6 +99,7 @@ export default (): express.Router => {
 				quantity,
 				memo = '',
 				type,
+				relateCash,
 				avgBuyCost,
 				date
 			} = req.body as unknown as AddStockTransactionReqBody;
@@ -113,16 +115,31 @@ export default (): express.Router => {
 					avgBuyCost,
 					date
 				});
+
 				const allStockTransactionsOfTicker =
 					await stockTransactionService.getStockTransactionsOfATicker({
 						portfolioId: Number(portfolioId),
 						ticker,
 						orderByType: 'desc'
 					});
+
 				const holdingsOfTicker = await stockTransactionService.calculateAvgCost(
 					allStockTransactionsOfTicker
 				);
-				res.status(201).json({ newStockTransaction, holdingsOfTicker });
+
+				let newCashTransaction;
+				if (relateCash) {
+					const note = `${ticker} ${quantity}주 ${type === 'buy' ? '매수' : '매도'}`;
+					const stockTransactionType = type;
+					newCashTransaction = await cashService.addCashTransaction({
+						portfolioId: Number(portfolioId),
+						amount: Number(price) * Number(quantity),
+						memo: note,
+						type: stockTransactionType === 'buy' ? 'purchased' : 'sold',
+						date
+					});
+				}
+				res.status(201).json({ newStockTransaction, newCashTransaction, holdingsOfTicker });
 			} catch (error) {
 				next(error);
 			}

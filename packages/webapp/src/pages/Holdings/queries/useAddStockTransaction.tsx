@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { StockTransactionLog } from '@prisma/client';
+import { StockTransactionLog, CashTransactionLog } from '@prisma/client';
 import { Holding } from '@portbullio/shared/src/types';
 import { addStockTransaction, AddStockTransactionArgs } from '@api/holdings';
 import { updateArray, sortByString, sortByDate } from '@utils';
@@ -9,10 +9,31 @@ export default function useAddStockTransaction() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		({ portfolioId, ticker, price, quantity, type, avgBuyCost, date }: AddStockTransactionArgs) =>
-			addStockTransaction({ portfolioId, price, quantity, ticker, type, avgBuyCost, date }),
+		({
+			portfolioId,
+			ticker,
+			price,
+			quantity,
+			type,
+			relateCash,
+			avgBuyCost,
+			date
+		}: AddStockTransactionArgs) =>
+			addStockTransaction({
+				portfolioId,
+				price,
+				quantity,
+				ticker,
+				type,
+				relateCash,
+				avgBuyCost,
+				date
+			}),
 		{
-			onSuccess: ({ holdingsOfTicker, newStockTransaction }, { portfolioId, ticker }) => {
+			onSuccess: (
+				{ holdingsOfTicker, newStockTransaction, newCashTransaction },
+				{ portfolioId, ticker }
+			) => {
 				let shouldInvalidateTransactionQuery = false;
 
 				queryClient.setQueryData<Holding[]>(
@@ -40,6 +61,18 @@ export default function useAddStockTransaction() {
 						return [];
 					}
 				);
+
+				if (newCashTransaction) {
+					queryClient.setQueryData<CashTransactionLog[]>(
+						portfolioKeys.cash(portfolioId),
+						prevCashTransactionLogs =>
+							prevCashTransactionLogs
+								? [...prevCashTransactionLogs, newCashTransaction].sort((a, b) =>
+										sortByDate(a.createdAt, b.createdAt, 'desc')
+								  )
+								: [newCashTransaction]
+					);
+				}
 
 				if (shouldInvalidateTransactionQuery) {
 					queryClient.invalidateQueries(portfolioKeys.stockTransactions(portfolioId, ticker));

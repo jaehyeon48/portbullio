@@ -30,7 +30,7 @@ export const Form = styled.form`
 export const RadioInputContainer = styled.div`
 	display: flex;
 	justify-content: space-between;
-	margin: 20px 0;
+	margin: 20px 0 16px;
 `;
 
 export const RadioInput = styled.input`
@@ -59,4 +59,20 @@ export const SubmitButton = styled.button<SubmitButtonProps>`
 	width: 100%;
 	border-radius: 4px;
 	padding: 0.4em 0;
+`;
+
+export const RelateCashSection = styled.div`
+	display: flex;
+	align-items: center;
+
+	& > input[type='checkbox'] {
+		width: fit-content;
+		margin: 3px 6px 0 0;
+		transform: scale(1.3);
+	}
+`;
+
+export const CurrentTotalCashSection = styled.div`
+	font-size: 14px;
+	margin-bottom: 16px;
 `;
