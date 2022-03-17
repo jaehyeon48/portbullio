@@ -1,5 +1,7 @@
+import { SyntheticEvent } from 'react';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { CashTransactionLog, CashTransactionType } from '@prisma/client';
+import { useModal } from '@hooks/Modal';
 import { formatCurrency, formatDate } from '@utils';
 import {
 	StickyNote as StickyNoteIcon,
@@ -7,13 +9,42 @@ import {
 	Pencil as PencilIcon
 } from '@components/Icon';
 import * as Style from './styles';
+import EditCashTransaction from '../ModalPage/EditCashTransaction';
 
 interface Props {
+	portfolioId: number;
 	cashList: CashTransactionLog[] | undefined;
 	isLoading: boolean;
 }
 
-export default function CashTransactionList({ cashList, isLoading }: Props) {
+interface OpenEditModalArgs {
+	e: SyntheticEvent;
+	cashTransactionId: number;
+	amount: number;
+	type: CashTransactionType;
+	date: string;
+}
+
+export default function CashTransactionList({ portfolioId, cashList, isLoading }: Props) {
+	const { openModal } = useModal();
+
+	function openEditCashTransactionModal({
+		e,
+		cashTransactionId,
+		amount,
+		type,
+		date
+	}: OpenEditModalArgs) {
+		openModal(
+			e,
+			<EditCashTransaction
+				cashTransactionId={cashTransactionId}
+				portfolioId={portfolioId}
+				initialInputs={{ amount, type, date }}
+			/>
+		);
+	}
+
 	if (isLoading) {
 		return <EmptyListNotice>로딩 중...</EmptyListNotice>;
 	}
@@ -35,7 +66,18 @@ export default function CashTransactionList({ cashList, isLoading }: Props) {
 					</Style.MemoSection>
 					<Style.NoteSection>{formatCashNote(note)}</Style.NoteSection>
 					<Style.ActionsSection>
-						<Style.CashTransactionEditButton type="button">
+						<Style.CashTransactionEditButton
+							type="button"
+							onClick={e =>
+								openEditCashTransactionModal({
+									e,
+									cashTransactionId: id,
+									amount,
+									type: transactionType,
+									date: createdAt as unknown as string
+								})
+							}
+						>
 							<PencilIcon width={16} height={16} />
 							내역 수정
 						</Style.CashTransactionEditButton>

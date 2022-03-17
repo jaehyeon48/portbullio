@@ -56,6 +56,7 @@ export default function Cash() {
 						refetch={cashTransactions.refetch}
 					>
 						<CashTransactionList
+							portfolioId={selectedPortfolioId ?? 0}
 							cashList={cashTransactions.data}
 							isLoading={cashTransactions.isLoading}
 						/>

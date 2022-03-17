@@ -60,3 +60,59 @@ export const SubmitButton = styled.button<SubmitButtonProps>`
 	border-radius: 4px;
 	padding: 0.4em 0;
 `;
+
+export const EditTransactionHeader = styled.header`
+	font-size: 24px;
+	text-align: center;
+	padding-bottom: 1em;
+`;
+
+export const EditTransactionContainer = styled.div`
+	padding: 0 1em;
+`;
+
+export const EditTransactionForm = styled.form`
+	width: 450px;
+	& input {
+		margin-bottom: 16px;
+		width: 100%;
+	}
+
+	& > div {
+		width: 100%;
+	}
+`;
+
+export const EditTransactionRadioInputContainer = styled.div`
+	display: flex;
+	justify-content: space-between;
+	margin: 20px 0;
+`;
+
+export const EditTransactionRadioInput = styled.input`
+	display: none;
+`;
+
+export const EditTransactionRadioInputLabel = styled.label`
+	cursor: pointer;
+	width: 45%;
+	padding: 0.4em 0.8em;
+	border: 1px solid var(--baseBorderColor);
+	border-radius: 4px;
+	text-align: center;
+
+	${EditTransactionRadioInput}:checked + & {
+		background-color: var(--lightBlue);
+		color: var(--white);
+		border: 1px solid var(--lightBlue);
+	}
+`;
+
+export const EditTransactionSubmitButton = styled.button<SubmitButtonProps>`
+	${buttonMixin};
+	background-color: ${({ backgroundColor }) => backgroundColor};
+	color: var(--white);
+	width: 100%;
+	border-radius: 4px;
+	padding: 0.4em 0;
+`;
