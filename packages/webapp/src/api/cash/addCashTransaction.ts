@@ -6,7 +6,6 @@ export interface AddCashTransactionArgs {
 	portfolioId: number;
 	amount: number;
 	type: CashTransactionType;
-	note?: string;
 	date: string;
 }
 
@@ -20,7 +19,6 @@ export async function addCashTransaction({
 	portfolioId,
 	amount,
 	type,
-	note,
 	date
 }: AddCashTransactionArgs) {
 	const { serverEndPoint } = envConfig;
@@ -35,7 +33,6 @@ export async function addCashTransaction({
 	const formData = JSON.stringify({
 		amount,
 		type,
-		note,
 		date
 	});
 

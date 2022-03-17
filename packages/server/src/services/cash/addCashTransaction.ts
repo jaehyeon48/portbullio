@@ -4,7 +4,6 @@ import { CashTransactionType } from '@prisma/client';
 interface AddCashTransactionArgs {
 	portfolioId: number;
 	amount: number;
-	note?: string | null;
 	type: CashTransactionType;
 	date: string;
 }
@@ -12,7 +11,6 @@ interface AddCashTransactionArgs {
 export default async function addCashTransaction({
 	portfolioId,
 	amount,
-	note = null,
 	type,
 	date
 }: AddCashTransactionArgs) {
@@ -20,7 +18,6 @@ export default async function addCashTransaction({
 		data: {
 			portfolioId,
 			amount,
-			note,
 			transactionType: type,
 			createdAt: new Date(date)
 		}

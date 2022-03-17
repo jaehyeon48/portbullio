@@ -54,7 +54,7 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 			isListEmpty={!cashList || cashList.length === 0}
 			emptyListNoticeMessage="현금 거래내역이 없습니다."
 		>
-			{cashList?.map(({ id, createdAt, transactionType, amount, memo, note }) => (
+			{cashList?.map(({ id, createdAt, transactionType, amount, memo }) => (
 				<ListItem key={id}>
 					<Style.DateSection>{formatDate(createdAt as unknown as string)}</Style.DateSection>
 					<Style.CashTypeSection>{translateCashTypeToKor(transactionType)}</Style.CashTypeSection>
@@ -64,7 +64,6 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 							<StickyNoteIcon />
 						</Style.MemoOpenButton>
 					</Style.MemoSection>
-					<Style.NoteSection>{formatCashNote(note)}</Style.NoteSection>
 					<Style.ActionsSection>
 						<Style.CashTransactionEditButton
 							type="button"
@@ -90,19 +89,6 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 			))}
 		</ListItems>
 	);
-}
-
-function formatCashNote(note: string | null) {
-	if (note === null) return '';
-
-	const [noteType, noteContent] = note.split(',');
-	return `${noteContent} ${noteTypeStr(noteType)}`;
-}
-
-function noteTypeStr(noteType: string) {
-	if (noteType === 's') return '매도';
-	if (noteType === 'b') return '매수';
-	return '배당';
 }
 
 function translateCashTypeToKor(type: CashTransactionType) {

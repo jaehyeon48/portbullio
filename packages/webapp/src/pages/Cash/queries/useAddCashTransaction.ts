@@ -8,8 +8,8 @@ export default function useAddCashTransaction() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		({ portfolioId, amount, type, note, date }: AddCashTransactionArgs) =>
-			addCashTransaction({ portfolioId, amount, type, note, date }),
+		({ portfolioId, amount, type, date }: AddCashTransactionArgs) =>
+			addCashTransaction({ portfolioId, amount, type, date }),
 		{
 			onSuccess: ({ newCashTransaction }, { portfolioId }) => {
 				queryClient.setQueryData<CashTransactionLog[]>(

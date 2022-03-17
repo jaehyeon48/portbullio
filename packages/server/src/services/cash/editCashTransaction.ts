@@ -5,7 +5,6 @@ interface EditCashTransactionArgs {
 	cashTransactionId: number;
 	amount: number;
 	type: CashTransactionType;
-	note?: string;
 	date: string;
 }
 
@@ -13,7 +12,6 @@ export default async function editCashTransaction({
 	cashTransactionId,
 	amount,
 	type,
-	note,
 	date
 }: EditCashTransactionArgs) {
 	const editedCashTransaction = await prisma.cashTransactionLog.update({
@@ -21,7 +19,6 @@ export default async function editCashTransaction({
 		data: {
 			amount,
 			transactionType: type,
-			note,
 			createdAt: new Date(date)
 		}
 	});

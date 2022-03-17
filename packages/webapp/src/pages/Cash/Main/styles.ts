@@ -3,7 +3,7 @@ import { memoButtonMixin } from '@styles/Mixins';
 import { listActionButtonStyle } from '@components/ListPage';
 
 export const DateSection = styled.div`
-	min-width: 120px;
+	min-width: 150px;
 `;
 
 export const CashTypeSection = styled.div`
@@ -20,10 +20,6 @@ export const MemoSection = styled.div`
 
 export const MemoOpenButton = styled.button`
 	${memoButtonMixin};
-`;
-
-export const NoteSection = styled.div`
-	min-width: 210px;
 `;
 
 export const ActionsSection = styled.div`

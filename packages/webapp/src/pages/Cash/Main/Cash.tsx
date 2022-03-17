@@ -47,7 +47,6 @@ export default function Cash() {
 						<Style.CashTypeSection>종류</Style.CashTypeSection>
 						<Style.AmountSection>수량</Style.AmountSection>
 						<Style.MemoSection>메모</Style.MemoSection>
-						<Style.NoteSection>비고</Style.NoteSection>
 						<Style.ActionsSection />
 					</ListPage.ListHeaderContainer>
 					<ListQueryErrorBoundary
