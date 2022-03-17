@@ -10,6 +10,7 @@ import {
 } from '@components/Icon';
 import * as Style from './styles';
 import EditCashTransaction from '../ModalPage/EditCashTransaction';
+import DeleteCashTransactionConfirm from '../ModalPage/DeleteCashTransactionConfirm';
 
 interface Props {
 	portfolioId: number;
@@ -41,6 +42,16 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 				cashTransactionId={cashTransactionId}
 				portfolioId={portfolioId}
 				initialInputs={{ amount, type, date }}
+			/>
+		);
+	}
+
+	function openDeleteCashTransactionConfirmModal(e: SyntheticEvent, cashTransactionId: number) {
+		openModal(
+			e,
+			<DeleteCashTransactionConfirm
+				cashTransactionId={cashTransactionId}
+				portfolioId={portfolioId}
 			/>
 		);
 	}
@@ -80,7 +91,10 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 							<PencilIcon width={16} height={16} />
 							내역 수정
 						</Style.CashTransactionEditButton>
-						<Style.CashTransactionDeleteButton type="button">
+						<Style.CashTransactionDeleteButton
+							type="button"
+							onClick={e => openDeleteCashTransactionConfirmModal(e, id)}
+						>
 							<TrashCanIcon width={16} height={16} />
 							삭제
 						</Style.CashTransactionDeleteButton>
