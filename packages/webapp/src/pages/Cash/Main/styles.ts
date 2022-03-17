@@ -1,6 +1,17 @@
 import styled from 'styled-components';
-import { memoButtonMixin } from '@styles/Mixins';
-import { listActionButtonStyle } from '@components/ListPage';
+import { memoButtonMixin, priceColorMixin } from '@styles/Mixins';
+import { listActionButtonStyle, Card } from '@components/index';
+
+export const TotalCashAmountSection = styled(Card)`
+	${priceColorMixin};
+	padding: 7px 5px;
+	margin-bottom: 18px;
+
+	& > span {
+		color: var(--baseTextColor);
+		font-weight: 500;
+	}
+`;
 
 export const DateSection = styled.div`
 	min-width: 150px;
@@ -11,6 +22,7 @@ export const CashTypeSection = styled.div`
 `;
 
 export const AmountSection = styled.div`
+	${priceColorMixin};
 	min-width: 200px;
 `;
 

@@ -3,6 +3,7 @@ import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary, PortfolioSelect, useSelectPortfolioId } from '@components/index';
 import { useModal } from '@hooks/Modal';
+import { formatCurrency, calcTotalCashAmount } from '@utils';
 import { useCashTransactionList } from '../queries';
 import * as Style from './styles';
 import CashTransactionList from './CashTransactionList';
@@ -11,6 +12,7 @@ import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
 export default function Cash() {
 	const selectedPortfolioId = useSelectPortfolioId();
 	const cashTransactions = useCashTransactionList(selectedPortfolioId ?? 0);
+	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
 
 	const { openModal } = useModal();
 
@@ -41,6 +43,10 @@ export default function Cash() {
 				</ListPage.SearchInputContainer>
 			</ListPage.UpperSection>
 			<ListPage.LowerSection>
+				<Style.TotalCashAmountSection value={totalCashAmount}>
+					<span>현금 합계: </span>
+					{formatCurrency(totalCashAmount, 'usd')}
+				</Style.TotalCashAmountSection>
 				<ListPage.ListContainer>
 					<ListPage.ListHeaderContainer>
 						<Style.DateSection>날짜</Style.DateSection>

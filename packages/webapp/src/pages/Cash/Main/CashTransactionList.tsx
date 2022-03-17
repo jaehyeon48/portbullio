@@ -69,7 +69,10 @@ export default function CashTransactionList({ portfolioId, cashList, isLoading }
 				<ListItem key={id}>
 					<Style.DateSection>{formatDate(createdAt as unknown as string)}</Style.DateSection>
 					<Style.CashTypeSection>{translateCashTypeToKor(transactionType)}</Style.CashTypeSection>
-					<Style.AmountSection>{formatCurrency(amount, 'usd')}</Style.AmountSection>
+					<Style.AmountSection value={priceColor(amount, transactionType)}>
+						{minusPrefix(transactionType)}
+						{formatCurrency(amount, 'usd')}
+					</Style.AmountSection>
 					<Style.MemoSection>
 						<Style.MemoOpenButton type="button" isMemoExist={memo !== null}>
 							<StickyNoteIcon />
@@ -111,4 +114,14 @@ function translateCashTypeToKor(type: CashTransactionType) {
 	if (type === 'purchased') return '매수';
 	if (type === 'sold') return '매도';
 	return '배당';
+}
+
+function priceColor(amount: number, type: CashTransactionType) {
+	if (amount === 0) return 0;
+	if (type === 'withdraw' || type === 'purchased') return -1;
+	return 1;
+}
+
+function minusPrefix(type: CashTransactionType) {
+	return type === 'withdraw' || type === 'purchased' ? '-' : '';
 }
