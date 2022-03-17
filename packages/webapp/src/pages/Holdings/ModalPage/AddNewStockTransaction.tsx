@@ -1,9 +1,8 @@
 import { SyntheticEvent, useState } from 'react';
 import { StockTransactionType } from '@prisma/client';
-import { Holding } from '@portbullio/shared/src/types';
 import { SearchStocks, TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
-import { isValidRealNumber, isValidInteger, datetimeLocalFormat } from '@utils';
+import { isValidRealNumber, isValidInteger, datetimeLocalFormat, getHoldingOfTicker } from '@utils';
 import toast from '@lib/toast';
 import { useHoldingsList } from '@hooks/ReactQuery';
 import * as Style from './styles';
@@ -50,7 +49,7 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 	}
 
 	function isValidSellQuantity(ticker: string, sellQuantity: number) {
-		const holdingInfo = getTickerHolding(holdingsList.data, ticker);
+		const holdingInfo = getHoldingOfTicker(holdingsList.data, ticker);
 		if (!holdingInfo) return false;
 		return holdingInfo.buyQuantity - holdingInfo.sellQuantity >= sellQuantity;
 	}
@@ -88,7 +87,7 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 		const avgBuyCost =
 			transactionTypeInput === 'buy'
 				? undefined
-				: getTickerHolding(holdingsList.data, tickerInput)?.avgCost!;
+				: getHoldingOfTicker(holdingsList.data, tickerInput)?.avgCost!;
 
 		addStockTransactionMutation.mutate(
 			{
@@ -166,8 +165,4 @@ export default function AddNewStockTransaction({ portfolioId, closeFunction }: P
 			</Style.Form>
 		</Style.Container>
 	);
-}
-
-function getTickerHolding(holdingsList: Holding[] | undefined, ticker: string) {
-	return holdingsList?.filter(holding => holding.ticker === ticker)[0] ?? undefined;
 }
