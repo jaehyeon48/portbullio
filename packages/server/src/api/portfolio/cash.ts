@@ -7,7 +7,11 @@ interface PortfolioIdParam {
 	portfolioId: string;
 }
 
-interface AddCashTransactionReqBody {
+interface CashTransactionIdParam {
+	cashTransactionId: number;
+}
+
+interface AddAndEditCashTransactionReqBody {
 	amount: number;
 	note?: string;
 	type: CashTransactionType;
@@ -37,7 +41,7 @@ export default (): express.Router => {
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
 			const { portfolioId } = req.params as unknown as PortfolioIdParam;
-			const { amount, note, type, date } = req.body as unknown as AddCashTransactionReqBody;
+			const { amount, note, type, date } = req.body as unknown as AddAndEditCashTransactionReqBody;
 
 			try {
 				const newCashTransaction = await cashService.addCashTransaction({
@@ -48,6 +52,29 @@ export default (): express.Router => {
 					date
 				});
 				res.json({ newCashTransaction });
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
+	router.patch(
+		'/:portfolioId/cash/:cashTransactionId',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { cashTransactionId } = req.params as unknown as CashTransactionIdParam;
+			const { amount, date, note, type } = req.body as unknown as AddAndEditCashTransactionReqBody;
+
+			try {
+				const editedCashTransaction = await cashService.editCashTransaction({
+					cashTransactionId: Number(cashTransactionId),
+					amount,
+					note,
+					type,
+					date
+				});
+
+				res.json({ editedCashTransaction });
 			} catch (error) {
 				next(error);
 			}
