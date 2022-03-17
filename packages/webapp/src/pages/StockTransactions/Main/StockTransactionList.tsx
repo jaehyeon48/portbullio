@@ -133,6 +133,7 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 								<Style.MemoSection>
 									<Style.MemoOpenButton
 										type="button"
+										isMemoExist={!!memo}
 										onClick={e => handleOpenMemoModal({ e, stockTransactionId: id, ticker, memo })}
 									>
 										<StickyNoteIcon />

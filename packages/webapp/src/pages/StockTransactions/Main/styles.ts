@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { buttonMixin, priceColorMixin } from '@styles/Mixins';
+import { buttonMixin, priceColorMixin, memoButtonMixin } from '@styles/Mixins';
 import { listActionButtonStyle, Card } from '@components/index';
 
 export const TotalRealizedProfitLossSection = styled(Card)`
@@ -50,12 +50,7 @@ export const MemoSection = styled.div`
 `;
 
 export const MemoOpenButton = styled.button`
-	${buttonMixin}
-	padding: 0;
-
-	& > svg {
-		fill: var(--baseTextColor);
-	}
+	${memoButtonMixin};
 `;
 
 export const RealizedProfitAndLossSection = styled.div`

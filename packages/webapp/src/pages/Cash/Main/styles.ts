@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { buttonMixin } from '@styles/Mixins';
+import { memoButtonMixin } from '@styles/Mixins';
 import { listActionButtonStyle } from '@components/ListPage';
 
 export const DateSection = styled.div`
@@ -19,12 +19,7 @@ export const MemoSection = styled.div`
 `;
 
 export const MemoOpenButton = styled.button`
-	${buttonMixin}
-	padding: 0;
-
-	& > svg {
-		fill: var(--baseTextColor);
-	}
+	${memoButtonMixin};
 `;
 
 export const NoteSection = styled.div`

@@ -23,13 +23,13 @@ export default function CashTransactionList({ cashList, isLoading }: Props) {
 			isListEmpty={!cashList || cashList.length === 0}
 			emptyListNoticeMessage="현금 거래내역이 없습니다."
 		>
-			{cashList?.map(({ id, createdAt, transactionType, amount, note }) => (
+			{cashList?.map(({ id, createdAt, transactionType, amount, memo, note }) => (
 				<ListItem key={id}>
 					<Style.DateSection>{formatDate(createdAt as unknown as string)}</Style.DateSection>
 					<Style.CashTypeSection>{translateCashTypeToKor(transactionType)}</Style.CashTypeSection>
 					<Style.AmountSection>{formatCurrency(amount, 'usd')}</Style.AmountSection>
 					<Style.MemoSection>
-						<Style.MemoOpenButton type="button">
+						<Style.MemoOpenButton type="button" isMemoExist={memo !== null}>
 							<StickyNoteIcon />
 						</Style.MemoOpenButton>
 					</Style.MemoSection>
