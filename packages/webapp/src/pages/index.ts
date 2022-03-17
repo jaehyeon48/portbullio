@@ -7,4 +7,5 @@ export { default as UserSettingsPage } from './UserSettings/UserSettings';
 export { default as PortfoliosPage } from './Portfolios/Main/Portfolios';
 export { default as HoldingsPage } from './Holdings/Main/Holdings';
 export { default as StockTransactionsPage } from './StockTransactions/Main/StockTransactions';
+export { default as CashPage } from './Cash/Main/Cash';
 export * from './Stock';

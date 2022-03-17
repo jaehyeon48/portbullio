@@ -6,6 +6,7 @@ interface PortfolioKeys {
 		portfolioId: number,
 		ticker: string
 	) => readonly ['portfolios', number, 'holdings', string];
+	cash: (portfolioId: number) => readonly ['portfolios', number, 'cash'];
 }
 
 interface AvatarKeys {
@@ -17,7 +18,8 @@ export const portfolioKeys: PortfolioKeys = {
 	defaultId: () => [...portfolioKeys.all, 'defaultId'] as const,
 	holdings: (portfolioId: number) => [...portfolioKeys.all, portfolioId, 'holdings'] as const,
 	stockTransactions: (portfolioId: number, ticker: string) =>
-		[...portfolioKeys.holdings(portfolioId), ticker] as const
+		[...portfolioKeys.holdings(portfolioId), ticker] as const,
+	cash: (portfolioId: number) => [...portfolioKeys.all, portfolioId, 'cash'] as const
 };
 
 export const avatarKeys: AvatarKeys = {
