@@ -51,6 +51,7 @@ export default createGlobalStyle`
 
     /* Card */
     --cardBgColor: hsla(var(--colorBaseBlueGray), 96%);
+    --cardHoverBgColor: hsla(var(--colorBaseBlueGray), 90%);
     --cardBoxShadow: var(--boxShadowDimension) hsla(var(--colorBaseBlueGray), 0%, 0.1);
 
     /* Home Page */
@@ -102,6 +103,7 @@ export default createGlobalStyle`
 
     /* Card */
     --cardBgColor: hsla(var(--colorBaseBlueGray), 18%);
+    --cardHoverBgColor: hsla(var(--colorBaseBlueGray), 25%);
     --cardBoxShadow: none;
 
     /* Home Page */

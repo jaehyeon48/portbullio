@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export interface CardStyleProps {
 	width?: string | number;
 	height?: string | number;
+	bgColorOnHover?: boolean;
 }
 
 const Card = styled.div<CardStyleProps>`
@@ -13,6 +14,10 @@ const Card = styled.div<CardStyleProps>`
 	box-shadow: var(--cardBoxShadow);
 	width: ${({ width }) => width ?? '100%'};
 	height: ${({ height }) => height ?? '100%'};
+
+	&:hover {
+		${({ bgColorOnHover }) => bgColorOnHover && 'background-color: var(--cardHoverBgColor)'};
+	}
 `;
 
 export default Card;
