@@ -19,7 +19,7 @@ export default function Portfolios() {
 
 	return (
 		<>
-			<ListPage.UpperSection>
+			<ListPage.UpperSection maxWidth="1440px">
 				<ListPage.MainHeader>내 포트폴리오</ListPage.MainHeader>
 				<ListPage.NumOfItems data-testid="num-of-my-portfolios">
 					{portfolios.data?.length ?? 0}개
@@ -38,7 +38,7 @@ export default function Portfolios() {
 					<Icon.Search width={26} height={26} />
 				</ListPage.SearchInputContainer>
 			</ListPage.UpperSection>
-			<ListPage.LowerSection>
+			<ListPage.LowerSection maxWidth="1200px">
 				<ListPage.ListContainer>
 					<ListPage.ListHeaderContainer>
 						<Style.PortfolioNameSection>이름</Style.PortfolioNameSection>
