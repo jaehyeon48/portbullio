@@ -9,18 +9,17 @@ const LIST_ITEM_LEFT_RIGHT_PADDING_PX = 6;
 
 const sectionStyle = css`
 	max-width: 1680px;
-	margin: 0 auto;
 	padding: 0 40px;
 `;
 
 export const UpperSection = styled.section`
 	${sectionStyle};
-	margin-top: 20px;
+	margin: 20px auto 0;
 `;
 
 export const LowerSection = styled.section`
 	${sectionStyle};
-	margin-top: 50px;
+	margin: 50px auto;
 `;
 
 export const MainHeader = styled.h1`
