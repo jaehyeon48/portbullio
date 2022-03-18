@@ -5,6 +5,10 @@ interface ListItemsContainerProps {
 	maxHeight?: string;
 }
 
+interface MaxWidthProps {
+	maxWidth?: string;
+}
+
 const LIST_ITEM_LEFT_RIGHT_PADDING_PX = 6;
 
 const sectionStyle = css`
@@ -12,14 +16,16 @@ const sectionStyle = css`
 	padding: 0 40px;
 `;
 
-export const UpperSection = styled.section`
+export const UpperSection = styled.section<MaxWidthProps>`
 	${sectionStyle};
 	margin: 20px auto 0;
+	max-width: ${({ maxWidth }) => maxWidth ?? 'none'};
 `;
 
-export const LowerSection = styled.section`
+export const LowerSection = styled.section<MaxWidthProps>`
 	${sectionStyle};
 	margin: 50px auto;
+	max-width: ${({ maxWidth }) => maxWidth ?? 'none'};
 `;
 
 export const MainHeader = styled.h1`
