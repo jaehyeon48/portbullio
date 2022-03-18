@@ -9,3 +9,4 @@ export { default as HoldingsPage } from './Holdings/Main/Holdings';
 export { default as StockTransactionsPage } from './StockTransactions/Main/StockTransactions';
 export { default as CashPage } from './Cash/Main/Cash';
 export * from './Stock';
+export { default as NotFoundPage } from './NotFound/NotFound';

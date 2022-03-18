@@ -1,4 +1,5 @@
 import { AngleRight } from '@components/index';
+import { useTitle } from '@hooks/Title';
 import HeroImage from './HeroImage';
 import * as Style from './styles';
 import Top5Stocks from './Top5Stocks';
@@ -6,6 +7,8 @@ import HomeMainButton from './HomeMainButton';
 import IndexInfo from './IndexInfo';
 
 export default function Home() {
+	useTitle('portbullio');
+
 	return (
 		<>
 			<Style.Section justifyContent="space-evenly">

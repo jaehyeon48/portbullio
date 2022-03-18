@@ -4,10 +4,11 @@ import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
 import { EventEmitterListeners, PrivateRoute } from '@components/index';
 import { checkAuth } from '@api/auth';
-import { useAuth, useAuthUpdate } from '@hooks/index';
+import { useAuth, useAuthUpdate, useThemeMode } from '@hooks/index';
 import toast from '@lib/toast';
 
 function App(): ReactElement {
+	useThemeMode();
 	const isAuthenticated = useAuth();
 	const setAuth = useAuthUpdate();
 
@@ -70,6 +71,7 @@ function App(): ReactElement {
 						}
 					/>
 				</Route>
+				<Route path="*" element={<Page.NotFoundPage />} />
 			</Routes>
 		</EventEmitterListeners>
 	);
