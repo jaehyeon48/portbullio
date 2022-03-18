@@ -8,13 +8,7 @@ interface GetPortfolioRes {
 	};
 }
 
-interface GetPortfoliosRes {
-	data: {
-		portfolios: Portfolio[];
-	};
-}
-
-export async function getPortfolio(portfolioId: number): Promise<Portfolio | null> {
+export default async function getPortfolio(portfolioId: number): Promise<Portfolio | null> {
 	const { serverEndPoint } = envConfig;
 
 	try {
@@ -28,13 +22,4 @@ export async function getPortfolio(portfolioId: number): Promise<Portfolio | nul
 	} catch (error) {
 		return null;
 	}
-}
-
-export async function getPortfolios(): Promise<Portfolio[]> {
-	const { serverEndPoint } = envConfig;
-
-	const { data }: GetPortfoliosRes = await axios.get(`${serverEndPoint}/portfolios`, {
-		withCredentials: true
-	});
-	return data.portfolios;
 }
