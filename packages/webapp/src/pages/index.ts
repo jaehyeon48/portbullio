@@ -10,3 +10,4 @@ export { default as StockTransactionsPage } from './StockTransactions/Main/Stock
 export { default as CashPage } from './Cash/Main/Cash';
 export * from './Stock';
 export { default as NotFoundPage } from './NotFound/NotFound';
+export { default as DashboardPage } from './Dashboard/Dashboard';

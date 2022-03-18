@@ -39,6 +39,14 @@ function App(): ReactElement {
 						<Route path="overview" element={<Page.StockOverviewPage />} />
 					</Route>
 					<Route
+						path="dashboard"
+						element={
+							<PrivateRoute isAllowed={isAuthenticated}>
+								<Page.DashboardPage />
+							</PrivateRoute>
+						}
+					/>
+					<Route
 						path="holdings"
 						element={
 							<PrivateRoute isAllowed={isAuthenticated}>

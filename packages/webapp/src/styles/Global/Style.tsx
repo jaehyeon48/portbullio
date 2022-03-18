@@ -78,6 +78,10 @@ export default createGlobalStyle`
 
     /* Avatar Picker */
     --deleteConfirmBgColor: hsla(var(--colorBaseDarkGray), 93%);
+
+    /* Dashboard */
+    --dashboardItemIconBgColorGray: hsla(var(--colorBaseBlueGray), 70%);
+    --dashboardItemIconBgColorBlue: hsla(210, 30%, 60%);
   }
 
   html[data-theme='dark'] {
@@ -130,7 +134,13 @@ export default createGlobalStyle`
 
     /* Avatar Picker */
     --deleteConfirmBgColor: hsla(var(--colorBaseDarkGray), 22%);
+
+    /* Dashboard */
+    --dashboardItemIconBgColorGray: hsla(var(--colorBaseBlueGray), 38%);
+    --dashboardItemIconBgColorBlue: hsla(210, 30%, 40%);
   }
+
+  
 
   body {
     font-family: NotoSansKR, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
