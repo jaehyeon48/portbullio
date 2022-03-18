@@ -22,7 +22,7 @@ export default function Cash() {
 
 	return (
 		<>
-			<ListPage.UpperSection>
+			<ListPage.UpperSection maxWidth="1440px">
 				<ListPage.MainHeader>내 현금</ListPage.MainHeader>
 				<ListPage.NumOfItems data-testid="num-of-my-cash-transactions">
 					{cashTransactions.data?.length ?? 0}개
@@ -42,7 +42,7 @@ export default function Cash() {
 					<Icon.Search width={26} height={26} />
 				</ListPage.SearchInputContainer>
 			</ListPage.UpperSection>
-			<ListPage.LowerSection>
+			<ListPage.LowerSection maxWidth="950px">
 				<Style.TotalCashAmountSection value={totalCashAmount}>
 					<span>현금 합계: </span>
 					{formatCurrency(totalCashAmount, 'usd')}

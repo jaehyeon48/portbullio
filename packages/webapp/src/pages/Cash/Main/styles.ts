@@ -36,6 +36,7 @@ export const MemoOpenButton = styled.button`
 
 export const ActionsSection = styled.div`
 	display: flex;
+	justify-content: center;
 	min-width: 300px;
 `;
 
