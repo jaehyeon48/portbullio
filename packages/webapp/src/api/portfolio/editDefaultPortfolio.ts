@@ -1,16 +1,21 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import envConfig from '@configs/env';
 
+export interface EditDefaultPortfolioArgs {
+	prevPortfolioId: number;
+	newPortfolioId: number;
+}
+
 interface EditDefaultPortfolioRes {
 	data: {
 		modifiedId: number;
 	};
 }
 
-export default async function editDefaultPortfolio(
-	prevPortfolioId: number,
-	newPortfolioId: number
-) {
+export async function editDefaultPortfolio({
+	newPortfolioId,
+	prevPortfolioId
+}: EditDefaultPortfolioArgs) {
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {
