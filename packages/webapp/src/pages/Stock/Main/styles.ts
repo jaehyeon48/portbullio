@@ -20,6 +20,11 @@ export const StockMainSection = styled.section`
 		height: ${MAIN_SECTION_HEIGHT.laptop}px;
 		margin: 0 ${LEFT_AND_RIGHT_MARGIN.laptop}px;
 	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		height: ${MAIN_SECTION_HEIGHT.tabletLandScape}px;
+		margin: 0 ${LEFT_AND_RIGHT_MARGIN.tabletLandScape}px;
+	}
 `;
 
 export const CompanyName = styled.header`

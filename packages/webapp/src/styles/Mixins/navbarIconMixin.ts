@@ -33,7 +33,7 @@ export const navbarIconMixin = css<NavbarIconMixinProps>`
 		}
 	}
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		& > p {
 			font-size: 12px;
 		}

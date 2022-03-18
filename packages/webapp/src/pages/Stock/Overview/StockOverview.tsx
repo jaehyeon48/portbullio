@@ -12,6 +12,25 @@ import {
 	LEFT_AND_RIGHT_MARGIN
 } from '../constants';
 
+export default function StockOverview() {
+	const [currentTheme] = useThemeMode();
+	const { ticker } = useParams() as { ticker: string };
+	const displayWidth = window.innerWidth;
+	const [widgetWidth, widgetHeight] = determineWidgetDimension(displayWidth);
+
+	return (
+		<Style.ChartContainer>
+			<TradingViewWidget
+				width={widgetWidth}
+				height={widgetHeight}
+				symbol={ticker}
+				theme={currentTheme}
+			/>
+			<RightPanel />
+		</Style.ChartContainer>
+	);
+}
+
 function determineWidgetDimension(width: number) {
 	if (width >= PAGE_MAX_WIDTH) {
 		return [
@@ -30,7 +49,8 @@ function determineWidgetDimension(width: number) {
 			CHART_HEIGHT.desktop
 		];
 	}
-	if (width > WIDTH_BREAK_POINT_PX.tabletLandscape) {
+
+	if (width > WIDTH_BREAK_POINT_PX.tabletLandScape) {
 		return [
 			width -
 				NAVBAR_WIDTH -
@@ -40,24 +60,16 @@ function determineWidgetDimension(width: number) {
 			CHART_HEIGHT.laptop
 		];
 	}
+
+	if (width > WIDTH_BREAK_POINT_PX.tablet) {
+		return [
+			width -
+				NAVBAR_WIDTH -
+				RIGHT_PANEL_WIDTH.tabletLandScape -
+				GAP_BTW_CHART_AND_RIGHT_PANEL.tabletLandScape -
+				LEFT_AND_RIGHT_MARGIN.tabletLandScape * 2,
+			CHART_HEIGHT.tabletLandScape
+		];
+	}
 	return [500, 500];
-}
-
-export default function StockOverview() {
-	const [currentTheme] = useThemeMode();
-	const { ticker } = useParams() as { ticker: string };
-	const displayWidth = window.innerWidth;
-	const [widgetWidth, widgetHeight] = determineWidgetDimension(displayWidth);
-
-	return (
-		<Style.ChartContainer>
-			<TradingViewWidget
-				width={widgetWidth}
-				height={widgetHeight}
-				symbol={ticker}
-				theme={currentTheme}
-			/>
-			<RightPanel />
-		</Style.ChartContainer>
-	);
 }

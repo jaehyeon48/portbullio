@@ -17,7 +17,7 @@ const midBotSectionLayout = css`
 	font-size: 18px;
 	max-width: 20em;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		font-size: 16px;
 	}
 `;
@@ -43,7 +43,7 @@ export const Header = styled.header`
 	font-weight: 700;
 	margin-bottom: 1.5em;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		& {
 			font-size: 40px;
 		}
@@ -65,7 +65,7 @@ export const HeroImageContainer = styled.div`
 		}
 	}
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		& > svg {
 			width: 450px;
 			height: 351px;

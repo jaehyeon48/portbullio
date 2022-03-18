@@ -84,7 +84,7 @@ export const ErrorLabel = styled.small<InputStyleProps>`
 	bottom: -22px;
 	font-size: 14px;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandscape}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		font-size: 12px;
 		bottom: -20px;
 	}

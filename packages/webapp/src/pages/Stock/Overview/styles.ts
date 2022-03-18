@@ -21,6 +21,10 @@ export const ChartContainer = styled.div`
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
 		margin: 2em ${LEFT_AND_RIGHT_MARGIN.laptop}px 4em;
 	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		margin: 2em ${LEFT_AND_RIGHT_MARGIN.tabletLandScape}px 4em;
+	}
 `;
 
 export const RightPanelContainer = styled.div`
@@ -32,7 +36,13 @@ export const RightPanelContainer = styled.div`
 	right: 0;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
+		width: ${RIGHT_PANEL_WIDTH.laptop}px;
 		top: -${MAIN_SECTION_HEIGHT.laptop / RIGHT_PANEL_TOP_DIVIDE_FACTOR}px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		width: ${RIGHT_PANEL_WIDTH.tabletLandScape}px;
+		top: -${MAIN_SECTION_HEIGHT.tabletLandScape / RIGHT_PANEL_TOP_DIVIDE_FACTOR}px;
 	}
 `;
 
