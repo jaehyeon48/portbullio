@@ -29,18 +29,18 @@ export const HoldingAvgPriceSection = styled.div`
 `;
 
 export const HoldingQuantitySection = styled.div`
-	min-width: 130px;
+	min-width: 125px;
 `;
 
 export const HoldingTotalValueSection = styled.div`
-	min-width: 180px;
+	min-width: 190px;
 `;
 
 export const HoldingDailyGainSection = styled.div`
 	display: flex;
 	${priceColorMixin};
 
-	min-width: 220px;
+	min-width: 230px;
 `;
 
 export const HoldingTotalGainSection = styled.div`

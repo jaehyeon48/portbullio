@@ -25,7 +25,7 @@ export default function Holdings() {
 
 	return (
 		<>
-			<ListPage.UpperSection>
+			<ListPage.UpperSection maxWidth="1500px">
 				<ListPage.MainHeader>보유종목</ListPage.MainHeader>
 				<ListPage.NumOfItems data-testid="num-of-holdings">
 					{formatNum(holdingsList.data?.length ?? 0)}개
@@ -45,7 +45,7 @@ export default function Holdings() {
 					<Icon.Search width={26} height={26} />
 				</ListPage.SearchInputContainer>
 			</ListPage.UpperSection>
-			<ListPage.LowerSection>
+			<ListPage.LowerSection maxWidth="1500px">
 				<ListPage.ListContainer>
 					<ListPage.ListHeaderContainer>
 						<Style.HoldingTickerSection>티커</Style.HoldingTickerSection>
