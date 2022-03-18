@@ -4,20 +4,19 @@ import { editCashTransaction, EditCashTransactionArgs } from '@api/cash';
 import { sortByDate, updateArray } from '@utils';
 import { portfolioKeys } from '@lib/index';
 
-export default function useEditCashTransaction() {
+export default function useEditCashTransaction(portfolioId: number) {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		({ cashTransactionId, portfolioId, amount, type, date }: EditCashTransactionArgs) =>
+		({ cashTransactionId, amount, type, date }: EditCashTransactionArgs) =>
 			editCashTransaction({
 				cashTransactionId,
-				portfolioId,
 				amount,
 				type,
 				date
 			}),
 		{
-			onSuccess: ({ editedCashTransaction }, { portfolioId }) => {
+			onSuccess: ({ editedCashTransaction }) => {
 				queryClient.setQueryData<CashTransactionLog[]>(
 					portfolioKeys.cash(portfolioId),
 					prevCashTransactions =>

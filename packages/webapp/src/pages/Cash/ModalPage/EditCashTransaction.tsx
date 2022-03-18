@@ -26,7 +26,7 @@ export default function EditCashTransaction({
 	initialInputs,
 	closeFunction
 }: Props) {
-	const editCashTransactionMutation = useEditCashTransaction();
+	const editCashTransactionMutation = useEditCashTransaction(portfolioId);
 	const [transactionTypeInput, setTransactionTypeInput] = useState<CashTransactionType>(
 		initialInputs.type
 	);
@@ -64,7 +64,6 @@ export default function EditCashTransaction({
 
 		editCashTransactionMutation.mutate(
 			{
-				portfolioId,
 				cashTransactionId,
 				amount: Number(amountInput),
 				type: transactionTypeInput,

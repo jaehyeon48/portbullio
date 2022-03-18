@@ -3,7 +3,6 @@ import { CashTransactionLog, CashTransactionType } from '@prisma/client';
 import envConfig from '@configs/env';
 
 export interface EditCashTransactionArgs {
-	portfolioId: number;
 	cashTransactionId: number;
 	amount: number;
 	type: CashTransactionType;
@@ -17,7 +16,6 @@ interface EditStockTransactionRes {
 }
 
 export async function editCashTransaction({
-	portfolioId,
 	cashTransactionId,
 	amount,
 	type,
@@ -34,7 +32,7 @@ export async function editCashTransaction({
 
 	const formData = JSON.stringify({ amount, type, date });
 	const { data }: EditStockTransactionRes = await axios.patch(
-		`${serverEndPoint}/portfolios/${portfolioId}/cash/${cashTransactionId}`,
+		`${serverEndPoint}/portfolios/cash/${cashTransactionId}`,
 		formData,
 		config
 	);
