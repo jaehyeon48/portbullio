@@ -36,5 +36,5 @@ export async function editCashTransaction({
 		formData,
 		config
 	);
-	return { ...data };
+	return data.editedCashTransaction;
 }

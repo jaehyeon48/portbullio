@@ -11,7 +11,7 @@ export default function useEditCashTransactionMemo(portfolioId: number) {
 		({ cashTransactionId, newMemo }: EditCashTransactionMemoArgs) =>
 			editCashTransactionMemo({ cashTransactionId, newMemo }),
 		{
-			onSuccess: ({ editedCashTransaction }) => {
+			onSuccess: editedCashTransaction => {
 				queryClient.setQueryData<CashTransactionLog[]>(
 					portfolioKeys.cash(portfolioId),
 					prevCashTransactionLogs =>

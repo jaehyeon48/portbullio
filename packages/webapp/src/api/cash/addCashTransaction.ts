@@ -42,5 +42,5 @@ export async function addCashTransaction({
 		config
 	);
 
-	return { ...data };
+	return data.newCashTransaction;
 }

@@ -16,7 +16,7 @@ export default function useEditCashTransaction(portfolioId: number) {
 				date
 			}),
 		{
-			onSuccess: ({ editedCashTransaction }) => {
+			onSuccess: editedCashTransaction => {
 				queryClient.setQueryData<CashTransactionLog[]>(
 					portfolioKeys.cash(portfolioId),
 					prevCashTransactions =>

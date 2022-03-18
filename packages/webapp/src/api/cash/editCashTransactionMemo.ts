@@ -32,5 +32,5 @@ export async function editCashTransactionMemo({
 		formData,
 		config
 	);
-	return { ...data };
+	return data.editedCashTransaction;
 }

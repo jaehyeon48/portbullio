@@ -8,7 +8,7 @@ export default function useDeleteStockTransaction(portfolioId: number) {
 	const queryClient = useQueryClient();
 
 	return useMutation((cashTransactionId: number) => deleteCashTransaction(cashTransactionId), {
-		onSuccess: ({ deletedCashTransaction }) => {
+		onSuccess: deletedCashTransaction => {
 			queryClient.setQueryData<CashTransactionLog[]>(
 				portfolioKeys.cash(portfolioId),
 				prevCashTransactions =>

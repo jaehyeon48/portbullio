@@ -11,7 +11,7 @@ export default function useAddCashTransaction() {
 		({ portfolioId, amount, type, date }: AddCashTransactionArgs) =>
 			addCashTransaction({ portfolioId, amount, type, date }),
 		{
-			onSuccess: ({ newCashTransaction }, { portfolioId }) => {
+			onSuccess: (newCashTransaction, { portfolioId }) => {
 				queryClient.setQueryData<CashTransactionLog[]>(
 					portfolioKeys.cash(portfolioId),
 					prevCashTransactions =>

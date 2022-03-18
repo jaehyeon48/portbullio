@@ -1,10 +1,10 @@
 import axios from 'axios';
 import envConfig from '@configs/env';
-import { StockTransactionLog } from '@prisma/client';
+import { CashTransactionLog } from '@prisma/client';
 
 interface DeleteCashTransactionRes {
 	data: {
-		deletedCashTransaction: StockTransactionLog;
+		deletedCashTransaction: CashTransactionLog;
 	};
 }
 
@@ -15,5 +15,5 @@ export default async function deleteCashTransaction(cashTransactionId: number) {
 		`${serverEndPoint}/portfolios/cash/${cashTransactionId}`,
 		{ withCredentials: true }
 	);
-	return { ...data };
+	return data.deletedCashTransaction;
 }
