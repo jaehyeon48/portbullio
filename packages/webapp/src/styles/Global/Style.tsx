@@ -50,7 +50,7 @@ export default createGlobalStyle`
     --navbarIconBgColor: hsla(var(--colorBaseBlueGray), 60%);
 
     /* Card */
-    --cardBgColor: hsla(var(--colorBaseBlueGray), 96%);
+    --cardBgColor: var(--white);
     --cardHoverBgColor: hsla(var(--colorBaseBlueGray), 90%);
     --cardBoxShadow: var(--boxShadowDimension) hsla(var(--colorBaseBlueGray), 0%, 0.1);
 
