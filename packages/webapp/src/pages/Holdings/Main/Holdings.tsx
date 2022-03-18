@@ -2,15 +2,15 @@ import { SyntheticEvent } from 'react';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { PortfolioSelect, ListQueryErrorBoundary, useSelectPortfolioId } from '@components/index';
-import { useModal } from '@hooks/Modal';
+import { useModal, useTitle, useHoldingsList } from '@hooks/index';
 import { formatNum } from '@utils';
 import toast from '@lib/toast';
-import { useHoldingsList } from '@hooks/ReactQuery';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
 import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
 
 export default function Holdings() {
+	useTitle('portbullio - 내 종목');
 	const selectedPortfolioId = useSelectPortfolioId();
 	const holdingsList = useHoldingsList(selectedPortfolioId);
 	const { openModal } = useModal();

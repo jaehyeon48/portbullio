@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { DynamicCaret } from '@components/index';
+import { useTitle } from '@hooks/Title';
 import { formatNum } from '@utils';
 import * as Style from './styles';
 
@@ -11,6 +12,7 @@ function isValidTicker() {
 export default function StockMain() {
 	const navigate = useNavigate();
 	const { ticker } = useParams() as { ticker: string };
+	useTitle(`portbullio - ${ticker}`);
 
 	useEffect(() => {
 		if (!isValidTicker()) {

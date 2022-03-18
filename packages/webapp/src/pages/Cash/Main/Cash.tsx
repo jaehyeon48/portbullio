@@ -2,14 +2,14 @@ import { SyntheticEvent } from 'react';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary, PortfolioSelect, useSelectPortfolioId } from '@components/index';
-import { useModal } from '@hooks/Modal';
+import { useModal, useTitle, useCashTransactionList } from '@hooks/index';
 import { formatCurrency, calcTotalCashAmount } from '@utils';
-import { useCashTransactionList } from '@hooks/ReactQuery';
 import * as Style from './styles';
 import CashTransactionList from './CashTransactionList';
 import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
 
 export default function Cash() {
+	useTitle(`portbullio - 현금 거래내역`);
 	const selectedPortfolioId = useSelectPortfolioId();
 	const cashTransactions = useCashTransactionList(selectedPortfolioId ?? 0);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);

@@ -2,13 +2,13 @@ import { SyntheticEvent } from 'react';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary } from '@components/index';
-import { useModal } from '@hooks/Modal';
-import { usePortfolioList } from '@hooks/ReactQuery';
+import { useModal, useTitle, usePortfolioList } from '@hooks/index';
 import * as Style from './styles';
 import PortfolioList from './PortfolioList';
 import AddPortfolio from '../ModalPage/AddPortfolio';
 
 export default function Portfolios() {
+	useTitle('portbullio - 내 포트폴리오');
 	const portfolios = usePortfolioList();
 
 	const { openModal } = useModal();

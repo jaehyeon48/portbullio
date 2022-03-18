@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { StockTransactionLog } from '@prisma/client';
 import * as ListPage from '@components/ListPage';
-import { usePortfolioList, useHoldingsList } from '@hooks/ReactQuery';
+import { usePortfolioList, useHoldingsList, useTitle } from '@hooks/index';
 import { DECIMAL_DIGITS } from '@constants/index';
 import {
 	ListQueryErrorBoundary,
@@ -22,6 +22,7 @@ import { useStockTransactions } from '../queries';
 
 export default function StockTransactions() {
 	const { ticker } = useParams() as { ticker: string };
+	useTitle(`portbullio - ${ticker} 거래내역`);
 	const portfolioId = useSelectPortfolioId() ?? 0;
 	const stockTransactionList = useStockTransactions(portfolioId, ticker);
 	const portfolioList = usePortfolioList();
