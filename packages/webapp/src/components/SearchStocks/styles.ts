@@ -36,7 +36,7 @@ export const Input = styled.input`
 
 export const SearchResultContainer = styled.ul`
 	position: absolute;
-	z-index: 9999;
+	z-index: 2;
 	top: 34px;
 	left: 0px;
 	width: 100%;

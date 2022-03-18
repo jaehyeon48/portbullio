@@ -69,7 +69,7 @@ const positions: ToastPositions = {
 
 export const ToastContainer = styled.div<ToastContainerProps>`
 	position: fixed;
-	z-index: 9999;
+	z-index: 99;
 	top: ${({ position }) => positions[position].top};
 	bottom: ${({ position }) => positions[position].bottom};
 	left: ${({ position }) => positions[position].left};

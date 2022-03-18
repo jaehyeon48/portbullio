@@ -17,7 +17,7 @@ export const Container = styled.aside`
 	background-color: var(--navbarBgColor);
 	width: ${NAVBAR_WIDTH}px;
 	height: 100vh;
-	z-index: 1;
+	z-index: 2;
 `;
 
 export const Top = styled.div`
