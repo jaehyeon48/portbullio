@@ -9,7 +9,7 @@ interface GetStockTransactionsOfATickerArgs {
 	orderByType?: SortOrder;
 }
 
-export async function getStockTransactionsOfATicker({
+export default async function getStockTransactionsOfATicker({
 	portfolioId,
 	ticker,
 	orderByDate = 'asc',
@@ -25,16 +25,6 @@ export async function getStockTransactionsOfATicker({
 		where: {
 			portfolioId,
 			ticker
-		}
-	});
-	return stockTransactions;
-}
-
-export async function getAllStockTransactions(portfolioId: number) {
-	const stockTransactions = await prisma.stockTransactionLog.findMany({
-		orderBy: [{ ticker: 'asc' }, { transactionType: 'desc' }],
-		where: {
-			portfolioId
 		}
 	});
 	return stockTransactions;
