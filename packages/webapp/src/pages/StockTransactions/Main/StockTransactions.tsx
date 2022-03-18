@@ -34,7 +34,7 @@ export default function StockTransactions() {
 	);
 	return (
 		<>
-			<ListPage.UpperSection>
+			<ListPage.UpperSection maxWidth="1440px">
 				<Style.SubHeader>
 					{portfolioList.data?.filter(el => el.id === portfolioId)[0]?.name}의
 				</Style.SubHeader>
@@ -51,8 +51,6 @@ export default function StockTransactions() {
 						<ArrowBackIcon width={16} height={16} />내 종목 페이지로
 					</Style.BackToHoldingsPageButton>
 				</ListPage.UpperSectionButtonContainer>
-			</ListPage.UpperSection>
-			<ListPage.LowerSection>
 				<Style.TotalRealizedProfitLossSection>
 					<Style.TotalRealizedProfitLossAmount value={totalRealizedProfitLossAmount}>
 						<span>총 실현손익: </span>
@@ -68,6 +66,8 @@ export default function StockTransactions() {
 						{formatCurrency(truncateDecimalPoint(holdingInfo?.avgCost ?? 0, DECIMAL_DIGITS), 'usd')}
 					</Style.CurrentAvgCost>
 				</Style.TotalRealizedProfitLossSection>
+			</ListPage.UpperSection>
+			<ListPage.LowerSection maxWidth="1250px">
 				<ListPage.ListContainer>
 					<ListPage.ListHeaderContainer>
 						<Style.DateSection>날짜</Style.DateSection>

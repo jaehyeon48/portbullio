@@ -57,11 +57,12 @@ export const RealizedProfitAndLossSection = styled.div`
 	${priceColorMixin};
 	display: flex;
 	align-items: center;
-	width: 300px;
+	width: 330px;
 `;
 
 export const StockTransactionActionsSection = styled.div`
 	display: flex;
+	justify-content: center;
 	min-width: 200px;
 `;
 
