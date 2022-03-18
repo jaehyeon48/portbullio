@@ -2,16 +2,21 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { StockTransactionLog } from '@prisma/client';
 import envConfig from '@configs/env';
 
+export interface EditStockTransactionMemoArgs {
+	stockTransactionId: number;
+	newMemo: string;
+}
+
 interface EditStockTransactionMemoRes {
 	data: {
 		result: StockTransactionLog;
 	};
 }
 
-export default async function editStockTransactionMemo(
-	stockTransactionId: number,
-	newMemo: string
-) {
+export async function editStockTransactionMemo({
+	stockTransactionId,
+	newMemo
+}: EditStockTransactionMemoArgs) {
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {
