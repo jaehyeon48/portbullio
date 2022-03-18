@@ -2,12 +2,13 @@ import { ReactElement, useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
-import { EventEmitterListeners } from '@components/index';
+import { EventEmitterListeners, PrivateRoute } from '@components/index';
 import { checkAuth } from '@api/auth';
-import { useAuthUpdate } from '@hooks/index';
+import { useAuth, useAuthUpdate } from '@hooks/index';
 import toast from '@lib/toast';
 
 function App(): ReactElement {
+	const isAuthenticated = useAuth();
 	const setAuth = useAuthUpdate();
 
 	useLayoutEffect(() => {
@@ -36,10 +37,38 @@ function App(): ReactElement {
 					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
 						<Route path="overview" element={<Page.StockOverviewPage />} />
 					</Route>
-					<Route path="holdings" element={<Page.HoldingsPage />} />
-					<Route path="stock-transactions/:ticker" element={<Page.StockTransactionsPage />} />
-					<Route path="portfolios" element={<Page.PortfoliosPage />} />
-					<Route path="cash" element={<Page.CashPage />} />
+					<Route
+						path="holdings"
+						element={
+							<PrivateRoute isAllowed={isAuthenticated}>
+								<Page.HoldingsPage />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="stock-transactions/:ticker"
+						element={
+							<PrivateRoute isAllowed={isAuthenticated}>
+								<Page.StockTransactionsPage />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="portfolios"
+						element={
+							<PrivateRoute isAllowed={isAuthenticated}>
+								<Page.PortfoliosPage />
+							</PrivateRoute>
+						}
+					/>
+					<Route
+						path="cash"
+						element={
+							<PrivateRoute isAllowed={isAuthenticated}>
+								<Page.CashPage />
+							</PrivateRoute>
+						}
+					/>
 				</Route>
 			</Routes>
 		</EventEmitterListeners>

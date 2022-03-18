@@ -13,3 +13,4 @@ export * from './ListPage';
 export * from './PortfolioSelect';
 export { default as SearchStocks } from './SearchStocks/SearchStocks';
 export { default as ListQueryErrorBoundary } from './ListQueryErrorBoundary/ListQueryErrorBoundary';
+export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';
