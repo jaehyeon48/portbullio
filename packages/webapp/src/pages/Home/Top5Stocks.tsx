@@ -15,7 +15,7 @@ export default function Top5Stocks({ stockList }: Props) {
 	return (
 		<>
 			{stockList.map(({ ticker, change, price }) => (
-				<Style.Top5ListItem key={ticker} as="li">
+				<Style.Top5ListItem key={ticker} as="li" bgColorOnHover>
 					<Style.Top5ListItemLink to={`stock/${ticker}/overview`}>
 						<Style.Top5ListItemTicker>{ticker}</Style.Top5ListItemTicker>
 						<Style.Top5ListItemChangePercent value={change}>
