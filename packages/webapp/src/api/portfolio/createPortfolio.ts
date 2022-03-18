@@ -2,13 +2,18 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { Portfolio, PortfolioPrivacy } from '@prisma/client';
 import envConfig from '@configs/env';
 
+export interface CreatePortfolioArgs {
+	portfolioName: string;
+	privacy: PortfolioPrivacy;
+}
+
 interface CreatePortfolioRes {
 	data: {
 		newPortfolio: Portfolio;
 	};
 }
 
-export default async function createPortfolio(portfolioName: string, privacy: PortfolioPrivacy) {
+export async function createPortfolio({ portfolioName, privacy }: CreatePortfolioArgs) {
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {

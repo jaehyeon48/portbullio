@@ -45,7 +45,7 @@ export default function AddPortfolio({ closeFunction }: Props) {
 		}
 
 		createPortfolioMutation.mutate(
-			{ name: newName, privacy },
+			{ portfolioName: newName, privacy },
 			{
 				onSuccess: () => {
 					toast.success({ message: '성공적으로 포트폴리오를 추가했습니다.' });
