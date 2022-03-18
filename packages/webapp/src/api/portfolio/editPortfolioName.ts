@@ -2,13 +2,18 @@ import axios, { AxiosRequestConfig } from 'axios';
 import { Portfolio } from '@prisma/client';
 import envConfig from '@configs/env';
 
+export interface EditPortfolioNameArgs {
+	portfolioId: number;
+	newPortfolioName: string;
+}
+
 interface EditPortfolioNameRes {
 	data: {
 		modifiedPortfolio: Portfolio;
 	};
 }
 
-export default async function editPortfolioName(portfolioId: number, newPortfolioName: string) {
+export async function editPortfolioName({ portfolioId, newPortfolioName }: EditPortfolioNameArgs) {
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {

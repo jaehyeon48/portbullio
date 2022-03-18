@@ -13,13 +13,13 @@ interface Props {
 }
 
 export default function EditPortfolioName({ prevName, portfolioId, closeFunction }: Props) {
-	const [newName, setNewName] = useState(prevName);
+	const [newPortfolioName, setNewPortfolioName] = useState(prevName);
 	const editPortfolioNameMutation = useEditPortfolioName();
 
 	async function handleSubmit(e: SyntheticEvent) {
 		e.preventDefault();
 
-		if (newName === '') {
+		if (newPortfolioName === '') {
 			toast.error({ message: '포트폴리오 이름을 작성해주세요.' });
 			return;
 		}
@@ -30,7 +30,7 @@ export default function EditPortfolioName({ prevName, portfolioId, closeFunction
 		}
 
 		editPortfolioNameMutation.mutate(
-			{ portfolioId, newName },
+			{ portfolioId, newPortfolioName },
 			{
 				onSuccess: () => {
 					toast.success({ message: '성공적으로 포트폴리오 이름을 변경했습니다.' });
@@ -43,11 +43,11 @@ export default function EditPortfolioName({ prevName, portfolioId, closeFunction
 
 	function handleChangeNewName(e: SyntheticEvent) {
 		const target = e.target as HTMLInputElement;
-		setNewName(target.value);
+		setNewPortfolioName(target.value);
 	}
 
 	function isInvalidName() {
-		return newName.length > MAX_PORTFOLIO_NAME_LENGTH;
+		return newPortfolioName.length > MAX_PORTFOLIO_NAME_LENGTH;
 	}
 
 	return (
@@ -58,7 +58,7 @@ export default function EditPortfolioName({ prevName, portfolioId, closeFunction
 					htmlFor="edit-new-portfolio-name"
 					labelName="새 포트폴리오 이름"
 					placeholder="새 포트폴리오 이름"
-					value={newName}
+					value={newPortfolioName}
 					handleChange={handleChangeNewName}
 					errorLabel="이름은 20자 이하여야 합니다."
 					isError={isInvalidName}

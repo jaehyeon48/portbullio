@@ -1,19 +1,15 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { Portfolio } from '@prisma/client';
-import { editPortfolioName } from '@api/portfolio';
+import { editPortfolioName, EditPortfolioNameArgs } from '@api/portfolio';
 import { updateArray } from '@utils';
 import { portfolioKeys } from '@lib/index';
-
-interface EditPortfolioNameArgs {
-	portfolioId: number;
-	newName: string;
-}
 
 export default function useEditPortfolioName() {
 	const queryClient = useQueryClient();
 
 	return useMutation(
-		({ portfolioId, newName }: EditPortfolioNameArgs) => editPortfolioName(portfolioId, newName),
+		({ portfolioId, newPortfolioName }: EditPortfolioNameArgs) =>
+			editPortfolioName({ portfolioId, newPortfolioName }),
 		{
 			onSuccess: updatedPortfolio => {
 				queryClient.setQueryData<Portfolio[]>(portfolioKeys.all, prevPortfolios =>
