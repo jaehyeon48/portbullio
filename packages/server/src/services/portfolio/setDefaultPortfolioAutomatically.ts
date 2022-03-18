@@ -1,5 +1,5 @@
 import prisma from '@lib/prisma';
-import { getPortfolios } from './getPortfolio';
+import getPortfolios from './getPortfolios';
 import deleteDefaultPortfolio from './deleteDefaultPortfolio';
 
 export default async function setDefaultPortfolioAutomatically(
