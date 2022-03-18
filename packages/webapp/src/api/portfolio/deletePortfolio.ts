@@ -1,13 +1,18 @@
 import axios from 'axios';
 import envConfig from '@configs/env';
 
+export interface DeletePortfolioArgs {
+	portfolioId: number;
+	isDefaultPortfolio: boolean;
+}
+
 interface DeletePortfolioRes {
 	data: {
 		deletedId: number;
 	};
 }
 
-export default async function deletePortfolio(portfolioId: number, isDefaultPortfolio: boolean) {
+export async function deletePortfolio({ portfolioId, isDefaultPortfolio }: DeletePortfolioArgs) {
 	const { serverEndPoint } = envConfig;
 
 	const { data }: DeletePortfolioRes = await axios.delete(
