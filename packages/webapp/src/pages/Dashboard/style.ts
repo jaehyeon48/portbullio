@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Card from '@components/Card';
 import { priceColorMixin } from '@styles/Mixins';
 
@@ -6,9 +6,7 @@ interface ItemIconBgColorProp {
 	bgColor: 'gray' | 'blue';
 }
 
-const itemPaddingStyle = css`
-	padding: 8px 0;
-`;
+const ITEM_UPPER_LOWER_PADDING_PX = 8;
 
 export const DashboardContainer = styled.div`
 	max-width: 1500px;
@@ -53,7 +51,7 @@ export const ProfitLossAssetContainer = styled.section`
 `;
 
 export const ProfitLossAssetItem = styled(Card)`
-	${itemPaddingStyle};
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	position: relative;
 	display: flex;
 	flex-direction: column;
@@ -85,29 +83,29 @@ export const ProfitLossAssetPercent = styled.div`
 `;
 
 export const ProportionByValueContainer = styled(Card)`
-	${itemPaddingStyle};
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	position: relative;
 	height: 450px;
 `;
 
 export const SectorDividendPieChartContainer = styled.div`
-	${itemPaddingStyle};
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	position: relative;
 	display: flex;
 	gap: 30px;
 `;
 
 export const SectorPieChartContainer = styled(Card)`
-	${itemPaddingStyle};
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	height: 400px;
 `;
 
 export const DividendPieChartContainer = styled(Card)`
-	${itemPaddingStyle};
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	height: 400px;
 `;
 
 export const AssetHistoryContainer = styled(Card)`
-	${itemPaddingStyle};
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	height: 420px;
 `;
