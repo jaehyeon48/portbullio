@@ -7,6 +7,10 @@ interface ItemIconBgColorProp {
 }
 
 const ITEM_UPPER_LOWER_PADDING_PX = 8;
+const PROFIT_LOSS_ASSET_ITEM_HEIGHT_PX = 134;
+const PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX = 450;
+const PIE_CHART_CONTAINER_HEIGHT_PX = 400;
+const ASSET_HISTORY_CONTAINER_HEIGHT_PX = 420;
 
 export const DashboardContainer = styled.div`
 	max-width: 1500px;
@@ -55,7 +59,7 @@ export const ProfitLossAssetItem = styled(Card)`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	height: 134px;
+	height: ${PROFIT_LOSS_ASSET_ITEM_HEIGHT_PX}px;
 `;
 
 export const ProfitLossAssetAmount = styled.div`
@@ -85,7 +89,7 @@ export const ProfitLossAssetPercent = styled.div`
 export const ProportionByValueContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	position: relative;
-	height: 450px;
+	height: ${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px;
 `;
 
 export const SectorDividendPieChartContainer = styled.div`
@@ -97,15 +101,15 @@ export const SectorDividendPieChartContainer = styled.div`
 
 export const SectorPieChartContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	height: 400px;
+	height: ${PIE_CHART_CONTAINER_HEIGHT_PX}px;
 `;
 
 export const DividendPieChartContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	height: 400px;
+	height: ${PIE_CHART_CONTAINER_HEIGHT_PX}px;
 `;
 
 export const AssetHistoryContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	height: 420px;
+	height: ${ASSET_HISTORY_CONTAINER_HEIGHT_PX}px;
 `;
