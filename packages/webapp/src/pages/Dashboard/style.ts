@@ -11,6 +11,7 @@ const PROFIT_LOSS_ASSET_ITEM_HEIGHT_PX = 134;
 const PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX = 450;
 const PIE_CHART_CONTAINER_HEIGHT_PX = 400;
 const ASSET_HISTORY_CONTAINER_HEIGHT_PX = 420;
+const CANVAS_PADDING_PX = 10;
 
 export const DashboardContainer = styled.div`
 	max-width: 1500px;
@@ -45,7 +46,7 @@ export const ItemIconContainer = styled.div<ItemIconBgColorProp>`
 
 export const ItemHeader = styled.h2`
 	text-align: center;
-	font-size: 18px;
+	font-size: 1.1em;
 `;
 
 export const ProfitLossAssetContainer = styled.section`
@@ -90,6 +91,15 @@ export const ProportionByValueContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	position: relative;
 	height: ${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px;
+`;
+
+export const ProportionByValueChartContainer = styled.canvas`
+	width: 100%;
+	height: calc(
+		${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em *
+			1.5
+	);
+	padding: ${CANVAS_PADDING_PX}px;
 `;
 
 export const SectorDividendPieChartContainer = styled.div`
