@@ -26,3 +26,19 @@ export interface SearchSymbolItem {
 	name: string;
 	type: StockType;
 }
+
+export interface HoldingsRatio {
+	ticker: string;
+	ratio: number;
+	value: number;
+}
+
+export interface BarInfo {
+	x: number;
+	y: number;
+	width: number;
+	height: number;
+	ticker: string;
+	ratio: number;
+	value: number;
+}

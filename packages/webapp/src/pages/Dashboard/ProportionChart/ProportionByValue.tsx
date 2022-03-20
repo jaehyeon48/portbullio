@@ -1,32 +1,41 @@
 import { useRef, useEffect } from 'react';
-import { useHoldingsList, useThemeMode } from '@hooks/index';
-import { useSelectPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
 import { Holding } from '@portbullio/shared/src/types';
+import { HoldingsRatio, BarInfo } from '@types';
+import { useHoldingsList, useCashTransactionList, useThemeMode } from '@hooks/index';
+import { useSelectPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
+import { calcTotalCashAmount } from '@utils';
 import * as Style from '../style';
 import { adjustToDpr } from '../utils';
-import { drawAxis, drawHorizontalGrid } from './utils';
+import { drawAxis, drawHorizontalGrid, drawBars, calcBarInfo } from './utils';
+import { NUM_OF_BARS } from './constants';
 
 interface HoldingsValues {
 	ticker: string;
 	value: number;
 }
 
-interface HoldingsRatio {
-	ticker: string;
-	ratio: number;
-}
-
 export default function ProportionByValue() {
 	const [theme] = useThemeMode();
 	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const barInfos = useRef<BarInfo[]>([]);
 	const portfolioId = useSelectPortfolioId();
+	const cashTransactions = useCashTransactionList(portfolioId ?? 0);
+	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
 	const holdingsList = useHoldingsList(portfolioId);
-	const holdingsValues = holdingsList.data?.map(calcHoldingValues);
+	const cashHoldingsValue: Holding = {
+		ticker: '현금',
+		avgCost: totalCashAmount,
+		buyQuantity: 1,
+		sellQuantity: 0
+	};
+	const holdingsValues = [...(holdingsList.data ?? []), cashHoldingsValue].map(calcHoldingValues);
 	const totalValue = holdingsValues?.map(({ value }) => value).reduce((acc, val) => acc + val, 0);
-	const holdingsRatio = holdingsValues?.map(holdingsValue =>
-		calcHoldingRatio(holdingsValue, totalValue)
-	);
-	const maxRatio = Math.max(...(holdingsRatio?.map(({ ratio }) => ratio) ?? [0]));
+	const holdingsRatio =
+		holdingsValues
+			?.map(holdingsValue => calcHoldingRatio(holdingsValue, totalValue))
+			.sort((a, b) => b.ratio - a.ratio) ?? [];
+	const barChartData = convertToBarChartData(holdingsRatio, NUM_OF_BARS);
+	const maxRatio = barChartData.at(0)?.ratio ?? 0;
 
 	useEffect(() => {
 		if (!canvasRef.current) return;
@@ -53,7 +62,16 @@ export default function ProportionByValue() {
 			canvasWidth,
 			canvasHeight
 		});
-	}, [maxRatio, theme]);
+
+		barInfos.current = calcBarInfo({
+			barData: barChartData,
+			maxValue: maxRatio,
+			canvasWidth,
+			canvasHeight
+		});
+
+		drawBars({ ctx, theme, barData: barInfos.current, canvasHeight });
+	}, [maxRatio, theme, barChartData]);
 
 	return (
 		<Style.ProportionByValueContainer>
@@ -84,9 +102,10 @@ function calcHoldingValues({
 	buyQuantity,
 	sellQuantity
 }: Holding): HoldingsValues {
+	const quantity = buyQuantity - sellQuantity;
 	return {
 		ticker,
-		value: (dummyCurrentPrice.get(ticker) ?? avgCost - avgCost) * (buyQuantity - sellQuantity)
+		value: avgCost * quantity + (dummyCurrentPrice.get(ticker) ?? avgCost - avgCost) * quantity
 	};
 }
 
@@ -95,6 +114,18 @@ function calcHoldingRatio(
 	totalValue: number | undefined
 ): HoldingsRatio {
 	const { ticker, value } = holdingsValues;
-	if (!totalValue || totalValue <= 0) return { ticker, ratio: 0 };
-	return { ticker, ratio: (value / totalValue) * 100 };
+	if (!totalValue || totalValue <= 0) return { ticker, ratio: 0, value: 0 };
+	return { ticker, ratio: (value / totalValue) * 100, value };
+}
+
+function convertToBarChartData(ratios: HoldingsRatio[], numOfBars: number): HoldingsRatio[] {
+	if (numOfBars === ratios.length) return ratios;
+
+	const others: HoldingsRatio = {
+		ticker: 'others',
+		ratio: ratios.slice(numOfBars - 1).reduce((acc, el) => acc + el.ratio, 0),
+		value: ratios.slice(numOfBars - 1).reduce((acc, el) => acc + el.value, 0)
+	};
+
+	return numOfBars === 1 ? [others] : [...ratios, others].sort((a, b) => b.ratio - a.ratio);
 }
