@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Card from '@components/Card';
 import { priceColorMixin } from '@styles/Mixins';
 
@@ -93,13 +93,27 @@ export const ProportionByValueContainer = styled(Card)`
 	height: ${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px;
 `;
 
-export const ProportionByValueChartContainer = styled.canvas`
+export const ProportionByValueChartContainer = styled.div`
+	position: relative;
+`;
+
+const proportionByValueCanvasStyle = css`
 	width: 100%;
 	height: calc(
 		${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em *
 			1.5
 	);
 	padding: ${CANVAS_PADDING_PX}px;
+`;
+export const ProportionByValueChartCanvas = styled.canvas`
+	${proportionByValueCanvasStyle};
+`;
+
+export const BarTooltipCanvas = styled.canvas`
+	${proportionByValueCanvasStyle};
+	position: absolute;
+	top: 0;
+	left: 0;
 `;
 
 export const SectorDividendPieChartContainer = styled.div`

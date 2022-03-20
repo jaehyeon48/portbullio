@@ -9,3 +9,5 @@ export const NUM_OF_BARS = 7;
 export const DEFAULT_GAP_BTW_BARS = 30;
 export const MAX_BAR_WIDTH = 100;
 export const TEXT_GAP = 5;
+export const BAR_TOOLTIP_TEXT_HORIZONTAL_PADDING = 2;
+export const BAR_TOOLTIP_TEXT_VERTICAL_PADDING = 10;

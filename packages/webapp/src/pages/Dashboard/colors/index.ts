@@ -14,3 +14,7 @@ export function barColors(theme: Theme, idx: number, ticker: string) {
 	if (ticker === '현금') return theme === 'light' ? 'hsl(60, 89%, 63%)' : 'hsl(60, 89%, 63%)';
 	return theme === 'light' ? barColorsLight[idx % numOfColors] : barColorsDark[idx % numOfColors];
 }
+
+export function barTooltipBgColor(theme: Theme) {
+	return theme === 'light' ? 'hsl(0, 0%, 97%)' : 'hsl(210, 17%, 23%)';
+}
