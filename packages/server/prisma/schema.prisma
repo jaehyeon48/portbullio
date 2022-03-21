@@ -103,6 +103,7 @@ model StockMeta {
   exchange String @db.VarChar(8)
   name     String @db.VarChar(100)
   type     StockType
+  sector   String @db.Text
 
   @@map("stock_meta")
   @@index([name], map: "stock_meta_name_index")
