@@ -3,5 +3,5 @@ export { default as drawAxis } from './drawAxis';
 export { default as drawHorizontalGrid } from './drawHorizontalGrid';
 export { default as drawBars } from './drawBars';
 export { default as calcBarInfo } from './calcBarInfo';
-export { default as drawBarTooltip } from './drawBarTooltip';
+export { default as drawBarTooltipBackground } from './drawBarTooltipBackground';
 export { default as drawBarTooltipText } from './drawBarTooltipText';

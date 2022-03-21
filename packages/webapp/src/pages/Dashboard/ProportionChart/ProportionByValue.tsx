@@ -12,7 +12,7 @@ import {
 	drawHorizontalGrid,
 	drawBars,
 	calcBarInfo,
-	drawBarTooltip,
+	drawBarTooltipBackground,
 	drawBarTooltipText
 } from './utils';
 
@@ -105,7 +105,15 @@ export default function ProportionByValue() {
 			if (offsetX < x || offsetX > x + width || offsetY < y - 10 || offsetY > y + height) return;
 			isCursorOnBar = true;
 			const text = `총 금액: ${formatCurrency(value, 'usd')}`;
-			drawBarTooltip({ ctx, theme, canvasWidth, canvasHeight, x: offsetX, y: offsetY, text });
+			drawBarTooltipBackground({
+				ctx,
+				theme,
+				canvasWidth,
+				canvasHeight,
+				x: offsetX,
+				y: offsetY,
+				text
+			});
 			drawBarTooltipText({ ctx, theme, canvasWidth, x: offsetX, y: offsetY, text });
 		});
 

@@ -15,7 +15,7 @@ interface Props {
 	text: string;
 }
 
-export default function drawBarTooltip({
+export default function drawBarTooltipBackground({
 	ctx,
 	theme,
 	canvasWidth,
