@@ -101,10 +101,14 @@ export default function ProportionByValue() {
 		const { offsetX, offsetY } = e.nativeEvent as MouseEvent;
 
 		let isCursorOnBar = false;
-		barInfos.current.forEach(({ x, y, width, height, value }) => {
+		barInfos.current.forEach(({ x, y, width, height, value, includedStocks }) => {
 			if (offsetX < x || offsetX > x + width || offsetY < y - 10 || offsetY > y + height) return;
 			isCursorOnBar = true;
-			const text = `총 금액: ${formatCurrency(value, 'usd')}`;
+			const text = includedStocks
+				? [['총 금액', value], ...includedStocks].map(
+						([ticker, val]) => `${ticker}: ${formatCurrency(val, 'usd')}`
+				  )
+				: `총 금액: ${formatCurrency(value, 'usd')}`;
 			drawBarTooltipBackground({
 				ctx,
 				theme,
@@ -114,7 +118,7 @@ export default function ProportionByValue() {
 				y: offsetY,
 				text
 			});
-			drawBarTooltipText({ ctx, theme, canvasWidth, x: offsetX, y: offsetY, text });
+			drawBarTooltipText({ ctx, theme, canvasWidth, canvasHeight, x: offsetX, y: offsetY, text });
 		});
 
 		if (!isCursorOnBar) {
@@ -174,9 +178,10 @@ function convertToBarChartData(ratios: HoldingsRatio[], numOfBars: number): Hold
 	if (numOfBars === ratios.length) return ratios;
 
 	const others: HoldingsRatio = {
-		ticker: 'others',
+		ticker: '기타',
 		ratio: ratios.slice(numOfBars - 1).reduce((acc, el) => acc + el.ratio, 0),
-		value: ratios.slice(numOfBars - 1).reduce((acc, el) => acc + el.value, 0)
+		value: ratios.slice(numOfBars - 1).reduce((acc, el) => acc + el.value, 0),
+		includedStocks: ratios.slice(numOfBars - 1).map(({ ticker, value }) => [ticker, value])
 	};
 
 	return numOfBars === 1 ? [others] : [...ratios, others].sort((a, b) => b.ratio - a.ratio);

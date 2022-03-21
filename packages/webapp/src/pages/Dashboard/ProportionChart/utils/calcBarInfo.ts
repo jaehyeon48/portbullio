@@ -27,7 +27,7 @@ export default function calcBarInfo({ barData, maxValue, canvasWidth, canvasHeig
 	}
 
 	const barBottomYPos = yPos(0, maxValue, canvasHeight - AXIS_THICKNESS);
-	return barData.map(({ ticker, ratio, value }, i) => {
+	return barData.map(({ ticker, ratio, value, includedStocks }, i) => {
 		const barYPos = yPos(ratio, maxValue, canvasHeight);
 		return {
 			x: Y_AXIS_MARGIN + gapBtwBars * (i + 1) + barWidth * i,
@@ -36,7 +36,8 @@ export default function calcBarInfo({ barData, maxValue, canvasWidth, canvasHeig
 			height: barBottomYPos - barYPos,
 			ticker,
 			ratio,
-			value
+			value,
+			includedStocks
 		};
 	});
 }
