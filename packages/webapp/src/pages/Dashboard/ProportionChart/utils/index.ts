@@ -5,3 +5,7 @@ export { default as drawBars } from './drawBars';
 export { default as calcBarInfo } from './calcBarInfo';
 export { default as drawBarTooltipBackground } from './drawBarTooltipBackground';
 export { default as drawBarTooltipText } from './drawBarTooltipText';
+export { default as calcHoldingValues } from './calcHoldingValues';
+export { default as calcHoldingRatio } from './calcHoldingRatio';
+export { default as convertToBarChartData } from './convertToBarChartData';
+export { default as getBarTooltipText } from './getBarTooltipText';

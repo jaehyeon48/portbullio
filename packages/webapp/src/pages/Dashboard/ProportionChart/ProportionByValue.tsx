@@ -1,25 +1,24 @@
 import { useRef, useEffect, SyntheticEvent } from 'react';
 import { Holding } from '@portbullio/shared/src/types';
-import { HoldingsRatio, BarInfo } from '@types';
+import { BarInfo } from '@types';
 import { useHoldingsList, useCashTransactionList, useThemeMode } from '@hooks/index';
 import { useSelectPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
-import { calcTotalCashAmount, formatCurrency } from '@utils';
+import { calcTotalCashAmount } from '@utils';
 import * as Style from '../style';
 import { adjustToDpr } from '../utils';
-import { NUM_OF_BARS, NUM_OF_BAR_TOOLTIP_TEXT_LIMIT } from './constants';
+import { NUM_OF_BARS } from './constants';
 import {
 	drawAxis,
 	drawHorizontalGrid,
 	drawBars,
 	calcBarInfo,
 	drawBarTooltipBackground,
-	drawBarTooltipText
+	drawBarTooltipText,
+	calcHoldingValues,
+	calcHoldingRatio,
+	convertToBarChartData,
+	getBarTooltipText
 } from './utils';
-
-interface HoldingsValues {
-	ticker: string;
-	value: number;
-}
 
 export default function ProportionByValue() {
 	const [theme] = useThemeMode();
@@ -133,65 +132,5 @@ export default function ProportionByValue() {
 				<Style.BarTooltipCanvas ref={barTooltipCanvasRef} onMouseMove={showBarTooltip} />
 			</Style.ProportionByValueChartContainer>
 		</Style.ProportionByValueContainer>
-	);
-}
-
-const dummyCurrentPrice = new Map([
-	['AAPL', 163.98],
-	['AMZN', 3225.01],
-	['BA', 192.83],
-	['COKE', 513.11],
-	['GOOG', 2736.03],
-	['MSFT', 300.43],
-	['SBUX', 89.6],
-	['TSLA', 905.39],
-	['V', 219.11]
-]);
-
-function calcHoldingValues({
-	ticker,
-	avgCost,
-	buyQuantity,
-	sellQuantity
-}: Holding): HoldingsValues {
-	const quantity = buyQuantity - sellQuantity;
-	return {
-		ticker,
-		value: avgCost * quantity + (dummyCurrentPrice.get(ticker) ?? avgCost - avgCost) * quantity
-	};
-}
-
-function calcHoldingRatio(
-	holdingsValues: HoldingsValues,
-	totalValue: number | undefined
-): HoldingsRatio {
-	const { ticker, value } = holdingsValues;
-	if (!totalValue || totalValue <= 0) return { ticker, ratio: 0, value: 0 };
-	return { ticker, ratio: (value / totalValue) * 100, value };
-}
-
-function convertToBarChartData(ratios: HoldingsRatio[], numOfBars: number): HoldingsRatio[] {
-	if (numOfBars === ratios.length) return ratios;
-
-	const others: HoldingsRatio = {
-		ticker: '기타',
-		ratio: ratios.slice(numOfBars - 1).reduce((acc, el) => acc + el.ratio, 0),
-		value: ratios.slice(numOfBars - 1).reduce((acc, el) => acc + el.value, 0),
-		includedStocks: ratios.slice(numOfBars - 1).map(({ ticker, value }) => [ticker, value])
-	};
-
-	return numOfBars === 1 ? [others] : [...ratios, others].sort((a, b) => b.ratio - a.ratio);
-}
-
-function getBarTooltipText(value: number, includedStocks: [string, number][] | undefined) {
-	if (!includedStocks) return `총 금액: ${formatCurrency(value, 'usd')}`;
-	if (includedStocks.length > NUM_OF_BAR_TOOLTIP_TEXT_LIMIT) {
-		return [['총 금액', value], ...includedStocks]
-			.slice(0, NUM_OF_BAR_TOOLTIP_TEXT_LIMIT + 1)
-			.map(([ticker, val]) => `${ticker}: ${formatCurrency(val, 'usd')}`)
-			.concat('(생략)');
-	}
-	return [['총 금액', value], ...includedStocks].map(
-		([ticker, val]) => `${ticker}: ${formatCurrency(val, 'usd')}`
 	);
 }

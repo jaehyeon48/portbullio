@@ -44,3 +44,8 @@ export interface BarInfo {
 	value: number;
 	includedStocks?: [string, number][];
 }
+
+export interface HoldingsValues {
+	ticker: string;
+	value: number;
+}
