@@ -153,3 +153,8 @@ export const Select = styled.select`
 	outline: none;
 	border-radius: 2px;
 `;
+
+export const NoticeEmptyHoldingsList = styled.div`
+	margin-top: 30px;
+	text-align: center;
+`;

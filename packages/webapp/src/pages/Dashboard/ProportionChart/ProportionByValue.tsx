@@ -126,17 +126,27 @@ export default function ProportionByValue() {
 		}
 	}
 
+	function isHoldingsEmpty() {
+		return numOfBars === 1 && totalCashAmount <= 0;
+	}
+
 	return (
 		<Style.ProportionByValueContainer>
-			<SelectNumOfBars numOfBars={numOfBars} setterFn={setNumOfBars} />
+			{!isHoldingsEmpty() && <SelectNumOfBars numOfBars={numOfBars} setterFn={setNumOfBars} />}
 			<Style.ItemIconContainer bgColor="blue">
 				<BarChartAscIcon width={20} height={20} />
 			</Style.ItemIconContainer>
 			<Style.ItemHeader>종목 구성</Style.ItemHeader>
-			<Style.ProportionByValueChartContainer>
-				<Style.ProportionByValueChartCanvas ref={canvasRef} />
-				<Style.BarTooltipCanvas ref={barTooltipCanvasRef} onMouseMove={showBarTooltip} />
-			</Style.ProportionByValueChartContainer>
+			{isHoldingsEmpty() ? (
+				<Style.NoticeEmptyHoldingsList>
+					표시할 종목이 없습니다. 보유 종목 혹은 현금 거래내역을 추가해 주세요.
+				</Style.NoticeEmptyHoldingsList>
+			) : (
+				<Style.ProportionByValueChartContainer>
+					<Style.ProportionByValueChartCanvas ref={canvasRef} />
+					<Style.BarTooltipCanvas ref={barTooltipCanvasRef} onMouseMove={showBarTooltip} />
+				</Style.ProportionByValueChartContainer>
+			)}
 		</Style.ProportionByValueContainer>
 	);
 }
