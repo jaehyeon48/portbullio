@@ -137,3 +137,19 @@ export const AssetHistoryContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	height: ${ASSET_HISTORY_CONTAINER_HEIGHT_PX}px;
 `;
+
+export const SelectNumOfBarsContainer = styled.div`
+	position: absolute;
+	top: ${ITEM_UPPER_LOWER_PADDING_PX}px;
+	right: ${ITEM_UPPER_LOWER_PADDING_PX}px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
+`;
+
+export const Select = styled.select`
+	background-color: var(--navbarBgColor);
+	color: var(--baseTextColor);
+	outline: none;
+	border-radius: 2px;
+`;

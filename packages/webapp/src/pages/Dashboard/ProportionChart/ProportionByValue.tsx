@@ -1,4 +1,4 @@
-import { useRef, useEffect, SyntheticEvent } from 'react';
+import { useRef, useEffect, useState, SyntheticEvent } from 'react';
 import { Holding } from '@portbullio/shared/src/types';
 import { BarInfo } from '@types';
 import { useHoldingsList, useCashTransactionList, useThemeMode } from '@hooks/index';
@@ -6,7 +6,7 @@ import { useSelectPortfolioId, BarChartAsc as BarChartAscIcon } from '@component
 import { calcTotalCashAmount } from '@utils';
 import * as Style from '../style';
 import { adjustToDpr } from '../utils';
-import { NUM_OF_BARS } from './constants';
+import { MAX_NUM_OF_BARS } from './constants';
 import {
 	drawAxis,
 	drawHorizontalGrid,
@@ -19,6 +19,7 @@ import {
 	convertToBarChartData,
 	getBarTooltipText
 } from './utils';
+import SelectNumOfBars from './SelectNumOfBars';
 
 export default function ProportionByValue() {
 	const [theme] = useThemeMode();
@@ -29,6 +30,9 @@ export default function ProportionByValue() {
 	const cashTransactions = useCashTransactionList(portfolioId ?? 0);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
 	const holdingsList = useHoldingsList(portfolioId);
+	const [numOfBars, setNumOfBars] = useState(
+		Math.min((holdingsList.data?.length ?? 0) + 1, MAX_NUM_OF_BARS)
+	);
 	const cashHoldingsValue: Holding = {
 		ticker: '현금',
 		avgCost: totalCashAmount,
@@ -41,7 +45,7 @@ export default function ProportionByValue() {
 		holdingsValues
 			?.map(holdingsValue => calcHoldingRatio(holdingsValue, totalValue))
 			.sort((a, b) => b.ratio - a.ratio) ?? [];
-	const barChartData = convertToBarChartData(holdingsRatio, NUM_OF_BARS);
+	const barChartData = convertToBarChartData(holdingsRatio, numOfBars);
 	const maxRatio = barChartData.at(0)?.ratio ?? 0;
 
 	useEffect(() => {
@@ -74,11 +78,12 @@ export default function ProportionByValue() {
 			barData: barChartData,
 			maxValue: maxRatio,
 			canvasWidth,
-			canvasHeight
+			canvasHeight,
+			numOfBars
 		});
 
 		drawBars({ ctx, theme, barData: barInfos.current, canvasHeight });
-	}, [maxRatio, theme, barChartData]);
+	}, [maxRatio, theme, barChartData, numOfBars]);
 
 	useEffect(() => {
 		if (!barTooltipCanvasRef.current) return;
@@ -123,6 +128,7 @@ export default function ProportionByValue() {
 
 	return (
 		<Style.ProportionByValueContainer>
+			<SelectNumOfBars numOfBars={numOfBars} setterFn={setNumOfBars} />
 			<Style.ItemIconContainer bgColor="blue">
 				<BarChartAscIcon width={20} height={20} />
 			</Style.ItemIconContainer>
