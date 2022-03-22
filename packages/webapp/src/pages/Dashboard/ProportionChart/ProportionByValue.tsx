@@ -6,7 +6,7 @@ import { useSelectPortfolioId, BarChartAsc as BarChartAscIcon } from '@component
 import { calcTotalCashAmount, formatCurrency } from '@utils';
 import * as Style from '../style';
 import { adjustToDpr } from '../utils';
-import { NUM_OF_BARS } from './constants';
+import { NUM_OF_BARS, NUM_OF_BAR_TOOLTIP_TEXT_LIMIT } from './constants';
 import {
 	drawAxis,
 	drawHorizontalGrid,
@@ -104,11 +104,7 @@ export default function ProportionByValue() {
 		barInfos.current.forEach(({ x, y, width, height, value, includedStocks }) => {
 			if (offsetX < x || offsetX > x + width || offsetY < y - 10 || offsetY > y + height) return;
 			isCursorOnBar = true;
-			const text = includedStocks
-				? [['총 금액', value], ...includedStocks].map(
-						([ticker, val]) => `${ticker}: ${formatCurrency(val, 'usd')}`
-				  )
-				: `총 금액: ${formatCurrency(value, 'usd')}`;
+			const text = getBarTooltipText(value, includedStocks);
 			drawBarTooltipBackground({
 				ctx,
 				theme,
@@ -185,4 +181,17 @@ function convertToBarChartData(ratios: HoldingsRatio[], numOfBars: number): Hold
 	};
 
 	return numOfBars === 1 ? [others] : [...ratios, others].sort((a, b) => b.ratio - a.ratio);
+}
+
+function getBarTooltipText(value: number, includedStocks: [string, number][] | undefined) {
+	if (!includedStocks) return `총 금액: ${formatCurrency(value, 'usd')}`;
+	if (includedStocks.length > NUM_OF_BAR_TOOLTIP_TEXT_LIMIT) {
+		return [['총 금액', value], ...includedStocks]
+			.slice(0, NUM_OF_BAR_TOOLTIP_TEXT_LIMIT + 1)
+			.map(([ticker, val]) => `${ticker}: ${formatCurrency(val, 'usd')}`)
+			.concat('(생략)');
+	}
+	return [['총 금액', value], ...includedStocks].map(
+		([ticker, val]) => `${ticker}: ${formatCurrency(val, 'usd')}`
+	);
 }
