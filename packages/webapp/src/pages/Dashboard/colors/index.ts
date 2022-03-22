@@ -11,10 +11,10 @@ export function horizontalGridColor(theme: Theme) {
 
 export function barColors(theme: Theme, idx: number, ticker: string) {
 	const numOfColors = barColorsLight.length;
-	if (ticker === '현금') return theme === 'light' ? 'hsl(60, 89%, 63%)' : 'hsl(60, 89%, 63%)';
+	if (ticker === '현금') return theme === 'light' ? 'hsl(60, 89%, 60%)' : 'hsl(60, 89%, 55%)';
 	return theme === 'light' ? barColorsLight[idx % numOfColors] : barColorsDark[idx % numOfColors];
 }
 
 export function barTooltipBgColor(theme: Theme) {
-	return theme === 'light' ? 'hsl(0, 0%, 97%)' : 'hsl(210, 17%, 23%)';
+	return theme === 'light' ? 'hsl(0, 0%, 99%)' : 'hsl(210, 17%, 23%)';
 }
