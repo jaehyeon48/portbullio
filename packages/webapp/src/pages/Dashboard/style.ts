@@ -131,7 +131,7 @@ export const AssetHistoryContainer = styled(Card)`
 	height: ${ASSET_HISTORY_CONTAINER_HEIGHT_PX}px;
 `;
 
-export const SelectNumOfBarsContainer = styled.div`
+export const SelectNumOfItemsContainer = styled.div`
 	position: absolute;
 	top: ${ITEM_UPPER_LOWER_PADDING_PX}px;
 	right: ${ITEM_UPPER_LOWER_PADDING_PX}px;

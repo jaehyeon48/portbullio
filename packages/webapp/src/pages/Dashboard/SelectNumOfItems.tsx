@@ -1,5 +1,5 @@
 import { SyntheticEvent, Dispatch, SetStateAction, useEffect } from 'react';
-import { SelectNumOfBarsContainer, Select } from './style';
+import { SelectNumOfItemsContainer, Select } from './style';
 
 interface Props {
 	numOfItems: number;
@@ -30,7 +30,7 @@ export default function SelectNumOfItems({
 	}
 
 	return (
-		<SelectNumOfBarsContainer>
+		<SelectNumOfItemsContainer>
 			<label htmlFor={selectElementId}>{labelText}</label>
 			<Select id={selectElementId} value={optionValue} onChange={handleChangeSelect}>
 				{Array.from({ length: numOfOptions }, (_, i) => i + 1).map(val => (
@@ -39,6 +39,6 @@ export default function SelectNumOfItems({
 					</option>
 				))}
 			</Select>
-		</SelectNumOfBarsContainer>
+		</SelectNumOfItemsContainer>
 	);
 }
