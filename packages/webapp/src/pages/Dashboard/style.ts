@@ -158,3 +158,24 @@ export const NoticeEmptyHoldingsList = styled.div`
 	margin-top: 30px;
 	text-align: center;
 `;
+
+export const PieChartContainer = styled.div`
+	display: flex;
+`;
+
+const pieChartStyle = css`
+	height: calc(
+		${PIE_CHART_CONTAINER_HEIGHT_PX}px - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em * 1.5
+	);
+	padding: ${CANVAS_PADDING_PX}px;
+`;
+
+export const PieChartCanvas = styled.canvas`
+	width: 60%;
+	${pieChartStyle};
+`;
+
+export const LegendContainer = styled.div`
+	width: 40%;
+	${pieChartStyle};
+`;

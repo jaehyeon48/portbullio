@@ -54,3 +54,9 @@ export interface SectorInfo {
 	ticker: string;
 	sector: string;
 }
+
+export interface SectorPieChartRatio {
+	sector: string;
+	ratio: number;
+	includedStocks: string[];
+}

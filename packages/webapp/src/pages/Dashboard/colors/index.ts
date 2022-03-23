@@ -1,5 +1,6 @@
 import { Theme } from '@types';
 import { barColorsLight, barColorsDark } from './barColors';
+import { sectorPieChartLight, sectorPieChartDark } from './pieColors';
 
 export function textColor(theme: Theme) {
 	return theme === 'light' ? '#000' : '#FFF';
@@ -17,4 +18,8 @@ export function barColors(theme: Theme, idx: number, ticker: string) {
 
 export function barTooltipBgColor(theme: Theme) {
 	return theme === 'light' ? 'hsl(0, 0%, 99%)' : 'hsl(210, 17%, 23%)';
+}
+
+export function sectorPieChartColors(theme: Theme, idx: number) {
+	return theme === 'light' ? sectorPieChartLight[idx] : sectorPieChartDark[idx];
 }
