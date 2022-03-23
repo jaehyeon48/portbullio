@@ -1,4 +1,4 @@
-export { default as AppProviders } from './AppProviders';
+export * from './AppProviders';
 export { default as Card } from './Card';
 export { default as DynamicCaret } from './DynamicCaret';
 export { default as EventEmitterListeners } from './EventEmitterListeners';

@@ -1,13 +1,7 @@
 import { ReactElement } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
-import { SelectPortfolioIdContextProvider } from '@components/index';
-import {
-	AuthContextProvider,
-	EventEmitterProvider,
-	HoldingsTickersContextProvider,
-	HoldingsSectorsContextProvider
-} from '@hooks/index';
+import { ContextAPIProviders } from '@components/index';
 import userEvent from '@testing-library/user-event';
 
 interface WrapperProps {
@@ -21,15 +15,7 @@ function CustomWrapper({ children, authValue = false }: WrapperProps) {
 	return (
 		<BrowserRouter>
 			<QueryClientProvider client={queryClient}>
-				<AuthContextProvider initialValue={authValue}>
-					<EventEmitterProvider>
-						<SelectPortfolioIdContextProvider>
-							<HoldingsTickersContextProvider>
-								<HoldingsSectorsContextProvider>{children}</HoldingsSectorsContextProvider>
-							</HoldingsTickersContextProvider>
-						</SelectPortfolioIdContextProvider>
-					</EventEmitterProvider>
-				</AuthContextProvider>
+				<ContextAPIProviders authContextInitialValue={authValue}>{children}</ContextAPIProviders>
 			</QueryClientProvider>
 		</BrowserRouter>
 	);
