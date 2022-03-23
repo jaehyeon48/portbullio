@@ -91,7 +91,7 @@ export default function ProportionByValue() {
 		const ctx = canvas.getContext('2d');
 		if (!ctx) return;
 		adjustToDpr(ctx, canvas);
-	}, []);
+	}, [numOfBars]);
 
 	function showBarTooltip(e: SyntheticEvent) {
 		if (barInfos.current.length === 0) return;
