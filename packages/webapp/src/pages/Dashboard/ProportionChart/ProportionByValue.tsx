@@ -23,7 +23,7 @@ import SelectNumOfBars from './SelectNumOfBars';
 
 export default function ProportionByValue() {
 	const [theme] = useThemeMode();
-	const canvasRef = useRef<HTMLCanvasElement>(null);
+	const barCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barTooltipCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barInfos = useRef<BarInfo[]>([]);
 	const portfolioId = useSelectPortfolioId();
@@ -49,14 +49,14 @@ export default function ProportionByValue() {
 	const maxRatio = barChartData.at(0)?.ratio ?? 0;
 
 	useEffect(() => {
-		if (!canvasRef.current) return;
-		const canvas = canvasRef.current;
-		const ctx = canvas.getContext('2d');
+		if (!barCanvasRef.current) return;
+		const barCanvas = barCanvasRef.current;
+		const ctx = barCanvas.getContext('2d');
 		if (!ctx) return;
 
-		adjustToDpr(ctx, canvas);
-		const canvasWidth = canvas.clientWidth;
-		const canvasHeight = canvas.clientHeight;
+		adjustToDpr(ctx, barCanvas);
+		const canvasWidth = barCanvas.clientWidth;
+		const canvasHeight = barCanvas.clientHeight;
 
 		drawAxis({
 			ctx,
@@ -87,10 +87,10 @@ export default function ProportionByValue() {
 
 	useEffect(() => {
 		if (!barTooltipCanvasRef.current) return;
-		const canvas = barTooltipCanvasRef.current;
-		const ctx = canvas.getContext('2d');
+		const barTooltipCanvas = barTooltipCanvasRef.current;
+		const ctx = barTooltipCanvas.getContext('2d');
 		if (!ctx) return;
-		adjustToDpr(ctx, canvas);
+		adjustToDpr(ctx, barTooltipCanvas);
 	}, [numOfBars]);
 
 	function showBarTooltip(e: SyntheticEvent) {
@@ -143,7 +143,7 @@ export default function ProportionByValue() {
 				</Style.NoticeEmptyHoldingsList>
 			) : (
 				<Style.ProportionByValueChartContainer>
-					<Style.ProportionByValueChartCanvas ref={canvasRef} />
+					<Style.ProportionByValueChartCanvas ref={barCanvasRef} />
 					<Style.BarTooltipCanvas ref={barTooltipCanvasRef} onMouseMove={showBarTooltip} />
 				</Style.ProportionByValueChartContainer>
 			)}
