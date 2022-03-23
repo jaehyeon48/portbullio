@@ -13,5 +13,7 @@ export default function convertToBarChartData(
 		includedStocks: ratios.slice(numOfBars - 1).map(({ ticker, value }) => [ticker, value])
 	};
 
-	return numOfBars === 1 ? [others] : [...ratios, others].sort((a, b) => b.ratio - a.ratio);
+	return numOfBars === 1
+		? [others]
+		: [...ratios.slice(0, numOfBars - 1), others].sort((a, b) => b.ratio - a.ratio);
 }
