@@ -2,8 +2,12 @@ import { ReactNode } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
-import { AuthContextProvider, EventEmitterProvider } from '@hooks/index';
 import { SelectPortfolioIdContextProvider } from '@components/index';
+import {
+	AuthContextProvider,
+	EventEmitterProvider,
+	HoldingsTickersContextProvider
+} from '@hooks/index';
 
 interface Props {
 	children: ReactNode;
@@ -18,7 +22,9 @@ export default function AppProviders({ children }: Props) {
 				<ReactQueryDevtools initialIsOpen={false} />
 				<AuthContextProvider>
 					<EventEmitterProvider>
-						<SelectPortfolioIdContextProvider>{children}</SelectPortfolioIdContextProvider>
+						<SelectPortfolioIdContextProvider>
+							<HoldingsTickersContextProvider>{children}</HoldingsTickersContextProvider>
+						</SelectPortfolioIdContextProvider>
 					</EventEmitterProvider>
 				</AuthContextProvider>
 			</QueryClientProvider>
