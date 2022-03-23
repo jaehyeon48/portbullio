@@ -49,3 +49,8 @@ export interface HoldingsValues {
 	ticker: string;
 	value: number;
 }
+
+export interface SectorInfo {
+	ticker: string;
+	sector: string;
+}

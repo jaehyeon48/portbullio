@@ -1,6 +1,10 @@
 import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { AuthContextProvider, HoldingsTickersContextProvider } from '@hooks/index';
+import {
+	AuthContextProvider,
+	HoldingsTickersContextProvider,
+	HoldingsSectorsContextProvider
+} from '@hooks/index';
 
 export const createHookQueryWrapper = () => {
 	const queryClient = new QueryClient();
@@ -8,7 +12,9 @@ export const createHookQueryWrapper = () => {
 		return (
 			<QueryClientProvider client={queryClient}>
 				<AuthContextProvider>
-					<HoldingsTickersContextProvider>{children}</HoldingsTickersContextProvider>
+					<HoldingsTickersContextProvider>
+						<HoldingsSectorsContextProvider>{children}</HoldingsSectorsContextProvider>
+					</HoldingsTickersContextProvider>
 				</AuthContextProvider>
 			</QueryClientProvider>
 		);

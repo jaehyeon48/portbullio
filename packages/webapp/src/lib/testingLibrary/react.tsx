@@ -5,7 +5,8 @@ import { SelectPortfolioIdContextProvider } from '@components/index';
 import {
 	AuthContextProvider,
 	EventEmitterProvider,
-	HoldingsTickersContextProvider
+	HoldingsTickersContextProvider,
+	HoldingsSectorsContextProvider
 } from '@hooks/index';
 import userEvent from '@testing-library/user-event';
 
@@ -23,7 +24,9 @@ function CustomWrapper({ children, authValue = false }: WrapperProps) {
 				<AuthContextProvider initialValue={authValue}>
 					<EventEmitterProvider>
 						<SelectPortfolioIdContextProvider>
-							<HoldingsTickersContextProvider>{children}</HoldingsTickersContextProvider>
+							<HoldingsTickersContextProvider>
+								<HoldingsSectorsContextProvider>{children}</HoldingsSectorsContextProvider>
+							</HoldingsTickersContextProvider>
 						</SelectPortfolioIdContextProvider>
 					</EventEmitterProvider>
 				</AuthContextProvider>
