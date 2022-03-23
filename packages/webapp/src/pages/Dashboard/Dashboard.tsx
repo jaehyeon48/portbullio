@@ -1,4 +1,4 @@
-import { DashboardContainer, SectorDividendPieChartContainer } from './style';
+import { DashboardContainer } from './style';
 import ProfitLossAsset from './ProfitLossAsset';
 import ProportionByValue from './ProportionChart/ProportionByValue';
 import SectorPieChart from './PieChart/SectorPieChart';
@@ -10,10 +10,8 @@ export default function Dashboard() {
 		<DashboardContainer>
 			<ProfitLossAsset />
 			<ProportionByValue />
-			<SectorDividendPieChartContainer>
-				<SectorPieChart />
-				<DividendPieChart />
-			</SectorDividendPieChartContainer>
+			<SectorPieChart />
+			<DividendPieChart />
 			<AssetHistory />
 		</DashboardContainer>
 	);

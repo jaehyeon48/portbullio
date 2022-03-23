@@ -116,13 +116,6 @@ export const BarTooltipCanvas = styled.canvas`
 	left: 0;
 `;
 
-export const SectorDividendPieChartContainer = styled.div`
-	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	position: relative;
-	display: flex;
-	gap: 30px;
-`;
-
 export const SectorPieChartContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	height: ${PIE_CHART_CONTAINER_HEIGHT_PX}px;
@@ -171,11 +164,13 @@ const pieChartStyle = css`
 `;
 
 export const PieChartCanvas = styled.canvas`
-	width: 60%;
 	${pieChartStyle};
+	width: 50%;
 `;
 
 export const LegendContainer = styled.div`
-	width: 40%;
 	${pieChartStyle};
+	width: 50%;
+	display: flex;
+	align-items: center;
 `;

@@ -3,9 +3,12 @@ import { PieChart as PieChartIcon } from '@components/Icon';
 import { useHoldingsTickers, useHoldingsSectors, useThemeMode } from '@hooks/index';
 import { SectorInfo, SectorPieChartRatio } from '@types';
 import * as Style from '../style';
+import { LegendList, LegendListItem, LegendColorBox, LegendItemText } from './PieChartLegendStyles';
 import { adjustToDpr } from '../utils';
 import { drawPieChart } from './utils';
 import SelectNumOfItems from '../SelectNumOfItems';
+
+import { sectorPieChartColors } from '../colors';
 
 const MAX_NUM_OF_PIES = 7;
 
@@ -54,7 +57,18 @@ export default function SectorPieChart() {
 			<Style.ItemHeader>섹터 구성</Style.ItemHeader>
 			<Style.PieChartContainer>
 				<Style.PieChartCanvas ref={pieChartCanvasRef} />
-				<Style.LegendContainer />
+				<Style.LegendContainer>
+					<LegendList>
+						{sectorChartData.map(({ sector, ratio }, idx) => (
+							<LegendListItem key={sector}>
+								<LegendColorBox backgroundColor={sectorPieChartColors(theme, idx)} />
+								<LegendItemText>
+									{translateSectorToKor(sector)}&nbsp;&#40;{(ratio * 100).toFixed(2)}%&#41;
+								</LegendItemText>
+							</LegendListItem>
+						))}
+					</LegendList>
+				</Style.LegendContainer>
 			</Style.PieChartContainer>
 		</Style.SectorPieChartContainer>
 	);
@@ -94,4 +108,20 @@ function convertToSectorChartData(sectorRatios: SectorPieChartRatio[], numOfItem
 	return numOfItems === 1
 		? [others]
 		: [...sectorRatios.slice(0, numOfItems - 1), others].sort((a, b) => b.ratio - a.ratio);
+}
+
+function translateSectorToKor(sector: string) {
+	if (sector === 'Basic Materials') return '원자재';
+	if (sector === 'Communication Services') return '통신 서비스';
+	if (sector === 'Consumer Cyclical') return '임의 소비재';
+	if (sector === 'Consumer Defensive') return '필수 소비재';
+	if (sector === 'Energy') return '에너지';
+	if (sector === 'ETF') return 'ETF';
+	if (sector === 'Financial Services') return '금융';
+	if (sector === 'Healthcare') return '헬스케어';
+	if (sector === 'Industrials') return '산업재';
+	if (sector === 'Real Estate') return '부동산';
+	if (sector === 'Technology') return '기술';
+	if (sector === 'Utilities') return '유틸리티';
+	return '기타';
 }

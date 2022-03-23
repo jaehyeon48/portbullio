@@ -15,5 +15,5 @@ export const sectorPieChartDark = [
 	'hsl(148, 60%, 51%)',
 	'hsl(201, 65%, 61%)',
 	'hsl(258, 82%, 68%)',
-	'hsl(210, 42%, 30%)'
+	'hsl(210, 42%, 43%)'
 ];
