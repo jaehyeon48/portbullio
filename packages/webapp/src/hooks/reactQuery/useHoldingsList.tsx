@@ -2,8 +2,7 @@ import { useQuery } from 'react-query';
 import { Holding } from '@portbullio/shared/src/types';
 import { portfolioKeys } from '@lib/index';
 import { getAllHoldings, getSectors } from '@api/index';
-import { useHoldingsTickersUpdate } from './useHoldingsTickers';
-import { useHoldingsSectorsUpdate } from '../Holdings';
+import { useHoldingsTickersUpdate, useHoldingsSectorsUpdate } from '../Holdings';
 
 export default function useHoldingsList(portfolioId: number | undefined) {
 	const setHoldingsTickers = useHoldingsTickersUpdate();

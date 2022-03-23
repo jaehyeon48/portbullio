@@ -1,1 +1,2 @@
-export * from './useSectors';
+export * from './useHoldingsSectors';
+export * from './useHoldingsTickers';
