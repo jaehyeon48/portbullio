@@ -19,7 +19,7 @@ import {
 	convertToBarChartData,
 	getBarTooltipText
 } from './utils';
-import SelectNumOfBars from './SelectNumOfBars';
+import SelectNumOfItems from '../SelectNumOfItems';
 
 export default function ProportionByValue() {
 	const [theme] = useThemeMode();
@@ -132,7 +132,16 @@ export default function ProportionByValue() {
 
 	return (
 		<Style.ProportionByValueContainer>
-			{!isHoldingsEmpty() && <SelectNumOfBars numOfBars={numOfBars} setterFn={setNumOfBars} />}
+			{!isHoldingsEmpty() && (
+				<SelectNumOfItems
+					numOfItems={(holdingsList.data?.length ?? 0) + 1}
+					maxNumOfOptions={MAX_NUM_OF_BARS}
+					optionValue={numOfBars}
+					setterFn={setNumOfBars}
+					labelText="종목 개수: "
+					selectElementId="select-num-of-bar-items"
+				/>
+			)}
 			<Style.ItemIconContainer bgColor="blue">
 				<BarChartAscIcon width={20} height={20} />
 			</Style.ItemIconContainer>
