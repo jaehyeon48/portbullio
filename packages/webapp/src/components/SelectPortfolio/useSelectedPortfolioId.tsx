@@ -10,7 +10,7 @@ interface ProviderProps {
 const PortfolioIdContext = React.createContext<number>(-1);
 const PortfolioIdUpdateContext = React.createContext<PortfolioIdUpdateFn | null>(null);
 
-export function SelectPortfolioIdContextProvider({ children }: ProviderProps) {
+export function SelectedPortfolioIdContextProvider({ children }: ProviderProps) {
 	const defaultPortfolioId = useDefaultPortfolioId(false);
 	const [selectedPortfolioId, setSelectedPortfolioId] = React.useState(
 		defaultPortfolioId.data ?? -1
@@ -34,13 +34,13 @@ export function SelectPortfolioIdContextProvider({ children }: ProviderProps) {
 	);
 }
 
-export function useSelectPortfolioId() {
+export function useSelectedPortfolioId() {
 	const state = React.useContext(PortfolioIdContext);
 	if (state === null) throw new Error('Cannot find PortfolioIdContextProvider');
 	return state;
 }
 
-export function useSelectPortfolioIdUpdate() {
+export function useSelectedPortfolioIdUpdate() {
 	const state = React.useContext(PortfolioIdUpdateContext);
 	if (state === null) throw new Error('Cannot find PortfolioIdUpdateContextProvider');
 	return state;

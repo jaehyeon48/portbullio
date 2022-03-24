@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, SyntheticEvent } from 'react';
 import { Holding } from '@portbullio/shared/src/types';
 import { BarInfo } from '@types';
 import { useHoldingsList, useCashTransactionList, useThemeMode } from '@hooks/index';
-import { useSelectPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
+import { useSelectedPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
 import { calcTotalCashAmount } from '@utils';
 import * as Style from '../style';
 import { adjustToDpr } from '../utils';
@@ -26,7 +26,7 @@ export default function ProportionByValue() {
 	const barCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barTooltipCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barInfos = useRef<BarInfo[]>([]);
-	const portfolioId = useSelectPortfolioId();
+	const portfolioId = useSelectedPortfolioId();
 	const cashTransactions = useCashTransactionList(portfolioId);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
 	const holdingsList = useHoldingsList(portfolioId);

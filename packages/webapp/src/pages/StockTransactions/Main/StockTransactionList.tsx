@@ -16,7 +16,7 @@ import {
 	EmptyListNotice,
 	StickyNote as StickyNoteIcon,
 	DynamicCaret,
-	useSelectPortfolioId
+	useSelectedPortfolioId
 } from '@components/index';
 import * as Style from './styles';
 import StockMemoEditPage from '../ModalPage/StockMemoEdit';
@@ -55,7 +55,7 @@ interface OpenDeleteModalProps {
 
 export default function StockTransactionList({ stockTransactionList, isLoading }: Props) {
 	const { openModal } = useModal();
-	const portfolioId = useSelectPortfolioId();
+	const portfolioId = useSelectedPortfolioId();
 
 	function handleOpenMemoModal({ e, stockTransactionId, ticker, memo }: OpenMemoModalProps) {
 		openModal(

@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { SelectPortfolioIdContextProvider } from '@components/index';
+import { SelectedPortfolioIdContextProvider } from '@components/index';
 import {
 	AuthContextProvider,
 	EventEmitterProvider,
@@ -16,11 +16,11 @@ export default function ContextAPIProviders({ children, authContextInitialValue 
 	return (
 		<AuthContextProvider initialValue={authContextInitialValue}>
 			<EventEmitterProvider>
-				<SelectPortfolioIdContextProvider>
+				<SelectedPortfolioIdContextProvider>
 					<HoldingsTickersContextProvider>
 						<HoldingsSectorsContextProvider>{children}</HoldingsSectorsContextProvider>
 					</HoldingsTickersContextProvider>
-				</SelectPortfolioIdContextProvider>
+				</SelectedPortfolioIdContextProvider>
 			</EventEmitterProvider>
 		</AuthContextProvider>
 	);

@@ -10,7 +10,7 @@ export { default as SVG } from './SVG/SVG';
 export { default as TradingViewWidget } from './TradingViewWidget/TradingViewWidget';
 export { default as AvatarImage } from './AvatarImage/AvatarImage';
 export * from './ListPage';
-export * from './PortfolioSelect';
+export * from './SelectPortfolio';
 export { default as SearchStocks } from './SearchStocks/SearchStocks';
 export { default as ListQueryErrorBoundary } from './ListQueryErrorBoundary/ListQueryErrorBoundary';
 export { default as PrivateRoute } from './PrivateRoute/PrivateRoute';

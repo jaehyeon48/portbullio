@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { usePortfolioList } from '@hooks/ReactQuery';
-import { useSelectPortfolioId, useSelectPortfolioIdUpdate } from './usePortfolioSelectId';
+import { useSelectedPortfolioId, useSelectedPortfolioIdUpdate } from './useSelectedPortfolioId';
 
 interface SelectMarginProps {
 	margin?: string;
 }
 
-export default function PortfolioSelect() {
+export default function SelectPortfolio() {
 	const portfolios = usePortfolioList();
-	const selectedPortfolioId = useSelectPortfolioId();
-	const handleChangeSelect = useSelectPortfolioIdUpdate();
+	const selectedPortfolioId = useSelectedPortfolioId();
+	const handleChangeSelect = useSelectedPortfolioIdUpdate();
 
 	return (
 		<Select

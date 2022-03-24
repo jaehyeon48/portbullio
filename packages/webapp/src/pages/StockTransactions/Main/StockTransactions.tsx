@@ -7,7 +7,7 @@ import {
 	ListQueryErrorBoundary,
 	Filter as FilterIcon,
 	ArrowBack as ArrowBackIcon,
-	useSelectPortfolioId
+	useSelectedPortfolioId
 } from '@components/index';
 import {
 	formatNum,
@@ -23,7 +23,7 @@ import { useStockTransactions } from '../queries';
 export default function StockTransactions() {
 	const { ticker } = useParams() as { ticker: string };
 	useTitle(`portbullio - ${ticker} 거래내역`);
-	const portfolioId = useSelectPortfolioId();
+	const portfolioId = useSelectedPortfolioId();
 	const stockTransactionList = useStockTransactions(portfolioId, ticker);
 	const portfolioList = usePortfolioList();
 	const holdingsList = useHoldingsList(portfolioId);

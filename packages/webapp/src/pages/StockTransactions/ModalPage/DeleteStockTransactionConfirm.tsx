@@ -1,5 +1,5 @@
 import { SyntheticEvent } from 'react';
-import { useSelectPortfolioId } from '@components/PortfolioSelect';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio';
 import { StockTransactionType } from '@prisma/client';
 import { CloseModalFn } from '@src/types';
 import { useHoldingsList } from '@hooks/ReactQuery';
@@ -23,7 +23,7 @@ export default function DeleteStockTransactionConfirm({
 	quantityToDelete,
 	closeFunction
 }: Props) {
-	const portfolioId = useSelectPortfolioId();
+	const portfolioId = useSelectedPortfolioId();
 	const holdingsList = useHoldingsList(portfolioId);
 	const deleteStockTransactionMutation = useDeleteStockTransaction();
 
