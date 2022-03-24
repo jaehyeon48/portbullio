@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import styled from 'styled-components';
 import { usePortfolioList, useHoldingsTickersUpdate, useHoldingsList } from '@hooks/index';
 import { useSelectedPortfolioId, useSelectedPortfolioIdUpdate } from './useSelectedPortfolioId';
@@ -12,7 +13,10 @@ export default function SelectPortfolio() {
 	const handleChangeSelect = useSelectedPortfolioIdUpdate();
 	const setHoldingsTickers = useHoldingsTickersUpdate();
 	const holdingsList = useHoldingsList(selectedPortfolioId, true);
-	setHoldingsTickers(holdingsList.data?.map(({ ticker }) => ticker) ?? []);
+
+	useEffect(() => {
+		setHoldingsTickers(holdingsList.data?.map(({ ticker }) => ticker) ?? []);
+	}, [setHoldingsTickers, holdingsList]);
 
 	return (
 		<Select
