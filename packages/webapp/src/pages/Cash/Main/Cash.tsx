@@ -4,6 +4,7 @@ import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary, PortfolioSelect, useSelectPortfolioId } from '@components/index';
 import { useModal, useTitle, useCashTransactionList } from '@hooks/index';
 import { formatCurrency, calcTotalCashAmount } from '@utils';
+import toast from '@lib/toast';
 import * as Style from './styles';
 import CashTransactionList from './CashTransactionList';
 import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
@@ -17,6 +18,11 @@ export default function Cash() {
 	const { openModal } = useModal();
 
 	function openAddCashTransactionModal(e: SyntheticEvent) {
+		if (portfolioId === -1) {
+			toast.error({ message: '선택된 포트폴리오가 없습니다.' });
+			return;
+		}
+
 		openModal(e, <AddNewCashTransaction portfolioId={portfolioId} />);
 	}
 
