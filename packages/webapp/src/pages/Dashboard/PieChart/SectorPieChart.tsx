@@ -55,21 +55,27 @@ export default function SectorPieChart() {
 				<PieChartIcon width={32} height={32} />
 			</Style.ItemIconContainer>
 			<Style.ItemHeader>섹터 구성</Style.ItemHeader>
-			<Style.PieChartContainer>
-				<Style.PieChartCanvas ref={pieChartCanvasRef} />
-				<Style.LegendContainer>
-					<LegendList>
-						{sectorChartData.map(({ sector, ratio }, idx) => (
-							<LegendListItem key={sector}>
-								<LegendColorBox backgroundColor={sectorPieChartColors(theme, idx)} />
-								<LegendItemText>
-									{translateSectorToKor(sector)}&nbsp;&#40;{(ratio * 100).toFixed(2)}%&#41;
-								</LegendItemText>
-							</LegendListItem>
-						))}
-					</LegendList>
-				</Style.LegendContainer>
-			</Style.PieChartContainer>
+			{isSectorsEmpty() ? (
+				<Style.NoticeEmptyHoldingsList>
+					표시할 섹터가 없습니다. 보유 종목을 추가해 주세요.
+				</Style.NoticeEmptyHoldingsList>
+			) : (
+				<Style.PieChartContainer>
+					<Style.PieChartCanvas ref={pieChartCanvasRef} />
+					<Style.LegendContainer>
+						<LegendList>
+							{sectorChartData.map(({ sector, ratio }, idx) => (
+								<LegendListItem key={sector}>
+									<LegendColorBox backgroundColor={sectorPieChartColors(theme, idx)} />
+									<LegendItemText>
+										{translateSectorToKor(sector)}&nbsp;&#40;{(ratio * 100).toFixed(2)}%&#41;
+									</LegendItemText>
+								</LegendListItem>
+							))}
+						</LegendList>
+					</Style.LegendContainer>
+				</Style.PieChartContainer>
+			)}
 		</Style.SectorPieChartContainer>
 	);
 }
