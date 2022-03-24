@@ -11,7 +11,7 @@ export default function SelectPortfolio() {
 	const selectedPortfolioId = useSelectedPortfolioId();
 	const handleChangeSelect = useSelectedPortfolioIdUpdate();
 	const setHoldingsTickers = useHoldingsTickersUpdate();
-	const holdingsList = useHoldingsList(selectedPortfolioId);
+	const holdingsList = useHoldingsList(selectedPortfolioId, true);
 	setHoldingsTickers(holdingsList.data?.map(({ ticker }) => ticker) ?? []);
 
 	return (

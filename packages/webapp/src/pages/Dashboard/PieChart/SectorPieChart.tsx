@@ -1,11 +1,12 @@
 import { useRef, useEffect, useState } from 'react';
 import { PieChart as PieChartIcon } from '@components/Icon';
-import { useHoldingsTickers, useHoldingsSectors, useThemeMode } from '@hooks/index';
+import { useHoldingsTickers, useThemeMode } from '@hooks/index';
 import { SectorInfo, SectorPieChartRatio } from '@types';
 import * as Style from '../style';
 import { LegendList, LegendListItem, LegendColorBox, LegendItemText } from './PieChartLegendStyles';
 import { adjustToDpr } from '../utils';
 import { drawPieChart } from './utils';
+import { useSectors } from './queries';
 import SelectNumOfItems from '../SelectNumOfItems';
 
 import { sectorPieChartColors } from '../colors';
@@ -16,8 +17,8 @@ export default function SectorPieChart() {
 	const [theme] = useThemeMode();
 	const pieChartCanvasRef = useRef<HTMLCanvasElement>(null);
 	const tickers = useHoldingsTickers();
-	const sectors = useHoldingsSectors();
-	const sectorMap = initializeSectorMap(sectors);
+	const sectors = useSectors();
+	const sectorMap = initializeSectorMap(sectors.data ?? []);
 	const [numOfPies, setNumOfPies] = useState(Math.min(sectorMap.size, MAX_NUM_OF_PIES));
 	const sectorRatios = calcSectorRatios(sectorMap, tickers.length);
 	const sectorChartData = convertToSectorChartData(sectorRatios, numOfPies);
