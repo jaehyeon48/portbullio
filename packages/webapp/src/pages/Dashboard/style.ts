@@ -49,6 +49,14 @@ export const ItemHeader = styled.h2`
 	font-size: 1.1em;
 `;
 
+export const PortfolioSelectContainer = styled.div`
+	margin-left: auto;
+
+	& > select {
+		margin: 0;
+	}
+`;
+
 export const ProfitLossAssetContainer = styled.section`
 	display: flex;
 	justify-content: space-evenly;
