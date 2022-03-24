@@ -13,7 +13,7 @@ export default function PortfolioSelect() {
 
 	return (
 		<Select
-			value={selectedPortfolioId ?? -1}
+			value={selectedPortfolioId}
 			onChange={handleChangeSelect}
 			data-testid="select-portfolio"
 		>

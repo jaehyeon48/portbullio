@@ -27,7 +27,7 @@ export default function ProportionByValue() {
 	const barTooltipCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barInfos = useRef<BarInfo[]>([]);
 	const portfolioId = useSelectPortfolioId();
-	const cashTransactions = useCashTransactionList(portfolioId ?? 0);
+	const cashTransactions = useCashTransactionList(portfolioId);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
 	const holdingsList = useHoldingsList(portfolioId);
 	const [numOfBars, setNumOfBars] = useState(

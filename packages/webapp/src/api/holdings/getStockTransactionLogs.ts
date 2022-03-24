@@ -8,11 +8,8 @@ interface GetStockTransactionLogsRes {
 	};
 }
 
-export default async function getStockTransactionLogs(
-	portfolioId: number | undefined,
-	ticker: string
-) {
-	if (!portfolioId) return [];
+export default async function getStockTransactionLogs(portfolioId: number, ticker: string) {
+	if (portfolioId === -1) return [];
 	const { serverEndPoint } = envConfig;
 
 	const { data }: GetStockTransactionLogsRes = await axios.get(

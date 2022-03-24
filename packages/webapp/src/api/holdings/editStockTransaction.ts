@@ -31,6 +31,7 @@ export async function editStockTransaction({
 	avgBuyCost,
 	date
 }: EditStockTransactionArgs) {
+	if (portfolioId === -1) throw new Error('Invalid portfolioId');
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {

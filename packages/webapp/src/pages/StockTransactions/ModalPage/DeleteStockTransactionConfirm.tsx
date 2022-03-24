@@ -39,7 +39,7 @@ export default function DeleteStockTransactionConfirm({
 			return;
 		}
 		deleteStockTransactionMutation.mutate(
-			{ portfolioId: portfolioId ?? 0, stockTransactionId, ticker },
+			{ portfolioId, stockTransactionId, ticker },
 			{
 				onSuccess: () => {
 					toast.success({ message: '거래내역을 성공적으로 삭제했습니다.' });

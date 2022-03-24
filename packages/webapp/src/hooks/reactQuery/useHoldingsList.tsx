@@ -4,11 +4,11 @@ import { portfolioKeys } from '@lib/index';
 import { getAllHoldings, getSectors } from '@api/index';
 import { useHoldingsTickersUpdate, useHoldingsSectorsUpdate } from '../Holdings';
 
-export default function useHoldingsList(portfolioId: number | undefined) {
+export default function useHoldingsList(portfolioId: number) {
 	const setHoldingsTickers = useHoldingsTickersUpdate();
 	const setHoldingsSectors = useHoldingsSectorsUpdate();
-	return useQuery(portfolioKeys.holdings(portfolioId ?? -1), () => getAllHoldings(portfolioId), {
-		staleTime: !portfolioId ? 0 : Infinity,
+	return useQuery(portfolioKeys.holdings(portfolioId), () => getAllHoldings(portfolioId), {
+		staleTime: portfolioId === -1 ? 0 : Infinity,
 		refetchOnWindowFocus: false,
 		onSuccess: async (holdingsList: Holding[]) => {
 			const tickers = holdingsList.map(({ ticker }) => ticker);

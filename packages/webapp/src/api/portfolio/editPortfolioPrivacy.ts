@@ -14,6 +14,7 @@ interface EditPortfolioPrivacyRes {
 }
 
 export async function editPortfolioPrivacy({ portfolioId, newPrivacy }: EditPortfolioPrivacyArgs) {
+	if (portfolioId === -1) throw new Error('Invalid portfolioId');
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {

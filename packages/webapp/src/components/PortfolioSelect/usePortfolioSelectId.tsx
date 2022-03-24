@@ -7,15 +7,17 @@ interface ProviderProps {
 	children: React.ReactNode;
 }
 
-const PortfolioIdContext = React.createContext<number | undefined>(undefined);
+const PortfolioIdContext = React.createContext<number>(-1);
 const PortfolioIdUpdateContext = React.createContext<PortfolioIdUpdateFn | null>(null);
 
 export function SelectPortfolioIdContextProvider({ children }: ProviderProps) {
 	const defaultPortfolioId = useDefaultPortfolioId(false);
-	const [selectedPortfolioId, setSelectedPortfolioId] = React.useState(defaultPortfolioId.data);
+	const [selectedPortfolioId, setSelectedPortfolioId] = React.useState(
+		defaultPortfolioId.data ?? -1
+	);
 
 	React.useEffect(() => {
-		setSelectedPortfolioId(defaultPortfolioId.data);
+		setSelectedPortfolioId(defaultPortfolioId.data ?? -1);
 	}, [defaultPortfolioId.data]);
 
 	const handleSelectedPortfolioId = React.useCallback((e: React.SyntheticEvent) => {

@@ -13,6 +13,7 @@ interface DeletePortfolioRes {
 }
 
 export async function deletePortfolio({ portfolioId, isDefaultPortfolio }: DeletePortfolioArgs) {
+	if (portfolioId === -1) throw new Error('Invalid portfolioId');
 	const { serverEndPoint } = envConfig;
 
 	const { data }: DeletePortfolioRes = await axios.delete(

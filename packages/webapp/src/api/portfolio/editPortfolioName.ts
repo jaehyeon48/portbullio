@@ -14,6 +14,7 @@ interface EditPortfolioNameRes {
 }
 
 export async function editPortfolioName({ portfolioId, newPortfolioName }: EditPortfolioNameArgs) {
+	if (portfolioId === -1) throw new Error('Invalid portfolioId');
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {

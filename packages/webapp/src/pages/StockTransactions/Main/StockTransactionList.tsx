@@ -55,7 +55,7 @@ interface OpenDeleteModalProps {
 
 export default function StockTransactionList({ stockTransactionList, isLoading }: Props) {
 	const { openModal } = useModal();
-	const portfolioId = useSelectPortfolioId() ?? 0;
+	const portfolioId = useSelectPortfolioId();
 
 	function handleOpenMemoModal({ e, stockTransactionId, ticker, memo }: OpenMemoModalProps) {
 		openModal(

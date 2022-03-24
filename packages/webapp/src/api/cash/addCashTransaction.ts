@@ -21,6 +21,7 @@ export async function addCashTransaction({
 	type,
 	date
 }: AddCashTransactionArgs) {
+	if (portfolioId === -1) throw new Error('Invalid portfolioId');
 	const { serverEndPoint } = envConfig;
 
 	const config: AxiosRequestConfig = {

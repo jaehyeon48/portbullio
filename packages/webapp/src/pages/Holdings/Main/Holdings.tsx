@@ -11,16 +11,16 @@ import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
 
 export default function Holdings() {
 	useTitle('portbullio - 내 종목');
-	const selectedPortfolioId = useSelectPortfolioId();
-	const holdingsList = useHoldingsList(selectedPortfolioId);
+	const portfolioId = useSelectPortfolioId();
+	const holdingsList = useHoldingsList(portfolioId);
 	const { openModal } = useModal();
 
 	function openAddNewStockTransactionModal(e: SyntheticEvent) {
-		if (!selectedPortfolioId) {
+		if (portfolioId === -1) {
 			toast.error({ message: '선택된 포트폴리오가 없습니다.' });
 			return;
 		}
-		openModal(e, <AddNewStockTransaction portfolioId={selectedPortfolioId} />);
+		openModal(e, <AddNewStockTransaction portfolioId={portfolioId} />);
 	}
 
 	return (

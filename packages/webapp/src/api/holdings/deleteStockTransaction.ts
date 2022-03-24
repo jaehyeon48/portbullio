@@ -21,6 +21,7 @@ export async function deleteStockTransaction({
 	stockTransactionId,
 	ticker
 }: DeleteStockTransactionArgs) {
+	if (portfolioId === -1) throw new Error('Invalid portfolioId');
 	const { serverEndPoint } = envConfig;
 
 	const { data }: DeleteStockTransactionRes = await axios.delete(

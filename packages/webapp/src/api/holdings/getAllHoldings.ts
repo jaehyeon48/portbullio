@@ -8,8 +8,8 @@ interface GetAllHoldingsRes {
 	};
 }
 
-export default async function getAllHoldings(portfolioId: number | undefined): Promise<Holding[]> {
-	if (!portfolioId) return [];
+export default async function getAllHoldings(portfolioId: number): Promise<Holding[]> {
+	if (portfolioId === -1) return [];
 	const { serverEndPoint } = envConfig;
 
 	const { data }: GetAllHoldingsRes = await axios.get(

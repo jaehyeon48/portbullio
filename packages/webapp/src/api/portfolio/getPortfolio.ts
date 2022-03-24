@@ -9,6 +9,7 @@ interface GetPortfolioRes {
 }
 
 export default async function getPortfolio(portfolioId: number): Promise<Portfolio | null> {
+	if (portfolioId === -1) throw new Error('Invalid portfolioId');
 	const { serverEndPoint } = envConfig;
 
 	try {

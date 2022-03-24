@@ -23,7 +23,7 @@ import { useStockTransactions } from '../queries';
 export default function StockTransactions() {
 	const { ticker } = useParams() as { ticker: string };
 	useTitle(`portbullio - ${ticker} 거래내역`);
-	const portfolioId = useSelectPortfolioId() ?? 0;
+	const portfolioId = useSelectPortfolioId();
 	const stockTransactionList = useStockTransactions(portfolioId, ticker);
 	const portfolioList = usePortfolioList();
 	const holdingsList = useHoldingsList(portfolioId);

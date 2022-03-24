@@ -10,14 +10,14 @@ import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
 
 export default function Cash() {
 	useTitle(`portbullio - 현금 거래내역`);
-	const selectedPortfolioId = useSelectPortfolioId();
-	const cashTransactions = useCashTransactionList(selectedPortfolioId ?? 0);
+	const portfolioId = useSelectPortfolioId();
+	const cashTransactions = useCashTransactionList(portfolioId);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
 
 	const { openModal } = useModal();
 
 	function openAddCashTransactionModal(e: SyntheticEvent) {
-		openModal(e, <AddNewCashTransaction portfolioId={selectedPortfolioId ?? 0} />);
+		openModal(e, <AddNewCashTransaction portfolioId={portfolioId} />);
 	}
 
 	return (
@@ -61,7 +61,7 @@ export default function Cash() {
 						refetch={cashTransactions.refetch}
 					>
 						<CashTransactionList
-							portfolioId={selectedPortfolioId ?? 0}
+							portfolioId={portfolioId}
 							cashList={cashTransactions.data}
 							isLoading={cashTransactions.isLoading}
 						/>
