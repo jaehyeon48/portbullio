@@ -172,6 +172,6 @@ export default createGlobalStyle`
 
   #modal-root {
     position:absolute;
-    z-index: 999;
+    z-index: 99;
   }
 `;
