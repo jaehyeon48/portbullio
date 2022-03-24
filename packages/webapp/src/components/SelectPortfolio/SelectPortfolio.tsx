@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { usePortfolioList } from '@hooks/ReactQuery';
+import { usePortfolioList, useHoldingsTickersUpdate, useHoldingsList } from '@hooks/index';
 import { useSelectedPortfolioId, useSelectedPortfolioIdUpdate } from './useSelectedPortfolioId';
 
 interface SelectMarginProps {
@@ -10,6 +10,9 @@ export default function SelectPortfolio() {
 	const portfolios = usePortfolioList();
 	const selectedPortfolioId = useSelectedPortfolioId();
 	const handleChangeSelect = useSelectedPortfolioIdUpdate();
+	const setHoldingsTickers = useHoldingsTickersUpdate();
+	const holdingsList = useHoldingsList(selectedPortfolioId);
+	setHoldingsTickers(holdingsList.data?.map(({ ticker }) => ticker) ?? []);
 
 	return (
 		<Select
