@@ -24,6 +24,7 @@ export default function useDeleteStockTransaction() {
 						portfolioKeys.holdings(portfolioId),
 						prevHoldingsOfTicker => prevHoldingsOfTicker?.filter(el => el.ticker !== ticker) ?? []
 					);
+					queryClient.invalidateQueries(portfolioKeys.sectors(portfolioId));
 				} else {
 					queryClient.setQueryData<Holding[]>(
 						portfolioKeys.holdings(portfolioId),

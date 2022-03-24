@@ -36,6 +36,7 @@ export default function StockTransactions() {
 	if (!holdingInfo) {
 		return <Navigate to="/holdings" replace />;
 	}
+
 	return (
 		<>
 			<ListPage.UpperSection maxWidth="1440px">
