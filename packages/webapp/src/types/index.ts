@@ -31,10 +31,9 @@ export interface HoldingsRatio {
 	ticker: string;
 	ratio: number;
 	value: number;
-	includedStocks?: [string, number][];
 }
 
-export interface BarInfo {
+export interface BarGeometry {
 	x: number;
 	y: number;
 	width: number;
@@ -42,7 +41,6 @@ export interface BarInfo {
 	ticker: string;
 	ratio: number;
 	value: number;
-	includedStocks?: [string, number][];
 }
 
 export interface HoldingsValues {

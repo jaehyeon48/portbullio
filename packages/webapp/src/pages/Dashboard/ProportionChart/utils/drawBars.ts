@@ -1,4 +1,4 @@
-import { Theme, BarInfo } from '@types';
+import { Theme, BarGeometry } from '@types';
 import { barColors } from '../../colors';
 import drawBarTickerText from './drawBarTickerText';
 import drawBarRatioText from './drawBarRatioText';
@@ -7,7 +7,7 @@ interface Props {
 	ctx: CanvasRenderingContext2D;
 	theme: Theme;
 	canvasHeight: number;
-	barData: BarInfo[];
+	barData: BarGeometry[];
 }
 
 export default function drawBars({ ctx, theme, canvasHeight, barData }: Props) {

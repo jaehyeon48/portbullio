@@ -10,7 +10,7 @@ interface Props {
 	numOfBars: number;
 }
 
-export default function calcBarInfo({
+export default function calcBarGeometry({
 	barData,
 	maxValue,
 	canvasWidth,
@@ -28,7 +28,7 @@ export default function calcBarInfo({
 	}
 
 	const barBottomYPos = yPos(0, maxValue, canvasHeight - AXIS_THICKNESS);
-	return barData.map(({ ticker, ratio, value, includedStocks }, i) => {
+	return barData.map(({ ticker, ratio, value }, i) => {
 		const barYPos = yPos(ratio, maxValue, canvasHeight);
 		return {
 			x: Y_AXIS_MARGIN + gapBtwBars * (i + 1) + barWidth * i,
@@ -37,8 +37,7 @@ export default function calcBarInfo({
 			height: barBottomYPos - barYPos,
 			ticker,
 			ratio,
-			value,
-			includedStocks
+			value
 		};
 	});
 }
