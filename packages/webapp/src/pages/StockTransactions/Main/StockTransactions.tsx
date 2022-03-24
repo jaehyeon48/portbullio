@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import { StockTransactionLog } from '@prisma/client';
 import * as ListPage from '@components/ListPage';
 import { usePortfolioList, useHoldingsList, useTitle } from '@hooks/index';
@@ -28,11 +28,14 @@ export default function StockTransactions() {
 	const portfolioList = usePortfolioList();
 	const holdingsList = useHoldingsList(portfolioId);
 	const holdingInfo = getHoldingOfTicker(holdingsList.data, ticker);
-
 	const totalRealizedProfitLossAmount = totalRealizedProfitAndLoss(stockTransactionList.data);
 	const totalRealizedProfitLossPercent = calcRealizedProfitAndLossPercent(
 		stockTransactionList.data
 	);
+
+	if (!holdingInfo) {
+		return <Navigate to="/holdings" replace />;
+	}
 	return (
 		<>
 			<ListPage.UpperSection maxWidth="1440px">
