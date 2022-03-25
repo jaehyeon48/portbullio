@@ -64,7 +64,7 @@ export const OpenDetails = styled.button`
 	top: 11px;
 	left: calc(50% + 34px);
 	text-decoration: underline;
-	color: var(--gray);
+	color: var(--openDetailsPageButtonColor);
 `;
 
 export const ProfitLossAssetContainer = styled.section`

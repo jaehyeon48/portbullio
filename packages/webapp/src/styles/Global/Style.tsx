@@ -88,6 +88,7 @@ export default createGlobalStyle`
 		  rgba(9, 170, 121, 0.6) 50%,
 		  rgba(9, 170, 160, 0.6) 100%
 	  );
+    --openDetailsPageButtonColor: var(--gray);
   }
 
   html[data-theme='dark'] {
@@ -150,6 +151,7 @@ export default createGlobalStyle`
 		  rgba(9, 130, 94, 1) 50%,
 		  rgba(8, 117, 130, 1) 100%
 	  );
+    --openDetailsPageButtonColor: var(--lightGray);
   }
 
   
