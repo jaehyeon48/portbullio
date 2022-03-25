@@ -2,14 +2,19 @@ import { useRef, useEffect, useState } from 'react';
 import { PieChart as PieChartIcon } from '@components/Icon';
 import { useHoldingsTickers, useThemeMode } from '@hooks/index';
 import { SectorInfo, SectorPieChartRatio } from '@types';
-import * as Style from '../style';
-import { LegendList, LegendListItem, LegendColorBox, LegendItemText } from './PieChartLegendStyles';
-import { adjustToDpr } from '../utils';
-import { drawPieChart } from './utils';
-import { useSectors } from './queries';
-import SelectNumOfItems from '../SelectNumOfItems';
+import * as Style from '../../style';
+import { adjustToDpr } from '../../utils';
+import { drawPieChart } from '../utils';
+import { useSectors } from '../queries';
+import SelectNumOfItems from '../../SelectNumOfItems';
+import {
+	LegendList,
+	LegendListItem,
+	LegendColorBox,
+	LegendItemText
+} from '../PieChartLegendStyles';
 
-import { sectorPieChartColors } from '../colors';
+import { sectorPieChartColors } from '../../colors';
 
 const MAX_NUM_OF_PIES = 7;
 

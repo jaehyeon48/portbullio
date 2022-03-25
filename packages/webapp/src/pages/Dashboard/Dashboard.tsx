@@ -2,8 +2,8 @@ import { PortfolioSelect } from '@components/index';
 import { useTitle } from '@hooks/index';
 import { DashboardContainer, PortfolioSelectContainer } from './style';
 import ProfitLossAsset from './ProfitLossAsset';
-import ProportionByValue from './ProportionChart/ProportionByValue';
-import SectorPieChart from './PieChart/SectorPieChart';
+import ProportionByValue from './ProportionChart/Main/ProportionByValue';
+import SectorPieChart from './PieChart/Main/SectorPieChart';
 import DividendPieChart from './DividendPieChart';
 import AssetHistory from './AssetHistory';
 

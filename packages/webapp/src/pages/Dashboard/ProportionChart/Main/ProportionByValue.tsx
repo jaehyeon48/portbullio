@@ -1,21 +1,24 @@
-import { useRef, useEffect, useState } from 'react';
-import { useHoldingsList, useCashTransactionList, useThemeMode } from '@hooks/index';
+import { useRef, useEffect, useState, SyntheticEvent } from 'react';
+import { useHoldingsList, useCashTransactionList, useThemeMode, useModal } from '@hooks/index';
 import { useSelectedPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
 import { calcTotalCashAmount } from '@utils';
-import * as Style from '../style';
-import { adjustToDpr } from '../utils';
-import { MAX_NUM_OF_BARS } from './constants';
+import * as Style from '../../style';
+import { adjustToDpr } from '../../utils';
+import { MAX_NUM_OF_BARS } from '../constants';
+import DetailsPage from '../ModalPage/ProportionChartDetails';
 import {
 	drawAxis,
 	drawHorizontalGrid,
 	drawBars,
 	calcBarGeometry,
-	transformToBarData
-} from './utils';
-import SelectNumOfItems from '../SelectNumOfItems';
+	transformToBarData,
+	truncateToNumOfBars
+} from '../utils';
+import SelectNumOfItems from '../../SelectNumOfItems';
 
 export default function ProportionByValue() {
 	const [theme] = useThemeMode();
+	const { openModal } = useModal();
 	const barCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barTooltipCanvasRef = useRef<HTMLCanvasElement>(null);
 	const portfolioId = useSelectedPortfolioId();
@@ -25,11 +28,8 @@ export default function ProportionByValue() {
 	const [numOfBars, setNumOfBars] = useState(
 		Math.min((holdingsList.data?.length ?? 0) + 1, MAX_NUM_OF_BARS)
 	);
-	const barData = transformToBarData(
-		holdingsList.data ?? [],
-		cashTransactions.data ?? [],
-		numOfBars
-	);
+	const originalBarData = transformToBarData(holdingsList.data ?? [], cashTransactions.data ?? []);
+	const barData = truncateToNumOfBars(originalBarData, numOfBars);
 	const maxRatio = barData.at(0)?.ratio ?? 0;
 
 	useEffect(() => {
@@ -76,6 +76,17 @@ export default function ProportionByValue() {
 		adjustToDpr(ctx, barTooltipCanvas);
 	}, [numOfBars]);
 
+	function openDetailsPage(e: SyntheticEvent) {
+		openModal(
+			e,
+			<DetailsPage
+				chartData={originalBarData}
+				maxRatio={originalBarData.at(0)?.ratio ?? 0}
+				numOfBars={numOfBars}
+			/>
+		);
+	}
+
 	function isHoldingsEmpty() {
 		return numOfBars === 1 && totalCashAmount <= 0;
 	}
@@ -96,7 +107,11 @@ export default function ProportionByValue() {
 				<BarChartAscIcon width={20} height={20} />
 			</Style.ItemIconContainer>
 			<Style.ItemHeader>종목 구성</Style.ItemHeader>
-			{!isHoldingsEmpty() && <Style.OpenDetails>자세히 보기</Style.OpenDetails>}
+			{!isHoldingsEmpty() && (
+				<Style.OpenDetails type="button" onClick={openDetailsPage}>
+					자세히 보기
+				</Style.OpenDetails>
+			)}
 			{isHoldingsEmpty() ? (
 				<Style.NoticeEmptyHoldingsList>
 					표시할 종목이 없습니다. 보유 종목 혹은 현금 거래내역을 추가해 주세요.

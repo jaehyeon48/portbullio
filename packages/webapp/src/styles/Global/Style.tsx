@@ -82,6 +82,12 @@ export default createGlobalStyle`
     /* Dashboard */
     --dashboardItemIconBgColorGray: hsla(var(--colorBaseBlueGray), 70%);
     --dashboardItemIconBgColorBlue: hsla(210, 30%, 60%);
+    --dashboardDetailsPageRatioBar: linear-gradient(
+		  90deg,
+		  rgba(42, 170, 9, 0.6) 0%,
+		  rgba(9, 170, 121, 0.6) 50%,
+		  rgba(9, 170, 160, 0.6) 100%
+	  );
   }
 
   html[data-theme='dark'] {
@@ -138,6 +144,12 @@ export default createGlobalStyle`
     /* Dashboard */
     --dashboardItemIconBgColorGray: hsla(var(--colorBaseBlueGray), 38%);
     --dashboardItemIconBgColorBlue: hsla(210, 30%, 40%);
+    --dashboardDetailsPageRatioBar: linear-gradient(
+		  90deg,
+		  rgba(58, 143, 7, 1) 0%,
+		  rgba(9, 130, 94, 1) 50%,
+		  rgba(8, 117, 130, 1) 100%
+	  );
   }
 
   
