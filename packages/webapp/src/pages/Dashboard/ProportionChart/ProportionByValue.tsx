@@ -96,6 +96,7 @@ export default function ProportionByValue() {
 				<BarChartAscIcon width={20} height={20} />
 			</Style.ItemIconContainer>
 			<Style.ItemHeader>종목 구성</Style.ItemHeader>
+			{!isHoldingsEmpty() && <Style.OpenDetails>자세히 보기</Style.OpenDetails>}
 			{isHoldingsEmpty() ? (
 				<Style.NoticeEmptyHoldingsList>
 					표시할 종목이 없습니다. 보유 종목 혹은 현금 거래내역을 추가해 주세요.

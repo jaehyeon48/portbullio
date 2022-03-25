@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 import Card from '@components/Card';
-import { priceColorMixin } from '@styles/Mixins';
+import { buttonMixin, priceColorMixin } from '@styles/Mixins';
 
 interface ItemIconBgColorProp {
 	bgColor: 'gray' | 'blue';
@@ -46,7 +46,7 @@ export const ItemIconContainer = styled.div<ItemIconBgColorProp>`
 
 export const ItemHeader = styled.h2`
 	text-align: center;
-	font-size: 1.1em;
+	font-size: 18px;
 `;
 
 export const PortfolioSelectContainer = styled.div`
@@ -55,6 +55,16 @@ export const PortfolioSelectContainer = styled.div`
 	& > select {
 		margin: 0;
 	}
+`;
+
+export const OpenDetails = styled.button`
+	${buttonMixin};
+	position: absolute;
+	font-size: 14px;
+	top: 11px;
+	left: calc(50% + 34px);
+	text-decoration: underline;
+	color: var(--gray);
 `;
 
 export const ProfitLossAssetContainer = styled.section`

@@ -56,6 +56,7 @@ export default function SectorPieChart() {
 				<PieChartIcon width={32} height={32} />
 			</Style.ItemIconContainer>
 			<Style.ItemHeader>섹터 구성</Style.ItemHeader>
+			{!isSectorsEmpty() && <Style.OpenDetails>자세히 보기</Style.OpenDetails>}
 			{isSectorsEmpty() ? (
 				<Style.NoticeEmptyHoldingsList>
 					표시할 섹터가 없습니다. 보유 종목을 추가해 주세요.
