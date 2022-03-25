@@ -1,12 +1,13 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, SyntheticEvent } from 'react';
 import { PieChart as PieChartIcon } from '@components/Icon';
-import { useHoldingsTickers, useThemeMode } from '@hooks/index';
+import { useHoldingsTickers, useThemeMode, useModal } from '@hooks/index';
 import { SectorInfo, SectorPieChartRatio } from '@types';
 import * as Style from '../../style';
 import { adjustToDpr } from '../../utils';
-import { drawPieChart } from '../utils';
+import { drawPieChart, translateSectorToKor } from '../utils';
 import { useSectors } from '../queries';
 import SelectNumOfItems from '../../SelectNumOfItems';
+import DetailsPage from '../Modal/SectorChartDetails';
 import {
 	LegendList,
 	LegendListItem,
@@ -20,6 +21,7 @@ const MAX_NUM_OF_PIES = 7;
 
 export default function SectorPieChart() {
 	const [theme] = useThemeMode();
+	const { openModal } = useModal();
 	const pieChartCanvasRef = useRef<HTMLCanvasElement>(null);
 	const tickers = useHoldingsTickers();
 	const sectors = useSectors();
@@ -41,6 +43,17 @@ export default function SectorPieChart() {
 		drawPieChart({ ctx, theme, chartData: sectorChartData, x, y, radius });
 	}, [theme, sectorChartData]);
 
+	function openDetailsPage(e: SyntheticEvent) {
+		openModal(
+			e,
+			<DetailsPage
+				chartData={sectorRatios}
+				maxRatio={sectorRatios.at(0)?.ratio ?? 0}
+				numOfPies={numOfPies}
+			/>
+		);
+	}
+
 	function isSectorsEmpty() {
 		return sectorMap.size === 0;
 	}
@@ -61,7 +74,11 @@ export default function SectorPieChart() {
 				<PieChartIcon width={32} height={32} />
 			</Style.ItemIconContainer>
 			<Style.ItemHeader>섹터 구성</Style.ItemHeader>
-			{!isSectorsEmpty() && <Style.OpenDetails>자세히 보기</Style.OpenDetails>}
+			{!isSectorsEmpty() && (
+				<Style.OpenDetails type="button" onClick={openDetailsPage}>
+					자세히 보기
+				</Style.OpenDetails>
+			)}
 			{isSectorsEmpty() ? (
 				<Style.NoticeEmptyHoldingsList>
 					표시할 섹터가 없습니다. 보유 종목을 추가해 주세요.
@@ -121,20 +138,4 @@ function convertToSectorChartData(sectorRatios: SectorPieChartRatio[], numOfItem
 	return numOfItems === 1
 		? [others]
 		: [...sectorRatios.slice(0, numOfItems - 1), others].sort((a, b) => b.ratio - a.ratio);
-}
-
-function translateSectorToKor(sector: string) {
-	if (sector === 'Basic Materials') return '원자재';
-	if (sector === 'Communication Services') return '통신 서비스';
-	if (sector === 'Consumer Cyclical') return '임의 소비재';
-	if (sector === 'Consumer Defensive') return '필수 소비재';
-	if (sector === 'Energy') return '에너지';
-	if (sector === 'ETF') return 'ETF';
-	if (sector === 'Financial Services') return '금융';
-	if (sector === 'Healthcare') return '헬스케어';
-	if (sector === 'Industrials') return '산업재';
-	if (sector === 'Real Estate') return '부동산';
-	if (sector === 'Technology') return '기술';
-	if (sector === 'Utilities') return '유틸리티';
-	return '기타';
 }
