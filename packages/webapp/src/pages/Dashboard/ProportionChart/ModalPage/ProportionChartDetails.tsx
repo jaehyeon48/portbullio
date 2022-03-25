@@ -27,7 +27,7 @@ export default function ProportionChartDetails({ chartData, maxRatio, numOfBars 
 					<Style.DetailsItem key={ticker}>
 						<Style.Ticker>
 							<p>{ticker}</p>
-							{idx >= numOfBars - 1 && (
+							{chartData.length !== numOfBars && idx >= numOfBars - 1 && (
 								<Style.OthersCategoryNotice>기타</Style.OthersCategoryNotice>
 							)}
 						</Style.Ticker>
