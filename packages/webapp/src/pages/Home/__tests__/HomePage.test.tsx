@@ -1,5 +1,5 @@
 import { CustomWrapper, screen, render } from '@lib/testingLibrary/react';
-import Home from '../Home';
+import Home from '..';
 
 describe('Home page', () => {
 	test('Should have a main hero image', () => {

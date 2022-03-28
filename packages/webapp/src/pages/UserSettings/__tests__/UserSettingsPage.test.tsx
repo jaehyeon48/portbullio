@@ -1,5 +1,5 @@
 import { CustomWrapper, screen, render, userEvent } from '@lib/testingLibrary/react';
-import UserSettings from '../UserSettings';
+import UserSettings from '..';
 
 describe('User settings page', () => {
 	test('Should have a user profile image component', () => {

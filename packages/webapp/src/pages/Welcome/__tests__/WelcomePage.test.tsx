@@ -1,5 +1,5 @@
 import { CustomWrapper, render, screen } from '@lib/testingLibrary/react';
-import Welcome from '../Welcome';
+import Welcome from '..';
 
 describe('Welcome Page', () => {
 	test('Should have a welcome text', () => {
