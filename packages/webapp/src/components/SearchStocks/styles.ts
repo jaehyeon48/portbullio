@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { buttonMixin } from '@styles/Mixins';
 
 export const Container = styled.div`
 	position: relative;
@@ -87,4 +88,15 @@ export const SearchResultType = styled.div``;
 export const MatchedWord = styled.span`
 	font-weight: 700;
 	color: var(--deepBlue);
+`;
+
+export const ClearQueryBtn = styled.button`
+	${buttonMixin};
+	position: absolute;
+	top: 10px;
+	right: 3px;
+
+	& > svg {
+		fill: var(--gray);
+	}
 `;

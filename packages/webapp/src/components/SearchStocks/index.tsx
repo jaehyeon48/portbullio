@@ -4,6 +4,7 @@ import { Search as SearchIcon } from '@components/Icon';
 import { asyncThrottleAndDebounce } from '@utils';
 import { SearchSymbolItem } from '@types';
 import SearchResultList from './SearchResultList';
+import ClearQueryButton from './ClearQueryButton';
 import * as Style from './styles';
 
 interface Props {
@@ -60,6 +61,7 @@ export default function SearchStocks({ onResultClick }: Props) {
 				placeholder="종목 검색..."
 			/>
 			<SearchIcon width={18} height={18} />
+			<ClearQueryButton query={searchQuery} setSearchQuery={setSearchQuery} />
 			<SearchResultList
 				searchQuery={searchQuery}
 				searchResults={searchResults}
