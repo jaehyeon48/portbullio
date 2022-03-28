@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom';
-import TradingViewWidget from '../TradingViewWidget';
+import TradingViewWidget from '../index';
 
 // eslint-disable-next-line jest/expect-expect
 test('Trading view widget renders successfully', () => {

@@ -1,5 +1,5 @@
 import { render, screen } from '@lib/testingLibrary/react';
-import Modal from '../Modal';
+import Modal from '../index';
 
 describe('Modal layout', () => {
 	test('Should have a modal backdrop', () => {

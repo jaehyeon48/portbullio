@@ -1,5 +1,5 @@
 import { CustomWrapper, render, screen, userEvent } from '@lib/testingLibrary/react';
-import ListQueryErrorBoundary from '../ListQueryErrorBoundary';
+import ListQueryErrorBoundary from '../index';
 
 describe('ListQueryErrorBoundary layout test', () => {
 	test('Should have a correct error message', () => {
