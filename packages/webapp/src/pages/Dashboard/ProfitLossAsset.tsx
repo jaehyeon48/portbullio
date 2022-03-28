@@ -5,7 +5,7 @@ import {
 	BarChartArrowAsc as BarChartArrowAscIcon,
 	MoneySack as MoneySackIcon
 } from '@components/index';
-import * as Style from './style';
+import * as Style from './styles';
 
 export default function ProfitLossAsset() {
 	return (

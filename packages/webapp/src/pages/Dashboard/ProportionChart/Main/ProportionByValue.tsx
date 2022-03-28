@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, SyntheticEvent } from 'react';
 import { useHoldingsList, useCashTransactionList, useThemeMode, useModal } from '@hooks/index';
 import { useSelectedPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
 import { calcTotalCashAmount } from '@utils';
-import * as Style from '../../style';
+import * as Style from '../../styles';
 import { adjustToDpr } from '../../utils';
 import { MAX_NUM_OF_BARS } from '../constants';
 import DetailsPage from '../ModalPage/ProportionChartDetails';

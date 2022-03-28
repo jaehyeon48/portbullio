@@ -1,5 +1,5 @@
 import { CurveLineChart as CurveLineChartIcon } from '@components/Icon';
-import { AssetHistoryContainer, ItemHeader, ItemIconContainer } from './style';
+import { AssetHistoryContainer, ItemHeader, ItemIconContainer } from './styles';
 
 export default function AssetHistory() {
 	return (

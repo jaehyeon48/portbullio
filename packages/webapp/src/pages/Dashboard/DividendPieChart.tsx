@@ -1,5 +1,5 @@
 import { PieChart as PieChartIcon } from '@components/Icon';
-import { DividendPieChartContainer, ItemHeader, ItemIconContainer } from './style';
+import { DividendPieChartContainer, ItemHeader, ItemIconContainer } from './styles';
 
 export default function DividendPieChart() {
 	return (

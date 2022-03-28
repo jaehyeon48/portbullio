@@ -1,5 +1,5 @@
 import { SyntheticEvent, Dispatch, SetStateAction, useEffect } from 'react';
-import { SelectNumOfItemsContainer, Select } from './style';
+import { SelectNumOfItemsContainer, Select } from './styles';
 
 interface Props {
 	numOfItems: number;

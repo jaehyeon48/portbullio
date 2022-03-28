@@ -2,7 +2,7 @@ import { useRef, useEffect, useState, SyntheticEvent } from 'react';
 import { PieChart as PieChartIcon } from '@components/Icon';
 import { useHoldingsTickers, useThemeMode, useModal } from '@hooks/index';
 import { SectorInfo, SectorPieChartRatio } from '@types';
-import * as Style from '../../style';
+import * as Style from '../../styles';
 import { adjustToDpr } from '../../utils';
 import { drawPieChart, translateSectorToKor } from '../utils';
 import { useSectors } from '../queries';
