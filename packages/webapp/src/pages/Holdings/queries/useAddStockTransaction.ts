@@ -47,7 +47,7 @@ export default function useAddStockTransaction() {
 				);
 
 				queryClient.setQueryData<StockTransactionLog[]>(
-					portfolioKeys.stockTransactions(portfolioId, ticker),
+					portfolioKeys.stockTransactionLogs(portfolioId, ticker),
 					prevStockTransactionLogs => {
 						if (prevStockTransactionLogs) {
 							return [...prevStockTransactionLogs, newStockTransaction].sort((a, b) =>
@@ -75,7 +75,7 @@ export default function useAddStockTransaction() {
 				}
 
 				if (shouldInvalidateTransactionQuery) {
-					queryClient.invalidateQueries(portfolioKeys.stockTransactions(portfolioId, ticker));
+					queryClient.invalidateQueries(portfolioKeys.stockTransactionLogs(portfolioId, ticker));
 				}
 			}
 		}

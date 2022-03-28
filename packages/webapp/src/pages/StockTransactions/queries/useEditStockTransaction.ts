@@ -42,7 +42,7 @@ export default function useEditStockTransaction() {
 				);
 
 				queryClient.setQueryData<StockTransactionLog[]>(
-					portfolioKeys.stockTransactions(portfolioId, ticker),
+					portfolioKeys.stockTransactionLogs(portfolioId, ticker),
 					prevStockTransactions =>
 						updateArray(
 							prevStockTransactions,

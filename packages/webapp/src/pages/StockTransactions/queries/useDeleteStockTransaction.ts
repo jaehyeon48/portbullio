@@ -14,7 +14,7 @@ export default function useDeleteStockTransaction() {
 		{
 			onSuccess: ({ holdingsOfTicker, deletedStockTransaction }, { portfolioId, ticker }) => {
 				queryClient.setQueryData<StockTransactionLog[]>(
-					portfolioKeys.stockTransactions(portfolioId, ticker),
+					portfolioKeys.stockTransactionLogs(portfolioId, ticker),
 					prevStockTransactions =>
 						prevStockTransactions?.filter(({ id }) => id !== deletedStockTransaction.id) ?? []
 				);

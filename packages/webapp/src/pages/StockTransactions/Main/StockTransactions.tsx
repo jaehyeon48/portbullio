@@ -18,13 +18,13 @@ import {
 } from '@utils';
 import * as Style from './styles';
 import StockTransactionList from './StockTransactionList';
-import { useStockTransactions } from '../queries';
+import { useStockTransactionLogs } from '../queries';
 
 export default function StockTransactions() {
 	const { ticker } = useParams() as { ticker: string };
 	useTitle(`portbullio - ${ticker} 거래내역`);
 	const portfolioId = useSelectedPortfolioId();
-	const stockTransactionList = useStockTransactions(portfolioId, ticker);
+	const stockTransactionList = useStockTransactionLogs(portfolioId, ticker);
 	const portfolioList = usePortfolioList();
 	const holdingsList = useHoldingsList(portfolioId);
 	const holdingInfo = getHoldingOfTicker(holdingsList.data, ticker);
