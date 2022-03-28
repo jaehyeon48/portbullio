@@ -3,9 +3,7 @@ import envConfig from '@configs/env';
 import { StockTransactionLog } from '@prisma/client';
 
 interface GetStockTransactionLogsRes {
-	data: {
-		transactions: StockTransactionLog[];
-	};
+	data: StockTransactionLog[];
 }
 
 export default async function getStockTransactionLogs(portfolioId: number, ticker: string) {
@@ -18,5 +16,5 @@ export default async function getStockTransactionLogs(portfolioId: number, ticke
 			withCredentials: true
 		}
 	);
-	return data.transactions;
+	return data;
 }

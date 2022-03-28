@@ -80,7 +80,7 @@ export default (): express.Router => {
 					ticker,
 					orderByDate: 'desc'
 				});
-				res.json({ transactions });
+				res.json(transactions);
 			} catch (error) {
 				next(error);
 			}
