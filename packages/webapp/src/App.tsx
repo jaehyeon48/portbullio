@@ -1,4 +1,4 @@
-import { ReactElement, useLayoutEffect } from 'react';
+import { ReactElement, useEffect, useLayoutEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
@@ -6,6 +6,7 @@ import { EventEmitterListeners, PrivateRoute } from '@components/index';
 import { checkAuth } from '@api/auth';
 import { useAuth, useAuthUpdate, useThemeMode } from '@hooks/index';
 import toast from '@lib/toast';
+import { io } from 'socket.io-client';
 
 function App(): ReactElement {
 	useThemeMode();
@@ -24,6 +25,13 @@ function App(): ReactElement {
 
 		tryLogIn();
 	}, [setAuth]);
+
+	useEffect(() => {
+		const socket = io('https://localhost:5001');
+		socket.on('connect', () => {
+			console.log(socket.connected);
+		});
+	}, []);
 
 	return (
 		<EventEmitterListeners>
