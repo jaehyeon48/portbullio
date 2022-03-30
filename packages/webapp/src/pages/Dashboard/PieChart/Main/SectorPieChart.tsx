@@ -1,6 +1,7 @@
 import { useRef, useEffect, useState, SyntheticEvent } from 'react';
-import { PieChart as PieChartIcon } from '@components/Icon';
-import { useHoldingsTickers, useThemeMode, useModal } from '@hooks/index';
+import { PieChart as PieChartIcon, useSelectedPortfolioId } from '@components/index';
+import { useThemeMode, useModal, useHoldingsList } from '@hooks/index';
+import { getHoldingsTickers } from '@utils';
 import { SectorInfo, SectorPieChartRatio } from '@types';
 import * as Style from '../../styles';
 import { adjustToDpr } from '../../utils';
@@ -23,7 +24,8 @@ export default function SectorPieChart() {
 	const [theme] = useThemeMode();
 	const { openModal } = useModal();
 	const pieChartCanvasRef = useRef<HTMLCanvasElement>(null);
-	const tickers = useHoldingsTickers();
+	const portfolioId = useSelectedPortfolioId();
+	const tickers = getHoldingsTickers(useHoldingsList(portfolioId).data ?? []);
 	const sectors = useSectors();
 	const sectorMap = initializeSectorMap(sectors.data ?? []);
 	const [numOfPies, setNumOfPies] = useState(Math.min(sectorMap.size, MAX_NUM_OF_PIES));

@@ -12,3 +12,4 @@ export { default as truncateDecimalPoint } from './truncateDecimalPoint';
 export { default as prefixPlusChar } from './prefixPlusChar';
 export { default as datetimeLocalFormat } from './datetimeLocalFormat';
 export { default as calcTotalCashAmount } from './calcTotalCashAmount';
+export { default as getHoldingsTickers } from './getHoldingsTickers';

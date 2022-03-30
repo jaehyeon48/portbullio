@@ -5,5 +5,4 @@ export * from './ScrollBar';
 export { default as useThemeMode } from './Theme';
 export * from './ReactQuery';
 export * from './Title';
-export * from './Holdings';
 export * from './socketIo';

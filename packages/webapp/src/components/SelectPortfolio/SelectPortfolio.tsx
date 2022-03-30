@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import styled from 'styled-components';
-import { usePortfolioList, useHoldingsTickersUpdate, useHoldingsList } from '@hooks/index';
+import { usePortfolioList } from '@hooks/index';
 import { useSelectedPortfolioId, useSelectedPortfolioIdUpdate } from './useSelectedPortfolioId';
 
 interface SelectMarginProps {
@@ -11,12 +10,6 @@ export default function SelectPortfolio() {
 	const portfolios = usePortfolioList();
 	const selectedPortfolioId = useSelectedPortfolioId();
 	const handleChangeSelect = useSelectedPortfolioIdUpdate();
-	const setHoldingsTickers = useHoldingsTickersUpdate();
-	const holdingsList = useHoldingsList(selectedPortfolioId, true);
-
-	useEffect(() => {
-		setHoldingsTickers(holdingsList.data?.map(({ ticker }) => ticker) ?? []);
-	}, [setHoldingsTickers, holdingsList]);
 
 	return (
 		<Select
