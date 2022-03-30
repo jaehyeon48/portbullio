@@ -8,11 +8,9 @@ export default (): express.Router => {
 	router.delete('/', sessionValidator, async (req: Request, res: Response, next: NextFunction) => {
 		try {
 			const { uaat } = req.cookies;
-			const logOutResult = await sessionService.deleteSession(uaat);
-			if (!logOutResult) throw new Error('Log out failed');
-
+			await sessionService.deleteSession(uaat);
 			cookieService.expireCookie(res, 'uaat');
-			res.status(200).json({ logOutResult });
+			res.send();
 		} catch (error) {
 			next(error);
 		}

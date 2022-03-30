@@ -12,7 +12,7 @@ if (envFound.error) {
 export default {
 	port: Number(process.env.PORT),
 	origin: process.env.ORIGIN,
-	sessionServerURL: process.env.SESSION_SERVER_URL,
+	sessionIdTTLInSec: Number(process.env.SESSION_ID_TTL_IN_SEC),
 	maxCookieAge: process.env.MAX_COOKIE_AGE,
 	oauth: {
 		baseRedirectURI: process.env.BASE_REDIRECT_URI,

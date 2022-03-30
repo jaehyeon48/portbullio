@@ -9,7 +9,7 @@ export default async function sessionValidator(
 	try {
 		const sessionId = req.cookies.uaat;
 		const userId = await sessionService.checkSession(sessionId);
-		if (userId === undefined) throw Error('Invalid session');
+		if (userId === null) throw Error('Invalid session');
 
 		res.locals.userId = userId;
 		next();
