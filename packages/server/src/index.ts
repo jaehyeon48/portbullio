@@ -1,20 +1,19 @@
 import express from 'express';
-import https from 'https';
+import { createServer } from 'spdy';
 import path from 'path';
-import fs from 'fs';
+import { readFileSync } from 'fs';
 import config from '@config';
 import logger from '@lib/winston';
 import loaders from '@loaders';
 
+const serverOptions = {
+	key: readFileSync(path.resolve(__dirname, '../', 'private.pem')),
+	cert: readFileSync(path.resolve(__dirname, '../', 'public.pem'))
+};
+
 async function startServer() {
 	const app = express();
-	const server = https.createServer(
-		{
-			key: fs.readFileSync(path.resolve(__dirname, '../', 'private.pem')),
-			cert: fs.readFileSync(path.resolve(__dirname, '../', 'public.pem'))
-		},
-		app
-	);
+	const server = createServer(serverOptions, app);
 
 	await loaders({ app });
 	server
