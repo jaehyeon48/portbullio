@@ -18,6 +18,9 @@ beforeAll(() => {
 			dispatchEvent: jest.fn()
 		}))
 	});
+	Object.defineProperty(window, 'setImmediate', {
+		value: jest.useRealTimers
+	});
 });
 
 afterEach(() => server.resetHandlers());
