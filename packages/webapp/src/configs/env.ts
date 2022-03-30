@@ -9,5 +9,6 @@ export default {
 			secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET
 		}
 	},
-	avatarImageEndPoint: process.env.AVATAR_IMAGE_END_POINT
+	avatarImageEndPoint: process.env.AVATAR_IMAGE_END_POINT,
+	socketServerUrl: process.env.SOCKET_SERVER_URL
 };

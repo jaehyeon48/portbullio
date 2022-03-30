@@ -3,7 +3,8 @@ import { SelectedPortfolioIdContextProvider } from '@components/index';
 import {
 	AuthContextProvider,
 	EventEmitterProvider,
-	HoldingsTickersContextProvider
+	HoldingsTickersContextProvider,
+	SocketIoContextProvider
 } from '@hooks/index';
 
 interface Props {
@@ -16,7 +17,9 @@ export default function ContextAPIProviders({ children, authContextInitialValue 
 		<AuthContextProvider initialValue={authContextInitialValue}>
 			<EventEmitterProvider>
 				<SelectedPortfolioIdContextProvider>
-					<HoldingsTickersContextProvider>{children}</HoldingsTickersContextProvider>
+					<HoldingsTickersContextProvider>
+						<SocketIoContextProvider>{children}</SocketIoContextProvider>
+					</HoldingsTickersContextProvider>
 				</SelectedPortfolioIdContextProvider>
 			</EventEmitterProvider>
 		</AuthContextProvider>
