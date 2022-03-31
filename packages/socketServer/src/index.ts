@@ -31,7 +31,7 @@ async function startServer() {
 	);
 
 	httpServer.listen(envConfig.port);
-	logger.info(`### Session server listening on port: ${envConfig.port} ###`);
+	logger.info(`### Socket server listening on port: ${envConfig.port} ###`);
 	listenSocketEvents(io);
 }
 
