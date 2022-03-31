@@ -6,6 +6,12 @@ import loaders from '@loaders';
 import envConfig from '@config';
 import logger from '@lib/winston';
 import { listenSocketEvents } from '@services/index';
+import {
+	ServerToClientEvents,
+	ClientToServerEvents,
+	InterServerEvents,
+	SocketData
+} from '@portbullio/shared/src/types';
 
 async function startServer() {
 	const httpServer = createSecureServer({
@@ -15,11 +21,14 @@ async function startServer() {
 	});
 
 	await loaders();
-	const io = new Server(httpServer as any, {
-		cors: {
-			origin: envConfig.origin
+	const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(
+		httpServer as any,
+		{
+			cors: {
+				origin: envConfig.origin
+			}
 		}
-	});
+	);
 
 	httpServer.listen(envConfig.port);
 	logger.info(`### Session server listening on port: ${envConfig.port} ###`);

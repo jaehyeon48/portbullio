@@ -4,3 +4,13 @@ export interface Holding {
 	buyQuantity: number;
 	sellQuantity: number;
 }
+
+export interface ServerToClientEvents {}
+
+export interface ClientToServerEvents {
+	REGISTER_TICKER: (tickers: string[]) => void;
+}
+
+export interface InterServerEvents {}
+
+export interface SocketData {}
