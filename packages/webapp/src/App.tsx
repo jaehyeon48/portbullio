@@ -4,10 +4,18 @@ import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
 import { EventEmitterListeners, PrivateRoute } from '@components/index';
 import { checkAuth } from '@api/auth';
-import { useAuth, useAuthUpdate, useThemeMode } from '@hooks/index';
 import toast from '@lib/toast';
+import {
+	useAuth,
+	useAuthUpdate,
+	useThemeMode,
+	useSocketListeners,
+	useRegisterTickers
+} from '@hooks/index';
 
 function App(): ReactElement {
+	useSocketListeners();
+	useRegisterTickers();
 	useThemeMode();
 	const isAuthenticated = useAuth();
 	const setAuth = useAuthUpdate();
