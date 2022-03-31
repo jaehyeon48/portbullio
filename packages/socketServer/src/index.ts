@@ -5,7 +5,6 @@ import { Server } from 'socket.io';
 import loaders from '@loaders';
 import envConfig from '@config';
 import logger from '@lib/winston';
-import { listenSocketEvents } from '@services/index';
 import {
 	ServerToClientEvents,
 	ClientToServerEvents,
@@ -20,7 +19,6 @@ async function startServer() {
 		cert: readFileSync(resolve(__dirname, '../', 'public.pem'))
 	});
 
-	await loaders();
 	const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(
 		httpServer as any,
 		{
@@ -29,10 +27,10 @@ async function startServer() {
 			}
 		}
 	);
+	await loaders(io);
 
 	httpServer.listen(envConfig.port);
 	logger.info(`### Socket server listening on port: ${envConfig.port} ###`);
-	listenSocketEvents(io);
 }
 
 startServer();
