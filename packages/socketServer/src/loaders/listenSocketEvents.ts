@@ -12,6 +12,7 @@ export default function listenSocketEvents(
 ) {
 	io.on('connect', socket => {
 		socket.on('REGISTER_TICKER', tickers => Services.registerTickers(socket.id, tickers));
+		socket.on('UNREGISTER_TICKER', () => Services.unregisterTickers(socket.id));
 		socket.on('disconnect', () => Services.unregisterTickers(socket.id));
 	});
 }

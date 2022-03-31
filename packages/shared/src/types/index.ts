@@ -9,6 +9,7 @@ export interface ServerToClientEvents {}
 
 export interface ClientToServerEvents {
 	REGISTER_TICKER: (tickers: string[]) => void;
+	UNREGISTER_TICKER: () => void;
 }
 
 export interface InterServerEvents {}
