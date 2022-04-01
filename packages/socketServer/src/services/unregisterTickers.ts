@@ -1,5 +1,4 @@
-import { userRedisClient } from '@lib/redis';
-import logger from '@lib/winston';
+import { userRedisClient, logger } from '@lib/index';
 
 export default async function unregisterTickers(userId: string) {
 	try {

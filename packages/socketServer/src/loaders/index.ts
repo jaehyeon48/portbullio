@@ -1,6 +1,5 @@
 import { Server } from 'socket.io';
-import logger from '@lib/winston';
-import { priceRedisClient, userRedisClient } from '@lib/redis';
+import { priceRedisClient, userRedisClient, logger } from '@lib/index';
 import {
 	ServerToClientEvents,
 	ClientToServerEvents,
@@ -8,6 +7,7 @@ import {
 	SocketData
 } from '@portbullio/shared/src/types';
 import listenSocketEvents from './listenSocketEvents';
+import updatePrice from './updatePrice';
 
 export default async function appLoader(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
@@ -19,4 +19,5 @@ export default async function appLoader(
 	userRedisClient.on('error', err => logger.error('User Redis Client Error', err));
 
 	listenSocketEvents(io);
+	updatePrice(io);
 }
