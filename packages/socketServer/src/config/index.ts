@@ -11,5 +11,6 @@ if (envFound.error) {
 
 export default {
 	port: Number(process.env.PORT),
-	origin: process.env.ORIGIN
+	origin: process.env.ORIGIN,
+	iexCloudApiKey: process.env.IEX_CLOUD_API_KEY
 };

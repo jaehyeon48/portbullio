@@ -1,6 +1,6 @@
 import { userRedisClient, logger } from '@lib/index';
 
-export default async function unregisterTickers(userId: string) {
+export default async function unregisterTickersFromDB(userId: string) {
 	try {
 		await userRedisClient.del(userId);
 		return true;

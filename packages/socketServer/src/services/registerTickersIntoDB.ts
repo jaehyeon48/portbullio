@@ -1,6 +1,6 @@
 import { userRedisClient, logger } from '@lib/index';
 
-export default async function registerTickers(userId: string, tickers: string[]) {
+export default async function registerTickersIntoDB(userId: string, tickers: string[]) {
 	try {
 		await userRedisClient.set(userId, JSON.stringify(tickers));
 		return true;

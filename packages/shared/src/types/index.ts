@@ -5,7 +5,9 @@ export interface Holding {
 	sellQuantity: number;
 }
 
-export interface ServerToClientEvents {}
+export interface ServerToClientEvents {
+	TICKER_DATA: (data: RealtimeData[]) => void;
+}
 
 export interface ClientToServerEvents {
 	REGISTER_TICKER: (tickers: string[]) => void;
@@ -15,3 +17,8 @@ export interface ClientToServerEvents {
 export interface InterServerEvents {}
 
 export interface SocketData {}
+
+export interface RealtimeData {
+	price: string;
+	change: string;
+}

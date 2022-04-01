@@ -5,14 +5,14 @@ import {
 	InterServerEvents,
 	SocketData
 } from '@portbullio/shared/src/types';
-import * as Services from '@services/index';
+import { registerTickersIntoDB, unregisterTickersFromDB } from '@services/index';
 
 export default function listenSocketEvents(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
 	io.on('connect', socket => {
-		socket.on('REGISTER_TICKER', tickers => Services.registerTickers(socket.id, tickers));
-		socket.on('UNREGISTER_TICKER', () => Services.unregisterTickers(socket.id));
-		socket.on('disconnect', () => Services.unregisterTickers(socket.id));
+		socket.on('REGISTER_TICKER', tickers => registerTickersIntoDB(socket.id, tickers));
+		socket.on('UNREGISTER_TICKER', () => unregisterTickersFromDB(socket.id));
+		socket.on('disconnect', () => unregisterTickersFromDB(socket.id));
 	});
 }
