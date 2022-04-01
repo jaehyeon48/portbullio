@@ -1,6 +1,11 @@
 import { ReactNode } from 'react';
 import { SelectedPortfolioIdContextProvider } from '@components/index';
-import { AuthContextProvider, EventEmitterProvider, SocketIoContextProvider } from '@hooks/index';
+import {
+	AuthContextProvider,
+	EventEmitterProvider,
+	SocketIoContextProvider,
+	RealtimeDataContextProvider
+} from '@hooks/index';
 
 interface Props {
 	children: ReactNode;
@@ -11,9 +16,11 @@ export default function ContextAPIProviders({ children, authContextInitialValue 
 	return (
 		<AuthContextProvider initialValue={authContextInitialValue}>
 			<EventEmitterProvider>
-				<SelectedPortfolioIdContextProvider>
-					<SocketIoContextProvider>{children}</SocketIoContextProvider>
-				</SelectedPortfolioIdContextProvider>
+				<RealtimeDataContextProvider>
+					<SelectedPortfolioIdContextProvider>
+						<SocketIoContextProvider>{children}</SocketIoContextProvider>
+					</SelectedPortfolioIdContextProvider>
+				</RealtimeDataContextProvider>
 			</EventEmitterProvider>
 		</AuthContextProvider>
 	);
