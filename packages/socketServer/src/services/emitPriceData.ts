@@ -13,7 +13,7 @@ export default async function emitPriceData(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
 	const tickersPerUser = await getTickersPerUserFromDB();
-	const realtimeData = await Promise.all<RealtimeData[]>(
+	const realtimeData = await Promise.all(
 		tickersPerUser.map(({ tickers }) => getRealtimeDataFromDB(tickers))
 	);
 

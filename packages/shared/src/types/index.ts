@@ -19,6 +19,7 @@ export interface InterServerEvents {}
 export interface SocketData {}
 
 export interface RealtimeData {
+	ticker: string;
 	price: string;
 	change: string;
 }
