@@ -1,9 +1,10 @@
 import { CashTransactionLog } from '@prisma/client';
-import { calcTotalCashAmount } from '@src/utils';
-import { Holding } from '@portbullio/shared/src/types';
+import { calcTotalCashAmount, getRealtimeDataOfTicker } from '@src/utils';
+import { RealtimeData, Holding } from '@portbullio/shared/src/types';
 import { HoldingsValues, HoldingsRatio } from '@types';
 
 export default function transformToBarData(
+	realtimeData: RealtimeData[],
 	holdingsList: Holding[],
 	cashTransactions: CashTransactionLog[]
 ): HoldingsRatio[] {
@@ -15,23 +16,26 @@ export default function transformToBarData(
 		sellQuantity: 0
 	};
 
-	const holdingsValues = [...holdingsList, cashInfo].map(calcHoldingValues);
+	const holdingsValues = [...holdingsList, cashInfo].map(data =>
+		calcHoldingValues(realtimeData, data)
+	);
 	const totalAmount = holdingsValues.reduce(sumAmount, 0) || 1;
 	return holdingsValues
 		.map(({ ticker, value }) => ({ ticker, value, ratio: (value / totalAmount) * 100 }))
 		.sort(sortByRatioDesc);
 }
 
-function calcHoldingValues({
-	ticker,
-	avgCost,
-	buyQuantity,
-	sellQuantity
-}: Holding): HoldingsValues {
+function calcHoldingValues(
+	realtimeData: RealtimeData[],
+	{ ticker, avgCost, buyQuantity, sellQuantity }: Holding
+): HoldingsValues {
 	const quantity = buyQuantity - sellQuantity;
 	return {
 		ticker,
-		value: avgCost * quantity + (dummyCurrentPrice.get(ticker) ?? avgCost - avgCost) * quantity
+		value:
+			avgCost * quantity +
+			(Number(getRealtimeDataOfTicker(realtimeData, ticker, 'price')) ?? avgCost - avgCost) *
+				quantity
 	};
 }
 
@@ -42,15 +46,3 @@ function sumAmount(acc: number, { value }: HoldingsValues) {
 function sortByRatioDesc(a: HoldingsRatio, b: HoldingsRatio) {
 	return b.ratio - a.ratio;
 }
-
-const dummyCurrentPrice = new Map([
-	['AAPL', 163.98],
-	['AMZN', 3225.01],
-	['BA', 192.83],
-	['COKE', 513.11],
-	['GOOG', 2736.03],
-	['MSFT', 300.43],
-	['SBUX', 89.6],
-	['TSLA', 905.39],
-	['V', 219.11]
-]);

@@ -1,5 +1,11 @@
 import { useRef, useEffect, useState, SyntheticEvent } from 'react';
-import { useHoldingsList, useCashTransactionList, useThemeMode, useModal } from '@hooks/index';
+import {
+	useHoldingsList,
+	useCashTransactionList,
+	useThemeMode,
+	useModal,
+	useRealtimeData
+} from '@hooks/index';
 import { useSelectedPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
 import { calcTotalCashAmount } from '@utils';
 import * as Style from '../../styles';
@@ -17,6 +23,7 @@ import {
 import SelectNumOfItems from '../../SelectNumOfItems';
 
 export default function ProportionByValue() {
+	const realtimeData = useRealtimeData();
 	const [theme] = useThemeMode();
 	const { openModal } = useModal();
 	const barCanvasRef = useRef<HTMLCanvasElement>(null);
@@ -28,7 +35,11 @@ export default function ProportionByValue() {
 	const [numOfBars, setNumOfBars] = useState(
 		Math.min((holdingsList.data?.length ?? 0) + 1, MAX_NUM_OF_BARS)
 	);
-	const originalBarData = transformToBarData(holdingsList.data ?? [], cashTransactions.data ?? []);
+	const originalBarData = transformToBarData(
+		realtimeData,
+		holdingsList.data ?? [],
+		cashTransactions.data ?? []
+	);
 	const barData = truncateToNumOfBars(originalBarData, numOfBars);
 	const maxRatio = barData.at(0)?.ratio ?? 0;
 
