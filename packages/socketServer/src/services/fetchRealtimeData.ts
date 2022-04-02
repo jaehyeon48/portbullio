@@ -6,7 +6,7 @@ export default async function fetchRealtimeData(tickers: string[][]) {
 		tickers.map(tickerGroup => {
 			const tickerParam = tickerGroup.map(ticker => encodeURIComponent(ticker)).join(',');
 			return axios.get(
-				`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickerParam}&types=quote&token=${envConfig.iexCloudApiKey}`
+				`https://cloud.iexapis.com/stable/stock/market/batch?symbols=${tickerParam}&types=quote&filter=symbol,change,iexRealtimePrice,latestPrice&token=${envConfig.iexCloudApiKey}`
 			);
 		})
 	);
