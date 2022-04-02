@@ -7,6 +7,9 @@
     "composite": true
   },
   "include": [
-		"src/**/*"
-	]
+    "src/**/*",
+  ],
+  "exclude": [
+    "jest.config.js"
+  ]
 }

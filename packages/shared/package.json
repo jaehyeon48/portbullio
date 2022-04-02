@@ -4,6 +4,7 @@
   "author": "jaehyeon48 <imjaehyeon48@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "test": "jest --watchAll",
     "format": "prettier --check ./src",
     "format:fix": "prettier --write ./src",
     "lint": "eslint ./src",
@@ -11,6 +12,7 @@
     "precommit": "npm run format:fix && npm run lint:fix"
   },
   "devDependencies": {
-    "eslint-config-airbnb-base": "^15.0.0"
+    "eslint-config-airbnb-base": "^15.0.0",
+    "ts-jest": "^27.1.4"
   }
 }
