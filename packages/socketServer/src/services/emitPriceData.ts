@@ -3,8 +3,7 @@ import {
 	ServerToClientEvents,
 	ClientToServerEvents,
 	InterServerEvents,
-	SocketData,
-	RealtimeData
+	SocketData
 } from '@portbullio/shared/src/types';
 import getTickersPerUserFromDB from './getTickersPerUserFromDB';
 import getRealtimeDataFromDB from './getRealtimeDataFromDB';
