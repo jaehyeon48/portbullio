@@ -7,3 +7,4 @@ export { default as saveRealtimePriceDataIntoDB } from './saveRealtimePriceDataI
 export { default as fetchRealtimeData } from './fetchRealtimeData';
 export { default as emitPriceData } from './emitPriceData';
 export { default as groupTickersBy } from './groupTickersBy';
+export { default as getCurrentMarketState } from './getMarketStatus';

@@ -6,3 +6,4 @@ function reconnectStrategy(retries: number) {
 
 export const priceRedisClient = createClient({ socket: { reconnectStrategy }, database: 1 });
 export const userRedisClient = createClient({ socket: { reconnectStrategy }, database: 2 });
+export const marketStatusRedisClient = createClient({ socket: { reconnectStrategy }, database: 3 });

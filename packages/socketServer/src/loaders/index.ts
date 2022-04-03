@@ -1,5 +1,5 @@
 import { Server } from 'socket.io';
-import { priceRedisClient, userRedisClient, logger, eventEmitter } from '@lib/index';
+import * as Lib from '@lib/index';
 import {
 	ServerToClientEvents,
 	ClientToServerEvents,
@@ -13,16 +13,20 @@ import updatePrice from './updatePrice';
 export default async function appLoader(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
-	await priceRedisClient.connect();
-	await userRedisClient.connect();
-	await userRedisClient.flushDb();
+	await Lib.priceRedisClient.connect();
+	await Lib.userRedisClient.connect();
+	await Lib.marketStatusRedisClient.connect();
+	await Lib.userRedisClient.flushDb();
 
-	priceRedisClient.on('error', err => logger.error('Price Redis Client Error', err));
-	userRedisClient.on('error', err => logger.error('User Redis Client Error', err));
+	Lib.priceRedisClient.on('error', err => Lib.logger.error('Price Redis Client Error', err));
+	Lib.userRedisClient.on('error', err => Lib.logger.error('User Redis Client Error', err));
+	Lib.marketStatusRedisClient.on('error', err =>
+		Lib.logger.error('Market Status Redis Client Error', err)
+	);
 
 	listenSocketEvents(io);
 	updatePrice();
-	eventEmitter.on('EMIT_REALTIME_DATA', () => {
+	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => {
 		emitPriceData(io);
 	});
 }

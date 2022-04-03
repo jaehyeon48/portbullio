@@ -1,6 +1,6 @@
-import redisClient from '@lib/redis';
+import { sessionRedisClient } from '@lib/redis';
 
 export default async function deleteSession(sessionId: string) {
-	await redisClient.del(sessionId);
+	await sessionRedisClient.del(sessionId);
 	return;
 }

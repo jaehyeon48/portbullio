@@ -23,3 +23,5 @@ export interface RealtimeData {
 	price: string;
 	change: string;
 }
+
+export type MarketStatus = 'opened' | 'closed';
