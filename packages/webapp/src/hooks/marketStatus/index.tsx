@@ -6,13 +6,14 @@ interface ProviderProps {
 	children: React.ReactNode;
 }
 
-type MarketStatusUpdater = React.Dispatch<React.SetStateAction<MarketStatus>>;
+type MarketStatusContextType = MarketStatus | 'loading';
+type MarketStatusUpdater = React.Dispatch<React.SetStateAction<MarketStatusContextType>>;
 
-const MarketStatusContext = React.createContext<MarketStatus>('closed');
+const MarketStatusContext = React.createContext<MarketStatusContextType>('loading');
 const MarketStatusUpdateContext = React.createContext<MarketStatusUpdater | null>(null);
 
 export function MarketStatusContextProvider({ children }: ProviderProps) {
-	const [marketStatus, setMarketStatus] = React.useState<MarketStatus>('closed');
+	const [marketStatus, setMarketStatus] = React.useState<MarketStatusContextType>('loading');
 
 	React.useLayoutEffect(() => {
 		(async () => {
