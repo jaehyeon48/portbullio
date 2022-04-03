@@ -9,5 +9,6 @@ export default function useSocketListeners() {
 	useEffect(() => {
 		socket.on('connect', () => {});
 		socket.on('REALTIME_DATA', data => setRealtimeData(data));
+		socket.on('CACHED_DATA', data => setRealtimeData(prev => [...prev, ...data]));
 	}, [socket, setRealtimeData]);
 }
