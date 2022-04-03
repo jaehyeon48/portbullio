@@ -1,4 +1,4 @@
-export { default as registerTickersIntoDB } from './registerTickersIntoDB';
+export { default as subscribeTickersIntoDB } from './subscribeTickersIntoDB';
 export { default as unregisterTickersFromDB } from './unregisterTickersFromDB';
 export { default as getAllUsersTickersFromDB } from './getAllUsersTickersFromDB';
 export { default as getTickersPerUserFromDB } from './getTickersPerUserFromDB';
