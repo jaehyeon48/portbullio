@@ -1,5 +1,5 @@
 export { default as subscribeTickersIntoDB } from './subscribeTickersIntoDB';
-export { default as unregisterTickersFromDB } from './unregisterTickersFromDB';
+export { default as unsubscribeTickersFromDB } from './unsubscribeTickersFromDB';
 export { default as getAllUsersTickersFromDB } from './getAllUsersTickersFromDB';
 export { default as getTickersPerUserFromDB } from './getTickersPerUserFromDB';
 export { default as getRealtimeDataFromDB } from './getRealtimeDataFromDB';
