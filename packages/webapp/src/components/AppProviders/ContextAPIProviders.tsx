@@ -4,7 +4,8 @@ import {
 	AuthContextProvider,
 	EventEmitterProvider,
 	SocketIoContextProvider,
-	RealtimeDataContextProvider
+	RealtimeDataContextProvider,
+	MarketStatusContextProvider
 } from '@hooks/index';
 
 interface Props {
@@ -16,11 +17,13 @@ export default function ContextAPIProviders({ children, authContextInitialValue 
 	return (
 		<AuthContextProvider initialValue={authContextInitialValue}>
 			<EventEmitterProvider>
-				<RealtimeDataContextProvider>
-					<SelectedPortfolioIdContextProvider>
-						<SocketIoContextProvider>{children}</SocketIoContextProvider>
-					</SelectedPortfolioIdContextProvider>
-				</RealtimeDataContextProvider>
+				<MarketStatusContextProvider>
+					<RealtimeDataContextProvider>
+						<SelectedPortfolioIdContextProvider>
+							<SocketIoContextProvider>{children}</SocketIoContextProvider>
+						</SelectedPortfolioIdContextProvider>
+					</RealtimeDataContextProvider>
+				</MarketStatusContextProvider>
 			</EventEmitterProvider>
 		</AuthContextProvider>
 	);
