@@ -7,11 +7,13 @@ export interface Holding {
 
 export interface ServerToClientEvents {
 	REALTIME_DATA: (data: ClientStockRealtimeData[]) => void;
+	CACHED_DATA: (data: ClientStockRealtimeData[]) => void;
 }
 
 export interface ClientToServerEvents {
 	SUBSCRIBE_TICKER: (tickers: string[]) => void;
 	UNSUBSCRIBE_TICKER: () => void;
+	REQ_CACHED_DATA: (tickers: string[]) => void;
 }
 
 export interface InterServerEvents {}
