@@ -22,6 +22,6 @@ export default async function emitPriceData(
 	}));
 
 	realtimeDataPerUser.forEach(({ userId, data }) => {
-		io.to(userId).emit('TICKER_DATA', data);
+		io.to(userId).emit('REALTIME_DATA', data);
 	});
 }

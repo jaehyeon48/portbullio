@@ -8,6 +8,6 @@ export default function useSocketListeners() {
 
 	useEffect(() => {
 		socket.on('connect', () => {});
-		socket.on('TICKER_DATA', data => setRealtimeData(data));
+		socket.on('REALTIME_DATA', data => setRealtimeData(data));
 	}, [socket, setRealtimeData]);
 }

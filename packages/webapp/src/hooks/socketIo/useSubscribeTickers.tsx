@@ -11,7 +11,7 @@ export default function useRegisterTickers() {
 
 	useEffect(() => {
 		if (tickers.length === 0) return;
-		socket.emit('REGISTER_TICKER', tickers);
+		socket.emit('SUBSCRIBE_TICKER', tickers);
 	}, [socket, tickers]);
 
 	useEffect(() => {
@@ -19,9 +19,9 @@ export default function useRegisterTickers() {
 
 		function evtListener() {
 			if (document.visibilityState === 'hidden') {
-				socket.emit('UNREGISTER_TICKER');
+				socket.emit('UNSUBSCRIBE_TICKER');
 			} else {
-				socket.emit('REGISTER_TICKER', tickers);
+				socket.emit('SUBSCRIBE_TICKER', tickers);
 			}
 		}
 

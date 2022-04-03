@@ -10,12 +10,12 @@ import {
 	useAuthUpdate,
 	useThemeMode,
 	useSocketListeners,
-	useRegisterTickers
+	useSubscribeTickers
 } from '@hooks/index';
 
 function App(): ReactElement {
 	useSocketListeners();
-	useRegisterTickers();
+	useSubscribeTickers();
 	useThemeMode();
 	const isAuthenticated = useAuth();
 	const setAuth = useAuthUpdate();

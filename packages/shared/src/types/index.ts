@@ -6,12 +6,12 @@ export interface Holding {
 }
 
 export interface ServerToClientEvents {
-	TICKER_DATA: (data: RealtimeData[]) => void;
+	REALTIME_DATA: (data: RealtimeData[]) => void;
 }
 
 export interface ClientToServerEvents {
-	REGISTER_TICKER: (tickers: string[]) => void;
-	UNREGISTER_TICKER: () => void;
+	SUBSCRIBE_TICKER: (tickers: string[]) => void;
+	UNSUBSCRIBE_TICKER: () => void;
 }
 
 export interface InterServerEvents {}

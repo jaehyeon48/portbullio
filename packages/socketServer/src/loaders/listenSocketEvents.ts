@@ -11,8 +11,8 @@ export default function listenSocketEvents(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
 	io.on('connect', socket => {
-		socket.on('REGISTER_TICKER', tickers => registerTickersIntoDB(socket.id, tickers));
-		socket.on('UNREGISTER_TICKER', () => unregisterTickersFromDB(socket.id));
+		socket.on('SUBSCRIBE_TICKER', tickers => registerTickersIntoDB(socket.id, tickers));
+		socket.on('UNSUBSCRIBE_TICKER', () => unregisterTickersFromDB(socket.id));
 		socket.on('disconnect', () => unregisterTickersFromDB(socket.id));
 	});
 }

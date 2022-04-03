@@ -1,3 +1,3 @@
 export * from './useSocketIo';
-export { default as useRegisterTickers } from './useRegisterTickers';
+export { default as useSubscribeTickers } from './useSubscribeTickers';
 export { default as useSocketListeners } from './useSocketListeners';
