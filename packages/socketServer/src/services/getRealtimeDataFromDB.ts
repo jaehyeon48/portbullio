@@ -1,7 +1,9 @@
 import { priceRedisClient } from '@lib/index';
-import { RealtimeData } from '@portbullio/shared/src/types';
+import { ClientStockRealtimeData } from '@portbullio/shared/src/types';
 
-export default async function getRealtimeDataFromDB(tickers: string[]): Promise<RealtimeData[]> {
+export default async function getRealtimeDataFromDB(
+	tickers: string[]
+): Promise<ClientStockRealtimeData[]> {
 	try {
 		const realtimeDataPerTicker = await Promise.all(
 			tickers.map(ticker => priceRedisClient.get(ticker))

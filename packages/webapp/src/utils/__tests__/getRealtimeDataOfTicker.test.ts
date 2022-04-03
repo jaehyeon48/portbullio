@@ -1,4 +1,4 @@
-import { RealtimeData } from '@portbullio/shared/src/types';
+import { ClientStockRealtimeData } from '@portbullio/shared/src/types';
 import getRealtimeDataOfTicker from '../getRealtimeDataOfTicker';
 
 describe('getRealtimeDataOfTicker util function', () => {
@@ -19,7 +19,7 @@ describe('getRealtimeDataOfTicker util function', () => {
 	});
 });
 
-const dummyData: RealtimeData[] = [
+const dummyData: ClientStockRealtimeData[] = [
 	{ ticker: 'A', price: '100', change: '1' },
 	{ ticker: 'B', price: '200', change: '-1' }
 ];

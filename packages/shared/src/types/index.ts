@@ -6,7 +6,7 @@ export interface Holding {
 }
 
 export interface ServerToClientEvents {
-	REALTIME_DATA: (data: RealtimeData[]) => void;
+	REALTIME_DATA: (data: ClientStockRealtimeData[]) => void;
 }
 
 export interface ClientToServerEvents {
@@ -18,7 +18,7 @@ export interface InterServerEvents {}
 
 export interface SocketData {}
 
-export interface RealtimeData {
+export interface ClientStockRealtimeData {
 	ticker: string;
 	price: string;
 	change: string;

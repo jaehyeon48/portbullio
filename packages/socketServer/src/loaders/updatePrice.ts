@@ -1,13 +1,19 @@
 import { eventEmitter } from '@lib/index';
 import * as Services from '@services/index';
-import { RealtimeInfo } from '@types';
 
 const MAX_NUM_OF_REQ_TICKERS = 100;
 const REQUEST_PRICE_INTERVAL = 5000;
 
-interface RealtimeData {
+interface RealtimeDataFromIEX {
+	symbol: string;
+	change: number;
+	iexRealtimePrice: number | null;
+	latestPrice: number;
+}
+
+interface RealtimeDataPerTicker {
 	[key: string]: {
-		quote: RealtimeInfo;
+		quote: RealtimeDataFromIEX;
 	};
 }
 
@@ -18,7 +24,7 @@ export default async function updatePrice() {
 	);
 	const realtimeRawData = await Services.fetchRealtimeData(tickers);
 
-	const realtimeData = realtimeRawData.flatMap(({ data }: { data: RealtimeData }) =>
+	const realtimeData = realtimeRawData.flatMap(({ data }: { data: RealtimeDataPerTicker }) =>
 		Object.keys(data).map(ticker => ({
 			ticker: data[ticker].quote.symbol,
 			change: data[ticker].quote.change.toFixed(3),

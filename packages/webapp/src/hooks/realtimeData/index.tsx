@@ -1,17 +1,17 @@
 import * as React from 'react';
-import { RealtimeData } from '@portbullio/shared/src/types';
+import { ClientStockRealtimeData } from '@portbullio/shared/src/types';
 
 interface ProviderProps {
 	children: React.ReactNode;
 }
 
-type RealtimeDataUpdater = React.Dispatch<React.SetStateAction<RealtimeData[]>>;
+type RealtimeDataUpdater = React.Dispatch<React.SetStateAction<ClientStockRealtimeData[]>>;
 
-const RealtimeDataContext = React.createContext<RealtimeData[]>([]);
+const RealtimeDataContext = React.createContext<ClientStockRealtimeData[]>([]);
 const RealtimeDataUpdateContext = React.createContext<RealtimeDataUpdater | null>(null);
 
 export function RealtimeDataContextProvider({ children }: ProviderProps) {
-	const [realtimeData, setRealtimeData] = React.useState<RealtimeData[]>([]);
+	const [realtimeData, setRealtimeData] = React.useState<ClientStockRealtimeData[]>([]);
 
 	return (
 		<RealtimeDataContext.Provider value={realtimeData}>

@@ -1,9 +1,9 @@
-import { RealtimeData } from '@portbullio/shared/src/types';
+import { ClientStockRealtimeData } from '@portbullio/shared/src/types';
 
 export default function getRealtimeDataOfTicker(
-	realtimeData: RealtimeData[],
+	realtimeData: ClientStockRealtimeData[],
 	targetTicker: string,
-	targetProperty?: keyof RealtimeData
+	targetProperty?: keyof ClientStockRealtimeData
 ) {
 	const result = realtimeData.find(({ ticker }) => ticker === targetTicker);
 	if (!result) return null;
