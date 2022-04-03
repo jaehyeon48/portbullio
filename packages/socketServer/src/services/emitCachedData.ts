@@ -5,7 +5,7 @@ import {
 	InterServerEvents,
 	SocketData
 } from '@portbullio/shared/src/types';
-import { priceRedisClient } from '@lib/index';
+import { realtimeRedisClient } from '@lib/index';
 import * as Services from '@services/index';
 import { MAX_NUM_OF_REQ_TICKERS } from '@constants';
 import { RealtimeDataFilterOptions } from '@types';
@@ -24,7 +24,7 @@ export default async function emitCachedData(
 	userId: string,
 	userTickers: string[]
 ) {
-	const cachedTickers = new Set(await priceRedisClient.keys('*'));
+	const cachedTickers = new Set(await realtimeRedisClient.keys('*'));
 	const notCachedTickers = userTickers.filter(ticker => !cachedTickers.has(ticker));
 
 	if (notCachedTickers.length > 0) {

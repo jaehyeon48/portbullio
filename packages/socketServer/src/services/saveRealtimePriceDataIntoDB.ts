@@ -1,4 +1,4 @@
-import { priceRedisClient } from '@lib/index';
+import { realtimeRedisClient } from '@lib/index';
 
 export default async function saveRealtimePriceDataIntoDB(
 	ticker: string,
@@ -6,7 +6,7 @@ export default async function saveRealtimePriceDataIntoDB(
 	change: string
 ) {
 	try {
-		await priceRedisClient.set(ticker, JSON.stringify({ price, change }));
+		await realtimeRedisClient.set(ticker, JSON.stringify({ price, change }));
 		return true;
 	} catch (error) {
 		return false;
