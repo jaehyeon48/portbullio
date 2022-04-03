@@ -9,7 +9,7 @@ interface ProviderProps {
 type MarketStatusContextType = MarketStatus | 'loading';
 type MarketStatusUpdater = React.Dispatch<React.SetStateAction<MarketStatusContextType>>;
 
-const MarketStatusContext = React.createContext<MarketStatusContextType>('loading');
+const MarketStatusContext = React.createContext<MarketStatusContextType | null>(null);
 const MarketStatusUpdateContext = React.createContext<MarketStatusUpdater | null>(null);
 
 export function MarketStatusContextProvider({ children }: ProviderProps) {
