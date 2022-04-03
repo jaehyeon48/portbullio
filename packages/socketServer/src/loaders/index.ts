@@ -6,7 +6,7 @@ import {
 	InterServerEvents,
 	SocketData
 } from '@portbullio/shared/src/types';
-import { emitPriceData } from '@services/index';
+import { emitRealtimeData } from '@services/index';
 import listenSocketEvents from './listenSocketEvents';
 import updatePrice from './updatePrice';
 
@@ -27,6 +27,6 @@ export default async function appLoader(
 	listenSocketEvents(io);
 	updatePrice();
 	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => {
-		emitPriceData(io);
+		emitRealtimeData(io);
 	});
 }

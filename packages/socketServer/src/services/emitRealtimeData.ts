@@ -8,7 +8,7 @@ import {
 import getTickersPerUserFromDB from './getTickersPerUserFromDB';
 import getRealtimeDataFromDB from './getRealtimeDataFromDB';
 
-export default async function emitPriceData(
+export default async function emitRealtimeData(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
 	const tickersPerUser = await getTickersPerUserFromDB();
