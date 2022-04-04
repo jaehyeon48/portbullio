@@ -55,3 +55,17 @@ export interface RealtimeDataFilterOptions {
 	week52Low: number;
 	ytdChange: number;
 }
+
+export interface RealtimeDataPerTicker<T> {
+	[key: string]: {
+		quote: T;
+	};
+}
+
+export interface StockDataFromIEX {
+	symbol: string;
+	change: number;
+	changePercent: number;
+	latestPrice: number;
+	iexRealtimePrice: number | null;
+}

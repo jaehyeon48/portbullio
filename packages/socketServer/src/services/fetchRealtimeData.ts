@@ -1,22 +1,13 @@
 import axios, { AxiosResponse } from 'axios';
 import envConfig from '@config';
-import { RealtimeDataFilterOptions } from '@types';
-
-interface RealtimeDataPerTicker<T> {
-	[key: string]: {
-		quote: T;
-	};
-}
+import { RealtimeDataFilterOptions, RealtimeDataPerTicker, StockDataFromIEX } from '@types';
 
 const { iexCloudBaseUrl, iexCloudApiKey } = envConfig;
 const requestPath = '/stock/market/batch';
 
-export default async function fetchRealtimeData<RealtimeDataKeys>(
-	tickers: string[][],
-	filter = defaultFilter
-) {
+export default async function fetchRealtimeData(tickers: string[][]) {
 	const requestFilter = filter.join(',');
-	const result: AxiosResponse<RealtimeDataPerTicker<RealtimeDataKeys>>[] = await Promise.all(
+	const result: AxiosResponse<RealtimeDataPerTicker<StockDataFromIEX>>[] = await Promise.all(
 		tickers.map(tickerGroup => {
 			const tickerParam = tickerGroup.map(ticker => encodeURIComponent(ticker)).join(',');
 			return axios.get(
@@ -28,7 +19,7 @@ export default async function fetchRealtimeData<RealtimeDataKeys>(
 	return result;
 }
 
-const defaultFilter: (keyof RealtimeDataFilterOptions)[] = [
+const filter: (keyof RealtimeDataFilterOptions)[] = [
 	'symbol',
 	'change',
 	'changePercent',
