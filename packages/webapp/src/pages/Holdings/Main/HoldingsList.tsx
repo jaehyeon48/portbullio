@@ -1,6 +1,7 @@
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import DynamicCaret from '@components/DynamicCaret';
 import { Holding } from '@portbullio/shared/src/types';
+import { useRealtimeData } from '@hooks/index';
 import { formatNum, formatCurrency } from '@utils';
 import * as Style from './styles';
 
@@ -10,6 +11,8 @@ interface Props {
 }
 
 export default function HoldingsList({ holdingsList, isLoading }: Props) {
+	const realtimeData = useRealtimeData();
+	console.log(realtimeData);
 	if (isLoading) {
 		return <EmptyListNotice>로딩 중...</EmptyListNotice>;
 	}

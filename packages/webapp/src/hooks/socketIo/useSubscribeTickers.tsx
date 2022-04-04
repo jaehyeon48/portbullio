@@ -12,7 +12,7 @@ export default function useSubscribeTickers() {
 	const socket = useSocketIo();
 	const portfolioId = useSelectedPortfolioId();
 	const tickers = getHoldingsTickers(useHoldingsList(portfolioId).data ?? []);
-	const cachedTickers = new Set(realtimeDataStore.map(({ ticker }) => ticker));
+	const cachedTickers = new Set(Object.keys(realtimeDataStore));
 	const notCachedTickers = tickers.filter(ticker => !cachedTickers.has(ticker));
 
 	useEffect(() => {

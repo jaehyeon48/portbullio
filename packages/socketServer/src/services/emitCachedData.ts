@@ -9,7 +9,6 @@ import { realtimeRedisClient } from '@lib/index';
 import * as Services from '@services/index';
 import { MAX_NUM_OF_REQ_TICKERS } from '@constants';
 import { RealtimeDataFilterOptions } from '@types';
-import getRealtimeDataFromDB from './getRealtimeDataFromDB';
 
 interface StockDataFromIEX {
 	symbol: string;
@@ -49,6 +48,6 @@ export default async function emitCachedData(
 		);
 	}
 
-	const result = await getRealtimeDataFromDB(userTickers);
-	io.to(userId).emit('CACHED_DATA', result);
+	const result = await Services.getRealtimeDataFromDB(userTickers);
+	io.to(userId).emit('CACHED_DATA', Services.formatEmitData(result));
 }

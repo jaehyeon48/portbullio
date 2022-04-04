@@ -6,8 +6,8 @@ export interface Holding {
 }
 
 export interface ServerToClientEvents {
-	REALTIME_DATA: (data: ClientStockRealtimeData[]) => void;
-	CACHED_DATA: (data: ClientStockRealtimeData[]) => void;
+	REALTIME_DATA: (data: ClientStockRealtimeData) => void;
+	CACHED_DATA: (data: ClientStockRealtimeData) => void;
 }
 
 export interface ClientToServerEvents {
@@ -20,10 +20,17 @@ export interface InterServerEvents {}
 
 export interface SocketData {}
 
-export interface ClientStockRealtimeData {
-	ticker: string;
+export interface RealtimeDataProperties {
 	price: string;
 	change: string;
+}
+
+export interface RealtimeData extends RealtimeDataProperties {
+	ticker: string;
+}
+
+export interface ClientStockRealtimeData {
+	[key: string]: RealtimeDataProperties;
 }
 
 export type MarketStatus = 'opened' | 'closed';

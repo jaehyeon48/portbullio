@@ -9,3 +9,4 @@ export { default as emitRealtimeData } from './emitRealtimeData';
 export { default as emitCachedData } from './emitCachedData';
 export { default as groupTickersBy } from './groupTickersBy';
 export { default as getCurrentMarketState } from './getMarketStatus';
+export { default as formatEmitData } from './formatEmitData';

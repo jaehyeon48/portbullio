@@ -1,10 +1,10 @@
 import { CashTransactionLog } from '@prisma/client';
-import { calcTotalCashAmount, getRealtimeDataOfTicker } from '@src/utils';
+import { calcTotalCashAmount } from '@src/utils';
 import { ClientStockRealtimeData, Holding } from '@portbullio/shared/src/types';
 import { HoldingsValues, HoldingsRatio } from '@types';
 
 export default function transformToBarData(
-	realtimeData: ClientStockRealtimeData[],
+	realtimeData: ClientStockRealtimeData,
 	holdingsList: Holding[],
 	cashTransactions: CashTransactionLog[]
 ): HoldingsRatio[] {
@@ -26,16 +26,13 @@ export default function transformToBarData(
 }
 
 function calcHoldingValues(
-	realtimeData: ClientStockRealtimeData[],
+	realtimeData: ClientStockRealtimeData,
 	{ ticker, avgCost, buyQuantity, sellQuantity }: Holding
 ): HoldingsValues {
 	const quantity = buyQuantity - sellQuantity;
 	return {
 		ticker,
-		value:
-			avgCost * quantity +
-			(Number(getRealtimeDataOfTicker(realtimeData, ticker, 'price')) ?? avgCost - avgCost) *
-				quantity
+		value: Number(realtimeData[ticker]?.price ?? avgCost) * quantity
 	};
 }
 

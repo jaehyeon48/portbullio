@@ -5,13 +5,13 @@ interface ProviderProps {
 	children: React.ReactNode;
 }
 
-type RealtimeDataUpdater = React.Dispatch<React.SetStateAction<ClientStockRealtimeData[]>>;
+type RealtimeDataUpdater = React.Dispatch<React.SetStateAction<ClientStockRealtimeData>>;
 
-const RealtimeDataContext = React.createContext<ClientStockRealtimeData[]>([]);
+const RealtimeDataContext = React.createContext<ClientStockRealtimeData | null>(null);
 const RealtimeDataUpdateContext = React.createContext<RealtimeDataUpdater | null>(null);
 
 export function RealtimeDataContextProvider({ children }: ProviderProps) {
-	const [realtimeData, setRealtimeData] = React.useState<ClientStockRealtimeData[]>([]);
+	const [realtimeData, setRealtimeData] = React.useState<ClientStockRealtimeData>({});
 
 	return (
 		<RealtimeDataContext.Provider value={realtimeData}>
