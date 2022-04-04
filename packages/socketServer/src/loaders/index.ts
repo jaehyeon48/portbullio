@@ -28,7 +28,7 @@ export default async function appLoader(
 	);
 
 	listenSocketEvents(io);
-	if (marketStatus.status === 'opened') updatePrice();
+	if (marketStatus.status === 'opened') updatePrice(marketStatus);
 	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => {
 		emitRealtimeData(io);
 	});
