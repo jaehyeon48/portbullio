@@ -19,7 +19,7 @@ interface Props {
 export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransactions }: Props) {
 	const totalCashAmount = calcTotalCashAmount(cashTransactions);
 	const totalAssets = calcTotalAssets(holdingsList, realtimeData) + totalCashAmount;
-	const totalCost = calcTotalCost(holdingsList);
+	const totalCost = calcTotalCost(holdingsList) + totalCashAmount;
 	const dailyProfitLoss = calcDailyProfitLoss(holdingsList, realtimeData);
 	const totalProfitLoss = calcTotalProfitLoss(holdingsList, realtimeData);
 
@@ -35,7 +35,7 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 				</Style.ProfitLossAssetAmount>
 				<Style.ProfitLossAssetPercent value={dailyProfitLoss}>
 					<DynamicCaret value={dailyProfitLoss} width={18} height={18} marginTop={2} />
-					{totalAssets === 0 ? 0 : formatNum(((dailyProfitLoss / totalAssets) * 100).toFixed(3))}%
+					{totalCost === 0 ? 0 : formatNum(((dailyProfitLoss / totalCost) * 100).toFixed(3))}%
 				</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 			<Style.ProfitLossAssetItem>
