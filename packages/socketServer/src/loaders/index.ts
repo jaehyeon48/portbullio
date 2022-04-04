@@ -4,10 +4,13 @@ import {
 	ServerToClientEvents,
 	ClientToServerEvents,
 	InterServerEvents,
-	SocketData
+	SocketData,
+	MarketStatus
 } from '@portbullio/shared/src/types';
-import { emitRealtimeData, updatePrice } from '@services/index';
+import { emitRealtimeData, updatePrice, getCurrentMarketState } from '@services/index';
 import listenSocketEvents from './listenSocketEvents';
+
+const marketStatus: { status: MarketStatus } = { status: 'closed' };
 
 export default async function appLoader(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
@@ -16,6 +19,7 @@ export default async function appLoader(
 	await Lib.userRedisClient.connect();
 	await Lib.marketStatusRedisClient.connect();
 	await Lib.userRedisClient.flushDb();
+	marketStatus.status = await getCurrentMarketState();
 
 	Lib.realtimeRedisClient.on('error', err => Lib.logger.error('Price Redis Client Error', err));
 	Lib.userRedisClient.on('error', err => Lib.logger.error('User Redis Client Error', err));
@@ -24,7 +28,7 @@ export default async function appLoader(
 	);
 
 	listenSocketEvents(io);
-	updatePrice();
+	if (marketStatus.status === 'opened') updatePrice();
 	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => {
 		emitRealtimeData(io);
 	});
