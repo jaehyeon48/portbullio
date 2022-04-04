@@ -6,9 +6,8 @@ import {
 	InterServerEvents,
 	SocketData
 } from '@portbullio/shared/src/types';
-import { emitRealtimeData } from '@services/index';
+import { emitRealtimeData, updatePrice } from '@services/index';
 import listenSocketEvents from './listenSocketEvents';
-import updatePrice from './updatePrice';
 
 export default async function appLoader(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>

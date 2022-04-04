@@ -1,3 +1,4 @@
+export { default as updatePrice } from './updatePrice';
 export { default as subscribeTickersIntoDB } from './subscribeTickersIntoDB';
 export { default as unsubscribeTickersFromDB } from './unsubscribeTickersFromDB';
 export { default as getAllUsersTickersFromDB } from './getAllUsersTickersFromDB';
