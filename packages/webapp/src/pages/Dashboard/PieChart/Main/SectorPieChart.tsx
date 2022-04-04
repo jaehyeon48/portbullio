@@ -1,8 +1,9 @@
 import { useRef, useEffect, useState, SyntheticEvent } from 'react';
-import { PieChart as PieChartIcon, useSelectedPortfolioId } from '@components/index';
-import { useThemeMode, useModal, useHoldingsList } from '@hooks/index';
+import { PieChart as PieChartIcon } from '@components/index';
+import { useThemeMode, useModal } from '@hooks/index';
 import { getHoldingsTickers } from '@utils';
 import { SectorInfo, SectorPieChartRatio } from '@types';
+import { Holding } from '@portbullio/shared/src/types';
 import * as Style from '../../styles';
 import { adjustToDpr } from '../../utils';
 import { drawPieChart, translateSectorToKor } from '../utils';
@@ -20,12 +21,15 @@ import { sectorPieChartColors } from '../../colors';
 
 const MAX_NUM_OF_PIES = 7;
 
-export default function SectorPieChart() {
+interface Props {
+	holdingsList: Holding[];
+}
+
+export default function SectorPieChart({ holdingsList }: Props) {
 	const [theme] = useThemeMode();
 	const { openModal } = useModal();
 	const pieChartCanvasRef = useRef<HTMLCanvasElement>(null);
-	const portfolioId = useSelectedPortfolioId();
-	const tickers = getHoldingsTickers(useHoldingsList(portfolioId).data ?? []);
+	const tickers = getHoldingsTickers(holdingsList);
 	const sectors = useSectors();
 	const sectorMap = initializeSectorMap(sectors.data ?? []);
 	const [numOfPies, setNumOfPies] = useState(Math.min(sectorMap.size, MAX_NUM_OF_PIES));

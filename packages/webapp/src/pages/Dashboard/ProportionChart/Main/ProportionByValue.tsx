@@ -1,12 +1,8 @@
 import { useRef, useEffect, useState, SyntheticEvent } from 'react';
-import {
-	useHoldingsList,
-	useCashTransactionList,
-	useThemeMode,
-	useModal,
-	useRealtimeData
-} from '@hooks/index';
-import { useSelectedPortfolioId, BarChartAsc as BarChartAscIcon } from '@components/index';
+import { CashTransactionLog } from '@prisma/client';
+import { ClientStockRealtimeData, Holding } from '@portbullio/shared/src/types';
+import { useThemeMode, useModal } from '@hooks/index';
+import { BarChartAsc as BarChartAscIcon } from '@components/index';
 import { calcTotalCashAmount } from '@utils';
 import * as Style from '../../styles';
 import { adjustToDpr } from '../../utils';
@@ -22,24 +18,20 @@ import {
 } from '../utils';
 import SelectNumOfItems from '../../SelectNumOfItems';
 
-export default function ProportionByValue() {
-	const realtimeData = useRealtimeData();
+interface Props {
+	holdingsList: Holding[];
+	realtimeData: ClientStockRealtimeData;
+	cashTransactions: CashTransactionLog[];
+}
+
+export default function ProportionByValue({ holdingsList, realtimeData, cashTransactions }: Props) {
 	const [theme] = useThemeMode();
 	const { openModal } = useModal();
 	const barCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barTooltipCanvasRef = useRef<HTMLCanvasElement>(null);
-	const portfolioId = useSelectedPortfolioId();
-	const cashTransactions = useCashTransactionList(portfolioId);
-	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
-	const holdingsList = useHoldingsList(portfolioId);
-	const [numOfBars, setNumOfBars] = useState(
-		Math.min((holdingsList.data?.length ?? 0) + 1, MAX_NUM_OF_BARS)
-	);
-	const originalBarData = transformToBarData(
-		realtimeData,
-		holdingsList.data ?? [],
-		cashTransactions.data ?? []
-	);
+	const totalCashAmount = calcTotalCashAmount(cashTransactions);
+	const [numOfBars, setNumOfBars] = useState(Math.min(holdingsList.length + 1, MAX_NUM_OF_BARS));
+	const originalBarData = transformToBarData(realtimeData, holdingsList, cashTransactions);
 	const barData = truncateToNumOfBars(originalBarData, numOfBars);
 	const maxRatio = barData.at(0)?.ratio ?? 0;
 
@@ -106,7 +98,7 @@ export default function ProportionByValue() {
 		<Style.ProportionByValueContainer>
 			{!isHoldingsEmpty() && (
 				<SelectNumOfItems
-					numOfItems={(holdingsList.data?.length ?? 0) + 1}
+					numOfItems={holdingsList.length + 1}
 					maxNumOfOptions={MAX_NUM_OF_BARS}
 					optionValue={numOfBars}
 					setterFn={setNumOfBars}

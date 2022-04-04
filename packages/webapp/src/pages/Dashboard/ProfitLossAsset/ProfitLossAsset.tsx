@@ -1,22 +1,24 @@
+import { CashTransactionLog } from '@prisma/client';
+import { ClientStockRealtimeData, Holding } from '@portbullio/shared/src/types';
 import { formatNum, formatCurrency, calcTotalCashAmount } from '@utils';
 import {
 	DynamicCaret,
 	LineChartAsc as LineChartAscIcon,
 	BarChartArrowAsc as BarChartArrowAscIcon,
-	MoneySack as MoneySackIcon,
-	useSelectedPortfolioId
+	MoneySack as MoneySackIcon
 } from '@components/index';
-import { useHoldingsList, useRealtimeData, useCashTransactionList } from '@hooks/index';
 import { calcTotalAssets } from './utils';
 import * as Style from '../styles';
 
-export default function ProfitLossAsset() {
-	const portfolioId = useSelectedPortfolioId();
-	const holdingsList = useHoldingsList(portfolioId);
-	const realtimeData = useRealtimeData();
-	const cashTransactions = useCashTransactionList(portfolioId);
-	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
-	const totalAssets = calcTotalAssets(holdingsList.data ?? [], realtimeData) + totalCashAmount;
+interface Props {
+	holdingsList: Holding[];
+	realtimeData: ClientStockRealtimeData;
+	cashTransactions: CashTransactionLog[];
+}
+
+export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransactions }: Props) {
+	const totalCashAmount = calcTotalCashAmount(cashTransactions);
+	const totalAssets = calcTotalAssets(holdingsList, realtimeData) + totalCashAmount;
 
 	return (
 		<Style.ProfitLossAssetContainer>
