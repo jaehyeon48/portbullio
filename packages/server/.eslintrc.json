@@ -27,7 +27,8 @@
   },
   "ignorePatterns": [
     "jest.config.js",
-    "__mocks__"
+    "__mocks__",
+    "src/worker"
   ],
   "rules": {
     "import/no-extraneous-dependencies": "off",

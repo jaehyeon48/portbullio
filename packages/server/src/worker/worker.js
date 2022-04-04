@@ -1,13 +1,9 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { workerData, parentPort } = require('worker_threads');
 
 parentPort?.postMessage(main(workerData));
 
-// @ts-ignore
 function groupByTicker(stockData) {
 	const result = new Map();
-	// @ts-ignore
 	stockData.forEach(stock => {
 		if (!result.has(stock.ticker)) result.set(stock.ticker, []);
 		result.get(stock.ticker).push(stock);
@@ -15,7 +11,6 @@ function groupByTicker(stockData) {
 	return result;
 }
 
-// @ts-ignore
 function calculateAvgCostAndQuantity(ticker, stockData) {
 	const result = { ticker, avgCost: 0, buyQuantity: 0, sellQuantity: 0 };
 	let totalCost = 0;
@@ -23,7 +18,6 @@ function calculateAvgCostAndQuantity(ticker, stockData) {
 	let totalSellQuantity = 0;
 	let numOfSellTransaction = 0;
 
-	// @ts-ignore
 	stockData.forEach(stock => {
 		if (stock.transactionType === 'sell') {
 			numOfSellTransaction += stock.quantity;
@@ -56,7 +50,6 @@ function calculateAvgCostAndQuantity(ticker, stockData) {
 	return result;
 }
 
-// @ts-ignore
 function main(stockData) {
 	return [...groupByTicker(stockData)].map(([ticker, tickerData]) =>
 		calculateAvgCostAndQuantity(ticker, tickerData)
