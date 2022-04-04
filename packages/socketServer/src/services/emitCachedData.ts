@@ -20,14 +20,8 @@ export default async function emitCachedData(
 	if (notCachedTickers.length > 0) {
 		const tickers = Services.groupTickersBy(MAX_NUM_OF_REQ_TICKERS, notCachedTickers);
 		const cachedRawData = await Services.fetchRealtimeData(tickers);
-
 		const cachedData = Services.transformRawData(cachedRawData);
-
-		await Promise.all(
-			cachedData.map(({ ticker, price, change, changePercent }) =>
-				Services.saveRealtimePriceDataIntoDB(ticker, price, change, changePercent)
-			)
-		);
+		await Services.saveRealtimeDataIntoDB(cachedData);
 	}
 
 	const result = await Services.getRealtimeDataFromDB(userTickers);

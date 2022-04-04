@@ -9,15 +9,9 @@ export default async function updatePrice() {
 		MAX_NUM_OF_REQ_TICKERS,
 		await Services.getAllUsersTickersFromDB()
 	);
-
 	const realtimeRawData = await Services.fetchRealtimeData(tickers);
 	const realtimeData = Services.transformRawData(realtimeRawData);
-
-	await Promise.all(
-		realtimeData.map(({ ticker, price, change, changePercent }) =>
-			Services.saveRealtimePriceDataIntoDB(ticker, price, change, changePercent)
-		)
-	);
+	await Services.saveRealtimeDataIntoDB(realtimeData);
 	eventEmitter.emit('EMIT_REALTIME_DATA');
 	setTimeout(updatePrice, REQUEST_PRICE_INTERVAL);
 }

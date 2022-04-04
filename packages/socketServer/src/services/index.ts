@@ -3,7 +3,7 @@ export { default as unsubscribeTickersFromDB } from './unsubscribeTickersFromDB'
 export { default as getAllUsersTickersFromDB } from './getAllUsersTickersFromDB';
 export { default as getTickersPerUserFromDB } from './getTickersPerUserFromDB';
 export { default as getRealtimeDataFromDB } from './getRealtimeDataFromDB';
-export { default as saveRealtimePriceDataIntoDB } from './saveRealtimePriceDataIntoDB';
+export { default as saveRealtimeDataIntoDB } from './saveRealtimeDataIntoDB';
 export { default as fetchRealtimeData } from './fetchRealtimeData';
 export { default as emitRealtimeData } from './emitRealtimeData';
 export { default as emitCachedData } from './emitCachedData';
