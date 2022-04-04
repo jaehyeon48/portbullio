@@ -12,7 +12,7 @@ interface Props {
 
 export default function HoldingsList({ holdingsList, isLoading }: Props) {
 	const realtimeData = useRealtimeData();
-	console.log(realtimeData);
+
 	if (isLoading) {
 		return <EmptyListNotice>로딩 중...</EmptyListNotice>;
 	}
@@ -22,37 +22,48 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 			isListEmpty={!holdingsList || holdingsList.length === 0}
 			emptyListNoticeMessage="보유종목이 없습니다."
 		>
-			{holdingsList?.map(({ ticker, avgCost, buyQuantity, sellQuantity }) => (
-				<ListItem key={ticker}>
-					<Style.HoldingTickerSection>{ticker}</Style.HoldingTickerSection>
-					<Style.HoldingDetailsSection>
-						<Style.HoldingDetailsOpenButton to={`/stock-transactions/${ticker}`}>
-							거래내역 자세히 보기
-						</Style.HoldingDetailsOpenButton>
-					</Style.HoldingDetailsSection>
-					<Style.HoldingCurrentPriceSection value={1}>
-						<DynamicCaret width={20} height={20} value={1} marginTop={2} />
-						{formatCurrency(123.45, 'usd')}&#40;+12.34%&#41;
-					</Style.HoldingCurrentPriceSection>
-					<Style.HoldingAvgPriceSection>
-						{formatCurrency(avgCost, 'usd')}
-					</Style.HoldingAvgPriceSection>
-					<Style.HoldingQuantitySection>
-						{formatNum(buyQuantity - sellQuantity)}
-					</Style.HoldingQuantitySection>
-					<Style.HoldingTotalValueSection>
-						{formatCurrency(123456789, 'usd')}
-					</Style.HoldingTotalValueSection>
-					<Style.HoldingDailyGainSection value={-1}>
-						<DynamicCaret width={20} height={20} value={-1} marginTop={2} />
-						{formatCurrency(123.45, 'usd')}&#40;-12.34%&#41;
-					</Style.HoldingDailyGainSection>
-					<Style.HoldingTotalGainSection value={1}>
-						<DynamicCaret width={20} height={20} value={1} marginTop={2} />
-						{formatCurrency(123456, 'usd')}&#40;+12.34%&#41;
-					</Style.HoldingTotalGainSection>
-				</ListItem>
-			))}
+			{holdingsList?.map(({ ticker, avgCost, buyQuantity, sellQuantity }) => {
+				const realtimePrice = Number(realtimeData[ticker]?.price ?? 0);
+				const realtimeChange = Number(realtimeData[ticker]?.change ?? 0);
+				const realtimeChangePercent = Number(realtimeData[ticker]?.changePercent ?? 0);
+				const holdingQuantity = buyQuantity - sellQuantity;
+				const totalGain = (realtimePrice - avgCost) * holdingQuantity;
+
+				return (
+					<ListItem key={ticker}>
+						<Style.HoldingTickerSection>{ticker}</Style.HoldingTickerSection>
+						<Style.HoldingDetailsSection>
+							<Style.HoldingDetailsOpenButton to={`/stock-transactions/${ticker}`}>
+								거래내역 자세히 보기
+							</Style.HoldingDetailsOpenButton>
+						</Style.HoldingDetailsSection>
+						<Style.HoldingCurrentPriceSection value={realtimeChange}>
+							<DynamicCaret width={20} height={20} value={realtimeChange} marginTop={2} />
+							{formatCurrency(realtimePrice, 'usd')}&#40;{realtimeChangePercent}%&#41;
+						</Style.HoldingCurrentPriceSection>
+						<Style.HoldingAvgPriceSection>
+							{formatCurrency(avgCost, 'usd')}
+						</Style.HoldingAvgPriceSection>
+						<Style.HoldingQuantitySection>
+							{formatNum(holdingQuantity)}
+						</Style.HoldingQuantitySection>
+						<Style.HoldingTotalValueSection>
+							{formatCurrency(realtimePrice * holdingQuantity, 'usd')}
+						</Style.HoldingTotalValueSection>
+						<Style.HoldingDailyGainSection value={realtimeChangePercent}>
+							<DynamicCaret width={20} height={20} value={realtimeChangePercent} marginTop={2} />
+							{formatCurrency(realtimeChange * holdingQuantity, 'usd')}&#40;{realtimeChangePercent}
+							%&#41;
+						</Style.HoldingDailyGainSection>
+						<Style.HoldingTotalGainSection value={totalGain}>
+							<DynamicCaret width={20} height={20} value={totalGain} marginTop={2} />
+							{formatCurrency(totalGain, 'usd')}&#40;
+							{(((realtimePrice - avgCost) / avgCost) * 100).toFixed(3)}
+							%&#41;
+						</Style.HoldingTotalGainSection>
+					</ListItem>
+				);
+			})}
 		</ListItems>
 	);
 }
