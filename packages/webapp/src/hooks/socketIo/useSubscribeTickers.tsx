@@ -1,12 +1,15 @@
 import { useEffect } from 'react';
+import { useEmitter } from '@hooks/index';
 import { useSelectedPortfolioId } from '@components/index';
 import { getHoldingsTickers } from '@utils';
+import { LOG_OUT } from '@constants/index';
 import { useRealtimeData } from '../realtimeData';
 import { useMarketStatus } from '../marketStatus';
 import { useHoldingsList } from '../ReactQuery';
 import { useSocketIo } from './useSocketIo';
 
 export default function useSubscribeTickers() {
+	const Emitter = useEmitter();
 	const realtimeDataStore = useRealtimeData();
 	const marketStatus = useMarketStatus();
 	const socket = useSocketIo();
@@ -24,8 +27,6 @@ export default function useSubscribeTickers() {
 	}, [socket, notCachedTickers, tickers, marketStatus]);
 
 	useEffect(() => {
-		document.addEventListener('visibilitychange', evtListener);
-
 		function evtListener() {
 			if (marketStatus !== 'opened') return;
 			if (document.visibilityState === 'hidden') {
@@ -35,8 +36,22 @@ export default function useSubscribeTickers() {
 			}
 		}
 
+		document.addEventListener('visibilitychange', evtListener);
+
 		return () => {
 			document.removeEventListener('visibilitychange', evtListener);
 		};
 	}, [socket, tickers, marketStatus]);
+
+	useEffect(() => {
+		function evtListener() {
+			socket.emit('UNSUBSCRIBE_TICKER');
+		}
+
+		Emitter.on(LOG_OUT, evtListener);
+
+		return () => {
+			Emitter.off(LOG_OUT, evtListener);
+		};
+	}, [socket, Emitter]);
 }
