@@ -23,6 +23,7 @@ export interface SocketData {}
 export interface RealtimeDataProperties {
 	price: string;
 	change: string;
+	changePercent: string;
 }
 
 export interface RealtimeData extends RealtimeDataProperties {

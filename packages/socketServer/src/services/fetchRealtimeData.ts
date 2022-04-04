@@ -31,6 +31,7 @@ export default async function fetchRealtimeData<RealtimeDataKeys>(
 const defaultFilter: (keyof RealtimeDataFilterOptions)[] = [
 	'symbol',
 	'change',
+	'changePercent',
 	'iexRealtimePrice',
 	'latestPrice'
 ];

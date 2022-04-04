@@ -13,10 +13,16 @@ import { RealtimeDataFilterOptions } from '@types';
 interface StockDataFromIEX {
 	symbol: string;
 	change: number;
+	changePercent: number;
 	latestPrice: number;
 }
 
-const fetchDataOptions: (keyof RealtimeDataFilterOptions)[] = ['symbol', 'change', 'latestPrice'];
+const fetchDataOptions: (keyof RealtimeDataFilterOptions)[] = [
+	'symbol',
+	'change',
+	'changePercent',
+	'latestPrice'
+];
 
 export default async function emitCachedData(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>,
@@ -37,13 +43,14 @@ export default async function emitCachedData(
 			Object.keys(data).map(ticker => ({
 				ticker: data[ticker].quote.symbol,
 				change: data[ticker].quote.change.toFixed(3),
+				changePercent: (data[ticker].quote.changePercent * 100).toFixed(3),
 				price: data[ticker].quote.latestPrice?.toFixed(3)
 			}))
 		);
 
 		await Promise.all(
-			cachedData.map(({ ticker, price, change }) =>
-				Services.saveRealtimePriceDataIntoDB(ticker, price, change)
+			cachedData.map(({ ticker, price, change, changePercent }) =>
+				Services.saveRealtimePriceDataIntoDB(ticker, price, change, changePercent)
 			)
 		);
 	}

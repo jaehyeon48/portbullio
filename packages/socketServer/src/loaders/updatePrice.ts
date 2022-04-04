@@ -7,6 +7,7 @@ const REQUEST_PRICE_INTERVAL = 5000;
 interface RealtimeDataFromIEX {
 	symbol: string;
 	change: number;
+	changePercent: number;
 	iexRealtimePrice: number | null;
 	latestPrice: number;
 }
@@ -22,13 +23,14 @@ export default async function updatePrice() {
 		Object.keys(data).map(ticker => ({
 			ticker: data[ticker].quote.symbol,
 			change: data[ticker].quote.change.toFixed(3),
+			changePercent: data[ticker].quote.changePercent.toFixed(3),
 			price: (data[ticker].quote.iexRealtimePrice ?? data[ticker].quote.latestPrice)?.toFixed(3)
 		}))
 	);
 
 	await Promise.all(
-		realtimeData.map(({ ticker, price, change }) =>
-			Services.saveRealtimePriceDataIntoDB(ticker, price, change)
+		realtimeData.map(({ ticker, price, change, changePercent }) =>
+			Services.saveRealtimePriceDataIntoDB(ticker, price, change, changePercent)
 		)
 	);
 	eventEmitter.emit('EMIT_REALTIME_DATA');
