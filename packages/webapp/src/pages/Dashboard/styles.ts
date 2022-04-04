@@ -101,6 +101,9 @@ export const AmountChange = styled.div`
 
 export const ProfitLossAssetPercent = styled.div`
 	${priceColorMixin};
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 	margin-top: 14px;
 `;

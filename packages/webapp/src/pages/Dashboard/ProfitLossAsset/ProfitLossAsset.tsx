@@ -7,7 +7,7 @@ import {
 	BarChartArrowAsc as BarChartArrowAscIcon,
 	MoneySack as MoneySackIcon
 } from '@components/index';
-import { calcTotalAssets } from './utils';
+import { calcTotalAssets, calcTotalCost, calcTotalProfitLoss } from './utils';
 import * as Style from '../styles';
 
 interface Props {
@@ -19,6 +19,8 @@ interface Props {
 export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransactions }: Props) {
 	const totalCashAmount = calcTotalCashAmount(cashTransactions);
 	const totalAssets = calcTotalAssets(holdingsList, realtimeData) + totalCashAmount;
+	const totalCost = calcTotalCost(holdingsList);
+	const totalProfitLoss = calcTotalProfitLoss(holdingsList, realtimeData);
 
 	return (
 		<Style.ProfitLossAssetContainer>
@@ -41,14 +43,13 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 					<BarChartArrowAscIcon width={24} height={24} />
 				</Style.ItemIconContainer>
 				<Style.ItemHeader>총 손익</Style.ItemHeader>
-				<Style.ProfitLossAssetAmount value={1}>
-					{formatCurrency(1234567.89, 'usd')}
-					<Style.AmountChange>
-						<DynamicCaret value={1} width={18} height={18} marginTop={2} />
-						1234.56
-					</Style.AmountChange>
+				<Style.ProfitLossAssetAmount value={totalProfitLoss}>
+					{formatCurrency(totalProfitLoss, 'usd')}
 				</Style.ProfitLossAssetAmount>
-				<Style.ProfitLossAssetPercent value={1}>{formatNum(1234.56)}%</Style.ProfitLossAssetPercent>
+				<Style.ProfitLossAssetPercent value={totalProfitLoss}>
+					<DynamicCaret value={totalProfitLoss} width={18} height={18} marginTop={2} />
+					{totalCost === 0 ? 0 : formatNum(((totalProfitLoss / totalCost) * 100).toFixed(3))}%
+				</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 			<Style.ProfitLossAssetItem>
 				<Style.ItemIconContainer bgColor="gray">
