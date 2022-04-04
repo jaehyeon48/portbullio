@@ -1,13 +1,23 @@
-import { formatNum, formatCurrency } from '@utils';
+import { formatNum, formatCurrency, calcTotalCashAmount } from '@utils';
 import {
 	DynamicCaret,
 	LineChartAsc as LineChartAscIcon,
 	BarChartArrowAsc as BarChartArrowAscIcon,
-	MoneySack as MoneySackIcon
+	MoneySack as MoneySackIcon,
+	useSelectedPortfolioId
 } from '@components/index';
-import * as Style from './styles';
+import { useHoldingsList, useRealtimeData, useCashTransactionList } from '@hooks/index';
+import { calcTotalAssets } from './utils';
+import * as Style from '../styles';
 
 export default function ProfitLossAsset() {
+	const portfolioId = useSelectedPortfolioId();
+	const holdingsList = useHoldingsList(portfolioId);
+	const realtimeData = useRealtimeData();
+	const cashTransactions = useCashTransactionList(portfolioId);
+	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);
+	const totalAssets = calcTotalAssets(holdingsList.data ?? [], realtimeData) + totalCashAmount;
+
 	return (
 		<Style.ProfitLossAssetContainer>
 			<Style.ProfitLossAssetItem>
@@ -44,7 +54,7 @@ export default function ProfitLossAsset() {
 				</Style.ItemIconContainer>
 				<Style.ItemHeader>총 자산</Style.ItemHeader>
 				<Style.ProfitLossAssetAmount>
-					{formatCurrency(123456789.01, 'usd')}
+					{formatCurrency(totalAssets, 'usd')}
 				</Style.ProfitLossAssetAmount>
 			</Style.ProfitLossAssetItem>
 		</Style.ProfitLossAssetContainer>
