@@ -1,4 +1,5 @@
 import { Server } from 'socket.io';
+import schedule from 'node-schedule';
 import * as Lib from '@lib/index';
 import {
 	ServerToClientEvents,
@@ -7,7 +8,12 @@ import {
 	SocketData,
 	MarketStatus
 } from '@portbullio/shared/src/types';
-import { emitRealtimeData, updatePrice, getCurrentMarketState } from '@services/index';
+import {
+	emitRealtimeData,
+	updatePrice,
+	getCurrentMarketState,
+	checkCurrentMarketStatus
+} from '@services/index';
 import listenSocketEvents from './listenSocketEvents';
 
 const marketStatus: { status: MarketStatus } = { status: 'closed' };
@@ -20,6 +26,21 @@ export default async function appLoader(
 	await Lib.marketStatusRedisClient.connect();
 	await Lib.userRedisClient.flushDb();
 	marketStatus.status = await getCurrentMarketState();
+
+	schedule.scheduleJob('0 30 22 * * *', async () => {
+		const curMarketStatus = await checkCurrentMarketStatus();
+		await Lib.marketStatusRedisClient.set('marketStatus', curMarketStatus);
+		marketStatus.status = curMarketStatus;
+		Lib.logger.info('Checked Market Status');
+		if (marketStatus.status === 'opened') updatePrice(marketStatus);
+	});
+
+	schedule.scheduleJob('0 0 5 * * *', async () => {
+		const curMarketStatus = await checkCurrentMarketStatus();
+		await Lib.marketStatusRedisClient.set('marketStatus', curMarketStatus);
+		marketStatus.status = curMarketStatus;
+		Lib.logger.info('Checked Market Status');
+	});
 
 	Lib.realtimeRedisClient.on('error', err => Lib.logger.error('Price Redis Client Error', err));
 	Lib.userRedisClient.on('error', err => Lib.logger.error('User Redis Client Error', err));
