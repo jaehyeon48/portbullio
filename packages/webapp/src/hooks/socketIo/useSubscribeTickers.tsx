@@ -22,8 +22,8 @@ export default function useSubscribeTickers() {
 		if (marketStatus === 'loading') return;
 		if (tickers.length === 0) return;
 		if (notCachedTickers.length === 0) return;
-		if (marketStatus === 'opened') socket.emit('SUBSCRIBE_TICKER', tickers);
-		else socket.emit('REQ_CACHED_DATA', notCachedTickers);
+		socket.emit('SUBSCRIBE_TICKER', tickers);
+		socket.emit('REQ_CACHED_DATA', notCachedTickers);
 	}, [socket, notCachedTickers, tickers, marketStatus]);
 
 	useEffect(() => {
