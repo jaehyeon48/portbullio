@@ -1,13 +1,14 @@
-import { useRef, useEffect, useState, SyntheticEvent } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import { CashTransactionLog } from '@prisma/client';
 import { ClientStockRealtimeData, Holding } from '@portbullio/shared/src/types';
-import { useThemeMode, useModal } from '@hooks/index';
+import { useThemeMode } from '@hooks/index';
 import { BarChartAsc as BarChartAscIcon } from '@components/index';
 import { calcTotalCashAmount } from '@utils';
-import * as Style from '../../styles';
-import { adjustToDpr } from '../../utils';
-import { MAX_NUM_OF_BARS } from '../constants';
-import DetailsPage from '../ModalPage/ProportionChartDetails';
+import { ItemHeader, ItemIconContainer, NoticeEmptyHoldingsList } from '../styles';
+import * as Style from './styles';
+import { adjustToDpr } from '../utils';
+import { MAX_NUM_OF_BARS } from './constants';
+import DetailsPage from './ProportionChartDetails';
 import {
 	drawAxis,
 	drawHorizontalGrid,
@@ -15,8 +16,8 @@ import {
 	calcBarGeometry,
 	transformToBarData,
 	truncateToNumOfBars
-} from '../utils';
-import SelectNumOfItems from '../../SelectNumOfItems';
+} from './utils';
+import SelectNumOfItems from '../SelectNumOfItems';
 
 interface Props {
 	holdingsList: Holding[];
@@ -26,7 +27,6 @@ interface Props {
 
 export default function ProportionByValue({ holdingsList, realtimeData, cashTransactions }: Props) {
 	const [theme] = useThemeMode();
-	const { openModal } = useModal();
 	const barCanvasRef = useRef<HTMLCanvasElement>(null);
 	const barTooltipCanvasRef = useRef<HTMLCanvasElement>(null);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions);
@@ -79,49 +79,40 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 		adjustToDpr(ctx, barTooltipCanvas);
 	}, [numOfBars]);
 
-	function openDetailsPage(e: SyntheticEvent) {
-		openModal(
-			e,
-			<DetailsPage
-				chartData={originalBarData}
-				maxRatio={originalBarData.at(0)?.ratio ?? 0}
-				numOfBars={numOfBars}
-			/>
-		);
-	}
-
 	function isHoldingsEmpty() {
 		return numOfBars === 1 && totalCashAmount <= 0;
 	}
 
 	return (
-		<Style.ProportionByValueContainer>
-			{!isHoldingsEmpty() && (
-				<SelectNumOfItems
-					numOfItems={holdingsList.length + 1}
-					maxNumOfOptions={MAX_NUM_OF_BARS}
-					optionValue={numOfBars}
-					setterFn={setNumOfBars}
-					labelText="종목 개수: "
-					selectElementId="select-num-of-bar-items"
-				/>
-			)}
-			<Style.ItemIconContainer bgColor="blue">
-				<BarChartAscIcon width={20} height={20} />
-			</Style.ItemIconContainer>
-			<Style.ItemHeader>종목 구성</Style.ItemHeader>
-			{!isHoldingsEmpty() && (
-				<Style.OpenDetails type="button" onClick={openDetailsPage}>
-					자세히 보기
-				</Style.OpenDetails>
-			)}
-			{isHoldingsEmpty() ? (
-				<Style.NoticeEmptyHoldingsList>
-					표시할 종목이 없습니다. 보유 종목 혹은 현금 거래내역을 추가해 주세요.
-				</Style.NoticeEmptyHoldingsList>
-			) : (
-				<Style.ProportionByValueChartCanvas ref={barCanvasRef} />
-			)}
-		</Style.ProportionByValueContainer>
+		<Style.ProportionByValueSection>
+			<Style.ProportionByValueChartContainer>
+				{!isHoldingsEmpty() && (
+					<SelectNumOfItems
+						numOfItems={holdingsList.length + 1}
+						maxNumOfOptions={MAX_NUM_OF_BARS}
+						optionValue={numOfBars}
+						setterFn={setNumOfBars}
+						labelText="종목 개수: "
+						selectElementId="select-num-of-bar-items"
+					/>
+				)}
+				<ItemIconContainer bgColor="blue">
+					<BarChartAscIcon width={20} height={20} />
+				</ItemIconContainer>
+				<ItemHeader>종목 구성</ItemHeader>
+				{isHoldingsEmpty() ? (
+					<NoticeEmptyHoldingsList>
+						표시할 종목이 없습니다. 보유 종목 혹은 현금 거래내역을 추가해 주세요.
+					</NoticeEmptyHoldingsList>
+				) : (
+					<Style.ProportionByValueChartCanvas ref={barCanvasRef} />
+				)}
+			</Style.ProportionByValueChartContainer>
+			<DetailsPage
+				chartData={originalBarData}
+				maxRatio={originalBarData.at(0)?.ratio ?? 0}
+				numOfBars={numOfBars}
+			/>
+		</Style.ProportionByValueSection>
 	);
 }

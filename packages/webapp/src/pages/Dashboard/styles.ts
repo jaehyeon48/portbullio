@@ -6,12 +6,11 @@ interface ItemIconBgColorProp {
 	bgColor: 'gray' | 'blue';
 }
 
-const ITEM_UPPER_LOWER_PADDING_PX = 8;
+export const ITEM_UPPER_LOWER_PADDING_PX = 8;
 const PROFIT_LOSS_ASSET_ITEM_HEIGHT_PX = 134;
-const PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX = 450;
 const PIE_CHART_CONTAINER_HEIGHT_PX = 400;
 const ASSET_HISTORY_CONTAINER_HEIGHT_PX = 420;
-const CANVAS_PADDING_PX = 10;
+export const CANVAS_PADDING_PX = 10;
 
 export const DashboardContainer = styled.div`
 	max-width: 1500px;
@@ -99,21 +98,6 @@ export const ProfitLossAssetPercent = styled.div`
 	justify-content: center;
 	text-align: center;
 	margin-top: 14px;
-`;
-
-export const ProportionByValueContainer = styled(Card)`
-	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	position: relative;
-	height: ${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px;
-`;
-
-export const ProportionByValueChartCanvas = styled.canvas`
-	width: 100%;
-	height: calc(
-		${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em *
-			1.5
-	);
-	padding: ${CANVAS_PADDING_PX}px;
 `;
 
 export const SectorPieChartContainer = styled(Card)`

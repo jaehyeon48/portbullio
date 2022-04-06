@@ -2,7 +2,7 @@ import { PortfolioSelect, useSelectedPortfolioId } from '@components/index';
 import { useTitle, useHoldingsList, useRealtimeData, useCashTransactionList } from '@hooks/index';
 import { DashboardContainer, PortfolioSelectContainer } from './styles';
 import ProfitLossAsset from './ProfitLossAsset/ProfitLossAsset';
-import ProportionByValue from './ProportionChart/Main/ProportionByValue';
+import ProportionByValue from './ProportionByValue';
 import SectorPieChart from './PieChart/Main/SectorPieChart';
 import DividendPieChart from './DividendPieChart';
 import AssetHistory from './AssetHistory';
