@@ -17,11 +17,8 @@ interface EditPortfolioNameReqBody {
 	newPortfolioName: string;
 }
 
-interface EditDefaultPortfolioParam {
-	prevPortfolioId: string;
-}
-
 interface EditDefaultPortfolioReqBody {
+	prevPortfolioId: string;
 	newPortfolioId: string;
 }
 
@@ -202,11 +199,11 @@ export default (): express.Router => {
 	);
 
 	router.put(
-		'/:prevPortfolioId/default',
+		'/default',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { prevPortfolioId } = req.params as unknown as EditDefaultPortfolioParam;
-			const { newPortfolioId } = req.body as unknown as EditDefaultPortfolioReqBody;
+			const { prevPortfolioId, newPortfolioId } =
+				req.body as unknown as EditDefaultPortfolioReqBody;
 			const { userId } = res.locals;
 
 			try {

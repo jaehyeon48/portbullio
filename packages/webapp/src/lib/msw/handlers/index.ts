@@ -12,7 +12,7 @@ const handlers = [
 		portfolioMock.getStockTransactionLogs
 	),
 	rest.post(`${envConfig.serverEndPoint}/portfolios`, portfolioMock.createPortfolio),
-	rest.put(`${envConfig.serverEndPoint}/portfolios/1/default`, portfolioMock.editDefaultPortfolio),
+	rest.put(`${envConfig.serverEndPoint}/portfolios/default`, portfolioMock.editDefaultPortfolio),
 	rest.get(`${envConfig.serverEndPoint}/user/avatar`, userMock.getAvatar)
 ];
 
