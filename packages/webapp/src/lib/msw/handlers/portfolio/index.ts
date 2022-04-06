@@ -6,3 +6,4 @@ export { default as createPortfolio } from './createPortfolio';
 export { default as editDefaultPortfolio } from './editDefaultPortfolio';
 export { default as editPortfolioName } from './editPortfolioName';
 export { default as editPortfolioPrivacy } from './editPortfolioPrivacy';
+export { default as deletePortfolio } from './deletePortfolio';
