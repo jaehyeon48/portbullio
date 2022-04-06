@@ -60,3 +60,11 @@ export const createPortfolioResult = {
 	privacy: 'public',
 	createdAt: '2022-04-06T02:28:34.000Z'
 };
+
+export const editPortfolioNameResult = {
+	id: 1,
+	userId: 1,
+	name: 'test',
+	privacy: 'public',
+	createdAt: '2022-03-18T04:33:14.000Z'
+};
