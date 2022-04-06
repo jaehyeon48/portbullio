@@ -11,6 +11,8 @@ interface Props {
 }
 
 export default function ProportionChartDetails({ chartData, maxRatio, numOfBars }: Props) {
+	const adjustedMaxRatio = maxRatio === 0 ? 1 : maxRatio;
+
 	return (
 		<Style.DetailsContainer>
 			<ItemIconContainer bgColor="blue">
@@ -37,7 +39,7 @@ export default function ProportionChartDetails({ chartData, maxRatio, numOfBars 
 						</Style.Ticker>
 						<Style.Value>{formatCurrency(value, 'usd')}</Style.Value>
 						<Style.Ratio>
-							<Style.RatioColorBar width={(ratio / maxRatio) * 100} />
+							<Style.RatioColorBar width={(ratio / adjustedMaxRatio) * 100} />
 							<Style.RatioText>{formatNum(ratio.toFixed(3))}%</Style.RatioText>
 						</Style.Ratio>
 					</Style.DetailsItem>
