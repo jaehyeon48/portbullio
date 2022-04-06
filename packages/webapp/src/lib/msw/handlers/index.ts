@@ -14,6 +14,10 @@ const handlers = [
 	rest.post(`${envConfig.serverEndPoint}/portfolios`, portfolioMock.createPortfolio),
 	rest.put(`${envConfig.serverEndPoint}/portfolios/default`, portfolioMock.editDefaultPortfolio),
 	rest.patch(`${envConfig.serverEndPoint}/portfolios/1/name`, portfolioMock.editPortfolioName),
+	rest.patch(
+		`${envConfig.serverEndPoint}/portfolios/1/privacy`,
+		portfolioMock.editPortfolioPrivacy
+	),
 	rest.get(`${envConfig.serverEndPoint}/user/avatar`, userMock.getAvatar)
 ];
 

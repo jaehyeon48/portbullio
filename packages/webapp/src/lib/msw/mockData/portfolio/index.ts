@@ -68,3 +68,11 @@ export const editPortfolioNameResult = {
 	privacy: 'public',
 	createdAt: '2022-03-18T04:33:14.000Z'
 };
+
+export const editPortfolioPrivacyResult = {
+	id: 1,
+	userId: 1,
+	name: 'test',
+	privacy: 'private',
+	createdAt: '2022-03-18T04:33:16.000Z'
+};
