@@ -1,4 +1,4 @@
-import { createPortfolioResult } from '@lib/index';
+import { createPortfolioResult } from '@lib/msw';
 import { createPortfolio } from '../createPortfolio';
 
 test('createPortfolio test', async () => {
