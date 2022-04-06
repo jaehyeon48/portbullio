@@ -1,18 +1,18 @@
 import axios from 'axios';
 import envConfig from '@configs/env';
-import { MarketStatus } from '@portbullio/shared/src/types';
+import { IsMarketOpen } from '@portbullio/shared/src/types';
 
 interface GetMarketStatusRes {
-	data: MarketStatus;
+	data: IsMarketOpen;
 }
 
-export default async function getMarketStatus() {
+export default async function checkIsMarketOpen() {
 	const { serverEndPoint } = envConfig;
 
 	try {
 		const { data }: GetMarketStatusRes = await axios.get(`${serverEndPoint}/stock/market/status`);
 		return data;
 	} catch (error) {
-		return 'closed';
+		return false;
 	}
 }

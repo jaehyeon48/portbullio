@@ -7,4 +7,4 @@ export * from './ReactQuery';
 export * from './Title';
 export * from './socketIo';
 export * from './realtimeData';
-export * from './marketStatus';
+export * from './isMarketOpen';

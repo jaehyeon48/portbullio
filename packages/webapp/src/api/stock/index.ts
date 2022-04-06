@@ -1,1 +1,1 @@
-export { default as getMarketStatus } from './getMarketStatus';
+export { default as checkIsMarketOpen } from './checkIsMarketOpen';

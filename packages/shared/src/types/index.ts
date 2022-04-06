@@ -34,4 +34,4 @@ export interface ClientStockRealtimeData {
 	[key: string]: RealtimeDataProperties;
 }
 
-export type MarketStatus = 'opened' | 'closed';
+export type IsMarketOpen = boolean;

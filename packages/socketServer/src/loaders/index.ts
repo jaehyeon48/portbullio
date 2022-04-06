@@ -6,17 +6,17 @@ import {
 	ClientToServerEvents,
 	InterServerEvents,
 	SocketData,
-	MarketStatus
+	IsMarketOpen
 } from '@portbullio/shared/src/types';
 import {
 	emitRealtimeData,
 	updatePrice,
 	getCurrentMarketState,
-	checkCurrentMarketStatus
+	fetchIsMarketOpen
 } from '@services/index';
 import listenSocketEvents from './listenSocketEvents';
 
-const marketStatus: { status: MarketStatus } = { status: 'closed' };
+const marketStatus: { isMarketOpen: IsMarketOpen } = { isMarketOpen: false };
 
 export default async function appLoader(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
@@ -25,20 +25,20 @@ export default async function appLoader(
 	await Lib.userRedisClient.connect();
 	await Lib.marketStatusRedisClient.connect();
 	await Lib.userRedisClient.flushDb();
-	marketStatus.status = await getCurrentMarketState();
+	marketStatus.isMarketOpen = await getCurrentMarketState();
 
 	schedule.scheduleJob('0 30 22 * * *', async () => {
-		const curMarketStatus = await checkCurrentMarketStatus();
-		await Lib.marketStatusRedisClient.set('marketStatus', curMarketStatus);
-		marketStatus.status = curMarketStatus;
+		const isMarketOpenNow = await fetchIsMarketOpen();
+		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
+		marketStatus.isMarketOpen = isMarketOpenNow;
 		Lib.logger.info('Checked Market Status');
-		if (marketStatus.status === 'opened') updatePrice(marketStatus);
+		if (marketStatus.isMarketOpen) updatePrice(marketStatus);
 	});
 
 	schedule.scheduleJob('0 0 5 * * *', async () => {
-		const curMarketStatus = await checkCurrentMarketStatus();
-		await Lib.marketStatusRedisClient.set('marketStatus', curMarketStatus);
-		marketStatus.status = curMarketStatus;
+		const isMarketOpenNow = await fetchIsMarketOpen();
+		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
+		marketStatus.isMarketOpen = isMarketOpenNow;
 		Lib.logger.info('Checked Market Status');
 	});
 
@@ -49,7 +49,7 @@ export default async function appLoader(
 	);
 
 	listenSocketEvents(io);
-	if (marketStatus.status === 'opened') updatePrice(marketStatus);
+	if (marketStatus.isMarketOpen) updatePrice(marketStatus);
 	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => {
 		emitRealtimeData(io);
 	});

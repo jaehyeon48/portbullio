@@ -1,12 +1,12 @@
-import { MarketStatus } from '@portbullio/shared/src/types';
+import { IsMarketOpen } from '@portbullio/shared/src/types';
 import { eventEmitter } from '@lib/index';
 import * as Services from '@services/index';
 import { MAX_NUM_OF_REQ_TICKERS } from '@constants';
 
 const REQUEST_PRICE_INTERVAL = 5000;
 
-export default async function updatePrice(marketStatus: { status: MarketStatus }) {
-	if (marketStatus.status === 'closed') return;
+export default async function updatePrice(marketStatus: { isMarketOpen: IsMarketOpen }) {
+	if (!marketStatus.isMarketOpen) return;
 	const tickers = Services.groupTickersBy(
 		MAX_NUM_OF_REQ_TICKERS,
 		await Services.getAllUsersTickersFromDB()
