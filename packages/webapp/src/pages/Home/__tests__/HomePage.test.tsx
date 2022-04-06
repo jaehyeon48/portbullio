@@ -1,4 +1,5 @@
-import { CustomWrapper, screen, render } from '@lib/testingLibrary/react';
+import { render, screen } from '@testing-library/react';
+import { CustomWrapper } from '@lib/testingLibrary/react';
 import Home from '..';
 
 describe('Home page', () => {

@@ -1,4 +1,4 @@
-import { render, screen } from '@lib/testingLibrary/react';
+import { render, screen } from '@testing-library/react';
 import Modal from '../index';
 
 describe('Modal layout', () => {

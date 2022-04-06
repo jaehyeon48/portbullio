@@ -2,7 +2,6 @@ import { ReactElement } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { ContextAPIProviders } from '@components/index';
-import userEvent from '@testing-library/user-event';
 
 interface WrapperProps {
 	children: ReactElement;
@@ -21,6 +20,4 @@ function CustomWrapper({ children, authValue = false }: WrapperProps) {
 	);
 }
 
-export * from '@testing-library/react';
-export * from '@testing-library/user-event';
-export { userEvent, CustomWrapper };
+export { CustomWrapper };

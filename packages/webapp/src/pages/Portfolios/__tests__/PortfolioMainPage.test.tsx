@@ -1,4 +1,5 @@
-import { CustomWrapper, render, screen } from '@lib/testingLibrary/react';
+import { render, screen } from '@testing-library/react';
+import { CustomWrapper } from '@lib/testingLibrary/react';
 import Portfolios from '../Main/Portfolios';
 
 describe('Portfolio main page layout', () => {

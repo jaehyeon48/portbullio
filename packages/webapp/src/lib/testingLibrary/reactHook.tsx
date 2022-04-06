@@ -27,5 +27,3 @@ export const createHookQueryWrapper = () => {
 		);
 	};
 };
-
-export * from '@testing-library/react-hooks';

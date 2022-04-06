@@ -1,4 +1,6 @@
-import { render, screen, CustomWrapper, userEvent } from '@lib/testingLibrary/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { CustomWrapper } from '@lib/testingLibrary/react';
 import Navbar from '../index';
 
 describe('Navbar layout', () => {

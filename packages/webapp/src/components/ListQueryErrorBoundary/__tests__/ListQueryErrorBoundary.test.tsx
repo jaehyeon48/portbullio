@@ -1,4 +1,6 @@
-import { CustomWrapper, render, screen, userEvent } from '@lib/testingLibrary/react';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import { CustomWrapper } from '@lib/testingLibrary/react';
 import ListQueryErrorBoundary from '../index';
 
 describe('ListQueryErrorBoundary layout test', () => {
