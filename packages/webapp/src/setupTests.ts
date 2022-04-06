@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/';
-import server from '@lib/msw/server';
+import { server } from '@lib/msw';
 import '@configs/env';
 
 beforeAll(() => {
