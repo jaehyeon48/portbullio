@@ -11,6 +11,7 @@ const handlers = [
 		`${envConfig.serverEndPoint}/portfolios/1/holdings/AAPL`,
 		portfolioMock.getStockTransactionLogs
 	),
+	rest.post(`${envConfig.serverEndPoint}/portfolios`, portfolioMock.createPortfolio),
 	rest.get(`${envConfig.serverEndPoint}/user/avatar`, userMock.getAvatar)
 ];
 
