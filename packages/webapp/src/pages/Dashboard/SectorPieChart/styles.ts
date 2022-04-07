@@ -103,7 +103,7 @@ export const DetailsContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 4px;
 
 	& > ul {
-		max-height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em * 1.5 - 16px * 1.5 - 6px);
+		max-height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em * 1.5 - 16px * 1.5);
 	}
 `;
 
