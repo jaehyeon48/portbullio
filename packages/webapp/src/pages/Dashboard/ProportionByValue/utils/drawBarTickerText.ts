@@ -14,7 +14,7 @@ export default function drawBarTickerText({ ctx, theme, x, canvasHeight, ticker 
 	const tickerTextHeight =
 		textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
 	const tickerTextY = koreanTickerNames.has(ticker)
-		? canvasHeight - tickerTextHeight
+		? canvasHeight - tickerTextHeight - 1
 		: canvasHeight - tickerTextHeight + 2.5;
 
 	ctx.font = '14px NotoSansKR';
