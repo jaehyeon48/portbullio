@@ -27,7 +27,6 @@ export default function ProportionChartDetails({ chartData, maxRatio, numOfBars 
 			<ListItems
 				isListEmpty={chartData.length === 0}
 				emptyListNoticeMessage="보유 종목이 없습니다."
-				maxHeight="423px"
 			>
 				{chartData.map(({ ticker, value, ratio }, idx) => (
 					<Style.DetailsItem key={ticker}>

@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import Card from '@components/Card';
 import { ITEM_UPPER_LOWER_PADDING_PX, CANVAS_PADDING_PX } from '../styles';
 
@@ -6,41 +7,65 @@ interface RatioColorBarProps {
 	width: number;
 }
 
-const PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX = 500;
 const TickerSectionWidthPx = 120;
-const ValueSectionWidthPx = 200;
-const RatioSectionWidthPx = 150;
+
+const valueSectionWidthStyle = css`
+	width: 14em;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		width: 12em;
+	}
+`;
+
+const ratioSectionWidthStyle = css`
+	width: calc(100% - ${TickerSectionWidthPx}px - 14em);
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		width: calc(100% - ${TickerSectionWidthPx}px - 12em);
+	}
+`;
 
 export const ProportionByValueSection = styled.section`
 	display: flex;
 	gap: 30px;
 	width: 100%;
+	height: 450px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
+		height: 420px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		height: 390px;
+	}
 `;
 
 export const ProportionByValueChartContainer = styled(Card)`
 	width: 60%;
+	height: 100%;
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	position: relative;
-	height: ${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px;
 `;
 
 export const ProportionByValueChartCanvas = styled.canvas`
 	width: 100%;
-	height: calc(
-		${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em *
-			1.5
-	);
+	height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 2px);
 	padding: ${CANVAS_PADDING_PX}px;
 `;
 
 export const DetailsContainer = styled(Card)`
 	width: 40%;
+	height: 100%;
 	padding: 4px;
-	height: ${PROPORTION_BY_VALUE_CONTAINER_HEIGHT_PX}px;
+
+	& > ul {
+		max-height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em * 1.5 - 16px * 1.5 - 6px);
+	}
 `;
 
 export const DetailsListHeaders = styled.div`
 	display: flex;
+	font-size: 14px;
 	font-weight: 700;
 	margin: 10px 0 6px;
 `;
@@ -51,12 +76,12 @@ export const DetailsListTickerHeader = styled.div`
 `;
 
 export const DetailsListValueHeader = styled.div`
-	width: ${ValueSectionWidthPx}px;
+	${valueSectionWidthStyle};
 	padding-left: 4px;
 `;
 
 export const DetailsListRatioHeader = styled.div`
-	width: ${RatioSectionWidthPx}px;
+	${ratioSectionWidthStyle};
 	padding-left: 4px;
 `;
 
@@ -68,9 +93,14 @@ export const DetailsList = styled.ul`
 export const DetailsItem = styled.li`
 	display: flex;
 	border-bottom: 1px solid var(--baseBorderColor);
+	font-size: 14px;
 
 	&:first-child {
 		border-top: 1px solid var(--baseBorderColor);
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		font-size: 13px;
 	}
 `;
 
@@ -97,14 +127,15 @@ export const OthersCategoryNotice = styled.div`
 
 export const Value = styled.div`
 	${listItemStyle};
-	width: ${ValueSectionWidthPx}px;
+	${valueSectionWidthStyle};
+	word-break: break-word;
 `;
 
 export const Ratio = styled.div`
 	${listItemStyle};
+	${ratioSectionWidthStyle};
 	padding: 4px 0;
 	position: relative;
-	width: ${RatioSectionWidthPx}px;
 `;
 
 export const RatioColorBar = styled.div<RatioColorBarProps>`
