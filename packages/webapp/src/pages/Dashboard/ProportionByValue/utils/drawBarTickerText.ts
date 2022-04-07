@@ -1,6 +1,5 @@
 import { Theme } from '@types';
 import { textColor } from '../../colors';
-import { X_AXIS_TEXT_GAP } from '../constants';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;
@@ -14,11 +13,15 @@ export default function drawBarTickerText({ ctx, theme, x, canvasHeight, ticker 
 	const textMetrics = ctx.measureText(ticker);
 	const tickerTextHeight =
 		textMetrics.actualBoundingBoxAscent + textMetrics.actualBoundingBoxDescent;
-	const tickerTextY = canvasHeight - tickerTextHeight + X_AXIS_TEXT_GAP;
+	const tickerTextY = koreanTickerNames.has(ticker)
+		? canvasHeight - tickerTextHeight
+		: canvasHeight - tickerTextHeight + 2.5;
 
-	ctx.font = '16px NotoSansKR';
+	ctx.font = '14px NotoSansKR';
 	ctx.textAlign = 'center';
-	ctx.textBaseline = 'middle';
+	ctx.textBaseline = koreanTickerNames.has(ticker) ? 'top' : 'middle';
 	ctx.fillStyle = textColor(theme);
 	ctx.fillText(ticker, x, tickerTextY);
 }
+
+const koreanTickerNames = new Set(['현금', '기타']);
