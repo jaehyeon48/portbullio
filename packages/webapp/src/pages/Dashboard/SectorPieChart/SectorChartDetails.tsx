@@ -1,7 +1,8 @@
 import { SectorPieChartRatio } from '@types';
-import { ListItems } from '@components/index';
+import { ListItems, Document as DocumentIcon } from '@components/index';
 import { formatNum } from '@utils';
-import { translateSectorToKor } from '../utils';
+import { ItemHeader, ItemIconContainer } from '../styles';
+import { translateSectorToKor } from './utils';
 import * as Style from './styles';
 
 interface Props {
@@ -12,8 +13,11 @@ interface Props {
 
 export default function SectorChartDetails({ chartData, maxRatio, numOfPies }: Props) {
 	return (
-		<Style.Container>
-			<Style.Header>섹터 구성 상세 내용</Style.Header>
+		<Style.DetailsContainer>
+			<ItemIconContainer bgColor="blue">
+				<DocumentIcon width={26} height={26} />
+			</ItemIconContainer>
+			<ItemHeader>섹터 구성 상세 내용</ItemHeader>
 			<Style.DetailsListHeaders>
 				<Style.DetailsListSectorHeader>섹터</Style.DetailsListSectorHeader>
 				<Style.DetailsListIncludedStocksHeader>구성 종목</Style.DetailsListIncludedStocksHeader>
@@ -22,7 +26,6 @@ export default function SectorChartDetails({ chartData, maxRatio, numOfPies }: P
 			<ListItems
 				isListEmpty={chartData.length === 0}
 				emptyListNoticeMessage="보유 종목이 없습니다."
-				maxHeight="60vh"
 			>
 				{chartData.map(({ sector, includedStocks, ratio }, idx) => (
 					<Style.DetailsItem key={sector}>
@@ -40,6 +43,6 @@ export default function SectorChartDetails({ chartData, maxRatio, numOfPies }: P
 					</Style.DetailsItem>
 				))}
 			</ListItems>
-		</Style.Container>
+		</Style.DetailsContainer>
 	);
 }

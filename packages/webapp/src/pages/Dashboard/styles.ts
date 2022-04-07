@@ -1,6 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Card from '@components/Card';
-import { buttonMixin, priceColorMixin } from '@styles/Mixins';
+import { priceColorMixin } from '@styles/Mixins';
 
 interface ItemIconBgColorProp {
 	bgColor: 'gray' | 'blue';
@@ -56,16 +56,6 @@ export const PortfolioSelectContainer = styled.div`
 	}
 `;
 
-export const OpenDetails = styled.button`
-	${buttonMixin};
-	position: absolute;
-	font-size: 14px;
-	top: 11px;
-	left: calc(50% + 34px);
-	text-decoration: underline;
-	color: var(--openDetailsPageButtonColor);
-`;
-
 export const ProfitLossAssetContainer = styled.section`
 	display: flex;
 	justify-content: space-evenly;
@@ -100,11 +90,6 @@ export const ProfitLossAssetPercent = styled.div`
 	margin-top: 14px;
 `;
 
-export const SectorPieChartContainer = styled(Card)`
-	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	height: ${PIE_CHART_CONTAINER_HEIGHT_PX}px;
-`;
-
 export const DividendPieChartContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	height: ${PIE_CHART_CONTAINER_HEIGHT_PX}px;
@@ -134,27 +119,4 @@ export const Select = styled.select`
 export const NoticeEmptyHoldingsList = styled.div`
 	margin-top: 30px;
 	text-align: center;
-`;
-
-export const PieChartContainer = styled.div`
-	display: flex;
-`;
-
-const pieChartStyle = css`
-	height: calc(
-		${PIE_CHART_CONTAINER_HEIGHT_PX}px - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em * 1.5
-	);
-	padding: ${CANVAS_PADDING_PX}px;
-`;
-
-export const PieChartCanvas = styled.canvas`
-	${pieChartStyle};
-	width: 50%;
-`;
-
-export const LegendContainer = styled.div`
-	${pieChartStyle};
-	width: 50%;
-	display: flex;
-	align-items: center;
 `;

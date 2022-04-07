@@ -3,7 +3,7 @@ import { useTitle, useHoldingsList, useRealtimeData, useCashTransactionList } fr
 import { DashboardContainer, PortfolioSelectContainer } from './styles';
 import ProfitLossAsset from './ProfitLossAsset/ProfitLossAsset';
 import ProportionByValue from './ProportionByValue';
-import SectorPieChart from './PieChart/Main/SectorPieChart';
+import SectorPieChart from './SectorPieChart';
 import DividendPieChart from './DividendPieChart';
 import AssetHistory from './AssetHistory';
 
