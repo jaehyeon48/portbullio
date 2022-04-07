@@ -2,7 +2,7 @@ import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import DynamicCaret from '@components/DynamicCaret';
 import { Holding } from '@portbullio/shared/src/types';
 import { useRealtimeData } from '@hooks/index';
-import { formatNum, formatCurrency } from '@utils';
+import { formatNum, formatCurrency, prefixPlusChar } from '@utils';
 import * as Style from './styles';
 
 interface Props {
@@ -39,7 +39,8 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 						</Style.HoldingDetailsSection>
 						<Style.HoldingCurrentPriceSection value={realtimeChange}>
 							<DynamicCaret width={20} height={20} value={realtimeChange} marginTop={2} />
-							{formatCurrency(realtimePrice, 'usd')}&#40;{realtimeChangePercent}%&#41;
+							{formatCurrency(realtimePrice, 'usd')}&#40;{prefixPlusChar(realtimeChange)}
+							{realtimeChange}&#41;
 						</Style.HoldingCurrentPriceSection>
 						<Style.HoldingAvgPriceSection>
 							{formatCurrency(avgCost, 'usd')}
