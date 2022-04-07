@@ -10,9 +10,9 @@ interface Props {
 }
 
 export default function drawBarRatioText({ ctx, theme, x, y, ratio }: Props) {
-	ctx.font = '16px NotoSansKR';
+	ctx.font = '14px NotoSansKR';
 	ctx.textAlign = 'center';
 	ctx.textBaseline = 'bottom';
 	ctx.fillStyle = textColor(theme);
-	ctx.fillText(`${ratio.toFixed(3)}%`, x, y);
+	ctx.fillText(`${ratio.toFixed(2)}%`, x, y);
 }
