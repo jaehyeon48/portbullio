@@ -56,10 +56,10 @@ export const ProportionByValueChartCanvas = styled.canvas`
 export const DetailsContainer = styled(Card)`
 	width: 40%;
 	height: 100%;
-	padding: 4px;
+	padding: ${CANVAS_PADDING_PX}px 4px;
 
 	& > ul {
-		max-height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em * 1.5 - 16px * 1.5 - 6px);
+		max-height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 1.1em * 1.5 - 16px * 1.5);
 	}
 `;
 
