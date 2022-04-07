@@ -28,6 +28,7 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 				const realtimeChangePercent = Number(realtimeData[ticker]?.changePercent ?? 0);
 				const holdingQuantity = buyQuantity - sellQuantity;
 				const totalGain = (realtimePrice - avgCost) * holdingQuantity;
+				const totalGainPercent = ((realtimePrice - avgCost) / avgCost) * 100;
 
 				return (
 					<ListItem key={ticker}>
@@ -53,13 +54,16 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 						</Style.HoldingTotalValueSection>
 						<Style.HoldingDailyGainSection value={realtimeChangePercent}>
 							<DynamicCaret width={20} height={20} value={realtimeChangePercent} marginTop={2} />
-							{formatCurrency(realtimeChange * holdingQuantity, 'usd')}&#40;{realtimeChangePercent}
+							{formatCurrency(realtimeChange * holdingQuantity, 'usd')}&#40;
+							{prefixPlusChar(realtimeChangePercent)}
+							{realtimeChangePercent}
 							%&#41;
 						</Style.HoldingDailyGainSection>
 						<Style.HoldingTotalGainSection value={totalGain}>
 							<DynamicCaret width={20} height={20} value={totalGain} marginTop={2} />
 							{formatCurrency(totalGain, 'usd')}&#40;
-							{(((realtimePrice - avgCost) / avgCost) * 100).toFixed(3)}
+							{prefixPlusChar(totalGainPercent)}
+							{totalGainPercent.toFixed(3)}
 							%&#41;
 						</Style.HoldingTotalGainSection>
 					</ListItem>
