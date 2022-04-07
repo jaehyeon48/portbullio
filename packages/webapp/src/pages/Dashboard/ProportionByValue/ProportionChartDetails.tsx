@@ -39,7 +39,7 @@ export default function ProportionChartDetails({ chartData, maxRatio, numOfBars 
 						<Style.Value>{formatCurrency(value, 'usd')}</Style.Value>
 						<Style.Ratio>
 							<Style.RatioColorBar width={(ratio / adjustedMaxRatio) * 100} />
-							<Style.RatioText>{formatNum(ratio.toFixed(3))}%</Style.RatioText>
+							<Style.RatioText>{formatNum(ratio.toFixed(2))}%</Style.RatioText>
 						</Style.Ratio>
 					</Style.DetailsItem>
 				))}
