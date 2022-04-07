@@ -63,7 +63,7 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 							<DynamicCaret width={20} height={20} value={totalGain} marginTop={2} />
 							{formatCurrency(totalGain, 'usd')}&#40;
 							{prefixPlusChar(totalGainPercent)}
-							{totalGainPercent.toFixed(3)}
+							{totalGainPercent.toFixed(2)}
 							%&#41;
 						</Style.HoldingTotalGainSection>
 					</ListItem>
