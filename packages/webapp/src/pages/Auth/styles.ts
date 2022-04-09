@@ -7,8 +7,8 @@ interface ButtonProps {
 }
 
 export const PageContainer = styled.div`
-	width: 428px;
-	height: 480px;
+	width: 350px;
+	height: 360px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -17,7 +17,7 @@ export const HeaderContainer = styled.div`
 
 	& > header {
 		margin-top: 1em;
-		font-size: 2.7em;
+		font-size: 30px;
 		font-weight: 700;
 		color: var(--primary);
 	}
@@ -25,17 +25,17 @@ export const HeaderContainer = styled.div`
 
 export const ButtonContainer = styled.div`
 	${flexMixin};
-	padding: 0 1.4em;
+	padding: 0 10px;
 	height: 60%;
-	margin-top: 3.7em;
+	margin-top: 50px;
 
 	& > a {
 		text-decoration: none;
 		align-items: center;
 		justify-content: space-evenly;
 		border-radius: 3px;
-		height: 50px;
-		font-size: 1.1em;
+		height: 40px;
+		font-size: 16px;
 		font-weight: 500;
 	}
 `;

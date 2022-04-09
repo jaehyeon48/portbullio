@@ -3,7 +3,7 @@ import useThemeMode from '@hooks/Theme';
 import envConfig from '@configs/env';
 import mainLogoLight from '@assets/images/auth_page_main_logo_light.webp';
 import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
-import { Google, Naver, Kakao } from '@components/index';
+import { Google as GoogleIcon, Naver as NaverIcon, Kakao as KakaoIcon } from '@components/index';
 import * as Style from './styles';
 
 const { baseRedirectURI, google } = envConfig.oauth;
@@ -31,19 +31,19 @@ export default function Auth() {
 					aria-label="Google auth"
 				>
 					<Style.ButtonIconContainer>
-						<Google fill="#fff" />
+						<GoogleIcon width={22} height={22} fill="#fff" />
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>구글로 시작하기</Style.ButtonTextContainer>
 				</Style.Button>
 				<Style.Button as="a" color="#fff" bgColor="#19CE60" aria-label="Naver auth">
 					<Style.ButtonIconContainer>
-						<Naver />
+						<NaverIcon width={22} height={22} />
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>네이버로 시작하기</Style.ButtonTextContainer>
 				</Style.Button>
 				<Style.Button as="a" color="#614345" bgColor="#FAE100" aria-label="Kakao auth">
 					<Style.ButtonIconContainer>
-						<Kakao />
+						<KakaoIcon width={22} height={22} />
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>카카오로 시작하기</Style.ButtonTextContainer>
 				</Style.Button>
