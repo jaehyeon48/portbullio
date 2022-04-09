@@ -53,10 +53,11 @@ export const SectorPieChartContainer = styled(Card)`
 export const PieChartContainer = styled.div`
 	height: 100%;
 	display: flex;
+	justify-content: space-evenly;
 `;
 
 export const PieChartCanvas = styled.canvas`
-	width: 70%;
+	aspect-ratio: 1 / 1;
 	height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 2px);
 	padding: ${CANVAS_PADDING_PX * 5}px;
 `;
