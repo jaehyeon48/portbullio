@@ -14,7 +14,6 @@ interface SectionProps extends Mixin.FlexProps {
 
 const midBotSectionLayout = css`
 	width: 30%;
-	font-size: 18px;
 	max-width: 20em;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
@@ -44,9 +43,7 @@ export const Header = styled.header`
 	margin-bottom: 1.5em;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
-		& {
-			font-size: 40px;
-		}
+		font-size: 40px;
 	}
 `;
 
@@ -77,7 +74,6 @@ export const Button = styled.button`
 	${Mixin.buttonMixin};
 	background-color: var(--primary);
 	color: var(--white);
-	font-size: 1.1em;
 	font-weight: 500;
 	border-radius: 6px;
 	padding: 0.6em 3.2em;
@@ -88,7 +84,6 @@ export const LinkButton = styled(Link)`
 	text-decoration: none;
 	background-color: var(--primary);
 	color: var(--white);
-	font-size: 1.1em;
 	font-weight: 500;
 	border-radius: 6px;
 	padding: 0.6em 3.2em;
@@ -100,7 +95,7 @@ export const IndexContainer = styled(Card)`
 
 export const IndexHeader = styled.header`
 	text-align: center;
-	font-size: 1.2em;
+	font-size: 18px;
 	font-weight: 700;
 	padding: 0.4em 0;
 	border-bottom: 1px solid var(--indexCardHeaderBorderColor);
@@ -118,19 +113,18 @@ export const IndexPriceContainer = styled.div`
 `;
 
 export const IndexPrice = styled.span`
-	font-size: 1.5em;
+	font-size: 22px;
 	font-weight: 700;
 `;
 
 export const IndexPriceChange = styled.span`
 	display: flex;
 	align-items: center;
-	font-size: 1em;
 `;
 
 export const IndexChangePercent = styled.div`
 	padding: 0.3em 0 0.6em;
-	font-size: 1.1em;
+	font-size: 16px;
 	text-align: center;
 `;
 
