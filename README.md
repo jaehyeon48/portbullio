@@ -19,3 +19,7 @@
 - Prisma
 - MySQL
 - AWS
+
+## 시스템 아키텍처
+
+![App architecture](./images/app_architecture.png)
