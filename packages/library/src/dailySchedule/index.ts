@@ -11,14 +11,13 @@ export default function dailySchedule(timePattern: string, cb: JobCallback) {
 		curDate.getMinutes(),
 		curDate.getSeconds()
 	];
-	const timePatternInMilliSec = transformToMilliSeconds(hh, mm, ss);
-	const curTimeInMilliSec = transformToMilliSeconds(curHour, curMinute, curSecond);
 
-	if (hh > curHour || mm > curMinute || ss > curSecond) {
-		scheduleJob(cb, curTimeInMilliSec - timePatternInMilliSec + ONE_DAY_IN_MILLI_SEC);
-	} else {
-		scheduleJob(cb, curTimeInMilliSec - timePatternInMilliSec);
-	}
+	const timeDiff =
+		new Date(0, 0, 0, hh, mm, ss).getTime() -
+		new Date(0, 0, 0, curHour, curMinute, curSecond).getTime();
+
+	if (timeDiff < 0) scheduleJob(cb, timeDiff + ONE_DAY_IN_MILLI_SEC);
+	else scheduleJob(cb, timeDiff);
 }
 
 function validateTimePattern(timePattern: string) {
@@ -33,8 +32,4 @@ function scheduleJob(cb: JobCallback, initialScheduleTime: number) {
 		cb();
 		setInterval(cb, ONE_DAY_IN_MILLI_SEC);
 	}, initialScheduleTime);
-}
-
-function transformToMilliSeconds(hour: number, minute: number, second: number) {
-	return (hour * 3600 + minute * 60 + second) * 1000;
 }
