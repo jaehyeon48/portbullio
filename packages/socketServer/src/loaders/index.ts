@@ -24,6 +24,8 @@ export default async function appLoader(
 	await Lib.realtimeRedisClient.connect();
 	await Lib.userRedisClient.connect();
 	await Lib.marketStatusRedisClient.connect();
+	await Lib.majorIndicesRedisClient.connect();
+	await Lib.top5ListRedisClient.connect();
 	await Lib.userRedisClient.flushDb();
 	marketStatus.isMarketOpen = await getCurrentMarketState();
 
