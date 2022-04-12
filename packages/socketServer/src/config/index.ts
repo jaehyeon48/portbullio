@@ -13,5 +13,6 @@ export default {
 	port: Number(process.env.PORT),
 	origin: process.env.ORIGIN,
 	iexCloudApiKey: process.env.IEX_CLOUD_API_KEY,
-	iexCloudBaseUrl: process.env.IEX_CLOUD_BASE_URL
+	iexCloudBaseUrl: process.env.IEX_CLOUD_BASE_URL,
+	fmpApiKey: process.env.FMP_API_KEY
 };
