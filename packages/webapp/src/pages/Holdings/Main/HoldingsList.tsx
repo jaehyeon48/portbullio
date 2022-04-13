@@ -23,9 +23,9 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 			emptyListNoticeMessage="보유종목이 없습니다."
 		>
 			{holdingsList?.map(({ ticker, avgCost, buyQuantity, sellQuantity }) => {
-				const realtimePrice = Number(realtimeData[ticker]?.price ?? 0);
-				const realtimeChange = Number(realtimeData[ticker]?.change ?? 0);
-				const realtimeChangePercent = Number(realtimeData[ticker]?.changePercent ?? 0);
+				const realtimePrice = realtimeData[ticker]?.price ?? 0;
+				const realtimeChange = realtimeData[ticker]?.change ?? 0;
+				const realtimeChangePercent = realtimeData[ticker]?.changePercent ?? 0;
 				const holdingQuantity = buyQuantity - sellQuantity;
 				const totalGain = (realtimePrice - avgCost) * holdingQuantity;
 				const totalGainPercent = ((realtimePrice - avgCost) / avgCost) * 100;
@@ -56,7 +56,7 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 							<DynamicCaret width={20} height={20} value={realtimeChangePercent} marginTop={2} />
 							{formatCurrency(realtimeChange * holdingQuantity, 'usd')}&#40;
 							{prefixPlusChar(realtimeChangePercent)}
-							{realtimeChangePercent}
+							{realtimeChangePercent.toFixed(2)}
 							%&#41;
 						</Style.HoldingDailyGainSection>
 						<Style.HoldingTotalGainSection value={totalGain}>

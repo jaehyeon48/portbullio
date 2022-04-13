@@ -1,6 +1,6 @@
-import { MajorIndexData, MajorIndices } from '@portbullio/shared/src/types';
+import { RealtimeData, MajorIndices } from '@portbullio/shared/src/types';
 
-export default function formatMajorIndexData(majorIndexData: MajorIndexData[]): MajorIndices {
+export default function formatMajorIndexData(majorIndexData: RealtimeData[]): MajorIndices {
 	const result = new Map();
 	majorIndexData.forEach(({ ticker, ...data }) => result.set(ticker, data));
 	return Object.fromEntries(result);

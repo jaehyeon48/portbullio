@@ -1,7 +1,7 @@
-import { MajorIndexData } from '@portbullio/shared/src/types';
+import { RealtimeData } from '@portbullio/shared/src/types';
 import { majorIndicesRedisClient } from '@lib/index';
 
-export default async function saveMajorIndicesDataIntoDB(data: MajorIndexData[]) {
+export default async function saveMajorIndicesDataIntoDB(data: RealtimeData[]) {
 	try {
 		await Promise.all(
 			data.map(({ ticker, price, change, changePercent }) =>

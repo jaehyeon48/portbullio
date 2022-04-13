@@ -32,7 +32,7 @@ function calcHoldingValues(
 	const quantity = buyQuantity - sellQuantity;
 	return {
 		ticker,
-		value: Number(realtimeData[ticker]?.price ?? avgCost) * quantity
+		value: (realtimeData[ticker]?.price ?? avgCost) * quantity
 	};
 }
 

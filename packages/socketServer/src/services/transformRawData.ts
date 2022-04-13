@@ -8,9 +8,9 @@ export default function transformRawData(
 	return rawData.flatMap(({ data }) =>
 		Object.keys(data).map(ticker => ({
 			ticker: data[ticker].quote.symbol,
-			change: data[ticker].quote.change.toFixed(2),
-			changePercent: (data[ticker].quote.changePercent * 100).toFixed(2),
-			price: data[ticker].quote.latestPrice?.toFixed(2)
+			change: data[ticker].quote.change,
+			changePercent: data[ticker].quote.changePercent * 100,
+			price: data[ticker].quote.latestPrice
 		}))
 	);
 }

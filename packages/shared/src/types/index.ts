@@ -5,17 +5,18 @@ export interface Holding {
 	sellQuantity: number;
 }
 
-export interface MajorIndices {
-	DJI: Pick<MajorIndexData, 'price' | 'change' | 'changePercent'>;
-	GSPC: Pick<MajorIndexData, 'price' | 'change' | 'changePercent'>;
-	IXIC: Pick<MajorIndexData, 'price' | 'change' | 'changePercent'>;
-}
-
-export interface MajorIndexData {
-	ticker: string;
+export interface RealtimeDataProperties {
 	price: number;
 	change: number;
 	changePercent: number;
+}
+
+export interface RealtimeData extends RealtimeDataProperties {
+	ticker: string;
+}
+
+export interface ClientStockRealtimeData {
+	[key: string]: RealtimeDataProperties;
 }
 
 export interface ServerToClientEvents {
@@ -35,18 +36,10 @@ export interface InterServerEvents {}
 
 export interface SocketData {}
 
-export interface RealtimeDataProperties {
-	price: string;
-	change: string;
-	changePercent: string;
-}
-
-export interface RealtimeData extends RealtimeDataProperties {
-	ticker: string;
-}
-
-export interface ClientStockRealtimeData {
-	[key: string]: RealtimeDataProperties;
-}
-
 export type IsMarketOpen = boolean;
+
+export interface MajorIndices {
+	DJI: RealtimeDataProperties;
+	GSPC: RealtimeDataProperties;
+	IXIC: RealtimeDataProperties;
+}
