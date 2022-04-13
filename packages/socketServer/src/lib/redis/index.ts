@@ -8,4 +8,4 @@ export const realtimeRedisClient = createClient({ socket: { reconnectStrategy },
 export const userRedisClient = createClient({ socket: { reconnectStrategy }, database: 2 });
 export const marketStatusRedisClient = createClient({ socket: { reconnectStrategy }, database: 3 });
 export const majorIndicesRedisClient = createClient({ socket: { reconnectStrategy }, database: 4 });
-export const top5ListRedisClient = createClient({ socket: { reconnectStrategy }, database: 5 });
+export const topStocksRedisClient = createClient({ socket: { reconnectStrategy }, database: 5 });

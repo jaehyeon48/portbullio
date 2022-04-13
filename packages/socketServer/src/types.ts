@@ -94,3 +94,13 @@ export interface FMPMajorIndexData {
 	sharesOutstanding: null;
 	timestamp: number;
 }
+
+export interface FMPTopStockData {
+	symbol: string;
+	name: string;
+	change: number;
+	price: number;
+	changesPercentage: number;
+}
+
+export type TopStocksCategory = 'actives' | 'gainers' | 'losers';

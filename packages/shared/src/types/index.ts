@@ -23,6 +23,7 @@ export interface ServerToClientEvents {
 	REALTIME_DATA: (data: ClientStockRealtimeData) => void;
 	CACHED_DATA: (data: ClientStockRealtimeData) => void;
 	MAJOR_INDICES_DATA: (data: MajorIndices) => void;
+	TOP_STOCKS_DATA: (data: TopStocks) => void;
 }
 
 export interface ClientToServerEvents {
@@ -30,6 +31,7 @@ export interface ClientToServerEvents {
 	UNSUBSCRIBE_TICKER: () => void;
 	REQ_CACHED_DATA: (tickers: string[]) => void;
 	REQ_MAJOR_INDICES_DATA: () => void;
+	REQ_TOP_STOCKS_DATA: () => void;
 }
 
 export interface InterServerEvents {}
@@ -42,4 +44,10 @@ export interface MajorIndices {
 	DJI: RealtimeDataProperties;
 	GSPC: RealtimeDataProperties;
 	IXIC: RealtimeDataProperties;
+}
+
+export interface TopStocks {
+	actives: RealtimeData[];
+	gainers: RealtimeData[];
+	losers: RealtimeData[];
 }
