@@ -7,13 +7,18 @@ const REQUEST_PRICE_INTERVAL = 5000;
 
 export default async function updatePrice(marketStatus: { isMarketOpen: IsMarketOpen }) {
 	if (!marketStatus.isMarketOpen) return;
+	const majorIndicesData = await Services.fetchMajorIndicesData();
+
 	const tickers = Services.groupTickersBy(
 		MAX_NUM_OF_REQ_TICKERS,
 		await Services.getAllUsersTickersFromDB()
 	);
 	const realtimeRawData = await Services.fetchRealtimeData(tickers);
 	const realtimeData = Services.transformRawData(realtimeRawData);
+
+	await Services.saveMajorIndicesDataIntoDB(majorIndicesData);
 	await Services.saveRealtimeDataIntoDB(realtimeData);
 	eventEmitter.emit('EMIT_REALTIME_DATA');
+	eventEmitter.emit('EMIT_MAJOR_INDICES_DATA');
 	setTimeout(updatePrice, REQUEST_PRICE_INTERVAL, marketStatus);
 }

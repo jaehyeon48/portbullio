@@ -8,12 +8,7 @@ import {
 	SocketData,
 	IsMarketOpen
 } from '@portbullio/shared/src/types';
-import {
-	emitRealtimeData,
-	updatePrice,
-	getCurrentMarketState,
-	fetchIsMarketOpen
-} from '@services/index';
+import * as Services from '@services/index';
 import listenSocketEvents from './listenSocketEvents';
 
 const marketStatus: { isMarketOpen: IsMarketOpen } = { isMarketOpen: false };
@@ -27,18 +22,18 @@ export default async function appLoader(
 	await Lib.majorIndicesRedisClient.connect();
 	await Lib.top5ListRedisClient.connect();
 	await Lib.userRedisClient.flushDb();
-	marketStatus.isMarketOpen = await getCurrentMarketState();
+	marketStatus.isMarketOpen = await Services.getCurrentMarketState();
 
 	schedule.scheduleJob('0 30 22 * * *', async () => {
-		const isMarketOpenNow = await fetchIsMarketOpen();
+		const isMarketOpenNow = await Services.fetchIsMarketOpen();
 		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
 		marketStatus.isMarketOpen = isMarketOpenNow;
 		Lib.logger.info(`Checked Market Status. Current state: ${isMarketOpenNow ? 'open' : 'close'}`);
-		if (marketStatus.isMarketOpen) updatePrice(marketStatus);
+		if (marketStatus.isMarketOpen) Services.updatePrice(marketStatus);
 	});
 
 	schedule.scheduleJob('0 0 5 * * *', async () => {
-		const isMarketOpenNow = await fetchIsMarketOpen();
+		const isMarketOpenNow = await Services.fetchIsMarketOpen();
 		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
 		marketStatus.isMarketOpen = isMarketOpenNow;
 		Lib.logger.info('Checked Market Status');
@@ -51,8 +46,7 @@ export default async function appLoader(
 	);
 
 	listenSocketEvents(io);
-	if (marketStatus.isMarketOpen) updatePrice(marketStatus);
-	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => {
-		emitRealtimeData(io);
-	});
+	if (marketStatus.isMarketOpen) Services.updatePrice(marketStatus);
+	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => Services.emitRealtimeData(io));
+	Lib.eventEmitter.on('EMIT_MAJOR_INDICES_DATA', () => Services.emitMajorIndicesData(io));
 }

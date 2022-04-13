@@ -69,3 +69,28 @@ export interface StockDataFromIEX {
 	latestPrice: number;
 	iexRealtimePrice: number | null;
 }
+
+export interface FMPMajorIndexData {
+	symbol: string;
+	name: string;
+	price: number;
+	changesPercentage: number;
+	change: number;
+	dayLow: number;
+	dayHigh: number;
+	yearHigh: number;
+	yearLow: number;
+	marketCap: null;
+	priceAvg50: number;
+	priceAvg200: number;
+	volume: number;
+	avgVolume: number;
+	exchange: string;
+	open: number;
+	previousClose: number;
+	eps: null;
+	pe: null;
+	earningsAnnouncement: null;
+	sharesOutstanding: null;
+	timestamp: number;
+}

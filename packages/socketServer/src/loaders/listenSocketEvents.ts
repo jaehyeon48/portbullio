@@ -5,15 +5,16 @@ import {
 	InterServerEvents,
 	SocketData
 } from '@portbullio/shared/src/types';
-import { subscribeTickersIntoDB, unsubscribeTickersFromDB, emitCachedData } from '@services/index';
+import * as Services from '@services/index';
 
 export default function listenSocketEvents(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
 	io.on('connect', socket => {
-		socket.on('SUBSCRIBE_TICKER', tickers => subscribeTickersIntoDB(socket.id, tickers));
-		socket.on('UNSUBSCRIBE_TICKER', () => unsubscribeTickersFromDB(socket.id));
-		socket.on('REQ_CACHED_DATA', tickers => emitCachedData(io, socket.id, tickers));
-		socket.on('disconnect', () => unsubscribeTickersFromDB(socket.id));
+		socket.on('SUBSCRIBE_TICKER', tickers => Services.subscribeTickersIntoDB(socket.id, tickers));
+		socket.on('UNSUBSCRIBE_TICKER', () => Services.unsubscribeTickersFromDB(socket.id));
+		socket.on('REQ_CACHED_DATA', tickers => Services.emitCachedData(io, socket.id, tickers));
+		socket.on('REQ_MAJOR_INDICES_DATA', () => Services.emitMajorIndicesData(io, socket.id));
+		socket.on('disconnect', () => Services.unsubscribeTickersFromDB(socket.id));
 	});
 }
