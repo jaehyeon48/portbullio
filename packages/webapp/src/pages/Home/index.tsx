@@ -5,10 +5,11 @@ import * as Style from './styles';
 import TopStocks from './TopStocks';
 import HomeMainButton from './HomeMainButton';
 import IndexInfo from './IndexInfo';
-import { useMajorIndicesData } from './hooks';
+import { useMajorIndicesData, useTopStocksData } from './hooks';
 
 export default function Home() {
 	const majorIndicesData = useMajorIndicesData();
+	const topStocksData = useTopStocksData();
 	useTitle('portbullio');
 
 	return (
@@ -51,7 +52,7 @@ export default function Home() {
 						<span>거래량 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={volumeTopStocks} />
+					<TopStocks stockList={topStocksData?.actives?.slice(0, 5) ?? []} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
@@ -59,7 +60,7 @@ export default function Home() {
 						<span>상승률 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={gainerTopStocks} />
+					<TopStocks stockList={topStocksData?.gainers?.slice(0, 5) ?? []} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
@@ -67,94 +68,10 @@ export default function Home() {
 						<span>하락률 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={loserTopStocks} />
+					<TopStocks stockList={topStocksData?.losers?.slice(0, 5) ?? []} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 			</Style.Section>
 		</>
 	);
 }
-
-const volumeTopStocks = [
-	{
-		ticker: 'ZNGA',
-		change: 40.67,
-		price: 8.44
-	},
-	{
-		ticker: 'SQQQ',
-		change: -0.45,
-		price: 6.71
-	},
-	{
-		ticker: 'F',
-		change: -2.41,
-		price: 23.85
-	},
-	{
-		ticker: 'SPY',
-		change: -0.12,
-		price: 465.51
-	},
-	{
-		ticker: 'PETZ',
-		change: -81.86,
-		price: 0.74
-	}
-];
-
-const gainerTopStocks = [
-	{
-		ticker: 'BBLG',
-		change: 57.14,
-		price: 5.39
-	},
-	{
-		ticker: 'ZNGA',
-		change: 40.67,
-		price: 8.444
-	},
-	{
-		ticker: 'MOLN',
-		change: 30.46,
-		price: 28.85
-	},
-	{
-		ticker: 'RELI',
-		change: 28.85,
-		price: 7.86
-	},
-	{
-		ticker: 'RXST',
-		change: 28.21,
-		price: 11.5
-	}
-];
-
-const loserTopStocks = [
-	{
-		ticker: 'PIK',
-		change: -27.48,
-		price: 4.75
-	},
-	{
-		ticker: 'CURV',
-		change: -23.36,
-		price: 8.2
-	},
-	{
-		ticker: 'RPID',
-		change: -21.23,
-		price: 7.2
-	},
-	{
-		ticker: 'HGSH',
-		change: -20.98,
-		price: 2.75
-	},
-	{
-		ticker: 'MRIN',
-		change: -18.98,
-		price: 3.67
-	}
-];

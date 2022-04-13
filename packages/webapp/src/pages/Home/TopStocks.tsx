@@ -1,26 +1,21 @@
-import { formatCurrency } from '@utils';
+import { RealtimeData } from '@portbullio/shared/src/types';
+import { formatCurrency, prefixPlusChar } from '@utils';
 import * as Style from './styles';
 
-interface StockItem {
-	ticker: string;
-	change: number;
-	price: number;
-}
-
 interface Props {
-	stockList: StockItem[];
+	stockList: RealtimeData[];
 }
 
 export default function TopStocks({ stockList }: Props) {
 	return (
 		<>
-			{stockList.map(({ ticker, change, price }) => (
+			{stockList.map(({ ticker, changePercent, price }) => (
 				<Style.TopStocksListItem key={ticker} as="li" bgColorOnHover>
 					<Style.TopStocksListItemLink to={`stock/${ticker}/overview`}>
 						<Style.TopStocksListItemTicker>{ticker}</Style.TopStocksListItemTicker>
-						<Style.TopStocksListItemChangePercent value={change}>
-							{change > 0 && '+'}
-							{change}%
+						<Style.TopStocksListItemChangePercent value={changePercent}>
+							{prefixPlusChar(changePercent)}
+							{changePercent.toFixed(2)}%
 						</Style.TopStocksListItemChangePercent>
 						<Style.TopStocksListItemPrice>
 							{formatCurrency(price, 'usd')}
