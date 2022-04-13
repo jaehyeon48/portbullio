@@ -128,11 +128,11 @@ export const IndexChangePercent = styled.div`
 	text-align: center;
 `;
 
-export const Top5ListSection = styled.section`
+export const TopStocksListSection = styled.section`
 	${midBotSectionLayout};
 `;
 
-export const Top5ListHeader = styled(Link)`
+export const TopStocksListHeader = styled(Link)`
 	position: relative;
 	display: flex;
 	align-items: center;
@@ -149,39 +149,39 @@ export const Top5ListHeader = styled(Link)`
 	}
 `;
 
-export const Top5ListItems = styled.ul`
+export const TopStocksListItems = styled.ul`
 	margin: 0;
 	padding: 0;
 	list-style-type: none;
 `;
 
-export const Top5ListItem = styled(Card)`
+export const TopStocksListItem = styled(Card)`
 	list-style-type: none;
 	margin-bottom: 1.2em;
 	padding: 0.8em 0;
 	cursor: pointer;
 `;
 
-export const Top5ListItemLink = styled(Link)`
+export const TopStocksListItemLink = styled(Link)`
 	text-decoration: none;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 `;
 
-export const Top5ListItemTicker = styled.span`
+export const TopStocksListItemTicker = styled.span`
 	width: 20%;
 	text-transform: uppercase;
 	font-weight: 500;
 	color: var(--baseTextColor);
 `;
 
-export const Top5ListItemChangePercent = styled.span`
+export const TopStocksListItemChangePercent = styled.span`
 	width: 32%;
 	${Mixin.priceColorMixin};
 `;
 
-export const Top5ListItemPrice = styled.span`
+export const TopStocksListItemPrice = styled.span`
 	width: 22%;
 	color: var(--baseTextColor);
 	overflow: hidden;

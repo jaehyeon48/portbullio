@@ -2,7 +2,7 @@ import { AngleRight } from '@components/index';
 import { useTitle } from '@hooks/index';
 import HeroImage from './HeroImage';
 import * as Style from './styles';
-import Top5Stocks from './Top5Stocks';
+import TopStocks from './TopStocks';
 import HomeMainButton from './HomeMainButton';
 import IndexInfo from './IndexInfo';
 import { useMajorIndicesData } from './hooks';
@@ -46,36 +46,36 @@ export default function Home() {
 				/>
 			</Style.Section>
 			<Style.Section margin="0 auto 5em" justifyContent="space-evenly">
-				<Style.Top5ListSection>
-					<Style.Top5ListHeader to="/">
-						<span>거래량 TOP5</span>
+				<Style.TopStocksListSection>
+					<Style.TopStocksListHeader to="/most-actives">
+						<span>거래량 상위</span>
 						<AngleRight />
-					</Style.Top5ListHeader>
-					<Top5Stocks stockList={volumeTop5} />
-					<Style.Top5ListItems />
-				</Style.Top5ListSection>
-				<Style.Top5ListSection>
-					<Style.Top5ListHeader to="/">
-						<span>상승률 TOP5</span>
+					</Style.TopStocksListHeader>
+					<TopStocks stockList={volumeTopStocks} />
+					<Style.TopStocksListItems />
+				</Style.TopStocksListSection>
+				<Style.TopStocksListSection>
+					<Style.TopStocksListHeader to="/most-gainers">
+						<span>상승률 상위</span>
 						<AngleRight />
-					</Style.Top5ListHeader>
-					<Top5Stocks stockList={gainerTop5} />
-					<Style.Top5ListItems />
-				</Style.Top5ListSection>
-				<Style.Top5ListSection>
-					<Style.Top5ListHeader to="/">
-						<span>하락률 TOP5</span>
+					</Style.TopStocksListHeader>
+					<TopStocks stockList={gainerTopStocks} />
+					<Style.TopStocksListItems />
+				</Style.TopStocksListSection>
+				<Style.TopStocksListSection>
+					<Style.TopStocksListHeader to="/most-losers">
+						<span>하락률 상위</span>
 						<AngleRight />
-					</Style.Top5ListHeader>
-					<Top5Stocks stockList={loserTop5} />
-					<Style.Top5ListItems />
-				</Style.Top5ListSection>
+					</Style.TopStocksListHeader>
+					<TopStocks stockList={loserTopStocks} />
+					<Style.TopStocksListItems />
+				</Style.TopStocksListSection>
 			</Style.Section>
 		</>
 	);
 }
 
-const volumeTop5 = [
+const volumeTopStocks = [
 	{
 		ticker: 'ZNGA',
 		change: 40.67,
@@ -103,7 +103,7 @@ const volumeTop5 = [
 	}
 ];
 
-const gainerTop5 = [
+const gainerTopStocks = [
 	{
 		ticker: 'BBLG',
 		change: 57.14,
@@ -131,7 +131,7 @@ const gainerTop5 = [
 	}
 ];
 
-const loserTop5 = [
+const loserTopStocks = [
 	{
 		ticker: 'PIK',
 		change: -27.48,
