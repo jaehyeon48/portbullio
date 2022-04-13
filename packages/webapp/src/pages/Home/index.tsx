@@ -1,12 +1,14 @@
 import { AngleRight } from '@components/index';
-import { useTitle } from '@hooks/Title';
+import { useTitle } from '@hooks/index';
 import HeroImage from './HeroImage';
 import * as Style from './styles';
 import Top5Stocks from './Top5Stocks';
 import HomeMainButton from './HomeMainButton';
 import IndexInfo from './IndexInfo';
+import { useMajorIndicesData } from './hooks';
 
 export default function Home() {
+	const majorIndicesData = useMajorIndicesData();
 	useTitle('portbullio');
 
 	return (
@@ -26,21 +28,21 @@ export default function Home() {
 			<Style.Section margin="5em auto 8em" justifyContent="space-evenly">
 				<IndexInfo
 					indexName="다우 존스"
-					indexValue={36068.87}
-					indexValueChange={1234.56}
-					indexValueChangePercent={-0.45}
+					indexValue={Number(majorIndicesData?.DJI?.price ?? 0)}
+					indexValueChange={Number(majorIndicesData?.DJI?.change ?? 0)}
+					indexValueChangePercent={Number(majorIndicesData?.DJI?.changePercent ?? 0)}
 				/>
 				<IndexInfo
 					indexName="S&P 500"
-					indexValue={4670.29}
-					indexValueChange={123.45}
-					indexValueChangePercent={-0.14}
+					indexValue={Number(majorIndicesData?.GSPC?.price ?? 0)}
+					indexValueChange={Number(majorIndicesData?.GSPC?.change ?? 0)}
+					indexValueChangePercent={Number(majorIndicesData?.GSPC?.changePercent ?? 0)}
 				/>
 				<IndexInfo
 					indexName="나스닥 종합"
-					indexValue={14942.83}
-					indexValueChange={1.23}
-					indexValueChangePercent={0.05}
+					indexValue={Number(majorIndicesData?.IXIC?.price ?? 0)}
+					indexValueChange={Number(majorIndicesData?.IXIC?.change ?? 0)}
+					indexValueChangePercent={Number(majorIndicesData?.IXIC?.changePercent ?? 0)}
 				/>
 			</Style.Section>
 			<Style.Section margin="0 auto 5em" justifyContent="space-evenly">
