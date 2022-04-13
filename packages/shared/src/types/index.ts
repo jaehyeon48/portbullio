@@ -13,9 +13,9 @@ export interface MajorIndices {
 
 export interface MajorIndexData {
 	ticker: string;
-	price: string;
-	change: string;
-	changePercent: string;
+	price: number;
+	change: number;
+	changePercent: number;
 }
 
 export interface ServerToClientEvents {

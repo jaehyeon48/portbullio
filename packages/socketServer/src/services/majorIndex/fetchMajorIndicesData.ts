@@ -14,8 +14,8 @@ export default async function fetchMajorIndicesData(): Promise<MajorIndexData[]>
 
 	return data.map(({ symbol, price, change, changesPercentage }) => ({
 		ticker: symbol.replace('^', ''),
-		price: String(price),
-		change: String(change),
-		changePercent: String(changesPercentage)
+		price,
+		change,
+		changePercent: changesPercentage
 	}));
 }
