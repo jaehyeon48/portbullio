@@ -22,7 +22,6 @@ export default function useTopStocksData(): TopStocksDataHookReturnValue {
 
 	useEffect(() => {
 		socket.emit('REQ_ALL_TOP_STOCKS_DATA');
-		socket.emit('REQ_MAJOR_INDICES_DATA');
 		socket.emit('SUBSCRIBE_TOP_STOCKS_DATA', 'all');
 		socket.on('TOP_ACTIVES_DATA', data => setTopActives(data));
 		socket.on('TOP_GAINERS_DATA', data => setTopGainers(data));

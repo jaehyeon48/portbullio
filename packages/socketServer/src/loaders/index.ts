@@ -58,6 +58,8 @@ export default async function appLoader(
 	listenSocketEvents(io);
 	if (marketStatus.isMarketOpen) Services.updatePrice(marketStatus);
 	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => Services.broadcastRealtimeData(io));
-	Lib.eventEmitter.on('EMIT_MAJOR_INDICES_DATA', () => Services.emitMajorIndicesData(io));
+	Lib.eventEmitter.on('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData =>
+		Services.broadcastMajorIndicesData(io, majorIndicesData)
+	);
 	Lib.eventEmitter.on('BROADCAST_TOP_STOCKS_DATA', () => Services.broadcastTopStocksData(io));
 }
