@@ -21,7 +21,7 @@ export default async function updatePrice(marketStatus: { isMarketOpen: IsMarket
 	await Services.saveRealtimeDataIntoDB(realtimeData);
 	await Services.saveTopStocksDataIntoDB(allTopStocksData as TopStocks);
 
-	eventEmitter.emit('EMIT_REALTIME_DATA');
+	eventEmitter.emit('BROADCAST_REALTIME_DATA');
 	eventEmitter.emit('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData);
 	eventEmitter.emit('BROADCAST_TOP_STOCKS_DATA');
 	setTimeout(updatePrice, REQUEST_PRICE_INTERVAL, marketStatus);
