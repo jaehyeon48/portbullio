@@ -154,10 +154,8 @@ export default createGlobalStyle`
     --openDetailsPageButtonColor: var(--lightGray);
   }
 
-  
-
   body {
-    font-family: NotoSansKR, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     background-color: var(--bodyBgColor);
     color: var(--baseTextColor);
 

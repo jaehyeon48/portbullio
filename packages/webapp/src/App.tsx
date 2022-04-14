@@ -36,7 +36,6 @@ function App(): ReactElement {
 	return (
 		<EventEmitterListeners>
 			<Global.CSSReset />
-			<Global.GlobalFonts />
 			<Global.GlobalStyles />
 			<Global.ToastColors />
 			<Routes>
