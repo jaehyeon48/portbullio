@@ -18,10 +18,7 @@ const handlers = [
 		`${envConfig.serverEndPoint}/portfolios/1/privacy`,
 		portfolioMock.editPortfolioPrivacy
 	),
-	rest.delete(
-		`${envConfig.serverEndPoint}/portfolios/1?isDefaultPortfolio=0`,
-		portfolioMock.deletePortfolio
-	),
+	rest.delete(`${envConfig.serverEndPoint}/portfolios/1`, portfolioMock.deletePortfolio),
 	rest.get(`${envConfig.serverEndPoint}/user/avatar`, userMock.getAvatar)
 ];
 
