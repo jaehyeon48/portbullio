@@ -12,10 +12,17 @@ export default function listenSocketEvents(
 ) {
 	io.on('connect', socket => {
 		socket.on('SUBSCRIBE_TICKER', tickers => Services.subscribeTickersIntoDB(socket.id, tickers));
+		socket.on('SUBSCRIBE_TOP_STOCKS_DATA', category =>
+			Services.subscribeTopStocksData(socket.id, category)
+		);
 		socket.on('UNSUBSCRIBE_TICKER', () => Services.unsubscribeTickersFromDB(socket.id));
+		socket.on('UNSUBSCRIBE_TOP_STOCKS_DATA', () => Services.unsubscribeTopStocksData(socket.id));
 		socket.on('REQ_CACHED_DATA', tickers => Services.emitCachedData(io, socket.id, tickers));
 		socket.on('REQ_MAJOR_INDICES_DATA', () => Services.emitMajorIndicesData(io, socket.id));
-		socket.on('REQ_TOP_STOCKS_DATA', () => Services.emitTopStocksData(io, socket.id));
+		socket.on('REQ_ALL_TOP_STOCKS_DATA', () => Services.emitTopStocksData(io, socket.id, 'all'));
+		socket.on('REQ_TOP_ACTIVES_DATA', () => Services.emitTopStocksData(io, socket.id, 'actives'));
+		socket.on('REQ_TOP_GAINERS_DATA', () => Services.emitTopStocksData(io, socket.id, 'gainers'));
+		socket.on('REQ_TOP_LOSERS_DATA', () => Services.emitTopStocksData(io, socket.id, 'losers'));
 		socket.on('disconnect', () => Services.unsubscribeTickersFromDB(socket.id));
 	});
 }

@@ -102,5 +102,3 @@ export interface FMPTopStockData {
 	price: number;
 	changesPercentage: number;
 }
-
-export type TopStocksCategory = 'actives' | 'gainers' | 'losers';

@@ -21,7 +21,11 @@ export default async function appLoader(
 	await Lib.marketStatusRedisClient.connect();
 	await Lib.majorIndicesRedisClient.connect();
 	await Lib.topStocksRedisClient.connect();
+	await Lib.topStocksDataSubscribersRedisClient.connect();
+
 	await Lib.userRedisClient.flushDb();
+	await Lib.topStocksDataSubscribersRedisClient.flushDb();
+
 	marketStatus.isMarketOpen = await Services.getCurrentMarketState();
 
 	schedule.scheduleJob('0 30 22 * * *', async () => {
@@ -49,5 +53,5 @@ export default async function appLoader(
 	if (marketStatus.isMarketOpen) Services.updatePrice(marketStatus);
 	Lib.eventEmitter.on('EMIT_REALTIME_DATA', () => Services.emitRealtimeData(io));
 	Lib.eventEmitter.on('EMIT_MAJOR_INDICES_DATA', () => Services.emitMajorIndicesData(io));
-	Lib.eventEmitter.on('EMIT_TOP_STOCKS_DATA', () => Services.emitTopStocksData(io));
+	Lib.eventEmitter.on('BROADCAST_TOP_STOCKS_DATA', () => Services.broadcastTopStocksData(io));
 }
