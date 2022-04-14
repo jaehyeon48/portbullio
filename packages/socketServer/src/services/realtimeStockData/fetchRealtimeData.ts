@@ -5,7 +5,7 @@ import { RealtimeDataFilterOptions, RealtimeDataPerTicker, StockDataFromIEX } fr
 const { iexCloudBaseUrl, iexCloudApiKey } = envConfig;
 const requestPath = '/stock/market/batch';
 
-export default async function fetchRealtimeData(tickers: string[][]) {
+export default async function formatRealtimeDataToEmit(tickers: string[][]) {
 	const requestFilter = filter.join(',');
 	const result: AxiosResponse<RealtimeDataPerTicker<StockDataFromIEX>>[] = await Promise.all(
 		tickers.map(tickerGroup => {

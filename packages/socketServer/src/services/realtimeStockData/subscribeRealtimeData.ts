@@ -1,6 +1,6 @@
 import { realtimeStockDataSubscribersRedisClient, logger } from '@lib/index';
 
-export default async function subscribeTickersIntoDB(userId: string, tickers: string[]) {
+export default async function subscribeRealtimeData(userId: string, tickers: string[]) {
 	try {
 		await realtimeStockDataSubscribersRedisClient.set(userId, JSON.stringify(tickers));
 		return true;

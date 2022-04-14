@@ -7,9 +7,9 @@ import {
 } from '@portbullio/shared/src/types';
 import getTickersPerUserFromDB from './getTickersPerUserFromDB';
 import getRealtimeDataFromDB from './getRealtimeDataFromDB';
-import formatEmitData from './formatEmitData';
+import formatRealtimeDataToEmit from './formatRealtimeDataToEmit';
 
-export default async function emitRealtimeData(
+export default async function broadcastRealtimeData(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
 	const tickersPerUser = await getTickersPerUserFromDB();
@@ -23,6 +23,6 @@ export default async function emitRealtimeData(
 	}));
 
 	realtimeDataPerUser.forEach(({ userId, data }) => {
-		io.to(userId).emit('REALTIME_DATA', formatEmitData(data));
+		io.to(userId).emit('REALTIME_DATA', formatRealtimeDataToEmit(data));
 	});
 }

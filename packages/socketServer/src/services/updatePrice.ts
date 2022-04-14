@@ -15,7 +15,7 @@ export default async function updatePrice(marketStatus: { isMarketOpen: IsMarket
 		await Services.getAllUsersTickersFromDB()
 	);
 	const realtimeRawData = await Services.fetchRealtimeData(tickers);
-	const realtimeData = Services.transformRawData(realtimeRawData);
+	const realtimeData = Services.transformRawStockData(realtimeRawData);
 
 	await Services.saveMajorIndicesDataIntoDB(majorIndicesData);
 	await Services.saveRealtimeDataIntoDB(realtimeData);
