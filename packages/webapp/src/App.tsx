@@ -40,7 +40,9 @@ function App(): ReactElement {
 			<Global.ToastColors />
 			<Routes>
 				<Route path="/" element={<Page.BaseLayout />}>
-					<Route index element={<Page.HomePage />} />
+					<Route path="/" element={<Page.TopStocksDataContextWrapper />}>
+						<Route index element={<Page.HomePage />} />
+					</Route>
 					<Route path="welcome" element={<Page.WelcomePage />} />
 					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
 						<Route path="overview" element={<Page.StockOverviewPage />} />

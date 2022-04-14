@@ -1,5 +1,6 @@
 export { default as AuthPage } from './Auth';
 export { default as HomePage } from './Home';
+export { default as TopStocksDataContextWrapper } from './Home/context/TopStocksDataContextWrapper';
 export { default as BaseLayout } from './BaseLayout';
 export { default as LogOutPage } from './LogOut';
 export { default as WelcomePage } from './Welcome';

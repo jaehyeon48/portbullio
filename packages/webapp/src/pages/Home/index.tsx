@@ -9,7 +9,8 @@ import { useMajorIndicesData, useTopStocksData } from './hooks';
 
 export default function Home() {
 	const majorIndicesData = useMajorIndicesData();
-	const topStocksData = useTopStocksData();
+	const { topActives, topGainers, topLosers } = useTopStocksData();
+
 	useTitle('portbullio');
 
 	return (
@@ -52,7 +53,7 @@ export default function Home() {
 						<span>거래량 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={topStocksData?.actives?.slice(0, 5) ?? []} />
+					<TopStocks stockList={topActives?.slice(0, 5) ?? []} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
@@ -60,7 +61,7 @@ export default function Home() {
 						<span>상승률 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={topStocksData?.gainers?.slice(0, 5) ?? []} />
+					<TopStocks stockList={topGainers?.slice(0, 5) ?? []} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
@@ -68,7 +69,7 @@ export default function Home() {
 						<span>하락률 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={topStocksData?.losers?.slice(0, 5) ?? []} />
+					<TopStocks stockList={topLosers?.slice(0, 5) ?? []} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 			</Style.Section>

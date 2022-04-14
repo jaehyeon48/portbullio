@@ -46,6 +46,7 @@ export default function useSubscribeTickers() {
 	useEffect(() => {
 		function evtListener() {
 			socket.emit('UNSUBSCRIBE_TICKER');
+			socket.emit('UNSUBSCRIBE_TOP_STOCKS_DATA');
 		}
 
 		Emitter.on(LOG_OUT, evtListener);

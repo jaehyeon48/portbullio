@@ -1,12 +1,15 @@
 import { render, screen } from '@testing-library/react';
 import { CustomWrapper } from '@lib/testingLibrary/react';
 import Home from '..';
+import { TopStocksDataContextProvider } from '../context';
 
 describe('Home page', () => {
 	test('Should have a main hero image', () => {
 		render(
 			<CustomWrapper>
-				<Home />
+				<TopStocksDataContextProvider>
+					<Home />
+				</TopStocksDataContextProvider>
 			</CustomWrapper>
 		);
 
@@ -16,7 +19,9 @@ describe('Home page', () => {
 	test('Should have a main page title', () => {
 		render(
 			<CustomWrapper>
-				<Home />
+				<TopStocksDataContextProvider>
+					<Home />
+				</TopStocksDataContextProvider>
 			</CustomWrapper>
 		);
 
@@ -26,7 +31,9 @@ describe('Home page', () => {
 	test('Should have a "시작하기" button', () => {
 		render(
 			<CustomWrapper>
-				<Home />
+				<TopStocksDataContextProvider>
+					<Home />
+				</TopStocksDataContextProvider>
 			</CustomWrapper>
 		);
 
@@ -36,7 +43,9 @@ describe('Home page', () => {
 	test('Should have a "내 포트폴리오" button', () => {
 		render(
 			<CustomWrapper authValue>
-				<Home />
+				<TopStocksDataContextProvider>
+					<Home />
+				</TopStocksDataContextProvider>
 			</CustomWrapper>
 		);
 
@@ -46,7 +55,9 @@ describe('Home page', () => {
 	test('Should have 3 major US stock index info components', () => {
 		render(
 			<CustomWrapper authValue>
-				<Home />
+				<TopStocksDataContextProvider>
+					<Home />
+				</TopStocksDataContextProvider>
 			</CustomWrapper>
 		);
 
@@ -58,7 +69,9 @@ describe('Home page', () => {
 	test('Should have 3 daily top5 stocks link', () => {
 		render(
 			<CustomWrapper authValue>
-				<Home />
+				<TopStocksDataContextProvider>
+					<Home />
+				</TopStocksDataContextProvider>
 			</CustomWrapper>
 		);
 
