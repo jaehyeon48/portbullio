@@ -16,14 +16,16 @@ const marketStatus: { isMarketOpen: IsMarketOpen } = { isMarketOpen: false };
 export default async function appLoader(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>
 ) {
-	await Lib.realtimeRedisClient.connect();
-	await Lib.userRedisClient.connect();
 	await Lib.marketStatusRedisClient.connect();
-	await Lib.majorIndicesRedisClient.connect();
-	await Lib.topStocksRedisClient.connect();
+	await Lib.realtimeStockDataSubscribersRedisClient.connect();
+	await Lib.majorIndicesDataSubscribersRedisClient.connect();
 	await Lib.topStocksDataSubscribersRedisClient.connect();
+	await Lib.realtimeStockDataRedisClient.connect();
+	await Lib.majorIndicesDataRedisClient.connect();
+	await Lib.topStocksDataRedisClient.connect();
 
-	await Lib.userRedisClient.flushDb();
+	await Lib.realtimeStockDataSubscribersRedisClient.flushDb();
+	await Lib.majorIndicesDataSubscribersRedisClient.flushDb();
 	await Lib.topStocksDataSubscribersRedisClient.flushDb();
 
 	marketStatus.isMarketOpen = await Services.getCurrentMarketState();
@@ -43,8 +45,12 @@ export default async function appLoader(
 		Lib.logger.info('Checked Market Status');
 	});
 
-	Lib.realtimeRedisClient.on('error', err => Lib.logger.error('Price Redis Client Error', err));
-	Lib.userRedisClient.on('error', err => Lib.logger.error('User Redis Client Error', err));
+	Lib.realtimeStockDataRedisClient.on('error', err =>
+		Lib.logger.error('Price Redis Client Error', err)
+	);
+	Lib.realtimeStockDataSubscribersRedisClient.on('error', err =>
+		Lib.logger.error('User Redis Client Error', err)
+	);
 	Lib.marketStatusRedisClient.on('error', err =>
 		Lib.logger.error('Market Status Redis Client Error', err)
 	);

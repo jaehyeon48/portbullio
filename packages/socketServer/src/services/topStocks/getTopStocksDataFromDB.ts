@@ -1,6 +1,6 @@
 import { RealtimeData, TopStocks, TopStockCategory } from '@portbullio/shared/src/types';
 import { topStocksCategories } from '@constants';
-import { topStocksRedisClient } from '@lib/index';
+import { topStocksDataRedisClient } from '@lib/index';
 import transformTopStocksRawData from './transformTopStocksRawData';
 
 export default async function getTopStocksDataFromDB(
@@ -9,7 +9,7 @@ export default async function getTopStocksDataFromDB(
 	try {
 		if (category === 'all') {
 			const topStocksRawData = await Promise.all(
-				topStocksCategories.map(cat => topStocksRedisClient.get(cat))
+				topStocksCategories.map(cat => topStocksDataRedisClient.get(cat))
 			);
 
 			if (topStocksRawData.some(data => data === null)) return null;
@@ -19,7 +19,7 @@ export default async function getTopStocksDataFromDB(
 			return topStocksData;
 		}
 
-		const topStocksData = await topStocksRedisClient.get(category);
+		const topStocksData = await topStocksDataRedisClient.get(category);
 		if (!topStocksData) return null;
 		return JSON.parse(topStocksData);
 	} catch (error) {

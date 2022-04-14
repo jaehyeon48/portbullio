@@ -1,8 +1,8 @@
-import { userRedisClient, logger } from '@lib/index';
+import { realtimeStockDataSubscribersRedisClient, logger } from '@lib/index';
 
 export default async function unsubscribeTickersFromDB(userId: string) {
 	try {
-		await userRedisClient.del(userId);
+		await realtimeStockDataSubscribersRedisClient.del(userId);
 		return true;
 	} catch (error) {
 		logger.error(error);
