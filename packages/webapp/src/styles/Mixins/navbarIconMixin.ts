@@ -1,11 +1,7 @@
 import { css } from 'styled-components';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 
-export interface NavbarIconMixinProps {
-	applyStrokeStyle?: boolean;
-}
-
-export const navbarIconMixin = css<NavbarIconMixinProps>`
+export const navbarIconMixin = css`
 	& > p {
 		margin-top: 0.4em;
 		font-size: 13px;
@@ -14,7 +10,7 @@ export const navbarIconMixin = css<NavbarIconMixinProps>`
 
 	& > svg {
 		fill: var(--navbarIconBgColor);
-		${({ applyStrokeStyle }) => (applyStrokeStyle ? 'stroke: var(--navbarIconBgColor)' : '')};
+		stroke: var(--navbarIconBgColor);
 	}
 
 	&.active {
@@ -23,7 +19,7 @@ export const navbarIconMixin = css<NavbarIconMixinProps>`
 		}
 		& > svg {
 			fill: var(--primary);
-			${({ applyStrokeStyle }) => (applyStrokeStyle ? 'stroke: var(--primary)' : '')};
+			stroke: var(--primary);
 		}
 	}
 

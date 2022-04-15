@@ -68,7 +68,7 @@ export default function Navbar() {
 							<Icon.Dashboard />
 							<p>대시보드</p>
 						</Style.NavbarLink>
-						<Style.NavbarLink to="/holdings" applyStrokeStyle>
+						<Style.NavbarLink to="/holdings">
 							<Icon.CandleChart />
 							<p>내 종목</p>
 						</Style.NavbarLink>
@@ -80,7 +80,7 @@ export default function Navbar() {
 							<Icon.Coins />
 							<p>현금</p>
 						</Style.NavbarLink>
-						<Style.NavbarLink to="/dividend" applyStrokeStyle>
+						<Style.NavbarLink to="/dividend">
 							<Icon.CoinsOnHand />
 							<p>배당</p>
 						</Style.NavbarLink>

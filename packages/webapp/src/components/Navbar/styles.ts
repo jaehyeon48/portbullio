@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { NAVBAR_WIDTH } from '@constants/index';
-import {
-	flexMixin,
-	flexCenter,
-	navbarIconMixin,
-	NavbarIconMixinProps,
-	buttonMixin
-} from '@styles/Mixins';
+import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
 
 export const Container = styled.aside`
 	display: flex;
@@ -41,7 +35,7 @@ export const Bottom = styled.div`
 	height: 12%;
 `;
 
-export const NavbarLink = styled(NavLink)<NavbarIconMixinProps>`
+export const NavbarLink = styled(NavLink)`
 	${flexMixin}
 	flex-direction: column;
 	align-items: center;
