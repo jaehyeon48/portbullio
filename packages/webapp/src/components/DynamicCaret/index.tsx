@@ -1,4 +1,5 @@
-import { CaretUp, CaretDown } from '@components/index';
+import CaretUp from '../Icon/CaretUp';
+import CaretDown from '../Icon/CaretDown';
 import CaretContainer from './styles';
 
 interface Props {
