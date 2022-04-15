@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { SelectedPortfolioIdContextProvider } from '@components/index';
 import {
 	AuthContextProvider,
 	EventEmitterProvider,
@@ -7,20 +6,28 @@ import {
 	RealtimeDataContextProvider,
 	IsMarketOpenContextProvider
 } from '@hooks/index';
+import { SelectedPortfolioIdContextProvider } from '../SelectPortfolio/useSelectedPortfolioId';
 
 interface Props {
 	children: ReactNode;
 	authContextInitialValue?: boolean;
+	connectSocket?: boolean;
 }
 
-export default function ContextAPIProviders({ children, authContextInitialValue }: Props) {
+export default function ContextAPIProviders({
+	children,
+	authContextInitialValue,
+	connectSocket
+}: Props) {
 	return (
 		<AuthContextProvider initialValue={authContextInitialValue}>
 			<EventEmitterProvider>
 				<IsMarketOpenContextProvider>
 					<RealtimeDataContextProvider>
 						<SelectedPortfolioIdContextProvider>
-							<SocketIoContextProvider>{children}</SocketIoContextProvider>
+							<SocketIoContextProvider shouldConnect={connectSocket}>
+								{children}
+							</SocketIoContextProvider>
 						</SelectedPortfolioIdContextProvider>
 					</RealtimeDataContextProvider>
 				</IsMarketOpenContextProvider>

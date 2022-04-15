@@ -5,14 +5,17 @@ import { ServerToClientEvents, ClientToServerEvents } from '@portbullio/shared/s
 
 interface ProviderProps {
 	children: React.ReactNode;
+	shouldConnect?: boolean;
 }
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
-	envConfig.socketServerUrl as string
+	envConfig.socketServerUrl as string,
+	{ autoConnect: false }
 );
 const SocketIoContext = React.createContext(socket);
 
-export function SocketIoContextProvider({ children }: ProviderProps) {
+export function SocketIoContextProvider({ children, shouldConnect = true }: ProviderProps) {
+	if (socket.disconnected && shouldConnect) socket.connect();
 	return <SocketIoContext.Provider value={socket}>{children}</SocketIoContext.Provider>;
 }
 
