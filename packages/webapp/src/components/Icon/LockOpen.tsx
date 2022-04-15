@@ -1,5 +1,5 @@
-import { SVG } from '@components/index';
 import { IconProps } from '@types';
+import SVG from '../SVG';
 
 export default function LockOpen({ width = 24, height = 24, fill = 'primary' }: IconProps) {
 	return (

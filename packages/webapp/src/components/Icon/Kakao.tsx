@@ -1,5 +1,5 @@
-import { SVG } from '@components/index';
 import { IconProps } from '@types';
+import SVG from '../SVG';
 
 export default function Kakao({ width = 35, height = 32, fill = '#3E2224' }: IconProps) {
 	return (

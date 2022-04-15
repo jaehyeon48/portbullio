@@ -1,5 +1,5 @@
-import { SVG } from '@components/index';
 import { IconProps } from '@types';
+import SVG from '../SVG';
 
 export default function CircleCross({ width = 16, height = 16, fill = 'primary' }: IconProps) {
 	return (

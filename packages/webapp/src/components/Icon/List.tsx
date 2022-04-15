@@ -1,5 +1,5 @@
-import { SVG } from '@components/index';
 import { IconProps } from '@types';
+import SVG from '../SVG';
 
 export default function List({ width = 32, height = 32, fill = 'primary' }: IconProps) {
 	return (

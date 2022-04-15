@@ -1,5 +1,5 @@
-import { SVG } from '@components/index';
 import { IconProps } from '@types';
+import SVG from '../SVG';
 
 export default function Reset({ width = 21, height = 21, fill = 'primary' }: IconProps) {
 	return (
