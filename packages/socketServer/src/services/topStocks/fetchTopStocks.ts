@@ -27,7 +27,7 @@ export default async function fetchTopStocks(
 async function fetchHelper(category: TopStockCategory): Promise<RealtimeData[]> {
 	try {
 		const { data }: TopStocksRes = await axios.get(
-			`https://financialmodelingprep.com/api/v3/stock_market/${category}2?apikey=${envConfig.fmpApiKey}`
+			`https://financialmodelingprep.com/api/v3/stock_market/${category}?apikey=${envConfig.fmpApiKey}`
 		);
 
 		return data.map(({ symbol, price, change, changesPercentage }) => ({
