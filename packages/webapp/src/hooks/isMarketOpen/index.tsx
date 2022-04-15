@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import { checkIsMarketOpen } from '@api/stock';
 import { IsMarketOpen } from '@portbullio/shared/src/types';
 
@@ -16,10 +17,17 @@ export function IsMarketOpenContextProvider({ children }: ProviderProps) {
 	const [isMarketOpen, setIsMarketOpen] = React.useState<IsMarketOpenContextType>('loading');
 
 	React.useLayoutEffect(() => {
+		const cancelSource = axios.CancelToken.source();
+		let shouldCancel = false;
 		(async () => {
-			const initStatus = await checkIsMarketOpen();
-			setIsMarketOpen(initStatus);
+			const initStatus = await checkIsMarketOpen(cancelSource.token);
+			if (!shouldCancel) setIsMarketOpen(initStatus);
 		})();
+
+		return () => {
+			cancelSource.cancel();
+			shouldCancel = true;
+		};
 	}, []);
 
 	return (

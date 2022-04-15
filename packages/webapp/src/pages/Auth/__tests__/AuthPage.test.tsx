@@ -2,42 +2,36 @@ import { render, screen } from '@testing-library/react';
 import { CustomWrapper } from '@lib/testingLibrary/react';
 import Auth from '../index';
 
-describe('OAuth page', () => {
-	test('Should have a logo image', () => {
-		render(
-			<CustomWrapper>
-				<Auth />
-			</CustomWrapper>
-		);
+test('Should have a logo image', async () => {
+	render(
+		<CustomWrapper>
+			<Auth />
+		</CustomWrapper>
+	);
+	const logoImage = await screen.findByAltText(/main logo/);
+	expect(logoImage).toBeInTheDocument();
+});
 
-		const logoImage = screen.getByAltText(/main logo/);
-		expect(logoImage).toBeInTheDocument();
-	});
+test('Should have a title saying "환영합니다"', async () => {
+	render(
+		<CustomWrapper>
+			<Auth />
+		</CustomWrapper>
+	);
+	const titleHeader = await screen.findByText(/환영합니다/);
+	expect(titleHeader).toBeInTheDocument();
+});
 
-	test('Should have a title saying "환영합니다"', () => {
-		render(
-			<CustomWrapper>
-				<Auth />
-			</CustomWrapper>
-		);
-
-		const titleHeader = screen.getByText(/환영합니다/);
-		expect(titleHeader).toBeInTheDocument();
-	});
-
-	test('Should have three oauth buttons', () => {
-		render(
-			<CustomWrapper>
-				<Auth />
-			</CustomWrapper>
-		);
-
-		const googleOAuthButton = screen.getByLabelText('Google auth');
-		const naverOAuthButton = screen.getByLabelText('Naver auth');
-		const kakaoOAuthButton = screen.getByLabelText('Kakao auth');
-
-		expect(googleOAuthButton).toBeInTheDocument();
-		expect(naverOAuthButton).toBeInTheDocument();
-		expect(kakaoOAuthButton).toBeInTheDocument();
-	});
+test('Should have three oauth buttons', async () => {
+	render(
+		<CustomWrapper>
+			<Auth />
+		</CustomWrapper>
+	);
+	const googleOAuthButton = await screen.findByLabelText('Google auth');
+	const naverOAuthButton = await screen.findByLabelText('Naver auth');
+	const kakaoOAuthButton = await screen.findByLabelText('Kakao auth');
+	expect(googleOAuthButton).toBeInTheDocument();
+	expect(naverOAuthButton).toBeInTheDocument();
+	expect(kakaoOAuthButton).toBeInTheDocument();
 });
