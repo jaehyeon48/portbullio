@@ -1,6 +1,7 @@
 import { rest } from 'msw';
 import envConfig from '@configs/env';
 import * as portfolioMock from './portfolio';
+import * as stockMock from './stock';
 import * as userMock from './user';
 
 const handlers = [
@@ -19,6 +20,7 @@ const handlers = [
 		portfolioMock.editPortfolioPrivacy
 	),
 	rest.delete(`${envConfig.serverEndPoint}/portfolios/1`, portfolioMock.deletePortfolio),
+	rest.get(`${envConfig.serverEndPoint}/stock/market/status`, stockMock.checkIsMarketOpen),
 	rest.get(`${envConfig.serverEndPoint}/user/avatar`, userMock.getAvatar)
 ];
 
