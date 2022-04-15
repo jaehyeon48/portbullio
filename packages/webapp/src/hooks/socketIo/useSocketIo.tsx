@@ -18,6 +18,6 @@ export function SocketIoContextProvider({ children }: ProviderProps) {
 
 export function useSocketIo() {
 	const state = React.useContext(SocketIoContext);
-	if (state === null) throw new Error('Cannot find HoldingsTickersProvider');
+	if (state === null) throw new Error('Cannot find SocketIoContextProvider');
 	return state;
 }
