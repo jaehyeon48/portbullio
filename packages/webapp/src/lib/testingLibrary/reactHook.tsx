@@ -22,7 +22,7 @@ export const createHookQueryWrapper = () => {
 	return function ({ children }: { children: ReactNode }) {
 		return (
 			<QueryClientProvider client={queryClient}>
-				<ContextAPIProviders>{children}</ContextAPIProviders>
+				<ContextAPIProviders connectSocket={false}>{children}</ContextAPIProviders>
 			</QueryClientProvider>
 		);
 	};
