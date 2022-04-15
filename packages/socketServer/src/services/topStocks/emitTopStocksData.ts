@@ -22,6 +22,8 @@ export default async function emitTopStocksData(
 		cachedTopStocksData = topStocksData;
 	}
 
+	if (!cachedTopStocksData) return;
+
 	if (category === 'all') {
 		io.to(userId).emit('TOP_ACTIVES_DATA', (cachedTopStocksData as TopStocks).actives);
 		io.to(userId).emit('TOP_GAINERS_DATA', (cachedTopStocksData as TopStocks).gainers);
