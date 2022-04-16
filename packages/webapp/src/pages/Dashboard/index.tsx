@@ -4,7 +4,6 @@ import { DashboardContainer, PortfolioSelectContainer } from './styles';
 import ProfitLossAsset from './ProfitLossAsset/ProfitLossAsset';
 import ProportionByValue from './ProportionByValue';
 import SectorPieChart from './SectorPieChart';
-import DividendPieChart from './DividendPieChart';
 import AssetHistory from './AssetHistory';
 
 export default function Dashboard() {
@@ -31,7 +30,6 @@ export default function Dashboard() {
 				cashTransactions={cashTransactions.data ?? []}
 			/>
 			<SectorPieChart holdingsList={holdingsList.data ?? []} />
-			<DividendPieChart />
 			<AssetHistory />
 		</DashboardContainer>
 	);
