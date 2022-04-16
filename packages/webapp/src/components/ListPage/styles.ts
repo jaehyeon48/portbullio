@@ -18,13 +18,13 @@ const sectionStyle = css`
 
 export const UpperSection = styled.section<MaxWidthProps>`
 	${sectionStyle};
-	margin: 20px auto 0;
+	margin: 0 auto;
 	max-width: ${({ maxWidth }) => maxWidth ?? 'none'};
 `;
 
 export const LowerSection = styled.section<MaxWidthProps>`
 	${sectionStyle};
-	margin: 50px auto;
+	margin: 40px auto 20px;
 	max-width: ${({ maxWidth }) => maxWidth ?? 'none'};
 `;
 

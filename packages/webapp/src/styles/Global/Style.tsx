@@ -89,6 +89,9 @@ export default createGlobalStyle`
 		  rgba(9, 170, 160, 0.6) 100%
 	  );
     --openDetailsPageButtonColor: var(--gray);
+
+    /* Footer */
+    --footer-bg-color: hsla(var(--colorBaseBlueGray), 90%);
   }
 
   html[data-theme='dark'] {
@@ -152,6 +155,9 @@ export default createGlobalStyle`
 		  rgba(8, 117, 130, 1) 100%
 	  );
     --openDetailsPageButtonColor: var(--lightGray);
+
+    /* Footer */
+    --footer-bg-color: hsla(var(--colorBaseBlueGray), 18%);
   }
 
   body {
