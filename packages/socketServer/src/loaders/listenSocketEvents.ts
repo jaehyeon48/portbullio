@@ -33,6 +33,7 @@ export default function listenSocketEvents(
 		socket.on('disconnect', () => {
 			Services.unsubscribeRealtimeData(socket.id);
 			Services.unsubscribeMajorIndicesData(socket.id);
+			Services.unsubscribeMajorIndicesData(socket.id);
 		});
 	});
 }
