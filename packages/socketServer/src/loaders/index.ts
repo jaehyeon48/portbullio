@@ -1,5 +1,5 @@
 import { Server } from 'socket.io';
-import schedule from 'node-schedule';
+import dailySchedule from '@portbullio/library/src/dailySchedule';
 import * as Lib from '@lib/index';
 import {
 	ServerToClientEvents,
@@ -30,7 +30,7 @@ export default async function appLoader(
 
 	marketStatus.isMarketOpen = await Services.getCurrentMarketState();
 
-	schedule.scheduleJob('0 30 22 * * *', async () => {
+	dailySchedule('22:30:00', async () => {
 		const isMarketOpenNow = await Services.fetchIsMarketOpen();
 		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
 		marketStatus.isMarketOpen = isMarketOpenNow;
@@ -38,7 +38,7 @@ export default async function appLoader(
 		if (marketStatus.isMarketOpen) Services.updatePrice(marketStatus);
 	});
 
-	schedule.scheduleJob('0 0 5 * * *', async () => {
+	dailySchedule('05:00:00', async () => {
 		const isMarketOpenNow = await Services.fetchIsMarketOpen();
 		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
 		marketStatus.isMarketOpen = isMarketOpenNow;
