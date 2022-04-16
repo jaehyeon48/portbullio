@@ -17,12 +17,20 @@ export default function AvatarImagePicker() {
 	const deleteAvatarMutation = useDeleteAvatar();
 
 	useEffect(() => {
-		if (!newAvatarImage) return;
-		const fileReader = new FileReader();
-		fileReader.onload = () => {
-			setPreviewUrl(fileReader.result as string);
+		let shouldCancel = false;
+
+		if (newAvatarImage) {
+			const fileReader = new FileReader();
+			fileReader.onload = () => {
+				if (shouldCancel) return;
+				setPreviewUrl(fileReader.result as string);
+			};
+			fileReader.readAsDataURL(newAvatarImage);
+		}
+
+		return () => {
+			shouldCancel = true;
 		};
-		fileReader.readAsDataURL(newAvatarImage);
 	}, [newAvatarImage]);
 
 	function openFilePicker() {

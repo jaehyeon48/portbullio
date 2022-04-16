@@ -21,7 +21,12 @@ export default function SelectNumOfItems({
 	const numOfOptions = Math.min(numOfItems, maxNumOfOptions);
 
 	useEffect(() => {
-		setterFn(numOfOptions);
+		let shouldCancel = false;
+		if (!shouldCancel) setterFn(numOfOptions);
+
+		return () => {
+			shouldCancel = true;
+		};
 	}, [setterFn, numOfOptions]);
 
 	function handleChangeSelect(e: SyntheticEvent) {

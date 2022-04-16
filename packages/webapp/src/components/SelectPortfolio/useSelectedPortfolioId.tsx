@@ -17,7 +17,12 @@ export function SelectedPortfolioIdContextProvider({ children }: ProviderProps) 
 	);
 
 	React.useEffect(() => {
-		setSelectedPortfolioId(defaultPortfolioId.data ?? -1);
+		let shouldCancel = false;
+		if (!shouldCancel) setSelectedPortfolioId(defaultPortfolioId.data ?? -1);
+
+		return () => {
+			shouldCancel = true;
+		};
 	}, [defaultPortfolioId.data]);
 
 	const handleSelectedPortfolioId = React.useCallback((e: React.SyntheticEvent) => {
