@@ -92,6 +92,14 @@ export default createGlobalStyle`
 
     /* Footer */
     --footer-bg-color: hsla(var(--colorBaseBlueGray), 90%);
+
+    /* Skeleton */
+    --skeleton-gradient: linear-gradient(
+      90deg,
+      rgba(190, 190, 190, 0.4) 25%,
+      rgba(173, 170, 170, 0.65) 50%,
+      rgba(190, 190, 190, 0.4) 25%
+    )
   }
 
   html[data-theme='dark'] {
@@ -158,6 +166,14 @@ export default createGlobalStyle`
 
     /* Footer */
     --footer-bg-color: hsla(var(--colorBaseBlueGray), 18%);
+
+    /* Skeleton */
+    --skeleton-gradient: linear-gradient(
+      90deg,
+      rgba(190, 190, 190, 0.28) 25%,
+      rgba(173, 170, 170, 0.5) 50%,
+      rgba(190, 190, 190, 0.28) 25%
+    )
   }
 
   body {

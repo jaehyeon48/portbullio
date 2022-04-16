@@ -1,12 +1,15 @@
 import { RealtimeData } from '@portbullio/shared/src/types';
 import { formatCurrency, prefixPlusChar } from '@utils';
+import TopStocksSkeleton from './TopStocksSkeleton';
 import * as Style from './styles';
 
 interface Props {
-	stockList: RealtimeData[];
+	stockList: RealtimeData[] | undefined;
 }
 
 export default function TopStocks({ stockList }: Props) {
+	if (!stockList) return <TopStocksSkeleton />;
+
 	return (
 		<>
 			{stockList.map(({ ticker, changePercent, price }) => (

@@ -53,7 +53,7 @@ export default function Home() {
 						<span>거래량 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={topActives?.slice(0, 5) ?? []} />
+					<TopStocks stockList={topActives?.slice(0, 5)} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
@@ -61,7 +61,7 @@ export default function Home() {
 						<span>상승률 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={topGainers?.slice(0, 5) ?? []} />
+					<TopStocks stockList={topGainers?.slice(0, 5)} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
@@ -69,7 +69,7 @@ export default function Home() {
 						<span>하락률 상위</span>
 						<AngleRight />
 					</Style.TopStocksListHeader>
-					<TopStocks stockList={topLosers?.slice(0, 5) ?? []} />
+					<TopStocks stockList={topLosers?.slice(0, 5)} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 			</Style.Section>
