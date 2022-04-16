@@ -25,7 +25,6 @@ describe('Navbar layout', () => {
 		expect(screen.queryByRole('link', { name: /내 종목/ })).not.toBeInTheDocument();
 		expect(screen.queryByRole('link', { name: /내 포트폴리오/ })).not.toBeInTheDocument();
 		expect(screen.queryByRole('link', { name: /현금/ })).not.toBeInTheDocument();
-		expect(screen.queryByRole('link', { name: /배당/ })).not.toBeInTheDocument();
 		expect(screen.getByRole('button', { name: /로그인/ })).toBeInTheDocument();
 	});
 
@@ -40,7 +39,6 @@ describe('Navbar layout', () => {
 		expect(screen.getByRole('link', { name: /내 종목/ })).toBeInTheDocument();
 		expect(screen.getByRole('link', { name: /내 포트폴리오/ })).toBeInTheDocument();
 		expect(screen.getByRole('link', { name: /현금/ })).toBeInTheDocument();
-		expect(screen.getByRole('link', { name: /배당/ })).toBeInTheDocument();
 	});
 
 	test('Should render user profile button on authenticated state', () => {

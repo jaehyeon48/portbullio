@@ -80,10 +80,6 @@ export default function Navbar() {
 							<Icon.Coins />
 							<p>현금</p>
 						</Style.NavbarLink>
-						<Style.NavbarLink to="/dividend">
-							<Icon.CoinsOnHand />
-							<p>배당</p>
-						</Style.NavbarLink>
 					</>
 				)}
 			</Style.Middle>
