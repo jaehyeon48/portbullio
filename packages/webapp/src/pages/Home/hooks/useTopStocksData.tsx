@@ -21,13 +21,24 @@ export default function useTopStocksData(): TopStocksDataHookReturnValue {
 	const setTopLosers = TopStocksContext.useTopLosersUpdate();
 
 	useEffect(() => {
+		let shouldCancel = false;
 		socket.emit('REQ_ALL_TOP_STOCKS_DATA');
 		socket.emit('SUBSCRIBE_TOP_STOCKS_DATA', 'all');
-		socket.on('TOP_ACTIVES_DATA', data => setTopActives(data));
-		socket.on('TOP_GAINERS_DATA', data => setTopGainers(data));
-		socket.on('TOP_LOSERS_DATA', data => setTopLosers(data));
+		socket.on('TOP_ACTIVES_DATA', data => {
+			if (shouldCancel) return;
+			setTopActives(data);
+		});
+		socket.on('TOP_GAINERS_DATA', data => {
+			if (shouldCancel) return;
+			setTopGainers(data);
+		});
+		socket.on('TOP_LOSERS_DATA', data => {
+			if (shouldCancel) return;
+			setTopLosers(data);
+		});
 
 		return () => {
+			shouldCancel = true;
 			socket.emit('UNSUBSCRIBE_TOP_STOCKS_DATA');
 		};
 	}, [socket, setTopActives, setTopGainers, setTopLosers]);
