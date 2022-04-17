@@ -1,5 +1,5 @@
 import { IsMarketOpen, TopStocks } from '@portbullio/shared/src/types';
-import { eventEmitter } from '@lib/index';
+import Emitter from '@lib/eventEmitter';
 import * as Services from '@services/index';
 import { MAX_NUM_OF_REQ_TICKERS } from '@constants';
 
@@ -21,8 +21,9 @@ export default async function updatePrice(marketStatus: { isMarketOpen: IsMarket
 	await Services.saveRealtimeDataIntoDB(realtimeData);
 	if (allTopStocksData) await Services.saveTopStocksDataIntoDB(allTopStocksData as TopStocks);
 
-	eventEmitter.emit('BROADCAST_REALTIME_DATA');
-	eventEmitter.emit('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData);
-	if (allTopStocksData) eventEmitter.emit('BROADCAST_TOP_STOCKS_DATA');
+	Emitter.emit('BROADCAST_REALTIME_DATA');
+	Emitter.emit('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData);
+	if (allTopStocksData) Emitter.emit('BROADCAST_TOP_STOCKS_DATA');
+
 	setTimeout(updatePrice, REQUEST_PRICE_INTERVAL, marketStatus);
 }
