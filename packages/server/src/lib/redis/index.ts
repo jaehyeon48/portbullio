@@ -5,4 +5,4 @@ function reconnectStrategy(retries: number) {
 }
 
 export const sessionRedisClient = createClient({ socket: { reconnectStrategy } });
-export const marketStatusRedisClient = createClient({ socket: { reconnectStrategy }, database: 3 });
+export const marketStatusRedisClient = createClient({ socket: { reconnectStrategy }, database: 1 });
