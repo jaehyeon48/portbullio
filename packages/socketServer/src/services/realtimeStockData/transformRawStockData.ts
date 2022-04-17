@@ -3,8 +3,10 @@ import { RealtimeData } from '@portbullio/shared/src/types';
 import { RealtimeDataPerTicker, StockDataFromIEX } from '@types';
 
 export default function transformRawStockData(
-	rawData: AxiosResponse<RealtimeDataPerTicker<StockDataFromIEX>, any>[]
-): RealtimeData[] {
+	rawData: AxiosResponse<RealtimeDataPerTicker<StockDataFromIEX>, any>[] | null
+): RealtimeData[] | null {
+	if (!rawData) return null;
+
 	return rawData.flatMap(({ data }) =>
 		Object.keys(data).map(ticker => ({
 			ticker: data[ticker].quote.symbol,

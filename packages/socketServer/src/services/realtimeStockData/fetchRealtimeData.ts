@@ -1,22 +1,31 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosResponse, AxiosError } from 'axios';
 import envConfig from '@config';
 import { RealtimeDataFilterOptions, RealtimeDataPerTicker, StockDataFromIEX } from '@types';
+import logger from '@lib/winston';
 
 const { iexCloudBaseUrl, iexCloudApiKey } = envConfig;
 const requestPath = '/stock/market/batch';
 
-export default async function fetchRealtimeData(tickers: string[][]) {
+export default async function fetchRealtimeData(
+	tickers: string[][]
+): Promise<AxiosResponse<RealtimeDataPerTicker<StockDataFromIEX>, any>[] | null> {
 	const requestFilter = filter.join(',');
-	const result: AxiosResponse<RealtimeDataPerTicker<StockDataFromIEX>>[] = await Promise.all(
-		tickers.map(tickerGroup => {
-			const tickerParam = tickerGroup.map(ticker => encodeURIComponent(ticker)).join(',');
-			return axios.get(
-				`${iexCloudBaseUrl}${requestPath}?symbols=${tickerParam}&types=quote&filter=${requestFilter}&token=${iexCloudApiKey}`
-			);
-		})
-	);
+	try {
+		const result: AxiosResponse<RealtimeDataPerTicker<StockDataFromIEX>>[] = await Promise.all(
+			tickers.map(tickerGroup => {
+				const tickerParam = tickerGroup.map(ticker => encodeURIComponent(ticker)).join(',');
+				return axios.get(
+					`${iexCloudBaseUrl}${requestPath}?symbols=${tickerParam}&types=quote&filter=${requestFilter}&token=${iexCloudApiKey}`
+				);
+			})
+		);
 
-	return result;
+		return result;
+	} catch (error) {
+		const err = error as AxiosError;
+		logger.error(`fetchRealtimeData.ts: ${err.message}`);
+		return null;
+	}
 }
 
 const filter: (keyof RealtimeDataFilterOptions)[] = [

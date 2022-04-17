@@ -26,6 +26,8 @@ export default async function emitCachedData(
 		const tickers = groupTickersBy(MAX_NUM_OF_REQ_TICKERS, notCachedTickers);
 		const cachedRawData = await fetchRealtimeData(tickers);
 		const cachedData = transformRawStockData(cachedRawData);
+		if (!cachedData) return;
+
 		await saveRealtimeDataIntoDB(cachedData);
 	}
 
