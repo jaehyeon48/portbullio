@@ -14,6 +14,8 @@ export default async function emitMajorIndicesData(
 	let cachedMajorIndicesData = await MajorIndexService.getMajorIndicesDataFromDB();
 	if (!cachedMajorIndicesData) {
 		const majorIndicesData = await MajorIndexService.fetchMajorIndicesData();
+		if (!majorIndicesData) return;
+
 		await MajorIndexService.saveMajorIndicesDataIntoDB(majorIndicesData);
 		cachedMajorIndicesData = MajorIndexService.transformMajorIndexData(majorIndicesData);
 	}

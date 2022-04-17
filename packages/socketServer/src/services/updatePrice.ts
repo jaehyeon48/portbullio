@@ -17,12 +17,12 @@ export default async function updatePrice(marketStatus: { isMarketOpen: IsMarket
 	const realtimeRawData = await Services.fetchRealtimeData(tickers);
 	const realtimeData = Services.transformRawStockData(realtimeRawData);
 
-	await Services.saveMajorIndicesDataIntoDB(majorIndicesData);
+	if (majorIndicesData) await Services.saveMajorIndicesDataIntoDB(majorIndicesData);
 	await Services.saveRealtimeDataIntoDB(realtimeData);
 	if (allTopStocksData) await Services.saveTopStocksDataIntoDB(allTopStocksData as TopStocks);
 
 	Emitter.emit('BROADCAST_REALTIME_DATA');
-	Emitter.emit('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData);
+	if (majorIndicesData) Emitter.emit('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData);
 	if (allTopStocksData) Emitter.emit('BROADCAST_TOP_STOCKS_DATA');
 
 	setTimeout(updatePrice, REQUEST_PRICE_INTERVAL, marketStatus);
