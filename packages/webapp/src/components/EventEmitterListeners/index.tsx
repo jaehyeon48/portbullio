@@ -1,5 +1,4 @@
 import { ReactNode, useLayoutEffect } from 'react';
-import { LOG_OUT } from '@constants/index';
 import { useEmitter, useAuthUpdate } from '@hooks/index';
 
 interface Props {
@@ -14,10 +13,10 @@ export default function EventEmitterListeners({ children }: Props) {
 		function handleSetAuthToFalse() {
 			setAuth(false);
 		}
-		Emitter.on(LOG_OUT, handleSetAuthToFalse);
+		Emitter.on('LOG_OUT', handleSetAuthToFalse);
 
 		return () => {
-			Emitter.removeListener(LOG_OUT, handleSetAuthToFalse);
+			Emitter.removeListener('LOG_OUT', handleSetAuthToFalse);
 		};
 	}, [Emitter, setAuth]);
 

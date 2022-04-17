@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useEmitter } from '@hooks/index';
 import { useSelectedPortfolioId } from '@components/index';
 import { getHoldingsTickers } from '@utils';
-import { LOG_OUT } from '@constants/index';
 import { useRealtimeData } from '../realtimeData';
 import { useIsMarketOpen } from '../isMarketOpen';
 import { useHoldingsList } from '../ReactQuery';
@@ -49,10 +48,10 @@ export default function useSubscribeTickers() {
 			socket.emit('UNSUBSCRIBE_TOP_STOCKS_DATA');
 		}
 
-		Emitter.on(LOG_OUT, evtListener);
+		Emitter.on('LOG_OUT', evtListener);
 
 		return () => {
-			Emitter.off(LOG_OUT, evtListener);
+			Emitter.off('LOG_OUT', evtListener);
 		};
 	}, [socket, Emitter]);
 }
