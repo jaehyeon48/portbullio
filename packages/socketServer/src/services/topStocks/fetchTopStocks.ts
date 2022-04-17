@@ -38,7 +38,7 @@ async function fetchHelper(category: TopStockCategory): Promise<RealtimeData[]> 
 		}));
 	} catch (error) {
 		const err = error as AxiosError;
-		logger.error(`fetchTopStocks.js: ${err.message}`);
+		logger.error(`fetchTopStocks.ts: ${err.message}`);
 		return [];
 	}
 }
