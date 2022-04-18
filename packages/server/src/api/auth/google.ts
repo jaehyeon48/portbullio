@@ -1,6 +1,7 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { googleService, userService, sessionService, cookieService } from '@services/index';
 import envConfig from '@config';
+import logger from '@lib/winston';
 import { AxiosError } from 'axios';
 
 interface GoogleOAuthState {
@@ -48,6 +49,7 @@ export default (): express.Router => {
 			return;
 		} catch (error) {
 			const err = error as AxiosError;
+			logger.error(err.message);
 			res.redirect(
 				`${clientURL}/auth-error?code=${err.response?.status}&prevPath=${encodeURIComponent(
 					prevPath
