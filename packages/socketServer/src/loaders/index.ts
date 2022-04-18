@@ -45,14 +45,26 @@ export default async function appLoader(
 		Lib.logger.info('Checked Market Status');
 	});
 
-	Lib.realtimeStockDataRedisClient.on('error', err =>
-		Lib.logger.error('Price Redis Client Error', err)
-	);
-	Lib.realtimeStockDataSubscribersRedisClient.on('error', err =>
-		Lib.logger.error('User Redis Client Error', err)
-	);
 	Lib.marketStatusRedisClient.on('error', err =>
 		Lib.logger.error('Market Status Redis Client Error', err)
+	);
+	Lib.realtimeStockDataSubscribersRedisClient.on('error', err =>
+		Lib.logger.error('Realtime Stock Data Subscribers Redis Client Error', err)
+	);
+	Lib.majorIndicesDataSubscribersRedisClient.on('error', err =>
+		Lib.logger.error('Major Indices Data Subscribers Redis Client Error', err)
+	);
+	Lib.topStocksDataSubscribersRedisClient.on('error', err =>
+		Lib.logger.error('Top Stocks Data Subscribers Client Error', err)
+	);
+	Lib.realtimeStockDataRedisClient.on('error', err =>
+		Lib.logger.error('Realtime Stock Data Redis Client Error', err)
+	);
+	Lib.majorIndicesDataRedisClient.on('error', err =>
+		Lib.logger.error('Major Indices Data Redis Client Error', err)
+	);
+	Lib.topStocksDataRedisClient.on('error', err =>
+		Lib.logger.error('Top Stocks Data Redis Client Error', err)
 	);
 
 	listenSocketEvents(io);
