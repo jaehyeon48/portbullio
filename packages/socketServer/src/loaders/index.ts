@@ -42,7 +42,7 @@ export default async function appLoader(
 		const isMarketOpenNow = await Services.fetchIsMarketOpen();
 		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
 		marketStatus.isMarketOpen = isMarketOpenNow;
-		Lib.logger.info('Checked Market Status');
+		Lib.logger.info(`Checked Market Status. Current state: ${isMarketOpenNow ? 'open' : 'close'}`);
 	});
 
 	Lib.marketStatusRedisClient.on('error', err =>
