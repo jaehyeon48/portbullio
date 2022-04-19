@@ -10,7 +10,7 @@ import CashTransactionList from './CashTransactionList';
 import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
 
 export default function Cash() {
-	useTitle(`portbullio - 현금 거래내역`);
+	useTitle(`Portbullio - 현금 거래내역`);
 	const portfolioId = useSelectedPortfolioId();
 	const cashTransactions = useCashTransactionList(portfolioId);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions.data);

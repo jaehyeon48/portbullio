@@ -11,7 +11,7 @@ export default function Home() {
 	const majorIndicesData = useMajorIndicesData();
 	const { topActives, topGainers, topLosers } = useTopStocksData();
 
-	useTitle('portbullio');
+	useTitle('Portbullio');
 
 	return (
 		<>

@@ -2,7 +2,7 @@ import { useTitle } from '@hooks/Title';
 import * as Style from './style';
 
 export default function NotFound() {
-	useTitle('portbullio - 404 Notfound');
+	useTitle('Portbullio - 404 Notfound');
 
 	return (
 		<Style.Wrapper>

@@ -12,7 +12,7 @@ export default function Dashboard() {
 	const realtimeData = useRealtimeData();
 	const cashTransactions = useCashTransactionList(portfolioId);
 
-	useTitle(`portbullio - 대시보드`);
+	useTitle(`Portbullio - 대시보드`);
 	return (
 		<DashboardContainer>
 			<PortfolioSelectContainer>

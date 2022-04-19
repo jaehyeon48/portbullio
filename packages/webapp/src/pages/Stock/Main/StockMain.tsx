@@ -12,7 +12,7 @@ function isValidTicker() {
 export default function StockMain() {
 	const navigate = useNavigate();
 	const { ticker } = useParams() as { ticker: string };
-	useTitle(`portbullio - ${ticker}`);
+	useTitle(`Portbullio - ${ticker}`);
 
 	useEffect(() => {
 		if (!isValidTicker()) {

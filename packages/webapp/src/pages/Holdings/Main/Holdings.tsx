@@ -10,7 +10,7 @@ import HoldingsList from './HoldingsList';
 import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
 
 export default function Holdings() {
-	useTitle('portbullio - 내 종목');
+	useTitle('Portbullio - 내 종목');
 	const portfolioId = useSelectedPortfolioId();
 	const holdingsList = useHoldingsList(portfolioId);
 	const { openModal } = useModal();

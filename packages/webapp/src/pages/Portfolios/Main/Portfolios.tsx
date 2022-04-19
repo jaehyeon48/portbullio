@@ -8,7 +8,7 @@ import PortfolioList from './PortfolioList';
 import AddPortfolio from '../ModalPage/AddPortfolio';
 
 export default function Portfolios() {
-	useTitle('portbullio - 내 포트폴리오');
+	useTitle('Portbullio - 내 포트폴리오');
 	const portfolios = usePortfolioList();
 
 	const { openModal } = useModal();
