@@ -106,8 +106,7 @@ dist
 # etc
 .DS_Store
 
-public.pem
-private.pem
+*.pem
 
 packages/session
 
