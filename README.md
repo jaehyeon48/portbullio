@@ -1,24 +1,8 @@
 # Portbullio
 
-## Project Stack
+## 주요 기술 스택
 
-### Frontend
-
-- React
-- React Query
-- React Router
-- Recoil
-- TypeScript
-- styled-components
-
-### Backend
-
-- Node.js
-- Express.js
-- TypeScript
-- Prisma
-- MySQL
-- AWS
+![Major Skill Sets](./images/major_skill_sets.png)
 
 ## 앱 아키텍처
 
