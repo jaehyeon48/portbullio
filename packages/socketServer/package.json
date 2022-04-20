@@ -8,6 +8,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "SET NODE_ENV=development && nodemon -r tsconfig-paths/register ./src/index.ts",
+    "prod": "NODE_ENV=production && nodemon -r tsconfig-paths/register ./src/index.ts",
     "build": "tsc -p .",
     "test": "jest --env=jsdom --watchAll",
     "format": "prettier --check ./src",
