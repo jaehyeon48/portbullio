@@ -19,6 +19,6 @@ export default async function expressLoader({ app }: LoaderProps) {
 	app.use(morgan(formatMorgan));
 	app.use(express.json());
 	app.use(cookieParser());
-	app.use('/api', api());
+	app.use('/', api());
 	app.use(errorHandler);
 }
