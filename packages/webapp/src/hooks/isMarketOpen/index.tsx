@@ -1,13 +1,12 @@
 import * as React from 'react';
 import axios from 'axios';
 import { checkIsMarketOpen } from '@api/stock';
-import { IsMarketOpen } from '@portbullio/shared/src/types';
 
 interface ProviderProps {
 	children: React.ReactNode;
 }
 
-type IsMarketOpenContextType = IsMarketOpen | 'loading';
+type IsMarketOpenContextType = boolean | 'loading';
 type IsMarketOpenUpdater = React.Dispatch<React.SetStateAction<IsMarketOpenContextType>>;
 
 const IsMarketOpenContext = React.createContext<IsMarketOpenContextType | null>(null);

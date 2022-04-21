@@ -1,5 +1,4 @@
 import axios, { AxiosError } from 'axios';
-import { IsMarketOpen } from '@portbullio/shared/src/types';
 import logger from '@lib/winston';
 import envConfig from '@config';
 
@@ -9,7 +8,7 @@ interface IsMarketOpenRes {
 	};
 }
 
-export default async function fetchIsMarketOpen(): Promise<IsMarketOpen> {
+export default async function fetchIsMarketOpen(): Promise<boolean> {
 	try {
 		const { data }: IsMarketOpenRes = await axios.get(
 			`https://cloud.iexapis.com/stable/stock/TSLA/quote?filter=isUSMarketOpen&token=${envConfig.iexCloudApiKey}`

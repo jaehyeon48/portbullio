@@ -1,9 +1,8 @@
 import axios, { CancelToken } from 'axios';
 import envConfig from '@configs/env';
-import { IsMarketOpen } from '@portbullio/shared/src/types';
 
 interface GetMarketStatusRes {
-	data: IsMarketOpen;
+	data: boolean;
 }
 
 export default async function checkIsMarketOpen(cancelToken?: CancelToken) {

@@ -5,13 +5,12 @@ import {
 	ServerToClientEvents,
 	ClientToServerEvents,
 	InterServerEvents,
-	SocketData,
-	IsMarketOpen
+	SocketData
 } from '@portbullio/shared/src/types';
 import * as Services from '@services/index';
 import listenSocketEvents from './listenSocketEvents';
 
-const marketStatus: { isMarketOpen: IsMarketOpen } = { isMarketOpen: false };
+const marketStatus: { isMarketOpen: boolean } = { isMarketOpen: false };
 
 export default async function appLoader(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>

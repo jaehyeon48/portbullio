@@ -47,8 +47,6 @@ export interface InterServerEvents {}
 
 export interface SocketData {}
 
-export type IsMarketOpen = boolean;
-
 export interface MajorIndices {
 	DJI: RealtimeDataProperties;
 	GSPC: RealtimeDataProperties;
