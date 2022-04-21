@@ -51,6 +51,7 @@ export default function TextInput({
 				readOnly={readOnly}
 				isError={handleError()}
 				placeholder={placeholder}
+				autoComplete="off"
 			/>
 			<Style.TextInputLabel htmlFor={htmlFor} isError={handleError()}>
 				{labelName}
