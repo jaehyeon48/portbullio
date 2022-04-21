@@ -1,4 +1,4 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent, useEffect, useState } from 'react';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
 import { PortfolioPrivacy } from '@prisma/client';
 import { TextInput } from '@components/Form';
@@ -15,15 +15,17 @@ interface Props {
 export default function AddPortfolio({ closeFunction }: Props) {
 	const [newName, setNewName] = useState('');
 	const [privacy, setPrivacy] = useState<PortfolioPrivacy>('public');
+	const [isNameLengthOverflow, setIsNameLengthOverflow] = useState(false);
 	const createPortfolioMutation = useCreatePortfolio();
+
+	useEffect(() => {
+		if (newName.length <= MAX_PORTFOLIO_NAME_LENGTH) setIsNameLengthOverflow(false);
+		else setIsNameLengthOverflow(true);
+	}, [newName]);
 
 	function handleChangeNewName(e: SyntheticEvent) {
 		const target = e.target as HTMLInputElement;
 		setNewName(target.value);
-	}
-
-	function isInvalidName() {
-		return newName.length > MAX_PORTFOLIO_NAME_LENGTH;
 	}
 
 	function handleChangePrivacy(e: SyntheticEvent) {
@@ -39,8 +41,8 @@ export default function AddPortfolio({ closeFunction }: Props) {
 			return;
 		}
 
-		if (isInvalidName()) {
-			toast.error({ message: '포트폴리오 이름은 20자 이하이어야 합니다.' });
+		if (isNameLengthOverflow) {
+			toast.error({ message: '포트폴리오 이름은 20자 이하여야 합니다.' });
 			return;
 		}
 
@@ -66,9 +68,12 @@ export default function AddPortfolio({ closeFunction }: Props) {
 					placeholder="새 포트폴리오 이름"
 					value={newName}
 					handleChange={handleChangeNewName}
-					errorLabel="이름은 20자 이하여야 합니다."
-					isError={isInvalidName}
+					errorLabel="*이름은 20자 이하여야 합니다."
+					isError={isNameLengthOverflow}
 				/>
+				{!isNameLengthOverflow && (
+					<Style.MaxLengthNotice>*이름은 최대 20자까지 가능합니다.</Style.MaxLengthNotice>
+				)}
 				<Style.RadioInputContainer>
 					<Style.RadioInput
 						id="privacy-public"

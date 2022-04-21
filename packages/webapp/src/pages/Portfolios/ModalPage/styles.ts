@@ -7,6 +7,7 @@ export const Container = styled.div`
 `;
 
 export const Form = styled.form`
+	position: relative;
 	width: 100%;
 	& > div {
 		width: 100%;
@@ -92,4 +93,10 @@ export const DeletePortfolioButton = styled.button`
 	${buttonMixin};
 	${DeleteConfirmButtonStyle};
 	background-color: var(--deepRed);
+`;
+
+export const MaxLengthNotice = styled.small`
+	position: absolute;
+	top: 61px;
+	font-size: 12px;
 `;

@@ -23,6 +23,16 @@ describe('Add portfolio page layout', () => {
 		expect(screen.getByPlaceholderText('새 포트폴리오 이름')).toBeInTheDocument();
 	});
 
+	test('Should have a max portfolio name length notice', () => {
+		render(
+			<CustomWrapper>
+				<AddPortfolioPage />
+			</CustomWrapper>
+		);
+
+		expect(screen.getByText('*이름은 최대 20자까지 가능합니다.')).toBeInTheDocument();
+	});
+
 	test('Should have select privacy radio inputs', () => {
 		render(
 			<CustomWrapper>
