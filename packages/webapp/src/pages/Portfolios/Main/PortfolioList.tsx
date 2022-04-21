@@ -3,7 +3,6 @@ import { PortfolioPrivacy, Portfolio } from '@prisma/client';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { useModal, useDefaultPortfolioId } from '@hooks/index';
-import { formatCurrency } from '@utils';
 import toast from '@lib/toast';
 import * as Style from './styles';
 import SetDefaultButton from './SetDefaultButton';
@@ -84,7 +83,6 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 							변경
 						</Style.TogglePrivacyButton>
 					</Style.PortfolioPrivacySection>
-					<Style.PortfolioAssetSection>{formatCurrency(123456, 'usd')}</Style.PortfolioAssetSection>
 					<Style.PortfolioActionSection>
 						<SetDefaultButton
 							defaultPortfolioId={defaultPortfolioId.data}

@@ -18,10 +18,6 @@ export const PortfolioPrivacySection = styled.div`
 	min-width: 160px;
 `;
 
-export const PortfolioAssetSection = styled.div`
-	min-width: 240px;
-`;
-
 export const PortfolioActionSection = styled.div`
 	display: flex;
 	align-items: center;

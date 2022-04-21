@@ -43,7 +43,6 @@ export default function Portfolios() {
 					<ListPage.ListHeaderContainer>
 						<Style.PortfolioNameSection>이름</Style.PortfolioNameSection>
 						<Style.PortfolioPrivacySection>공개 여부</Style.PortfolioPrivacySection>
-						<Style.PortfolioAssetSection>총 자산</Style.PortfolioAssetSection>
 					</ListPage.ListHeaderContainer>
 					<ListQueryErrorBoundary
 						errorMessage="에러가 발생했습니다."

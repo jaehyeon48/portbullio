@@ -62,6 +62,5 @@ describe('Portfolio main page layout', () => {
 
 		expect(screen.getByText(/이름/)).toBeInTheDocument();
 		expect(screen.getByText(/공개 여부/)).toBeInTheDocument();
-		expect(screen.getByText(/총 자산/)).toBeInTheDocument();
 	});
 });
