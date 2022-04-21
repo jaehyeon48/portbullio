@@ -1,11 +1,12 @@
 import { TopStocks } from '@portbullio/shared/src/types';
 import Emitter from '@lib/eventEmitter';
 import * as Services from '@services/index';
+import { MarketStatus } from '@types';
 import { MAX_NUM_OF_REQ_TICKERS } from '@constants';
 
 const REQUEST_PRICE_INTERVAL = 5000;
 
-export default async function updatePrice(marketStatus: { isMarketOpen: boolean }) {
+export default async function updatePrice(marketStatus: MarketStatus) {
 	if (!marketStatus.isMarketOpen) return;
 	const majorIndicesData = await Services.fetchMajorIndicesData();
 	const allTopStocksData = await Services.fetchTopStocks('all');

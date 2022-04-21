@@ -102,3 +102,7 @@ export interface FMPTopStockData {
 	price: number;
 	changesPercentage: number;
 }
+
+export interface MarketStatus {
+	isMarketOpen: boolean;
+}
