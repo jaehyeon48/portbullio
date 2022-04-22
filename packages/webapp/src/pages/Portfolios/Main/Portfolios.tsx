@@ -38,7 +38,7 @@ export default function Portfolios() {
 					<Icon.Search width={26} height={26} />
 				</ListPage.SearchInputContainer>
 			</ListPage.UpperSection>
-			<ListPage.LowerSection maxWidth="1200px">
+			<ListPage.LowerSection maxWidth="1050px">
 				<ListPage.ListContainer>
 					<ListPage.ListHeaderContainer>
 						<Style.PortfolioNameSection>이름</Style.PortfolioNameSection>

@@ -47,8 +47,7 @@ export default function SetDefaultButton({
 
 	function buttonText() {
 		if (isError) return '재시도';
-		if (defaultPortfolioId) return '기본 포트폴리오';
-		return '기본으로 설정';
+		return portfolioId === defaultPortfolioId ? '기본 포트폴리오' : '기본으로 설정하기';
 	}
 
 	return (

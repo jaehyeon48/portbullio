@@ -9,13 +9,13 @@ interface SetDefaultButtonProps {
 }
 
 export const PortfolioNameSection = styled.div`
-	min-width: 220px;
+	min-width: 310px;
 `;
 
 export const PortfolioPrivacySection = styled.div`
 	display: flex;
 	align-items: center;
-	min-width: 160px;
+	min-width: 190px;
 `;
 
 export const PortfolioActionSection = styled.div`
@@ -38,7 +38,7 @@ export const DefaultPortfolioButton = styled.button<SetDefaultButtonProps>`
 	color: ${({ isDefault }) => (isDefault ? 'var(--primary)' : 'var(--gray)')};
 	color: ${({ isError }) => isError && 'var(--deepRed)'};
 	text-decoration: ${({ isError }) => (isError ? 'underline' : '')};
-	min-width: 170px;
+	min-width: 220px;
 `;
 
 export const DefaultPortfolioRetryButton = styled.button`
