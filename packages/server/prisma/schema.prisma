@@ -20,6 +20,7 @@ model User {
   favoriteStock     FavoriteStock[]
   portfolio         Portfolio[]
   userAuthId        UserAuthId[]
+  dailyAssetRecord  DailyAssetRecord[]
 
   @@map("user")
 }
@@ -44,6 +45,7 @@ model Portfolio {
   cashTransactionLog  CashTransactionLog[]
   defaultPortfolio    DefaultPortfolio[]
   stockTransactionLog StockTransactionLog[]
+  dailyAssetRecord    DailyAssetRecord[]
 
   @@map("portfolio")
   @@index([userId], map: "user_id_idx")
@@ -107,6 +109,19 @@ model StockMeta {
 
   @@map("stock_meta")
   @@index([name], map: "stock_meta_name_index")
+}
+
+model DailyAssetRecord {
+  id           Int       @id @default(autoincrement()) @map("daily_record_id")
+  userId       Int       @map("user_id")
+  portfolioId  Int       @map("portfolio_id")
+  totalAsset   Float     @map("total_asset")
+  dailyReturn  Float     @map("daily_return")
+  createdAt    DateTime  @default(now()) @db.Timestamp(0) @map("created_at")
+  user         User      @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_daily_asset_record_user_user_id")
+  portfolio    Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade, map: "fk_daily_asset_record_portfolio_portfolio_id")
+
+  @@map("daily_asset_record")
 }
 
 enum UserAuthType {
