@@ -39,10 +39,9 @@ export default async function appLoader(
 	});
 
 	dailySchedule('05:00:00', async () => {
-		const isMarketOpenNow = await Services.fetchIsMarketOpen();
-		await Lib.marketStatusRedisClient.set('isMarketOpen', String(isMarketOpenNow));
-		marketStatus.isMarketOpen = isMarketOpenNow;
-		Lib.logger.info(`Checked Market Status. Current state: ${isMarketOpenNow ? 'open' : 'close'}`);
+		await Lib.marketStatusRedisClient.set('isMarketOpen', 'false');
+		marketStatus.isMarketOpen = false;
+		Lib.logger.info(`Modified market status to 'closed'`);
 	});
 
 	Lib.marketStatusRedisClient.on('error', err =>
