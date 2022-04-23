@@ -12,6 +12,7 @@ if (envFound.error) {
 export default {
 	port: Number(process.env.PORT),
 	redisHost: process.env.REDIS_HOST,
+	socketServerUrl: process.env.SOCKET_SERVER_URL,
 	origin: process.env.ORIGIN,
 	sessionIdTTLInSec: Number(process.env.SESSION_ID_TTL_IN_SEC),
 	maxCookieAge: process.env.MAX_COOKIE_AGE,
