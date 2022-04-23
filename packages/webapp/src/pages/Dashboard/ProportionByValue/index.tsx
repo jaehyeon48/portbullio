@@ -28,7 +28,6 @@ interface Props {
 export default function ProportionByValue({ holdingsList, realtimeData, cashTransactions }: Props) {
 	const [theme] = useThemeMode();
 	const barCanvasRef = useRef<HTMLCanvasElement>(null);
-	const barTooltipCanvasRef = useRef<HTMLCanvasElement>(null);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions);
 	const [numOfBars, setNumOfBars] = useState(Math.min(holdingsList.length + 1, MAX_NUM_OF_BARS));
 	const originalBarData = transformToBarData(realtimeData, holdingsList, cashTransactions);
@@ -70,14 +69,6 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 
 		drawBars({ ctx, theme, barData: barGeometries, canvasHeight });
 	}, [maxRatio, theme, barData, numOfBars]);
-
-	useEffect(() => {
-		if (!barTooltipCanvasRef.current) return;
-		const barTooltipCanvas = barTooltipCanvasRef.current;
-		const ctx = barTooltipCanvas.getContext('2d');
-		if (!ctx) return;
-		adjustToDpr(ctx, barTooltipCanvas);
-	}, [numOfBars]);
 
 	function isHoldingsEmpty() {
 		return numOfBars === 1 && totalCashAmount <= 0;
