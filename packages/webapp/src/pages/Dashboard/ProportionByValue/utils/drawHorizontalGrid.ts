@@ -23,7 +23,7 @@ export default function drawHorizontalGrid({
 	canvasWidth,
 	canvasHeight
 }: Props) {
-	const HORIZONTAL_GRID_GAP = Math.round(maxValue / NUM_OF_HORIZONTAL_GRID);
+	const HORIZONTAL_GRID_GAP = Math.round(maxValue / (NUM_OF_HORIZONTAL_GRID - 1));
 	const legendXPos = Y_AXIS_MARGIN - Y_AXIS_LEGEND_GAP;
 	ctx.lineWidth = HORIZONTAL_GRID_THICKNESS;
 	ctx.font = 'bold 14px NotoSansKR';
@@ -33,10 +33,13 @@ export default function drawHorizontalGrid({
 	ctx.fillStyle = textColor(theme);
 	ctx.fillText('0%', legendXPos, yPos({ canvasHeight, value: 0, maxValue }));
 	ctx.beginPath();
-	for (let gridVal = HORIZONTAL_GRID_GAP; gridVal < maxValue; gridVal += HORIZONTAL_GRID_GAP) {
+
+	let gridVal = HORIZONTAL_GRID_GAP;
+	for (let i = 0; i < NUM_OF_HORIZONTAL_GRID; i++) {
 		ctx.moveTo(Y_AXIS_MARGIN, yPos({ canvasHeight, value: gridVal, maxValue }));
 		ctx.lineTo(canvasWidth, yPos({ canvasHeight, value: gridVal, maxValue }));
 		ctx.fillText(`${gridVal}%`, legendXPos, yPos({ canvasHeight, value: gridVal, maxValue }));
+		gridVal += HORIZONTAL_GRID_GAP;
 	}
 	ctx.stroke();
 }
