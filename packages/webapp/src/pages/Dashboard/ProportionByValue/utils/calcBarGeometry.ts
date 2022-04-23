@@ -1,5 +1,5 @@
 import { HoldingsRatio } from '@types';
-import yPos from './yPos';
+import yPos from './appliedYPos';
 import { AXIS_THICKNESS, Y_AXIS_MARGIN, DEFAULT_GAP_BTW_BARS, MAX_BAR_WIDTH } from '../constants';
 
 interface Props {
@@ -27,9 +27,13 @@ export default function calcBarGeometry({
 		gapBtwBars = (canvasWidth - Y_AXIS_MARGIN - barWidth * numOfBars) / (numOfBars + 1);
 	}
 
-	const barBottomYPos = yPos(0, maxValue, canvasHeight - AXIS_THICKNESS);
+	const barBottomYPos = yPos({
+		canvasHeight: canvasHeight - AXIS_THICKNESS,
+		value: 0,
+		maxValue
+	});
 	return barData.map(({ ticker, ratio, value }, i) => {
-		const barYPos = yPos(ratio, maxValue, canvasHeight);
+		const barYPos = yPos({ canvasHeight, value: ratio, maxValue });
 		return {
 			x: Y_AXIS_MARGIN + gapBtwBars * (i + 1) + barWidth * i,
 			y: barYPos,

@@ -1,4 +1,4 @@
-export { default as yPos } from './yPos';
+export { default as yPos } from './appliedYPos';
 export { default as drawAxis } from './drawAxis';
 export { default as drawHorizontalGrid } from './drawHorizontalGrid';
 export { default as drawBars } from './drawBars';

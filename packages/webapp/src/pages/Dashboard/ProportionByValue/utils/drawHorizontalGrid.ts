@@ -6,7 +6,7 @@ import {
 	HORIZONTAL_GRID_THICKNESS
 } from '../constants';
 import { textColor, horizontalGridColor } from '../../colors';
-import yPos from './yPos';
+import yPos from './appliedYPos';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;
@@ -31,12 +31,12 @@ export default function drawHorizontalGrid({
 	ctx.textBaseline = 'middle';
 	ctx.textAlign = 'right';
 	ctx.fillStyle = textColor(theme);
-	ctx.fillText('0%', legendXPos, yPos(0, maxValue, canvasHeight));
+	ctx.fillText('0%', legendXPos, yPos({ canvasHeight, value: 0, maxValue }));
 	ctx.beginPath();
 	for (let gridVal = HORIZONTAL_GRID_GAP; gridVal < maxValue; gridVal += HORIZONTAL_GRID_GAP) {
-		ctx.moveTo(Y_AXIS_MARGIN, yPos(gridVal, maxValue, canvasHeight));
-		ctx.lineTo(canvasWidth, yPos(gridVal, maxValue, canvasHeight));
-		ctx.fillText(`${gridVal}%`, legendXPos, yPos(gridVal, maxValue, canvasHeight));
+		ctx.moveTo(Y_AXIS_MARGIN, yPos({ canvasHeight, value: gridVal, maxValue }));
+		ctx.lineTo(canvasWidth, yPos({ canvasHeight, value: gridVal, maxValue }));
+		ctx.fillText(`${gridVal}%`, legendXPos, yPos({ canvasHeight, value: gridVal, maxValue }));
 	}
 	ctx.stroke();
 }
