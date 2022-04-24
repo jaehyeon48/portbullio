@@ -58,3 +58,12 @@ export interface SectorPieChartRatio {
 	ratio: number;
 	includedStocks: string[];
 }
+
+export interface AssetChartData {
+	id: number;
+	userId: number;
+	portfolioId: number;
+	totalAsset: number;
+	dailyReturn: number;
+	createdAt: string;
+}

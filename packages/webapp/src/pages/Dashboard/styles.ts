@@ -9,7 +9,6 @@ interface ItemIconBgColorProp {
 export const ITEM_UPPER_LOWER_PADDING_PX = 8;
 const PROFIT_LOSS_ASSET_ITEM_HEIGHT_PX = 134;
 const PIE_CHART_CONTAINER_HEIGHT_PX = 400;
-const ASSET_HISTORY_CONTAINER_HEIGHT_PX = 420;
 export const CANVAS_PADDING_PX = 10;
 
 export const DashboardContainer = styled.div`
@@ -93,11 +92,6 @@ export const ProfitLossAssetPercent = styled.div`
 export const DividendPieChartContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
 	height: ${PIE_CHART_CONTAINER_HEIGHT_PX}px;
-`;
-
-export const AssetHistoryContainer = styled(Card)`
-	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	height: ${ASSET_HISTORY_CONTAINER_HEIGHT_PX}px;
 `;
 
 export const SelectNumOfItemsContainer = styled.div`

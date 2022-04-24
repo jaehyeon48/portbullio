@@ -30,7 +30,7 @@ export default function Dashboard() {
 				cashTransactions={cashTransactions.data ?? []}
 			/>
 			<SectorPieChart holdingsList={holdingsList.data ?? []} />
-			<AssetHistory />
+			<AssetHistory portfolioId={portfolioId} />
 		</DashboardContainer>
 	);
 }
