@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
+import { Outlet, Navigate, useLocation } from 'react-router-dom';
+import useCheckSession from '@hooks/checkSession';
 
 interface Props {
 	isAllowed: boolean;
@@ -12,6 +13,9 @@ export default function PrivateRoute({
 	fallbackUrl = '/',
 	children
 }: Props): ReactElement {
+	const location = useLocation();
+	useCheckSession({ requireLoginMessage: true, routePath: location.pathname });
+
 	if (!isAllowed) {
 		return <Navigate to={fallbackUrl} replace />;
 	}

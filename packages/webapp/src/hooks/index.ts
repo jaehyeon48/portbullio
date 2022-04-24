@@ -8,3 +8,4 @@ export * from './Title';
 export * from './socketIo';
 export * from './realtimeData';
 export * from './isMarketOpen';
+export { default as useCheckSession } from './checkSession';

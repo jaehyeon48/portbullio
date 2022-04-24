@@ -1,13 +1,11 @@
-import { ReactElement, useLayoutEffect } from 'react';
+import { ReactElement } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
 import { EventEmitterListeners, PrivateRoute } from '@components/index';
-import { checkAuth } from '@api/auth';
-import toast from '@lib/toast';
 import {
+	useCheckSession,
 	useAuth,
-	useAuthUpdate,
 	useThemeMode,
 	useSocketListeners,
 	useSubscribeTickers,
@@ -15,30 +13,17 @@ import {
 } from '@hooks/index';
 
 function App(): ReactElement {
+	useCheckSession({ routePath: '/' });
 	useSocketListeners();
 	useSubscribeTickers();
 	useThemeMode();
 	const isAuthenticated = useAuth();
-	const setAuth = useAuthUpdate();
 	const navigate = useNavigate();
 	const Emitter = useEmitter();
 
 	Emitter.on('LOG_OUT', path => {
 		if (path === '/welcome') navigate('/', { replace: true });
 	});
-
-	useLayoutEffect(() => {
-		async function tryLogIn() {
-			const { userId, isInitialLogin } = await checkAuth();
-
-			setAuth(!!userId);
-			if (isInitialLogin) {
-				toast.success({ message: '성공적으로 로그인 되었습니다.' });
-			}
-		}
-
-		tryLogIn();
-	}, [setAuth]);
 
 	return (
 		<EventEmitterListeners>
