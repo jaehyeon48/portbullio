@@ -1,4 +1,5 @@
 import { SyntheticEvent } from 'react';
+import { useLocation } from 'react-router-dom';
 import { CloseModalFn } from '@types';
 import { logOut } from '@api/auth';
 import { useEmitter } from '@hooks/index';
@@ -10,6 +11,7 @@ interface Props {
 }
 
 export default function Logout({ closeFunction }: Props) {
+	const location = useLocation();
 	const Emitter = useEmitter();
 
 	async function handleLogOut(e: SyntheticEvent) {
@@ -18,7 +20,8 @@ export default function Logout({ closeFunction }: Props) {
 			toast.error({ message: '로그아웃에 실패했습니다. 다시 시도해 주세요.' });
 			return;
 		}
-		Emitter.emit('LOG_OUT');
+		Emitter.emit('LOG_OUT', location.pathname);
+
 		toast.success({ message: '성공적으로 로그아웃 되었습니다.' });
 		closeFunction!(e, false);
 	}

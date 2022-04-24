@@ -1,5 +1,5 @@
 import { ReactElement, useLayoutEffect } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useNavigate } from 'react-router-dom';
 import * as Global from '@styles/Global';
 import * as Page from '@pages/index';
 import { EventEmitterListeners, PrivateRoute } from '@components/index';
@@ -10,7 +10,8 @@ import {
 	useAuthUpdate,
 	useThemeMode,
 	useSocketListeners,
-	useSubscribeTickers
+	useSubscribeTickers,
+	useEmitter
 } from '@hooks/index';
 
 function App(): ReactElement {
@@ -19,6 +20,12 @@ function App(): ReactElement {
 	useThemeMode();
 	const isAuthenticated = useAuth();
 	const setAuth = useAuthUpdate();
+	const navigate = useNavigate();
+	const Emitter = useEmitter();
+
+	Emitter.on('LOG_OUT', path => {
+		if (path === '/welcome') navigate('/', { replace: true });
+	});
 
 	useLayoutEffect(() => {
 		async function tryLogIn() {
