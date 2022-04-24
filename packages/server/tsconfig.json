@@ -53,6 +53,6 @@
     "src/**/*"
   ],
   "exclude": [
-    "src/worker"
+    "src/worker/*"
   ]
 }
