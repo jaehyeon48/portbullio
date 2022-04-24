@@ -19,7 +19,7 @@ export default merge(common, {
 	},
 	plugins: [
 		new DotenvWebpackPlugin({
-			path: path.resolve(dirname(fileURLToPath(import.meta.url)), '.env')
+			path: path.resolve(dirname(fileURLToPath(import.meta.url)), '.dev.env')
 		})
 	]
 });
