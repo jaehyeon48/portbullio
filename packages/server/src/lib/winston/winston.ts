@@ -34,12 +34,10 @@ const logger = createLogger({
 	transports
 });
 
-if (process.env.NODE_ENV !== 'production') {
-	logger.add(
-		new winston.transports.Console({
-			format: combine(winston.format.colorize(), winston.format.simple())
-		})
-	);
-}
+logger.add(
+	new winston.transports.Console({
+		format: combine(winston.format.colorize(), winston.format.simple())
+	})
+);
 
 export default logger;
