@@ -8,7 +8,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "SET NODE_ENV=development && nodemon -r tsconfig-paths/register ./src/index.ts",
-    "prod": "NODE_ENV=production && nodemon -r tsconfig-paths/register ./src/index.ts",
+    "prod": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
     "build": "tsc -p .",
     "test": "jest --env=jsdom --watchAll",
     "format": "prettier --check ./src",
@@ -18,17 +18,17 @@
     "precommit": "npm run format:fix && npm run lint:fix"
   },
   "dependencies": {
+    "@types/node": "^17.0.25",
+    "dotenv": "^16.0.0",
     "redis": "^4.0.4",
     "socket.io": "^4.4.1",
+    "ts-node": "^10.7.0",
+    "tsconfig-paths": "^3.14.1",
     "winston": "^3.6.0",
     "winston-daily-rotate-file": "^4.6.1"
   },
   "devDependencies": {
-    "@types/node": "^17.0.23",
-    "dotenv": "^16.0.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "nodemon": "^2.0.15",
-    "ts-node": "^10.7.0",
-    "tsconfig-paths": "^3.14.1"
+    "nodemon": "^2.0.15"
   }
 }

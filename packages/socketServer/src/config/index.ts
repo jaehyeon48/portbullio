@@ -2,8 +2,8 @@ import { join } from 'path';
 import dotenv from 'dotenv';
 import logger from '@lib/winston';
 
-process.env.NODE_ENV = process.env.NODE_ENV ?? 'development';
-const envFileName = process.env.NODE_ENV === 'production' ? '.env' : '.dev.env';
+process.env.NODE_ENV = process.env.NODE_ENV ?? 'production';
+const envFileName = process.env.NODE_ENV.trim() === 'production' ? '.env' : '.dev.env';
 
 const envFound = dotenv.config({ path: join(__dirname, '..', '..', envFileName) });
 if (envFound.error) {
