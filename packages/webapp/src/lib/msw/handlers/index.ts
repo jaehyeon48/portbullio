@@ -20,7 +20,8 @@ const handlers = [
 	rest.delete(`${envConfig.apiServerUrl}/portfolios/1`, portfolioMock.deletePortfolio),
 	rest.get(`${envConfig.apiServerUrl}/stock/market/status`, stockMock.checkIsMarketOpen),
 	rest.get(`${envConfig.apiServerUrl}/symbol/sectors`, symbolMock.getSectors),
-	rest.get(`${envConfig.apiServerUrl}/user/avatar`, userMock.getAvatar)
+	rest.get(`${envConfig.apiServerUrl}/user/avatar`, userMock.getAvatar),
+	rest.get(`${envConfig.apiServerUrl}/user/info`, userMock.getUserInfo)
 ];
 
 export default handlers;
