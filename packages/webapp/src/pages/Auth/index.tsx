@@ -6,13 +6,13 @@ import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
 import { Google as GoogleIcon, Naver as NaverIcon, Kakao as KakaoIcon } from '@components/index';
 import * as Style from './styles';
 
-const { baseRedirectURI, google, naver } = envConfig.oauth;
+const { baseRedirectUrl, google, naver } = envConfig.oauth;
 
-const googleOAuthURL = `${google.endPoint}?client_id=${google.clientId}&redirect_uri=${baseRedirectURI}/google/callback&response_type=code&scope=${google.scope}`;
+const googleOAuthURL = `${google.endPoint}?client_id=${google.clientId}&redirect_uri=${baseRedirectUrl}/google/callback&response_type=code&scope=${google.scope}`;
 
 const naverOAuthURL = `${naver.baseUrl}?client_id=${
 	naver.clientId
-}&redirect_uri=${baseRedirectURI}/naver/callback&response_type=code&state=${encodeURIComponent(
+}&redirect_uri=${baseRedirectUrl}/naver/callback&response_type=code&state=${encodeURIComponent(
 	naver.state!
 )}`;
 

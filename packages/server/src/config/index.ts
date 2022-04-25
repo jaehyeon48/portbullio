@@ -19,7 +19,7 @@ export default {
 	sessionIdTTLInSec: Number(process.env.SESSION_ID_TTL_IN_SEC),
 	maxCookieAge: process.env.MAX_COOKIE_AGE,
 	oauth: {
-		baseRedirectURI: process.env.BASE_REDIRECT_URI,
+		baseRedirectUrl: process.env.BASE_REDIRECT_URL,
 		google: {
 			clientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,

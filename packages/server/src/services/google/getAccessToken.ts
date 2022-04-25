@@ -4,7 +4,7 @@ import logger from '@lib/winston';
 
 export default async function getAccessToken(code: string): Promise<string> {
 	const {
-		baseRedirectURI,
+		baseRedirectUrl,
 		google: { clientId, clientSecret }
 	} = envConfig.oauth;
 
@@ -14,7 +14,7 @@ export default async function getAccessToken(code: string): Promise<string> {
 		}
 	};
 
-	const url = `https://oauth2.googleapis.com/token?client_id=${clientId}&client_secret=${clientSecret}&code=${code}&grant_type=authorization_code&redirect_uri=${baseRedirectURI}/google/callback`;
+	const url = `https://oauth2.googleapis.com/token?client_id=${clientId}&client_secret=${clientSecret}&code=${code}&grant_type=authorization_code&redirect_uri=${baseRedirectUrl}/google/callback`;
 
 	try {
 		const {
