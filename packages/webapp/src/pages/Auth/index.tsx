@@ -6,9 +6,15 @@ import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
 import { Google as GoogleIcon, Naver as NaverIcon, Kakao as KakaoIcon } from '@components/index';
 import * as Style from './styles';
 
-const { baseRedirectURI, google } = envConfig.oauth;
+const { baseRedirectURI, google, naver } = envConfig.oauth;
 
 const googleOAuthURL = `${google.endPoint}?client_id=${google.clientId}&redirect_uri=${baseRedirectURI}/google/callback&response_type=code&scope=${google.scope}`;
+
+const naverOAuthURL = `${naver.baseUrl}?client_id=${
+	naver.clientId
+}&redirect_uri=${baseRedirectURI}/naver/callback&response_type=code&state=${encodeURIComponent(
+	naver.state!
+)}`;
 
 export default function Auth() {
 	const { pathname } = useLocation();
@@ -35,7 +41,13 @@ export default function Auth() {
 					</Style.ButtonIconContainer>
 					<Style.ButtonTextContainer>구글로 시작하기</Style.ButtonTextContainer>
 				</Style.Button>
-				<Style.Button as="a" color="#fff" bgColor="#19CE60" aria-label="Naver auth">
+				<Style.Button
+					as="a"
+					color="#fff"
+					href={naverOAuthURL}
+					bgColor="#19CE60"
+					aria-label="Naver auth"
+				>
 					<Style.ButtonIconContainer>
 						<NaverIcon width={22} height={22} />
 					</Style.ButtonIconContainer>
