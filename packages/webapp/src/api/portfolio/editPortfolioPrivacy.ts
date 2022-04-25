@@ -15,7 +15,7 @@ interface EditPortfolioPrivacyRes {
 
 export async function editPortfolioPrivacy({ portfolioId, newPrivacy }: EditPortfolioPrivacyArgs) {
 	if (portfolioId === -1) throw new Error('Invalid portfolioId');
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -26,7 +26,7 @@ export async function editPortfolioPrivacy({ portfolioId, newPrivacy }: EditPort
 
 	const formData = JSON.stringify({ newPrivacy });
 	const { data }: EditPortfolioPrivacyRes = await axios.patch(
-		`${serverEndPoint}/portfolios/${portfolioId}/privacy`,
+		`${apiServerUrl}/portfolios/${portfolioId}/privacy`,
 		formData,
 		config
 	);

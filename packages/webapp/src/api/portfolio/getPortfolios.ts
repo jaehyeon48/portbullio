@@ -9,9 +9,9 @@ interface GetPortfoliosRes {
 }
 
 export default async function getPortfolios(): Promise<Portfolio[]> {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
-	const { data }: GetPortfoliosRes = await axios.get(`${serverEndPoint}/portfolios`, {
+	const { data }: GetPortfoliosRes = await axios.get(`${apiServerUrl}/portfolios`, {
 		withCredentials: true
 	});
 	return data.portfolios;

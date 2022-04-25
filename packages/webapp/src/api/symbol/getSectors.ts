@@ -7,12 +7,12 @@ interface GetSectorsRes {
 }
 
 export default async function getSectors(tickers: string[]) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	if (tickers.length === 0) return [];
 	try {
 		const { data }: GetSectorsRes = await axios.get(
-			`${serverEndPoint}/symbol/sectors?query=${encodeURIComponent(JSON.stringify(tickers))}`,
+			`${apiServerUrl}/symbol/sectors?query=${encodeURIComponent(JSON.stringify(tickers))}`,
 			{ withCredentials: true }
 		);
 		return data;

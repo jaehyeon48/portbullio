@@ -7,11 +7,11 @@ interface ResponseType {
 }
 
 export default async function searchSymbols(query: string): Promise<SearchSymbolItem[]> {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	if (query === '') return [];
 	try {
-		const { data } = (await axios.get(`${serverEndPoint}/symbol?query=${query}`)) as ResponseType;
+		const { data } = (await axios.get(`${apiServerUrl}/symbol?query=${query}`)) as ResponseType;
 		return data;
 	} catch (error) {
 		return [];

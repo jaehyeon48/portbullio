@@ -21,7 +21,7 @@ export async function editCashTransaction({
 	type,
 	date
 }: EditCashTransactionArgs) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -32,7 +32,7 @@ export async function editCashTransaction({
 
 	const formData = JSON.stringify({ amount, type, date });
 	const { data }: EditStockTransactionRes = await axios.patch(
-		`${serverEndPoint}/portfolios/cash/${cashTransactionId}`,
+		`${apiServerUrl}/portfolios/cash/${cashTransactionId}`,
 		formData,
 		config
 	);

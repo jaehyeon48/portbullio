@@ -16,7 +16,7 @@ export async function editDefaultPortfolio({
 	newPortfolioId,
 	prevPortfolioId
 }: EditDefaultPortfolioArgs) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -27,7 +27,7 @@ export async function editDefaultPortfolio({
 
 	const formData = JSON.stringify({ prevPortfolioId, newPortfolioId });
 	const { data }: EditDefaultPortfolioRes = await axios.put(
-		`${serverEndPoint}/portfolios/default`,
+		`${apiServerUrl}/portfolios/default`,
 		formData,
 		config
 	);

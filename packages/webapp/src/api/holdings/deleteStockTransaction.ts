@@ -22,10 +22,10 @@ export async function deleteStockTransaction({
 	ticker
 }: DeleteStockTransactionArgs) {
 	if (portfolioId === -1) throw new Error('Invalid portfolioId');
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const { data }: DeleteStockTransactionRes = await axios.delete(
-		`${serverEndPoint}/portfolios/${portfolioId}/holdings/${stockTransactionId}?ticker=${ticker}`,
+		`${apiServerUrl}/portfolios/${portfolioId}/holdings/${stockTransactionId}?ticker=${ticker}`,
 		{ withCredentials: true }
 	);
 	return { ...data };

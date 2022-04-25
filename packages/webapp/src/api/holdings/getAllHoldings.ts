@@ -10,10 +10,10 @@ interface GetAllHoldingsRes {
 
 export default async function getAllHoldings(portfolioId: number): Promise<Holding[]> {
 	if (portfolioId === -1) return [];
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const { data }: GetAllHoldingsRes = await axios.get(
-		`${serverEndPoint}/portfolios/${portfolioId}/holdings`,
+		`${apiServerUrl}/portfolios/${portfolioId}/holdings`,
 		{
 			withCredentials: true
 		}

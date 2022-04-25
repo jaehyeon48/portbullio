@@ -2,10 +2,10 @@ import axios from 'axios';
 import envConfig from '@configs/env';
 
 export default async function logOut(): Promise<boolean> {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	try {
-		await axios.delete(`${serverEndPoint}/auth/logout`, {
+		await axios.delete(`${apiServerUrl}/auth/logout`, {
 			withCredentials: true
 		});
 		return true;

@@ -6,10 +6,10 @@ interface GetMarketStatusRes {
 }
 
 export default async function checkIsMarketOpen(cancelToken?: CancelToken) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	try {
-		const { data }: GetMarketStatusRes = await axios.get(`${serverEndPoint}/stock/market/status`, {
+		const { data }: GetMarketStatusRes = await axios.get(`${apiServerUrl}/stock/market/status`, {
 			cancelToken
 		});
 		return data;

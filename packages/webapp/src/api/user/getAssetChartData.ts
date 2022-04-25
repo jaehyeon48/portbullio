@@ -17,10 +17,10 @@ export default async function getAssetChartData({
 	start,
 	count
 }: GetAssetChartDataParam) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 	try {
 		const { data }: GetAssetChartData = await axios.get(
-			`${serverEndPoint}/user/asset-chart?pid=${portfolioId}&start=${start}&count=${count}`,
+			`${apiServerUrl}/user/asset-chart?pid=${portfolioId}&start=${start}&count=${count}`,
 			{
 				withCredentials: true
 			}

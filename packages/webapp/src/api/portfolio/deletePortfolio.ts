@@ -14,10 +14,10 @@ interface DeletePortfolioRes {
 
 export async function deletePortfolio({ portfolioId, isDefaultPortfolio }: DeletePortfolioArgs) {
 	if (portfolioId === -1) throw new Error('Invalid portfolioId');
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const { data }: DeletePortfolioRes = await axios.delete(
-		`${serverEndPoint}/portfolios/${portfolioId}?isDefaultPortfolio=${
+		`${apiServerUrl}/portfolios/${portfolioId}?isDefaultPortfolio=${
 			isDefaultPortfolio ? '1' : '0'
 		}`,
 		{ withCredentials: true }

@@ -10,10 +10,10 @@ interface GetCashTransactionLogsRes {
 
 export default async function getCashTransactionLogs(portfolioId: number) {
 	if (portfolioId === -1) return [];
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const { data }: GetCashTransactionLogsRes = await axios.get(
-		`${serverEndPoint}/portfolios/${portfolioId}/cash`,
+		`${apiServerUrl}/portfolios/${portfolioId}/cash`,
 		{
 			withCredentials: true
 		}

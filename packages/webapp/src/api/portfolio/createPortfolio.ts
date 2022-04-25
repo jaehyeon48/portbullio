@@ -14,7 +14,7 @@ interface CreatePortfolioRes {
 }
 
 export async function createPortfolio({ portfolioName, privacy }: CreatePortfolioArgs) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -29,7 +29,7 @@ export async function createPortfolio({ portfolioName, privacy }: CreatePortfoli
 	});
 
 	const { data }: CreatePortfolioRes = await axios.post(
-		`${serverEndPoint}/portfolios`,
+		`${apiServerUrl}/portfolios`,
 		formData,
 		config
 	);

@@ -1,5 +1,4 @@
 export default {
-	serverEndPoint: process.env.SERVER_END_POINT,
 	oauth: {
 		baseRedirectUrl: process.env.BASE_REDIRECT_URL,
 		google: {
@@ -15,5 +14,6 @@ export default {
 		}
 	},
 	avatarImageEndPoint: process.env.AVATAR_IMAGE_END_POINT,
+	apiServerUrl: process.env.API_SERVER_URL,
 	socketServerUrl: process.env.SOCKET_SERVER_URL
 };

@@ -33,7 +33,7 @@ export async function addStockTransaction({
 	date
 }: AddStockTransactionArgs) {
 	if (portfolioId === -1) throw new Error('Invalid portfolioId');
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -53,7 +53,7 @@ export async function addStockTransaction({
 	});
 
 	const { data }: AddStockTransactionRes = await axios.post(
-		`${serverEndPoint}/portfolios/${portfolioId}/holdings`,
+		`${apiServerUrl}/portfolios/${portfolioId}/holdings`,
 		formData,
 		config
 	);

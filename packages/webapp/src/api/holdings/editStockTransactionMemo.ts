@@ -17,7 +17,7 @@ export async function editStockTransactionMemo({
 	stockTransactionId,
 	newMemo
 }: EditStockTransactionMemoArgs) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -28,7 +28,7 @@ export async function editStockTransactionMemo({
 
 	const formData = JSON.stringify({ memo: newMemo });
 	const { data }: EditStockTransactionMemoRes = await axios.patch(
-		`${serverEndPoint}/portfolios/holdings/${stockTransactionId}/memo`,
+		`${apiServerUrl}/portfolios/holdings/${stockTransactionId}/memo`,
 		formData,
 		config
 	);

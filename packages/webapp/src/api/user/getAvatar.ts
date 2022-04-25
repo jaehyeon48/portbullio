@@ -10,11 +10,11 @@ interface GetAvatarResponse {
 }
 
 export default async function getAvatar(): Promise<AvatarURL> {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 	try {
 		const {
 			data: { avatarURL }
-		}: GetAvatarResponse = await axios.get(`${serverEndPoint}/user/avatar`, {
+		}: GetAvatarResponse = await axios.get(`${apiServerUrl}/user/avatar`, {
 			withCredentials: true
 		});
 

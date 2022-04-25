@@ -14,11 +14,11 @@ interface CheckAuthReturnType {
 }
 
 export default async function checkAuth(): Promise<CheckAuthReturnType> {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 	try {
 		const {
 			data: { userId, isInitialLogin }
-		}: CheckAuthResponse = await axios.get(`${serverEndPoint}/auth/check`, {
+		}: CheckAuthResponse = await axios.get(`${apiServerUrl}/auth/check`, {
 			withCredentials: true
 		});
 

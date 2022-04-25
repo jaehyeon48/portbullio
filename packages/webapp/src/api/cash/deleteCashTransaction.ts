@@ -9,10 +9,10 @@ interface DeleteCashTransactionRes {
 }
 
 export default async function deleteCashTransaction(cashTransactionId: number) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const { data }: DeleteCashTransactionRes = await axios.delete(
-		`${serverEndPoint}/portfolios/cash/${cashTransactionId}`,
+		`${apiServerUrl}/portfolios/cash/${cashTransactionId}`,
 		{ withCredentials: true }
 	);
 	return data.deletedCashTransaction;

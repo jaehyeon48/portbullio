@@ -10,15 +10,12 @@ interface GetPortfolioRes {
 
 export default async function getPortfolio(portfolioId: number): Promise<Portfolio | null> {
 	if (portfolioId === -1) throw new Error('Invalid portfolioId');
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	try {
-		const { data }: GetPortfolioRes = await axios.get(
-			`${serverEndPoint}/portfolios/${portfolioId}`,
-			{
-				withCredentials: true
-			}
-		);
+		const { data }: GetPortfolioRes = await axios.get(`${apiServerUrl}/portfolios/${portfolioId}`, {
+			withCredentials: true
+		});
 		return data.portfolio;
 	} catch (error) {
 		return null;

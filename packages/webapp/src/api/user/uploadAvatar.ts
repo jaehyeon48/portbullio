@@ -8,7 +8,7 @@ interface UploadAvatarRes {
 }
 
 export default async function uploadAvatar(avatarFile: File) {
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config = {
 		headers: {
@@ -20,7 +20,7 @@ export default async function uploadAvatar(avatarFile: File) {
 	avatarData.append('avatar', avatarFile);
 
 	const { data }: UploadAvatarRes = await axios.put(
-		`${serverEndPoint}/user/avatar`,
+		`${apiServerUrl}/user/avatar`,
 		avatarData,
 		config
 	);

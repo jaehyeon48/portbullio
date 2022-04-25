@@ -15,7 +15,7 @@ interface EditPortfolioNameRes {
 
 export async function editPortfolioName({ portfolioId, newPortfolioName }: EditPortfolioNameArgs) {
 	if (portfolioId === -1) throw new Error('Invalid portfolioId');
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -26,7 +26,7 @@ export async function editPortfolioName({ portfolioId, newPortfolioName }: EditP
 
 	const formData = JSON.stringify({ newPortfolioName });
 	const { data }: EditPortfolioNameRes = await axios.patch(
-		`${serverEndPoint}/portfolios/${portfolioId}/name`,
+		`${apiServerUrl}/portfolios/${portfolioId}/name`,
 		formData,
 		config
 	);

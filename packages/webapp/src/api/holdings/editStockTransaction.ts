@@ -32,7 +32,7 @@ export async function editStockTransaction({
 	date
 }: EditStockTransactionArgs) {
 	if (portfolioId === -1) throw new Error('Invalid portfolioId');
-	const { serverEndPoint } = envConfig;
+	const { apiServerUrl } = envConfig;
 
 	const config: AxiosRequestConfig = {
 		headers: {
@@ -43,7 +43,7 @@ export async function editStockTransaction({
 
 	const formData = JSON.stringify({ ticker, price, quantity, type, avgBuyCost, date });
 	const { data }: EditStockTransactionRes = await axios.patch(
-		`${serverEndPoint}/portfolios/${portfolioId}/holdings/${stockTransactionId}`,
+		`${apiServerUrl}/portfolios/${portfolioId}/holdings/${stockTransactionId}`,
 		formData,
 		config
 	);
