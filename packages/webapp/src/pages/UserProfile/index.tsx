@@ -1,11 +1,14 @@
 import { useState, SyntheticEvent, useEffect } from 'react';
 import { Textarea, TextInput } from '@components/index';
 import { useUserProfile } from '@hooks/ReactQuery';
+import toast from '@lib/toast';
 import AvatarImagePicker from './AvatarImagePicker';
 import * as Style from './styles';
+import { useEditProfile } from './queries';
 
 export default function UserProfile() {
 	const profile = useUserProfile();
+	const editProfileMutation = useEditProfile();
 	const [username, setUsername] = useState('');
 	const [bio, setBio] = useState('');
 	const [location, setLocation] = useState('');
@@ -31,10 +34,29 @@ export default function UserProfile() {
 		setLocation(target.value);
 	}
 
+	function handleEditProfile(e: SyntheticEvent) {
+		e.preventDefault();
+
+		if (username.trim() === '') {
+			toast.error({ message: '닉네임을 작성해주세요.' });
+			return;
+		}
+
+		editProfileMutation.mutate(
+			{ username, bio, location },
+			{
+				onSuccess: () => {
+					toast.success({ message: '성공적으로 프로필을 변경했습니다.' });
+				},
+				onError: () => toast.error({ message: '에러가 발생했습니다. 다시 시도해 주세요' })
+			}
+		);
+	}
+
 	return (
 		<Style.Container>
 			<AvatarImagePicker />
-			<Style.Form>
+			<Style.Form onSubmit={handleEditProfile}>
 				<TextInput
 					htmlFor="profile-user-email"
 					labelName="이메일"
