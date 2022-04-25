@@ -59,7 +59,7 @@ describe('Navbar layout', () => {
 		);
 
 		userEvent.click(screen.getByLabelText('User profile button'));
-		expect(screen.getByLabelText('Set profile')).toBeInTheDocument();
+		expect(screen.getByText('프로필 설정')).toBeInTheDocument();
 		expect(screen.getByLabelText('Logout')).toBeInTheDocument();
 	});
 });

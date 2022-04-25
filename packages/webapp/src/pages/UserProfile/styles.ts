@@ -5,10 +5,16 @@ export const Container = styled.div`
 	${flexCenter};
 	flex-direction: column;
 	padding: 1em;
+`;
 
-	& > input[type='file'] {
-		display: none;
-	}
+export const AvatarImageSection = styled.section`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+`;
+
+export const AvatarImageAddInput = styled.input`
+	display: none;
 `;
 
 export const ImageContainer = styled.div`
@@ -48,7 +54,10 @@ export const AddImageIconContainer = styled.div`
 `;
 
 export const Form = styled.form`
-	margin: 20px 10px 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	margin: 30px 10px 10px;
 
 	& div {
 		width: 100%;
@@ -60,10 +69,10 @@ export const Form = styled.form`
 	}
 `;
 
-export const Button = styled.button`
+export const ModifyProfileButton = styled.button`
 	${buttonMixin};
 	font-size: 14px;
-	margin: 0.8em 0 0 auto;
+	margin-left: auto;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
 	background-color: var(--primary);
@@ -71,22 +80,24 @@ export const Button = styled.button`
 `;
 
 export const UploadButtonContainer = styled.div`
-	position: relative;
 	display: flex;
-	justify-content: space-between;
+	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	margin-top: 20px;
-	padding-right: 10px;
 
 	& > div {
 		display: flex;
 	}
 `;
 
+export const UploadConfirmButtons = styled.div`
+	margin-top: 10px;
+`;
+
 const ImageButtonStyle = css`
 	${buttonMixin};
 	font-size: 14px;
-	margin-left: 12px;
 	padding: 0.4em 0.9em;
 	border-radius: 4px;
 	color: var(--white);
@@ -100,6 +111,7 @@ export const ImageUploadCancelButton = styled.button`
 export const ImageUploadButton = styled.button`
 	${ImageButtonStyle};
 	background-color: var(--primary);
+	margin-left: 12px;
 `;
 
 export const ImageDeleteButton = styled.button`
@@ -119,21 +131,14 @@ export const NoticeNotSupportedImageType = styled.p`
 `;
 
 export const DeleteConfirmContainer = styled.div`
-	position: absolute;
 	display: flex;
 	flex-direction: column;
-	width: 80%;
-	margin-left: 10%;
-	padding: 14px 0;
-	border-radius: 4px;
-	z-index: 1;
-	background-color: var(--deleteConfirmBgColor);
+`;
 
-	& > div {
-		margin-top: 16px;
-		display: flex;
-		justify-content: center;
-	}
+export const DeleteConfirmButtons = styled.div`
+	margin-top: 16px;
+	display: flex;
+	justify-content: center;
 `;
 
 export const DeleteConfirmMessage = styled.p`

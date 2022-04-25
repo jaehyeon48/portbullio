@@ -27,25 +27,26 @@ export default function DeleteConfirmTriggerButton({ newAvatarFile, onDelete }: 
 
 	return (
 		<>
-			<Style.ImageDeleteButton
-				type="button"
-				disabled={isButtonDisabled}
-				onClick={openDeleteImageConfirm}
-			>
-				이미지 삭제
-			</Style.ImageDeleteButton>
-			{isOpenImageDeleteConfirm && (
+			{isOpenImageDeleteConfirm ? (
 				<Style.DeleteConfirmContainer>
 					<Style.DeleteConfirmMessage>정말 이미지를 삭제하시겠습니까?</Style.DeleteConfirmMessage>
-					<div>
+					<Style.DeleteConfirmButtons>
 						<Style.DeleteConfirmCancelButton type="button" onClick={closeDeleteImageConfirm}>
 							취소
 						</Style.DeleteConfirmCancelButton>
 						<Style.DeleteConfirmButton type="button" onClick={handleOnDelete}>
 							삭제
 						</Style.DeleteConfirmButton>
-					</div>
+					</Style.DeleteConfirmButtons>
 				</Style.DeleteConfirmContainer>
+			) : (
+				<Style.ImageDeleteButton
+					type="button"
+					disabled={isButtonDisabled}
+					onClick={openDeleteImageConfirm}
+				>
+					이미지 삭제
+				</Style.ImageDeleteButton>
 			)}
 		</>
 	);

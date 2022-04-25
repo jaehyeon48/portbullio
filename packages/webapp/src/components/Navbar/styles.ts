@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import { Link, NavLink } from 'react-router-dom';
 import { NAVBAR_WIDTH } from '@constants/index';
 import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
 
@@ -72,7 +72,7 @@ export const DropdownContainer = styled.div`
 	}
 `;
 
-export const DropdownButton = styled.button`
+const dropdownButtonStyle = css`
 	color: var(--baseTextColor);
 	${buttonMixin};
 	padding: 10px 16px;
@@ -82,6 +82,16 @@ export const DropdownButton = styled.button`
 		background-color: var(--primary);
 		color: var(--white);
 	}
+`;
+
+export const DropdownButton = styled.button`
+	${dropdownButtonStyle};
+`;
+
+export const ProfilePageLink = styled(Link)`
+	${dropdownButtonStyle};
+	text-align: center;
+	text-decoration: none;
 `;
 
 export const ProfileImageContainer = styled.div`

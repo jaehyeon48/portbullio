@@ -79,6 +79,14 @@ function App(): ReactElement {
 							</PrivateRoute>
 						}
 					/>
+					<Route
+						path="profile"
+						element={
+							<PrivateRoute isAllowed={isAuthenticated}>
+								<Page.UserProfilePage />
+							</PrivateRoute>
+						}
+					/>
 				</Route>
 				<Route path="*" element={<Page.NotFoundPage />} />
 			</Routes>

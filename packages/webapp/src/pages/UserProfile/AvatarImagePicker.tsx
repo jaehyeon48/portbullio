@@ -13,6 +13,7 @@ export default function AvatarImagePicker() {
 	const [newAvatarImage, setNewAvatarImage] = useState<File | null>(null);
 	const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 	const [isValidMIMEType, setIsValidMIMEType] = useState(true);
+	const [isDeletingImage, setIsDeletingImage] = useState(false);
 	const uploadAvatarMutation = useUpdateAvatar();
 	const deleteAvatarMutation = useDeleteAvatar();
 
@@ -91,10 +92,16 @@ export default function AvatarImagePicker() {
 	}
 
 	async function handleDeleteAvatar() {
+		setIsDeletingImage(true);
 		deleteAvatarMutation.mutate(undefined, {
-			onSuccess: () => toast.success({ message: '아바타 이미지를 성공적으로 삭제했습니다.' }),
-			onError: () =>
-				toast.error({ message: '아바타 이미지 삭제에 실패했습니다. 다시 시도해 주세요.' })
+			onSuccess: () => {
+				toast.success({ message: '아바타 이미지를 성공적으로 삭제했습니다.' });
+				setIsDeletingImage(false);
+			},
+			onError: () => {
+				toast.error({ message: '아바타 이미지 삭제에 실패했습니다. 다시 시도해 주세요.' });
+				setIsDeletingImage(false);
+			}
 		});
 	}
 
@@ -105,8 +112,8 @@ export default function AvatarImagePicker() {
 	}
 
 	return (
-		<>
-			<input
+		<Style.AvatarImageSection>
+			<Style.AvatarImageAddInput
 				ref={imageInputRef}
 				type="file"
 				accept=".jpg,.jpeg,.png,.webp"
@@ -124,13 +131,24 @@ export default function AvatarImagePicker() {
 				</Style.NoticeNotSupportedImageType>
 			)}
 			<Style.UploadButtonContainer>
-				<DeleteConfirmTriggerButton newAvatarFile={newAvatarImage} onDelete={handleDeleteAvatar} />
+				{isDeletingImage ? (
+					<div>이미지 삭제 중...</div>
+				) : (
+					<>
+						{!(isValidMIMEType && newAvatarImage) && (
+							<DeleteConfirmTriggerButton
+								newAvatarFile={newAvatarImage}
+								onDelete={handleDeleteAvatar}
+							/>
+						)}
+					</>
+				)}
 				<UploadButton
 					shouldRenderButtons={!!(isValidMIMEType && newAvatarImage)}
 					onCancel={cancelUpload}
 					onUpload={handleUploadAvatar}
 				/>
 			</Style.UploadButtonContainer>
-		</>
+		</Style.AvatarImageSection>
 	);
 }

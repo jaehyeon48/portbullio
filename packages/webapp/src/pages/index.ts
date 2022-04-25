@@ -4,7 +4,7 @@ export { default as TopStocksDataContextWrapper } from './Home/context/TopStocks
 export { default as BaseLayout } from './BaseLayout';
 export { default as LogOutPage } from './LogOut';
 export { default as WelcomePage } from './Welcome';
-export { default as UserSettingsPage } from './UserSettings';
+export { default as UserProfilePage } from './UserProfile';
 export { default as PortfoliosPage } from './Portfolios';
 export { default as HoldingsPage } from './Holdings';
 export { default as StockTransactionsPage } from './StockTransactions';
