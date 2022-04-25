@@ -11,6 +11,7 @@ model User {
   id                Int                 @id @default(autoincrement()) @map("user_id")
   authType          UserAuthType        @map("auth_type")
   username          String              @db.VarChar(30)
+  email             String              @db.VarChar(128) @unique
   avatar            String?             @db.VarChar(41)
   currency          String              @db.Char(3)
   bio               String?             @db.Text
@@ -19,20 +20,10 @@ model User {
   defaultPortfolio  DefaultPortfolio[]
   favoriteStock     FavoriteStock[]
   portfolio         Portfolio[]
-  userAuthId        UserAuthId[]
   dailyAssetRecord  DailyAssetRecord[]
 
   @@map("user")
-}
-
-model UserAuthId {
-  authId   String       @map("auth_id") @db.VarChar(255)
-  authType UserAuthType @map("auth_type")
-  userId   Int          @map("user_id")
-  user     User         @relation(fields: [userId], references: [id], onDelete: Cascade, map: "fk_user_auth_id_user_user_id")
-
-  @@map("user_auth_id")
-  @@id([authId, authType])
+  @@index([email], map: "email_idx")
 }
 
 model Portfolio {

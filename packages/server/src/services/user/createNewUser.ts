@@ -1,31 +1,30 @@
 import logger from '@lib/winston';
 import prisma from '@lib/prisma';
-import createNewUserAuthId from './createNewUserAuthId';
-import { AuthId, AuthType } from './types';
+import { AuthType } from './types';
 
 export interface NewUserProps {
-	authId: AuthId;
 	authType: AuthType;
 	username: string;
+	email: string;
 	currency?: string;
 }
 
 export default async function createNewUser({
-	authId,
 	authType,
 	username,
+	email,
 	currency = 'krw'
 }: NewUserProps): Promise<number> {
 	try {
 		const { id: newUserId } = await prisma.user.create({
 			data: {
 				username,
+				email,
 				authType,
 				currency
 			}
 		});
 
-		await createNewUserAuthId({ authId, authType, userId: newUserId });
 		return newUserId;
 	} catch (error) {
 		logger.error(error);

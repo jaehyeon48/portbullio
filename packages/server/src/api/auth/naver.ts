@@ -20,10 +20,10 @@ export default (): express.Router => {
 			try {
 				const accessToken = await naverService.getAccessToken(code, state);
 				const { email, username } = await naverService.getEmailAndUsername(accessToken);
-				const userId = await userService.getUserId(email, authType);
+				const userId = await userService.getUserId(email);
 
 				if (userId === -1) {
-					const newUserId = await userService.createNewUser({ authId: email, authType, username });
+					const newUserId = await userService.createNewUser({ authType, username, email });
 					const sessionId = await sessionService.createSession(newUserId);
 					cookieService.issueUAAT(res, sessionId);
 					cookieService.issueLoginToken(res, sessionId);

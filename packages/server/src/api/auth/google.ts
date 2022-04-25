@@ -31,10 +31,10 @@ export default (): express.Router => {
 		try {
 			const accessToken = await googleService.getAccessToken(code);
 			const { email, name: username } = await googleService.getEmailAndUsername(accessToken);
-			const userId = await userService.getUserId(email, authType);
+			const userId = await userService.getUserId(email);
 
 			if (userId === -1) {
-				const newUserId = await userService.createNewUser({ authId: email, authType, username });
+				const newUserId = await userService.createNewUser({ authType, username, email });
 				const sessionId = await sessionService.createSession(newUserId);
 				cookieService.issueUAAT(res, sessionId);
 				cookieService.issueLoginToken(res, sessionId);
@@ -70,7 +70,7 @@ export default (): express.Router => {
 				}
 
 				const { email } = await googleService.getEmailAndUsername(accessToken);
-				const userId = await userService.getUserId(email, 'google');
+				const userId = await userService.getUserId(email);
 
 				if (userId === -1) {
 					res.status(401).json({ error: 'User does not exist' });

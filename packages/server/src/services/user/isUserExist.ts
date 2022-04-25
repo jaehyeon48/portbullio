@@ -1,14 +1,10 @@
 import logger from '@lib/winston';
 import prisma from '@lib/prisma';
-import { AuthId, AuthType } from './types';
 
-export default async function isUserExist(authId: AuthId, authType: AuthType): Promise<boolean> {
+export default async function isUserExist(email: string): Promise<boolean> {
 	try {
-		const userInfo = await prisma.userAuthId.findFirst({
-			where: {
-				authId: String(authId),
-				authType
-			}
+		const userInfo = await prisma.user.findFirst({
+			where: { email }
 		});
 
 		return !!userInfo;

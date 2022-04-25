@@ -1,15 +1,11 @@
 import logger from '@lib/winston';
 import prisma from '@lib/prisma';
-import { AuthId, AuthType } from './types';
 
-export default async function getUserId(authId: AuthId, authType: AuthType): Promise<number> {
+export default async function getUserId(email: string): Promise<number> {
 	try {
-		const { userId } = (await prisma.userAuthId.findFirst({
-			where: {
-				authId: String(authId),
-				authType
-			}
-		})) ?? { userId: -1 };
+		const { id: userId } = (await prisma.user.findFirst({
+			where: { email }
+		})) ?? { id: -1 };
 
 		return userId;
 	} catch (error) {
