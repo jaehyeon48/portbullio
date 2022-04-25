@@ -5,3 +5,4 @@ export { default as getAvatar } from './getAvatar';
 export { default as updateAvatar } from './updateAvatar';
 export { default as deleteAvatar } from './deleteAvatar';
 export { default as getAssetChartData } from './getAssetChartData';
+export { default as editUserProfile } from './editUserProfile';
