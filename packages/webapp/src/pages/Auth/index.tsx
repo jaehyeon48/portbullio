@@ -8,7 +8,7 @@ import * as Style from './styles';
 
 const { redirectBaseUrl, google, naver } = envConfig.oauth;
 
-const googleOAuthURL = `${google.endPoint}?client_id=${google.clientId}&redirect_uri=${redirectBaseUrl}/google/callback&response_type=code&scope=${google.scope}`;
+const googleOAuthURL = `${google.baseUrl}?client_id=${google.clientId}&redirect_uri=${redirectBaseUrl}/google/callback&response_type=code&scope=${google.scope}`;
 
 const naverOAuthURL = `${naver.baseUrl}?client_id=${
 	naver.clientId

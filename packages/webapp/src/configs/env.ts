@@ -2,7 +2,7 @@ export default {
 	oauth: {
 		redirectBaseUrl: process.env.OAUTH_REDIRECT_BASE_URL,
 		google: {
-			endPoint: process.env.GOOGLE_OAUTH_END_POINT,
+			baseUrl: process.env.GOOGLE_OAUTH_BASE_URL,
 			scope: process.env.GOOGLE_OAUTH_SCOPE,
 			clientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
 			secret: process.env.GOOGLE_OAUTH_CLIENT_SECRET
