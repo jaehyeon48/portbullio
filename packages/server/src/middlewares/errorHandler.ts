@@ -7,7 +7,9 @@ export default function errorHandler(
 	res: express.Response,
 	next: express.NextFunction
 ) {
-	logger.error(err.message);
+	if (err.message) logger.error(err.message);
+	else logger.error(err);
+
 	if (err.message === 'Invalid session') {
 		res.status(401).json({ message: 'Invalid session' });
 		return;
