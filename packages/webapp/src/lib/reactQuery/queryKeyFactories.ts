@@ -15,7 +15,7 @@ interface AvatarKeys {
 }
 
 interface UserKeys {
-	info: 'info';
+	profile: 'profile';
 }
 
 export const portfolioKeys: PortfolioKeys = {
@@ -33,5 +33,5 @@ export const avatarKeys: AvatarKeys = {
 };
 
 export const userKeys: UserKeys = {
-	info: 'info'
+	profile: 'profile'
 };

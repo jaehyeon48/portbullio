@@ -1,20 +1,20 @@
 import { useState, SyntheticEvent, useEffect } from 'react';
 import { Textarea, TextInput } from '@components/index';
-import { useUserInfo } from '@hooks/ReactQuery';
+import { useUserProfile } from '@hooks/ReactQuery';
 import AvatarImagePicker from './AvatarImagePicker';
 import * as Style from './styles';
 
 export default function UserProfile() {
-	const userInfo = useUserInfo();
+	const profile = useUserProfile();
 	const [username, setUsername] = useState('');
 	const [bio, setBio] = useState('');
 	const [location, setLocation] = useState('');
 
 	useEffect(() => {
-		setUsername(userInfo.data?.username ?? '');
-		setBio(userInfo.data?.bio ?? '');
-		setLocation(userInfo.data?.location ?? '');
-	}, [userInfo.data]);
+		setUsername(profile.data?.username ?? '');
+		setBio(profile.data?.bio ?? '');
+		setLocation(profile.data?.location ?? '');
+	}, [profile.data]);
 
 	function handleChangeUsername(e: SyntheticEvent) {
 		const target = e.target as HTMLInputElement;
@@ -39,7 +39,7 @@ export default function UserProfile() {
 					htmlFor="profile-user-email"
 					labelName="이메일"
 					type="text"
-					value={userInfo.data?.email ?? ''}
+					value={profile.data?.email ?? ''}
 					readOnly
 				/>
 				<TextInput

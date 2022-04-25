@@ -21,7 +21,7 @@ const handlers = [
 	rest.get(`${envConfig.apiServerUrl}/stock/market/status`, stockMock.checkIsMarketOpen),
 	rest.get(`${envConfig.apiServerUrl}/symbol/sectors`, symbolMock.getSectors),
 	rest.get(`${envConfig.apiServerUrl}/user/avatar`, userMock.getAvatar),
-	rest.get(`${envConfig.apiServerUrl}/user/info`, userMock.getUserInfo)
+	rest.get(`${envConfig.apiServerUrl}/user/profile`, userMock.getUserProfile)
 ];
 
 export default handlers;

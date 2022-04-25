@@ -1,6 +1,6 @@
-import { UserInfo } from '@portbullio/shared/src/types';
+import { UserProfile } from '@portbullio/shared/src/types';
 
-export const fakeUserInfo: UserInfo = {
+export const fakeUserProfile: UserProfile = {
 	username: 'admin',
 	email: 'admin@example.com',
 	bio: 'bio test',

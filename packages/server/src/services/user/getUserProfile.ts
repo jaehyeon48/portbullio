@@ -1,7 +1,7 @@
-import { UserInfo } from '@portbullio/shared/src/types';
+import { UserProfile } from '@portbullio/shared/src/types';
 import prisma from '@lib/prisma';
 
-export default async function getUserInfo(userId: number): Promise<UserInfo> {
+export default async function getUserProfile(userId: number): Promise<UserProfile> {
 	const data = await prisma.user.findFirst({
 		where: { id: userId },
 		select: {

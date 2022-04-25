@@ -1,5 +1,5 @@
 export { default as getUserId } from './getUserId';
-export { default as getUserInfo } from './getUserInfo';
+export { default as getUserInfo } from './getUserProfile';
 export { default as createNewUser } from './createNewUser';
 export { default as getAvatar } from './getAvatar';
 export { default as updateAvatar } from './updateAvatar';
