@@ -14,6 +14,6 @@ export default function AvatarImage({ userIconWidth, userIconHeight }: Props) {
 	return avatarUrl.isLoading || !avatarUrl.data ? (
 		<UserIcon width={userIconWidth} height={userIconHeight} />
 	) : (
-		<Image src={`${envConfig.avatarImageEndPoint}/${avatarUrl.data}`} alt="user avatar" />
+		<Image src={`${envConfig.avatarImageBaseUrl}/${avatarUrl.data}`} alt="user avatar" />
 	);
 }

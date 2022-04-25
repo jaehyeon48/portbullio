@@ -13,7 +13,7 @@ export default {
 			state: process.env.NAVER_OAUTH_STATE
 		}
 	},
-	avatarImageEndPoint: process.env.AVATAR_IMAGE_END_POINT,
+	avatarImageBaseUrl: process.env.AVATAR_IMAGE_BASE_URL,
 	apiServerUrl: process.env.API_SERVER_URL,
 	socketServerUrl: process.env.SOCKET_SERVER_URL
 };
