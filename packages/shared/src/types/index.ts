@@ -64,3 +64,10 @@ export interface TopStocks {
 }
 
 export type TopStockCategory = 'all' | 'actives' | 'gainers' | 'losers';
+
+export interface UserInfo {
+	username: string;
+	email: string;
+	bio: string | null;
+	location: string | null;
+}
