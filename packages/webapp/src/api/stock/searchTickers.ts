@@ -6,7 +6,7 @@ interface ResponseType {
 	data: SearchSymbolItem[];
 }
 
-export default async function searchSymbols(query: string): Promise<SearchSymbolItem[]> {
+export default async function searchTickers(query: string): Promise<SearchSymbolItem[]> {
 	const { apiServerUrl } = envConfig;
 
 	if (query === '') return [];

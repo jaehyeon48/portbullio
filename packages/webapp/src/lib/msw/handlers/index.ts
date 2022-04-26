@@ -18,7 +18,9 @@ const handlers = [
 	rest.patch(`${envConfig.apiServerUrl}/portfolios/1/privacy`, portfolioMock.editPortfolioPrivacy),
 	rest.delete(`${envConfig.apiServerUrl}/portfolios/1`, portfolioMock.deletePortfolio),
 	rest.get(`${envConfig.apiServerUrl}/stock/market/status`, stockMock.checkIsMarketOpen),
+	rest.get(`${envConfig.apiServerUrl}/stock/query`, stockMock.searchTickers),
 	rest.get(`${envConfig.apiServerUrl}/stock/query/sectors`, stockMock.getSectors),
+	rest.get(`${envConfig.apiServerUrl}/stock/query/company-name`, stockMock.getCompanyName),
 	rest.get(`${envConfig.apiServerUrl}/user/avatar`, userMock.getAvatar),
 	rest.get(`${envConfig.apiServerUrl}/user/profile`, userMock.getUserProfile),
 	rest.put(`${envConfig.apiServerUrl}/user/profile`, userMock.editUserProfile)
