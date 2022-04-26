@@ -2,7 +2,6 @@ import express, { NextFunction, Request, Response } from 'express';
 import { googleService, userService, sessionService, cookieService } from '@services/index';
 import envConfig from '@config';
 import logger from '@lib/winston';
-import { AxiosError } from 'axios';
 
 interface GoogleOAuthState {
 	prevPath: string;
@@ -66,13 +65,11 @@ export default (): express.Router => {
 			res.redirect(`${clientURL}${prevPath}`);
 			return;
 		} catch (error) {
-			const err = error as AxiosError;
-			logger.error(err.message);
-			res.redirect(
-				`${clientURL}/auth-error?code=${err.response?.status}&prevPath=${encodeURIComponent(
-					prevPath
-				)}`
-			);
+			const err = error as any;
+			if (err.message) logger.error(err.message);
+			else logger.error(err);
+			res.redirect(`${clientURL}/auth-error?path=${prevPath}`);
+			return;
 		}
 	});
 

@@ -1,4 +1,4 @@
-export { default as AuthPage } from './Auth';
+export * from './Auth';
 export { default as HomePage } from './Home';
 export { default as TopStocksDataContextWrapper } from './Home/context/TopStocksDataContextWrapper';
 export { default as BaseLayout } from './BaseLayout';

@@ -35,6 +35,7 @@ function App(): ReactElement {
 					<Route path="/" element={<Page.TopStocksDataContextWrapper />}>
 						<Route index element={<Page.HomePage />} />
 					</Route>
+					<Route path="auth-error" element={<Page.AuthError />} />
 					<Route path="welcome" element={<Page.WelcomePage />} />
 					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
 						<Route path="overview" element={<Page.StockOverviewPage />} />
