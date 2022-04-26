@@ -89,6 +89,7 @@ function App(): ReactElement {
 						}
 					/>
 				</Route>
+				<Route path="/invalid-ticker" element={<Page.InvalidTickerPage />} />
 				<Route path="*" element={<Page.NotFoundPage />} />
 			</Routes>
 		</EventEmitterListeners>

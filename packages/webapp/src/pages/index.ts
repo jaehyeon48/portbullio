@@ -10,5 +10,5 @@ export { default as HoldingsPage } from './Holdings';
 export { default as StockTransactionsPage } from './StockTransactions';
 export { default as CashPage } from './Cash';
 export * from './Stock';
-export { default as NotFoundPage } from './NotFound';
+export * from './NotFound';
 export { default as DashboardPage } from './Dashboard';
