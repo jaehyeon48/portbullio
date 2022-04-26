@@ -69,5 +69,29 @@ export default (): express.Router => {
 		}
 	);
 
+	router.get(
+		'/exchange',
+		sessionValidator,
+		async (req: Request, res: Response, next: NextFunction) => {
+			const { search } = req.query as unknown as SearchQuery;
+			if (!search) {
+				res.status(400).json({ message: `'search' query param is missing.` });
+				return;
+			}
+
+			try {
+				const exchangeName = await stockService.getExchange(search);
+
+				if (!exchangeName) {
+					res.status(404).json({ message: 'Cannot find exchange' });
+					return;
+				}
+				res.json(exchangeName);
+			} catch (error) {
+				next(error);
+			}
+		}
+	);
+
 	return router;
 };
