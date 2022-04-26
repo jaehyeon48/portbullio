@@ -18,6 +18,10 @@ interface UserKeys {
 	profile: 'profile';
 }
 
+interface StockKeys {
+	companyName: (ticker: string) => readonly [string, 'companyName'];
+}
+
 export const portfolioKeys: PortfolioKeys = {
 	all: ['portfolios'] as const,
 	defaultId: () => [...portfolioKeys.all, 'defaultId'] as const,
@@ -34,4 +38,8 @@ export const avatarKeys: AvatarKeys = {
 
 export const userKeys: UserKeys = {
 	profile: 'profile'
+};
+
+export const stockKeys: StockKeys = {
+	companyName: (ticker: string) => [ticker, 'companyName'] as const
 };

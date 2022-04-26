@@ -3,40 +3,41 @@ import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { DynamicCaret } from '@components/index';
 import { useTitle } from '@hooks/Title';
 import { formatNum } from '@utils';
+import { searchTickers } from '@api/stock';
 import * as Style from './styles';
-
-function isValidTicker() {
-	return true;
-}
+import { useCompanyName } from '../queries';
 
 export default function StockMain() {
 	const navigate = useNavigate();
 	const { ticker } = useParams() as { ticker: string };
 	useTitle(`Portbullio - ${ticker}`);
+	const companyName = useCompanyName(ticker);
 
 	useEffect(() => {
-		if (!isValidTicker()) {
-			navigate('/404');
-		}
+		(async () => {
+			if (!(await isValidTicker(ticker))) {
+				navigate('/invalid-ticker');
+			}
+		})();
 	}, [navigate, ticker]);
 
 	return (
 		<>
 			<Style.StockMainSection>
 				<section>
-					<Style.CompanyName data-testid="company-name">Apple Inc.</Style.CompanyName>
+					<Style.CompanyName aria-label="Company name">{companyName.data}</Style.CompanyName>
 					<Style.TickerContainer>
-						<Style.Ticker data-testid="ticker">{ticker.toUpperCase()}</Style.Ticker>
+						<Style.Ticker aria-label="Ticker name">{ticker.toUpperCase()}</Style.Ticker>
 						<Style.StockExchange>NASDAQ</Style.StockExchange>
 					</Style.TickerContainer>
 				</section>
 				<Style.PriceSection value={-1}>
-					<Style.CurrentPrice data-testid="current-price">
-						<Style.CurrencySymbol data-testid="currency-symbol">$</Style.CurrencySymbol>
+					<Style.CurrentPrice aria-label="Current price">
+						<Style.CurrencySymbol aria-label="Currency symbol">$</Style.CurrencySymbol>
 						{formatNum(1234.56)}
 					</Style.CurrentPrice>
 					<Style.PriceChangeContainer>
-						<Style.PriceChange data-testid="price-change">
+						<Style.PriceChange aria-label="Price change">
 							<DynamicCaret value={-1} width={24} height={24} />
 							{formatNum(123.45)}
 						</Style.PriceChange>
@@ -53,4 +54,10 @@ export default function StockMain() {
 			<Outlet />
 		</>
 	);
+}
+
+async function isValidTicker(ticker: string) {
+	const res = await searchTickers(ticker);
+	if (res.length === 0) return false;
+	return true;
 }
