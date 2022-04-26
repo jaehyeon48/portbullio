@@ -1,7 +1,6 @@
 import { SyntheticEvent } from 'react';
 
 export type Theme = 'light' | 'dark';
-export type AuthType = 'google';
 export type CloseModalFn = (e: SyntheticEvent, stopBubble?: boolean) => void;
 
 export interface IconProps {

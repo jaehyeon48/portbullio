@@ -25,7 +25,6 @@ export default (): express.Router => {
 		const { state, code } = req.query as unknown as GoogleOAuthQuery;
 		const { prevPath } = JSON.parse(state) as GoogleOAuthState;
 		const clientURL = envConfig.origin;
-		const authType = 'google';
 
 		try {
 			const accessToken = await googleService.getAccessToken(code);
@@ -33,7 +32,7 @@ export default (): express.Router => {
 			const userId = await userService.getUserId(email);
 
 			if (userId === -1) {
-				const newUserId = await userService.createNewUser({ authType, username, email });
+				const newUserId = await userService.createNewUser({ username, email });
 				const sessionId = await sessionService.createSession(newUserId);
 				cookieService.issueCookie({
 					res,

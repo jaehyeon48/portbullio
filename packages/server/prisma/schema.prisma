@@ -9,7 +9,6 @@ datasource db {
 
 model User {
   id                Int                 @id @default(autoincrement()) @map("user_id")
-  authType          UserAuthType        @map("auth_type")
   username          String              @db.VarChar(30)
   email             String              @db.VarChar(128) @unique
   avatar            String?             @db.VarChar(41)
@@ -113,12 +112,6 @@ model DailyAssetRecord {
   portfolio    Portfolio @relation(fields: [portfolioId], references: [id], onDelete: Cascade, map: "fk_daily_asset_record_portfolio_portfolio_id")
 
   @@map("daily_asset_record")
-}
-
-enum UserAuthType {
-  google
-  kakao
-  naver
 }
 
 enum PortfolioPrivacy {
