@@ -62,7 +62,7 @@ export default (): express.Router => {
 					res.status(404).json({ message: 'Cannot find company name' });
 					return;
 				}
-				res.json(companyName.name);
+				res.json(companyName);
 			} catch (error) {
 				next(error);
 			}
