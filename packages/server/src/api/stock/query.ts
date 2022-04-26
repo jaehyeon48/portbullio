@@ -26,6 +26,11 @@ export default (): express.Router => {
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
 			const { search } = req.query as unknown as SearchQuery;
+			if (!search) {
+				res.status(400).json({ message: `'search' query param is missing.` });
+				return;
+			}
+
 			const tickers = JSON.parse(decodeURIComponent(search)) as string[];
 			try {
 				const sectors = await stockService.getSectors(tickers);
