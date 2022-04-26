@@ -21,6 +21,7 @@ export default async function getAssetChartData({
 				portfolioId,
 				createdAt: { lt: startDate }
 			},
+			orderBy: { createdAt: 'desc' },
 			take: count
 		});
 
