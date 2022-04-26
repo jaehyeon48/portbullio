@@ -36,15 +36,33 @@ export default (): express.Router => {
 			if (userId === -1) {
 				const newUserId = await userService.createNewUser({ authType, username, email });
 				const sessionId = await sessionService.createSession(newUserId);
-				cookieService.issueUAAT(res, sessionId);
-				cookieService.issueLoginToken(res, sessionId);
+				cookieService.issueCookie({
+					res,
+					name: 'uaat',
+					value: sessionId,
+					options: { maxAge: Number(envConfig.maxCookieAge ?? 0) }
+				});
+				cookieService.issueCookie({
+					res,
+					name: 'login_token',
+					value: sessionId
+				});
 				res.redirect(`${clientURL}/welcome?username=${encodeURIComponent(username)}`);
 				return;
 			}
 
 			const sessionId = await sessionService.createSession(userId);
-			cookieService.issueUAAT(res, sessionId);
-			cookieService.issueLoginToken(res, sessionId);
+			cookieService.issueCookie({
+				res,
+				name: 'uaat',
+				value: sessionId,
+				options: { maxAge: Number(envConfig.maxCookieAge ?? 0) }
+			});
+			cookieService.issueCookie({
+				res,
+				name: 'login_token',
+				value: sessionId
+			});
 			res.redirect(`${clientURL}${prevPath}`);
 			return;
 		} catch (error) {
@@ -78,7 +96,12 @@ export default (): express.Router => {
 				}
 
 				const sessionId = await sessionService.createSession(userId);
-				cookieService.issueUAAT(res, sessionId);
+				cookieService.issueCookie({
+					res,
+					name: 'uaat',
+					value: sessionId,
+					options: { maxAge: Number(envConfig.maxCookieAge ?? 0) }
+				});
 				res.send();
 				return;
 			} catch (error) {
