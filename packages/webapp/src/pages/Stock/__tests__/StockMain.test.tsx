@@ -18,6 +18,7 @@ test('Should render AAPL stock page', () => {
 
 	expect(screen.getByLabelText('Company name')).toBeInTheDocument();
 	expect(screen.getByLabelText('Ticker name')).toHaveTextContent('AAPL');
+	expect(screen.getByLabelText('Exchange name')).toBeInTheDocument();
 });
 
 test('Should render TSLA stock page', () => {
@@ -33,6 +34,7 @@ test('Should render TSLA stock page', () => {
 
 	expect(screen.getByLabelText('Company name')).toBeInTheDocument();
 	expect(screen.getByLabelText('Ticker name')).toHaveTextContent('TSLA');
+	expect(screen.getByLabelText('Exchange name')).toBeInTheDocument();
 });
 
 test('Should have a current price component', () => {

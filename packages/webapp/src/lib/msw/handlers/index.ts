@@ -21,6 +21,7 @@ const handlers = [
 	rest.get(`${envConfig.apiServerUrl}/stock/query`, stockMock.searchTickers),
 	rest.get(`${envConfig.apiServerUrl}/stock/query/sectors`, stockMock.getSectors),
 	rest.get(`${envConfig.apiServerUrl}/stock/query/company-name`, stockMock.getCompanyName),
+	rest.get(`${envConfig.apiServerUrl}/stock/query/exchange`, stockMock.getExchangeName),
 	rest.get(`${envConfig.apiServerUrl}/user/avatar`, userMock.getAvatar),
 	rest.get(`${envConfig.apiServerUrl}/user/profile`, userMock.getUserProfile),
 	rest.put(`${envConfig.apiServerUrl}/user/profile`, userMock.editUserProfile)

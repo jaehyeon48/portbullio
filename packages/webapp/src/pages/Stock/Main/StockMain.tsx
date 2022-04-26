@@ -5,13 +5,14 @@ import { useTitle } from '@hooks/Title';
 import { formatNum } from '@utils';
 import { searchTickers } from '@api/stock';
 import * as Style from './styles';
-import { useCompanyName } from '../queries';
+import { useCompanyName, useExchangeName } from '../queries';
 
 export default function StockMain() {
 	const navigate = useNavigate();
 	const { ticker } = useParams() as { ticker: string };
 	useTitle(`Portbullio - ${ticker}`);
 	const companyName = useCompanyName(ticker);
+	const exchangeName = useExchangeName(ticker);
 
 	useEffect(() => {
 		(async () => {
@@ -28,7 +29,9 @@ export default function StockMain() {
 					<Style.CompanyName aria-label="Company name">{companyName.data}</Style.CompanyName>
 					<Style.TickerContainer>
 						<Style.Ticker aria-label="Ticker name">{ticker.toUpperCase()}</Style.Ticker>
-						<Style.StockExchange>NASDAQ</Style.StockExchange>
+						<Style.StockExchange aria-label="Exchange name">
+							{exchangeName.data}
+						</Style.StockExchange>
 					</Style.TickerContainer>
 				</section>
 				<Style.PriceSection value={-1}>
