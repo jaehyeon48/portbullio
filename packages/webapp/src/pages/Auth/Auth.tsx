@@ -1,8 +1,8 @@
 import { useLocation } from 'react-router-dom';
 import useThemeMode from '@hooks/Theme';
 import envConfig from '@configs/env';
-import mainLogoLight from '@assets/images/auth_page_main_logo_light.webp';
-import mainLogoDark from '@assets/images/auth_page_main_logo_dark.webp';
+import mainLogoLight from '@assets/images/mainLogoLight.webp';
+import mainLogoDark from '@assets/images/mainLogoDark.webp';
 import { Google as GoogleIcon } from '@components/index';
 import * as Style from './styles';
 

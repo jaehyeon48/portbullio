@@ -1,6 +1,6 @@
 import { SyntheticEvent, useState, useEffect } from 'react';
-import mainLogoLight from '@assets/images/navbar_main_logo_light.webp';
-import mainLogoDark from '@assets/images/navbar_main_logo_dark.webp';
+import mainLogoLight from '@assets/images/mainLogoLight.webp';
+import mainLogoDark from '@assets/images/mainLogoDark.webp';
 import { AvatarImage } from '@components/index';
 import * as Icon from '@components/Icon';
 import { AuthPage, LogOutPage } from '@pages/index';
