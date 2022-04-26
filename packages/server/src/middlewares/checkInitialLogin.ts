@@ -14,10 +14,14 @@ export default async function checkInitialLogin(
 			return;
 		}
 
-		const userId = await sessionService.checkSession(sessionId);
-		if (userId === undefined) res.locals.isInitialLogin = false;
-
 		cookieService.expireCookie(res, 'login_token');
+		const userId = await sessionService.checkSession(sessionId);
+		if (userId === undefined) {
+			res.locals.isInitialLogin = false;
+			next();
+			return;
+		}
+
 		res.locals.isInitialLogin = true;
 		next();
 	} catch (error) {
