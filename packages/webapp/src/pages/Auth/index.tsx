@@ -10,11 +10,7 @@ const { redirectBaseUrl, google, naver } = envConfig.oauth;
 
 const googleOAuthURL = `${google.baseUrl}?client_id=${google.clientId}&redirect_uri=${redirectBaseUrl}/google/callback&response_type=code&scope=${google.scope}`;
 
-const naverOAuthURL = `${naver.baseUrl}?client_id=${
-	naver.clientId
-}&redirect_uri=${redirectBaseUrl}/naver/callback&response_type=code&state=${encodeURIComponent(
-	naver.state!
-)}`;
+const naverOAuthURL = `${naver.baseUrl}?client_id=${naver.clientId}&redirect_uri=${redirectBaseUrl}/naver/callback&response_type=code`;
 
 export default function Auth() {
 	const { pathname } = useLocation();
@@ -44,7 +40,7 @@ export default function Auth() {
 				<Style.Button
 					as="a"
 					color="#fff"
-					href={naverOAuthURL}
+					href={`${naverOAuthURL}&state=${pathname}`}
 					bgColor="#19CE60"
 					aria-label="Naver auth"
 				>
