@@ -11,7 +11,9 @@ export default async function searchSymbols(query: string): Promise<SearchSymbol
 
 	if (query === '') return [];
 	try {
-		const { data } = (await axios.get(`${apiServerUrl}/symbol?query=${query}`)) as ResponseType;
+		const { data } = (await axios.get(
+			`${apiServerUrl}/stock/query?search=${query}`
+		)) as ResponseType;
 		return data;
 	} catch (error) {
 		return [];

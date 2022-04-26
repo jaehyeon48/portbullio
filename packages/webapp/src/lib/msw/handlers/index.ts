@@ -2,7 +2,6 @@ import { rest } from 'msw';
 import envConfig from '@configs/env';
 import * as portfolioMock from './portfolio';
 import * as stockMock from './stock';
-import * as symbolMock from './symbol';
 import * as userMock from './user';
 
 const handlers = [
@@ -19,7 +18,7 @@ const handlers = [
 	rest.patch(`${envConfig.apiServerUrl}/portfolios/1/privacy`, portfolioMock.editPortfolioPrivacy),
 	rest.delete(`${envConfig.apiServerUrl}/portfolios/1`, portfolioMock.deletePortfolio),
 	rest.get(`${envConfig.apiServerUrl}/stock/market/status`, stockMock.checkIsMarketOpen),
-	rest.get(`${envConfig.apiServerUrl}/symbol/sectors`, symbolMock.getSectors),
+	rest.get(`${envConfig.apiServerUrl}/stock/query/sectors`, stockMock.getSectors),
 	rest.get(`${envConfig.apiServerUrl}/user/avatar`, userMock.getAvatar),
 	rest.get(`${envConfig.apiServerUrl}/user/profile`, userMock.getUserProfile),
 	rest.put(`${envConfig.apiServerUrl}/user/profile`, userMock.editUserProfile)

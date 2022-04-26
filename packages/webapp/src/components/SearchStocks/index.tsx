@@ -1,5 +1,5 @@
 import { useState, useEffect, SyntheticEvent, Dispatch } from 'react';
-import { searchSymbols } from '@api/symbol/index';
+import { searchSymbols } from '@api/stock';
 import { Search as SearchIcon } from '@components/Icon';
 import { asyncThrottleAndDebounce } from '@utils';
 import { SearchSymbolItem } from '@types';

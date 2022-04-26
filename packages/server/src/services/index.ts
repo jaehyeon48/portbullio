@@ -4,6 +4,5 @@ export * as sessionService from './session';
 export * as cookieService from './cookie';
 export * as s3Service from './s3';
 export * as stockService from './stock';
-export * as stockMetaService from './stockMeta';
 export * as stockTransactionService from './stockTransaction';
 export * as cashService from './cash';

@@ -1,24 +1,20 @@
 import express, { NextFunction, Request, Response } from 'express';
 import { sessionValidator } from '@middlewares';
-import * as stockMetaService from '@services/stockMeta';
+import { stockService } from '@services/index';
 
 interface SearchQuery {
-	query: string;
-}
-
-interface SectorQuery {
-	query: string;
+	search: string;
 }
 
 export default (): express.Router => {
 	const router = express.Router();
 
 	router.get('/', async (req: Request, res: Response, next: NextFunction) => {
-		const { query } = req.query as unknown as SearchQuery;
-		const lowerCasedQuery = query.toLowerCase();
+		const { search } = req.query as unknown as SearchQuery;
+		const lowerCasedQuery = search.toLowerCase();
 		try {
-			const tickerResult = await stockMetaService.getByTicker(lowerCasedQuery);
-			const nameResult = await stockMetaService.getByName(lowerCasedQuery);
+			const tickerResult = await stockService.getByTicker(lowerCasedQuery);
+			const nameResult = await stockService.getByName(lowerCasedQuery);
 			res.json([...tickerResult, ...nameResult]);
 		} catch (error) {
 			next(error);
@@ -29,10 +25,10 @@ export default (): express.Router => {
 		'/sectors',
 		sessionValidator,
 		async (req: Request, res: Response, next: NextFunction) => {
-			const { query } = req.query as unknown as SectorQuery;
-			const tickers = JSON.parse(decodeURIComponent(query)) as string[];
+			const { search } = req.query as unknown as SearchQuery;
+			const tickers = JSON.parse(decodeURIComponent(search)) as string[];
 			try {
-				const sectors = await stockMetaService.getSectors(tickers);
+				const sectors = await stockService.getSectors(tickers);
 				res.json(sectors);
 			} catch (error) {
 				next(error);

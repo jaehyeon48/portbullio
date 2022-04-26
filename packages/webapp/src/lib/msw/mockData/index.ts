@@ -1,3 +1,3 @@
 export * from './portfolio';
-export * from './symbol';
+export * from './stock';
 export * from './user';

@@ -1,4 +1,4 @@
-import { fakeTickers, fakeGetSectorsResult } from '@lib/msw/mockData/symbol';
+import { fakeTickers, fakeGetSectorsResult } from '@lib/msw/mockData/stock';
 import getSectors from '../getSectors';
 
 test('getSectors test', async () => {

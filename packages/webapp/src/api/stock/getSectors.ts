@@ -12,7 +12,7 @@ export default async function getSectors(tickers: string[]) {
 	if (tickers.length === 0) return [];
 	try {
 		const { data }: GetSectorsRes = await axios.get(
-			`${apiServerUrl}/symbol/sectors?query=${encodeURIComponent(JSON.stringify(tickers))}`,
+			`${apiServerUrl}/stock/query/sectors?search=${encodeURIComponent(JSON.stringify(tickers))}`,
 			{ withCredentials: true }
 		);
 		return data;
