@@ -8,7 +8,6 @@ interface ButtonProps {
 
 export const PageContainer = styled.div`
 	width: 350px;
-	height: 360px;
 `;
 
 export const HeaderContainer = styled.div`
@@ -24,10 +23,8 @@ export const HeaderContainer = styled.div`
 `;
 
 export const ButtonContainer = styled.div`
-	${flexMixin};
 	padding: 0 10px;
-	height: 60%;
-	margin-top: 50px;
+	margin-top: 30px;
 
 	& > a {
 		text-decoration: none;

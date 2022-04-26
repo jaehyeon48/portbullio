@@ -24,12 +24,6 @@ export default {
 			clientId: process.env.GOOGLE_OAUTH_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_OAUTH_CLIENT_SECRET,
 			postmanSecret: process.env.GOOGLE_POSTMAN_SECRET
-		},
-		naver: {
-			clientId: process.env.NAVER_OAUTH_CLIENT_ID,
-			secret: process.env.NAVER_OAUTH_SECRET,
-			accessTokenBaseUrl: process.env.NAVER_OAUTH_ACCESS_TOKEN_BASE_URL,
-			queryInfoBaseUrl: process.env.NAVER_OAUTH_QUERY_INFO_BASE_URL
 		}
 	},
 	aws: {

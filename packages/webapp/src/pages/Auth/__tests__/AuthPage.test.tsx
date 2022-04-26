@@ -22,16 +22,12 @@ test('Should have a title saying "환영합니다"', async () => {
 	expect(titleHeader).toBeInTheDocument();
 });
 
-test('Should have three oauth buttons', async () => {
+test('Should have a google oauth button', async () => {
 	render(
 		<CustomWrapper>
 			<AuthPage />
 		</CustomWrapper>
 	);
 	const googleOAuthButton = await screen.findByLabelText('Google auth');
-	const naverOAuthButton = await screen.findByLabelText('Naver auth');
-	const kakaoOAuthButton = await screen.findByLabelText('Kakao auth');
 	expect(googleOAuthButton).toBeInTheDocument();
-	expect(naverOAuthButton).toBeInTheDocument();
-	expect(kakaoOAuthButton).toBeInTheDocument();
 });

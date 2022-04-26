@@ -1,5 +1,4 @@
 export * as googleService from './google';
-export * as naverService from './naver';
 export * as userService from './user';
 export * as sessionService from './session';
 export * as cookieService from './cookie';
