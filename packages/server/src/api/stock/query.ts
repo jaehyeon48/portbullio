@@ -83,7 +83,7 @@ export default (): express.Router => {
 				const exchangeName = await stockService.getExchange(search);
 
 				if (!exchangeName) {
-					res.status(404).json({ message: 'Cannot find exchange' });
+					res.status(404).json({ message: 'Cannot find exchange name' });
 					return;
 				}
 				res.json(exchangeName);
