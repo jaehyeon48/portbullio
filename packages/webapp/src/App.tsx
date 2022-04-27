@@ -38,7 +38,7 @@ function App(): ReactElement {
 					<Route path="auth-error" element={<Page.AuthError />} />
 					<Route path="welcome" element={<Page.WelcomePage />} />
 					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
-						<Route path="overview" element={<Page.StockOverviewPage />} />
+						<Route path="chart" element={<Page.StockChartPage />} />
 					</Route>
 					<Route
 						path="dashboard"

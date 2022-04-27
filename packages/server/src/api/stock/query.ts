@@ -45,53 +45,45 @@ export default (): express.Router => {
 		}
 	);
 
-	router.get(
-		'/company-name',
-		sessionValidator,
-		async (req: Request, res: Response, next: NextFunction) => {
-			const { search } = req.query as unknown as SearchQuery;
-			if (!search) {
-				res.status(400).json({ message: `'search' query param is missing.` });
+	router.get('/company-name', async (req: Request, res: Response, next: NextFunction) => {
+		const { search } = req.query as unknown as SearchQuery;
+		if (!search) {
+			res.status(400).json({ message: `'search' query param is missing.` });
+			return;
+		}
+
+		try {
+			const companyName = await stockService.getCompanyName(search);
+
+			if (!companyName) {
+				res.status(404).json({ message: 'Cannot find company name' });
 				return;
 			}
-
-			try {
-				const companyName = await stockService.getCompanyName(search);
-
-				if (!companyName) {
-					res.status(404).json({ message: 'Cannot find company name' });
-					return;
-				}
-				res.json(companyName);
-			} catch (error) {
-				next(error);
-			}
+			res.json(companyName);
+		} catch (error) {
+			next(error);
 		}
-	);
+	});
 
-	router.get(
-		'/exchange',
-		sessionValidator,
-		async (req: Request, res: Response, next: NextFunction) => {
-			const { search } = req.query as unknown as SearchQuery;
-			if (!search) {
-				res.status(400).json({ message: `'search' query param is missing.` });
+	router.get('/exchange', async (req: Request, res: Response, next: NextFunction) => {
+		const { search } = req.query as unknown as SearchQuery;
+		if (!search) {
+			res.status(400).json({ message: `'search' query param is missing.` });
+			return;
+		}
+
+		try {
+			const exchangeName = await stockService.getExchange(search);
+
+			if (!exchangeName) {
+				res.status(404).json({ message: 'Cannot find exchange name' });
 				return;
 			}
-
-			try {
-				const exchangeName = await stockService.getExchange(search);
-
-				if (!exchangeName) {
-					res.status(404).json({ message: 'Cannot find exchange name' });
-					return;
-				}
-				res.json(exchangeName);
-			} catch (error) {
-				next(error);
-			}
+			res.json(exchangeName);
+		} catch (error) {
+			next(error);
 		}
-	);
+	});
 
 	return router;
 };

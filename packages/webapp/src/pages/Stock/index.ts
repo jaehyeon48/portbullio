@@ -1,2 +1,2 @@
-export { default as StockMainPage } from './Main/StockMain';
-export { default as StockOverviewPage } from './Overview/StockOverview';
+export { default as StockMainPage } from './Main';
+export { default as StockChartPage } from './StockChart';

@@ -1,53 +1,80 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { Card } from '@components/index';
 import { priceColorMixin } from '@styles/Mixins';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import { stockPageBaseFontStyle } from '../styles';
-import { PAGE_MAX_WIDTH, LEFT_AND_RIGHT_MARGIN, MAIN_SECTION_HEIGHT } from '../constants';
+import { MAIN_SECTION_HEIGHT_PX, STOCK_INFO_PANEL_WIDTH_PX } from '../constants';
 
 const STOCK_LINK_INDICATOR_HEIGHT = '3px';
 
-export const StockMainSection = styled.section`
-	position: relative;
-	margin: 0 ${LEFT_AND_RIGHT_MARGIN.desktop}px;
-	padding: 4px 0 ${STOCK_LINK_INDICATOR_HEIGHT};
-	border-bottom: 1px solid var(--stockPageBorderColor);
-	max-width: ${PAGE_MAX_WIDTH}px;
-	height: ${MAIN_SECTION_HEIGHT.desktop}px;
-	${stockPageBaseFontStyle};
+const stockSectionMaxWidthStyle = css`
+	max-width: 1500px;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
-		height: ${MAIN_SECTION_HEIGHT.laptop}px;
-		margin: 0 ${LEFT_AND_RIGHT_MARGIN.laptop}px;
+		max-width: 1340px;
 	}
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
-		height: ${MAIN_SECTION_HEIGHT.tabletLandScape}px;
-		margin: 0 ${LEFT_AND_RIGHT_MARGIN.tabletLandScape}px;
+		max-width: 1120px;
 	}
+`;
+
+export const StockMainSection = styled.section`
+	${stockPageBaseFontStyle};
+	${stockSectionMaxWidthStyle};
+	position: relative;
+	margin: 0 auto;
+	padding: 4px 0 ${STOCK_LINK_INDICATOR_HEIGHT};
+	border-bottom: 1px solid var(--stockPageBorderColor);
+	height: ${MAIN_SECTION_HEIGHT_PX.desktop}px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
+		height: ${MAIN_SECTION_HEIGHT_PX.laptop}px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		height: ${MAIN_SECTION_HEIGHT_PX.tabletLandScape}px;
+	}
+`;
+
+export const StockSubSection = styled.section`
+	${stockSectionMaxWidthStyle};
+	margin: 0 auto;
+	display: flex;
+	position: relative;
+	padding: 20px 0 50px;
+`;
+
+export const StockSubPageWrapper = styled.div`
+	width: 75%;
 `;
 
 export const CompanyName = styled.header`
 	color: var(--baseTextColor);
 	font-weight: 700;
-	font-size: 3em;
+	font-size: 32px;
+	white-space: nowrap;
+	max-width: 100%;
+	overflow: hidden;
+	text-overflow: ellipsis;
 `;
 
 export const TickerContainer = styled.div`
 	display: flex;
 	align-items: baseline;
-	margin-top: 0.4em;
+	margin-top: 6px;
 `;
 
 export const StockExchange = styled.span`
-	font-size: 0.85em;
-	margin-left: 0.45em;
+	font-size: 14px;
+	margin-left: 6px;
 	color: var(--stockPageTextSubColor);
 	line-height: 1;
 `;
 
 export const Ticker = styled.span`
-	font-size: 1.2em;
+	font-size: 18px;
 	color: var(--stockPageTextSubColor);
 	line-height: 1;
 `;
@@ -56,15 +83,15 @@ export const PriceSection = styled.section`
 	display: flex;
 	align-items: flex-end;
 	${priceColorMixin};
-	margin: 2.7em 0 0;
+	margin: 28px 0 0;
 `;
 
 export const CurrentPrice = styled.div`
 	display: flex;
 	align-items: flex-start;
-	font-size: 3.2em;
+	font-size: 30px;
 	font-weight: 700;
-	margin-right: 0.2em;
+	margin-right: 8px;
 	line-height: 1;
 `;
 
@@ -110,4 +137,40 @@ export const StockMenuLink = styled(NavLink)`
 			width: 100%;
 		}
 	}
+`;
+
+export const StockInfoPanelContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	position: absolute;
+	right: 0;
+	top: -140px;
+	font-size: 14px;
+	width: ${STOCK_INFO_PANEL_WIDTH_PX.desktop}px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
+		width: ${STOCK_INFO_PANEL_WIDTH_PX.laptop}px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		width: ${STOCK_INFO_PANEL_WIDTH_PX.tabletLandScape}px;
+	}
+`;
+
+export const InfoPanel = styled(Card)`
+	margin: 0;
+	padding: 18px 12px;
+	width: 100%;
+	list-style-type: none;
+`;
+
+export const PanelItem = styled.li`
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 14px 0;
+`;
+
+export const PanelItemTitle = styled.span`
+	color: var(--stockPageTextSubColor);
 `;

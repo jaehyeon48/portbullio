@@ -7,7 +7,7 @@ export default function BaseLayout() {
 	const navigate = useNavigate();
 
 	function routeToStockPage(ticker: string) {
-		navigate(`/stock/${ticker}/overview`);
+		navigate(`/stock/${ticker}/chart`);
 	}
 
 	return (

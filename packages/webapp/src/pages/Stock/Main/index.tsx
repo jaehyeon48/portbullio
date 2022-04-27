@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { SyntheticEvent, useEffect } from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
 import { DynamicCaret } from '@components/index';
 import { useTitle } from '@hooks/Title';
@@ -6,6 +6,8 @@ import { formatNum } from '@utils';
 import { searchTickers } from '@api/stock';
 import * as Style from './styles';
 import { useCompanyName, useExchangeName } from '../queries';
+import { useSubscribeStockOverviewData } from '../hooks';
+import StockInfoPanel from './StockInfoPanel';
 
 export default function StockMain() {
 	const navigate = useNavigate();
@@ -13,6 +15,7 @@ export default function StockMain() {
 	useTitle(`Portbullio - ${ticker}`);
 	const companyName = useCompanyName(ticker);
 	const exchangeName = useExchangeName(ticker);
+	const stockOverviewData = useSubscribeStockOverviewData(ticker);
 
 	useEffect(() => {
 		(async () => {
@@ -21,6 +24,11 @@ export default function StockMain() {
 			}
 		})();
 	}, [navigate, ticker]);
+
+	function showPageIsNotPrepared(e: SyntheticEvent) {
+		e.preventDefault();
+		alert('현재 준비중인 페이지입니다.');
+	}
 
 	return (
 		<>
@@ -37,24 +45,35 @@ export default function StockMain() {
 				<Style.PriceSection value={-1}>
 					<Style.CurrentPrice aria-label="Current price">
 						<Style.CurrencySymbol aria-label="Currency symbol">$</Style.CurrencySymbol>
-						{formatNum(1234.56)}
+						{formatNum(stockOverviewData?.price ?? 0)}
 					</Style.CurrentPrice>
 					<Style.PriceChangeContainer>
 						<Style.PriceChange aria-label="Price change">
-							<DynamicCaret value={-1} width={24} height={24} />
-							{formatNum(123.45)}
+							<DynamicCaret value={stockOverviewData?.change ?? 0} width={24} height={24} />
+							{formatNum(stockOverviewData?.change ?? 0)}
 						</Style.PriceChange>
-						&#40;-0.45%&#41;
+						&#40;{formatNum((stockOverviewData?.changePercent ?? 0).toFixed(2))}%&#41;
 					</Style.PriceChangeContainer>
 				</Style.PriceSection>
 				<Style.StockMenuSection>
-					<Style.StockMenuLink to="overview">개요</Style.StockMenuLink>
-					<Style.StockMenuLink to="info">기업 정보</Style.StockMenuLink>
-					<Style.StockMenuLink to="financial">재무 정보</Style.StockMenuLink>
-					<Style.StockMenuLink to="news">뉴스</Style.StockMenuLink>
+					<Style.StockMenuLink to="chart">차트</Style.StockMenuLink>
+					<Style.StockMenuLink to="info" onClick={showPageIsNotPrepared}>
+						기업 정보
+					</Style.StockMenuLink>
+					<Style.StockMenuLink to="financial" onClick={showPageIsNotPrepared}>
+						재무 정보
+					</Style.StockMenuLink>
+					<Style.StockMenuLink to="news" onClick={showPageIsNotPrepared}>
+						뉴스
+					</Style.StockMenuLink>
 				</Style.StockMenuSection>
 			</Style.StockMainSection>
-			<Outlet />
+			<Style.StockSubSection>
+				<Style.StockSubPageWrapper>
+					<Outlet />
+				</Style.StockSubPageWrapper>
+				<StockInfoPanel stockInfoData={stockOverviewData} />
+			</Style.StockSubSection>
 		</>
 	);
 }
