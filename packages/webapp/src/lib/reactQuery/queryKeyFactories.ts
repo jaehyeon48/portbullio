@@ -19,8 +19,8 @@ interface UserKeys {
 }
 
 interface StockKeys {
-	companyName: (ticker: string) => readonly [string, 'companyName'];
-	exchangeName: (ticker: string) => readonly [string, 'exchangeName'];
+	companyName: (ticker: string) => readonly ['companyName', string];
+	exchangeName: (ticker: string) => readonly ['exchangeName', string];
 }
 
 export const portfolioKeys: PortfolioKeys = {
@@ -42,6 +42,6 @@ export const userKeys: UserKeys = {
 };
 
 export const stockKeys: StockKeys = {
-	companyName: (ticker: string) => [ticker, 'companyName'] as const,
-	exchangeName: (ticker: string) => [ticker, 'exchangeName'] as const
+	companyName: (ticker: string) => ['companyName', ticker] as const,
+	exchangeName: (ticker: string) => ['exchangeName', ticker] as const
 };
