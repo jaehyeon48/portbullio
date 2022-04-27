@@ -158,7 +158,6 @@ export const TopStocksListItems = styled.ul`
 export const TopStocksListItem = styled(Card)`
 	list-style-type: none;
 	margin-bottom: 1.2em;
-	padding: 0.8em 0;
 	cursor: pointer;
 `;
 
@@ -167,6 +166,7 @@ export const TopStocksListItemLink = styled(Link)`
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	padding: 0.8em 0;
 `;
 
 export const TopStocksListItemTicker = styled.span`

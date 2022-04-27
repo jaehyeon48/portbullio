@@ -20,6 +20,7 @@ export default function TopStocksSkeleton() {
 const SkeletonWrapper = styled.div`
 	display: flex;
 	justify-content: space-evenly;
+	padding: 0.9em 0;
 `;
 
 const Skeleton = styled.div`

@@ -1,10 +1,10 @@
-import { RealtimeData } from '@portbullio/shared/src/types';
+import { TopStockData } from '@portbullio/shared/src/types';
 import { formatCurrency, prefixPlusChar } from '@utils';
 import TopStocksSkeleton from './TopStocksSkeleton';
 import * as Style from './styles';
 
 interface Props {
-	stockList: RealtimeData[] | undefined;
+	stockList: TopStockData[] | undefined;
 }
 
 export default function TopStocks({ stockList }: Props) {
