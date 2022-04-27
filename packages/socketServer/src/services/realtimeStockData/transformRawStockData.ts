@@ -12,7 +12,16 @@ export default function transformRawStockData(
 			ticker: data[ticker].quote.symbol,
 			change: data[ticker].quote.change,
 			changePercent: data[ticker].quote.changePercent * 100,
-			price: data[ticker].quote.latestPrice
+			price: data[ticker].quote.latestPrice,
+			open: data[ticker].quote.open,
+			prevClose: data[ticker].quote.previousClose,
+			high: data[ticker].quote.high,
+			low: data[ticker].quote.low,
+			marketCap: data[ticker].quote.marketCap,
+			volume: data[ticker].quote.latestVolume,
+			week52High: data[ticker].quote.week52High,
+			week52Low: data[ticker].quote.week52Low,
+			peRatio: data[ticker].quote.peRatio
 		}))
 	);
 }

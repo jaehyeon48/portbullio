@@ -5,7 +5,7 @@ import {
 	InterServerEvents,
 	SocketData,
 	TopStocks,
-	RealtimeData,
+	TopStockData,
 	TopStockCategory
 } from '@portbullio/shared/src/types';
 import * as TopStockService from '@services/topStocks';
@@ -29,6 +29,6 @@ export default async function emitTopStocksData(
 		io.to(userId).emit('TOP_GAINERS_DATA', (cachedTopStocksData as TopStocks).gainers);
 		io.to(userId).emit('TOP_LOSERS_DATA', (cachedTopStocksData as TopStocks).losers);
 	} else {
-		io.to(userId).emit(topStockEventNames[category], cachedTopStocksData as RealtimeData[]);
+		io.to(userId).emit(topStockEventNames[category], cachedTopStocksData as TopStockData[]);
 	}
 }

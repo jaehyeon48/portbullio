@@ -45,7 +45,7 @@ export interface RealtimeDataFilterOptions {
 	open: number | null;
 	openTime: number | null;
 	openSource: string;
-	peRatio: number;
+	peRatio: number | null;
 	previousClose: number;
 	previousVolume: number;
 	primaryExchange: string;
@@ -67,7 +67,15 @@ export interface StockDataFromIEX {
 	change: number;
 	changePercent: number;
 	latestPrice: number;
-	iexRealtimePrice: number | null;
+	open: number | null;
+	previousClose: number;
+	high: number | null;
+	low: number | null;
+	marketCap: number;
+	latestVolume: number;
+	week52High: number;
+	week52Low: number;
+	peRatio: number | null;
 }
 
 export interface FMPMajorIndexData {

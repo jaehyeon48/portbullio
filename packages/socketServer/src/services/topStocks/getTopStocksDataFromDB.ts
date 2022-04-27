@@ -1,11 +1,11 @@
-import { RealtimeData, TopStocks, TopStockCategory } from '@portbullio/shared/src/types';
+import { TopStockData, TopStocks, TopStockCategory } from '@portbullio/shared/src/types';
 import { topStocksCategories } from '@constants';
 import { topStocksDataRedisClient } from '@lib/index';
 import transformTopStocksRawData from './transformTopStocksRawData';
 
 export default async function getTopStocksDataFromDB(
 	category: TopStockCategory
-): Promise<TopStocks | RealtimeData[] | null> {
+): Promise<TopStocks | TopStockData[] | null> {
 	try {
 		if (category === 'all') {
 			const topStocksRawData = await Promise.all(

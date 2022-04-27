@@ -10,7 +10,7 @@ import { MAX_NUM_OF_REQ_TICKERS } from '@constants';
 import groupTickersBy from './groupTickersBy';
 import fetchRealtimeData from './fetchRealtimeData';
 import transformRawStockData from './transformRawStockData';
-import saveRealtimeDataIntoDB from './saveRealtimeDataIntoDB';
+import saveRealtimeDataIntoDB from '../saveRealtimeDataIntoDB';
 import getRealtimeDataFromDB from './getRealtimeDataFromDB';
 import formatRealtimeDataToEmit from './formatRealtimeDataToEmit';
 

@@ -4,14 +4,14 @@ import {
 	ClientToServerEvents,
 	InterServerEvents,
 	SocketData,
-	RealtimeData
+	MajorIndexData
 } from '@portbullio/shared/src/types';
 import getAllMajorIndicesDataSubscribers from './getAllMajorIndicesDataSubscribers';
 import transformMajorIndexData from './transformMajorIndexData';
 
 export default async function broadcastMajorIndicesData(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>,
-	majorIndicesData: RealtimeData[]
+	majorIndicesData: MajorIndexData[]
 ) {
 	const allSubscribers = await getAllMajorIndicesDataSubscribers();
 

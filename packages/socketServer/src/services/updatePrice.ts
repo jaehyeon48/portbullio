@@ -22,7 +22,10 @@ export default async function updatePrice(marketStatus: MarketStatus) {
 	if (realtimeData) await Services.saveRealtimeDataIntoDB(realtimeData);
 	if (allTopStocksData) await Services.saveTopStocksDataIntoDB(allTopStocksData as TopStocks);
 
-	if (realtimeData) Emitter.emit('BROADCAST_REALTIME_DATA');
+	if (realtimeData) {
+		Emitter.emit('BROADCAST_REALTIME_DATA');
+		Emitter.emit('BROADCAST_STOCK_OVERVIEW_DATA', realtimeData);
+	}
 	if (majorIndicesData) Emitter.emit('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData);
 	if (allTopStocksData) Emitter.emit('BROADCAST_TOP_STOCKS_DATA');
 

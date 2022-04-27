@@ -18,6 +18,7 @@ export default async function appLoader(
 ) {
 	await Lib.marketStatusRedisClient.connect();
 	await Lib.realtimeStockDataSubscribersRedisClient.connect();
+	await Lib.stockOverviewPageDataSubscribersRedisClient.connect();
 	await Lib.majorIndicesDataSubscribersRedisClient.connect();
 	await Lib.topStocksDataSubscribersRedisClient.connect();
 	await Lib.realtimeStockDataRedisClient.connect();
@@ -26,6 +27,7 @@ export default async function appLoader(
 
 	await Lib.realtimeStockDataSubscribersRedisClient.flushDb();
 	await Lib.majorIndicesDataSubscribersRedisClient.flushDb();
+	await Lib.stockOverviewPageDataSubscribersRedisClient.flushDb();
 	await Lib.topStocksDataSubscribersRedisClient.flushDb();
 
 	marketStatus.isMarketOpen = await Services.getCurrentMarketState();
@@ -50,6 +52,9 @@ export default async function appLoader(
 	Lib.realtimeStockDataSubscribersRedisClient.on('error', err =>
 		Lib.logger.error('Realtime Stock Data Subscribers Redis Client Error', err)
 	);
+	Lib.stockOverviewPageDataSubscribersRedisClient.on('error', err =>
+		Lib.logger.error('Stock Overview Page Data Subscribers Redis Client Error', err)
+	);
 	Lib.majorIndicesDataSubscribersRedisClient.on('error', err =>
 		Lib.logger.error('Major Indices Data Subscribers Redis Client Error', err)
 	);
@@ -70,6 +75,9 @@ export default async function appLoader(
 	if (marketStatus.isMarketOpen) Services.updatePrice(marketStatus);
 
 	Lib.Emitter.on('BROADCAST_REALTIME_DATA', () => Services.broadcastRealtimeData(io));
+	Lib.Emitter.on('BROADCAST_STOCK_OVERVIEW_DATA', realtimeData =>
+		Services.broadcastStockOverviewData(io, realtimeData)
+	);
 	Lib.Emitter.on('BROADCAST_MAJOR_INDICES_DATA', majorIndicesData =>
 		Services.broadcastMajorIndicesData(io, majorIndicesData)
 	);

@@ -23,7 +23,7 @@ export default async function fetchRealtimeData(
 		return result;
 	} catch (error) {
 		const err = error as AxiosError;
-		logger.error(`fetchRealtimeData.ts: ${err.message}`);
+		logger.error(`realtimeStockData fetchRealtimeData.ts: ${err.message}`);
 		return null;
 	}
 }
@@ -33,5 +33,14 @@ const filter: (keyof RealtimeDataFilterOptions)[] = [
 	'change',
 	'changePercent',
 	'iexRealtimePrice',
-	'latestPrice'
+	'latestPrice',
+	'open',
+	'previousClose',
+	'high',
+	'low',
+	'marketCap',
+	'latestVolume',
+	'week52High',
+	'week52Low',
+	'peRatio'
 ];

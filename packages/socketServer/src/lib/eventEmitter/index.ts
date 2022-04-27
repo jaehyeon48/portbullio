@@ -1,4 +1,4 @@
-import { RealtimeData } from '@portbullio/shared/src/types';
+import { RealtimeData, MajorIndexData } from '@portbullio/shared/src/types';
 import EventEmitter from 'events';
 
 type EventMap = Record<string, any>;
@@ -13,8 +13,9 @@ interface EvtEmitter<T extends EventMap> {
 
 interface EventTypes {
 	BROADCAST_REALTIME_DATA: () => void;
-	BROADCAST_MAJOR_INDICES_DATA: RealtimeData[];
+	BROADCAST_MAJOR_INDICES_DATA: MajorIndexData[];
 	BROADCAST_TOP_STOCKS_DATA: () => void;
+	BROADCAST_STOCK_OVERVIEW_DATA: RealtimeData[];
 }
 
 export class Emitter<T extends EventMap> implements EvtEmitter<T> {

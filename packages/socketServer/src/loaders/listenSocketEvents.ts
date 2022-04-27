@@ -16,14 +16,23 @@ export default function listenSocketEvents(
 		socket.on('SUBSCRIBE_TOP_STOCKS_DATA', category =>
 			Services.subscribeTopStocksData(socket.id, category)
 		);
+		socket.on('SUBSCRIBE_STOCK_OVERVIEW_DATA', ticker =>
+			Services.subscribeStockOverviewData(socket.id, ticker)
+		);
 
 		socket.on('UNSUBSCRIBE_TICKER', () => Services.unsubscribeRealtimeData(socket.id));
 		socket.on('UNSUBSCRIBE_MAJOR_INDICES_DATA', () =>
 			Services.unsubscribeMajorIndicesData(socket.id)
 		);
 		socket.on('UNSUBSCRIBE_TOP_STOCKS_DATA', () => Services.unsubscribeTopStocksData(socket.id));
+		socket.on('UNSUBSCRIBE_STOCK_OVERVIEW_DATA', () =>
+			Services.unsubscribeStockOverviewData(socket.id)
+		);
 
 		socket.on('REQ_CACHED_DATA', tickers => Services.emitCachedData(io, socket.id, tickers));
+		socket.on('REQ_STOCK_OVERVIEW_DATA', ticker =>
+			Services.emitStockOverviewData(io, socket.id, ticker)
+		);
 		socket.on('REQ_MAJOR_INDICES_DATA', () => Services.emitMajorIndicesData(io, socket.id));
 		socket.on('REQ_ALL_TOP_STOCKS_DATA', () => Services.emitTopStocksData(io, socket.id, 'all'));
 		socket.on('REQ_TOP_ACTIVES_DATA', () => Services.emitTopStocksData(io, socket.id, 'actives'));
