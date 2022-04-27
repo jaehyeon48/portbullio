@@ -42,7 +42,7 @@ export default function StockMain() {
 						</Style.StockExchange>
 					</Style.TickerContainer>
 				</section>
-				<Style.PriceSection value={-1}>
+				<Style.PriceSection value={stockOverviewData?.price ?? 0}>
 					<Style.CurrentPrice aria-label="Current price">
 						<Style.CurrencySymbol aria-label="Currency symbol">$</Style.CurrencySymbol>
 						{formatNum(stockOverviewData?.price ?? 0)}
