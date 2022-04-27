@@ -15,3 +15,4 @@ export { default as SearchStocks } from './SearchStocks';
 export { default as ListQueryErrorBoundary } from './ListQueryErrorBoundary';
 export { default as PrivateRoute } from './PrivateRoute';
 export { default as Footer } from './Footer';
+export { default as LoadingSkeleton } from './LoadingSkeleton';
