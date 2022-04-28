@@ -9,6 +9,7 @@ import {
 import getCachedStockOverviewData from './getCachedStockOverviewData';
 import fetchStockOverviewData from './fetchStockOverviewData';
 import saveRealtimeDataIntoDB from '../saveRealtimeDataIntoDB';
+import transformRawStockOverviewData from './transformRawStockOverviewData';
 
 export default async function emitStockOverviewData(
 	io: Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>,
@@ -17,10 +18,12 @@ export default async function emitStockOverviewData(
 ) {
 	const cachedData = await getCachedStockOverviewData(ticker);
 	if (!cachedData) {
-		const newData = await fetchStockOverviewData(ticker);
-		if (!newData) return;
-		await saveRealtimeDataIntoDB([{ ticker, ...newData }]);
-		io.to(userId).emit('STOCK_OVERVIEW_DATA', newData);
+		const newStockOverviewData = transformRawStockOverviewData(
+			await fetchStockOverviewData(ticker)
+		);
+		if (!newStockOverviewData) return;
+		await saveRealtimeDataIntoDB([{ ticker, ...newStockOverviewData }]);
+		io.to(userId).emit('STOCK_OVERVIEW_DATA', newStockOverviewData);
 		return;
 	}
 

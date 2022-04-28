@@ -1,11 +1,10 @@
 import axios, { AxiosError } from 'axios';
-import { RealtimeDataProperties } from '@portbullio/shared/src/types';
 import envConfig from '@config';
-import { RealtimeDataFilterOptions } from '@types';
+import { RealtimeDataFilterOptions, StockDataFromIEX } from '@types';
 import logger from '@lib/winston';
 
 interface StockOverviewFetchRealtimeDataRes {
-	data: RealtimeDataProperties;
+	data: Omit<StockDataFromIEX, 'symbol'>;
 }
 
 const { iexCloudBaseUrl, iexCloudApiKey } = envConfig;
@@ -28,7 +27,6 @@ export default async function fetchStockOverviewData(ticker: string) {
 const filter: (keyof RealtimeDataFilterOptions)[] = [
 	'change',
 	'changePercent',
-	'iexRealtimePrice',
 	'latestPrice',
 	'open',
 	'previousClose',
