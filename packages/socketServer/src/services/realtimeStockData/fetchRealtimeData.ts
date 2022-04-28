@@ -32,7 +32,6 @@ const filter: (keyof RealtimeDataFilterOptions)[] = [
 	'symbol',
 	'change',
 	'changePercent',
-	'iexRealtimePrice',
 	'latestPrice',
 	'open',
 	'previousClose',
