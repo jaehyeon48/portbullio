@@ -1,6 +1,7 @@
 import {
 	realtimeStockDataSubscribersRedisClient,
 	stockOverviewPageDataSubscribersRedisClient,
+	realtimeStockDataRedisClient,
 	logger
 } from '@lib/index';
 
@@ -21,10 +22,13 @@ export default async function getAllUsersTickersFromDB(): Promise<string[]> {
 				stockOverviewPageDataSubscribersRedisClient.get(subscriber)
 			)
 		);
+
+		const allTickersStoredInRedis = await realtimeStockDataRedisClient.keys('*');
 		return [
 			...new Set([
 				...allTickersOfRealtimeStockSubscribers.flatMap(tickers => JSON.parse(tickers ?? '')),
-				...allTickersOfStockOverviewPageSubscribers
+				...allTickersOfStockOverviewPageSubscribers,
+				...allTickersStoredInRedis
 			])
 		];
 	} catch (error) {
