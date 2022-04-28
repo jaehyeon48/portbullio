@@ -20,7 +20,7 @@ export default function StockMain() {
 	useEffect(() => {
 		(async () => {
 			if (!(await isValidTicker(ticker))) {
-				navigate('/invalid-ticker');
+				navigate('/invalid-ticker', { replace: true });
 			}
 		})();
 	}, [navigate, ticker]);
