@@ -11,7 +11,7 @@ export default function transformRawStockData(
 		Object.keys(data).map(ticker => ({
 			ticker: data[ticker].quote.symbol,
 			change: data[ticker].quote.change,
-			changePercent: data[ticker].quote.changePercent * 100,
+			changePercent: data[ticker].quote.changePercent,
 			price: data[ticker].quote.latestPrice,
 			open: data[ticker].quote.open,
 			prevClose: data[ticker].quote.previousClose,

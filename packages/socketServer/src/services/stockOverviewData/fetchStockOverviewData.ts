@@ -13,7 +13,7 @@ export default async function fetchStockOverviewData(ticker: string) {
 	const requestFilter = filter.join(',');
 	try {
 		const { data }: StockOverviewFetchRealtimeDataRes = await axios.get(
-			`${iexCloudBaseUrl}/stock/${ticker}/quote?filter=${requestFilter}&token=${iexCloudApiKey}`
+			`${iexCloudBaseUrl}/stock/${ticker}/quote?filter=${requestFilter}&displayPercent=true&token=${iexCloudApiKey}`
 		);
 
 		return data;

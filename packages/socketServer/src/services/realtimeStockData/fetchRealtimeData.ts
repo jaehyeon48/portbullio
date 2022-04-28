@@ -15,7 +15,7 @@ export default async function fetchRealtimeData(
 			tickers.map(tickerGroup => {
 				const tickerParam = tickerGroup.map(ticker => encodeURIComponent(ticker)).join(',');
 				return axios.get(
-					`${iexCloudBaseUrl}${requestPath}?symbols=${tickerParam}&types=quote&filter=${requestFilter}&token=${iexCloudApiKey}`
+					`${iexCloudBaseUrl}${requestPath}?symbols=${tickerParam}&types=quote&filter=${requestFilter}&displayPercent=true&token=${iexCloudApiKey}`
 				);
 			})
 		);
