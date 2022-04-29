@@ -13,9 +13,9 @@ interface Props {
 export default function drawBars({ ctx, theme, canvasHeight, barData }: Props) {
 	barData.forEach(({ x, y, width, height, ticker, ratio }, i) => {
 		ctx.fillStyle = barColors(theme, i, ticker);
-		ctx.fillRect(x, y, width, height);
+		ctx.fillRect(Math.floor(x), Math.floor(y), width, height);
 
-		drawBarTickerText({ ctx, theme, x: Math.round(x + width / 2), canvasHeight, ticker });
-		drawBarRatioText({ ctx, theme, x: Math.round(x + width / 2), y, ratio });
+		drawBarTickerText({ ctx, theme, x: Math.floor(x + width / 2), canvasHeight, ticker });
+		drawBarRatioText({ ctx, theme, x: Math.floor(x + width / 2), y: Math.floor(y), ratio });
 	});
 }

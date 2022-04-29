@@ -45,12 +45,24 @@ export default function drawVerticalGrid({
 	let gridXPos = maxTextWidth + Y_AXIS_MARGIN + Y_AXIS_LEGEND_GAP;
 	for (let i = 0; i < numOfVerticalGrids; i++) {
 		ctx.fillStyle = textColor(theme);
-		ctx.moveTo(crispPixel(gridXPos), yPos({ canvasHeight, value: maxValue, minValue, maxValue }));
-		ctx.lineTo(crispPixel(gridXPos), yPos({ canvasHeight, value: minValue, minValue, maxValue }));
+		ctx.moveTo(
+			crispPixel(gridXPos, VERTICAL_GRID_THICKNESS),
+			crispPixel(
+				yPos({ canvasHeight, value: maxValue, minValue, maxValue }),
+				VERTICAL_GRID_THICKNESS
+			)
+		);
+		ctx.lineTo(
+			crispPixel(gridXPos, VERTICAL_GRID_THICKNESS),
+			crispPixel(
+				yPos({ canvasHeight, value: minValue, minValue, maxValue }),
+				VERTICAL_GRID_THICKNESS
+			)
+		);
 		if (i < chartData.length) {
 			ctx.fillText(
 				formatChartDateText(chartData.at(-(i + 1))!.createdAt),
-				crispPixel(gridXPos),
+				Math.floor(gridXPos),
 				yPos({ canvasHeight, value: minValue, minValue, maxValue }) + X_AXIS_LEGEND_GAP
 			);
 		}

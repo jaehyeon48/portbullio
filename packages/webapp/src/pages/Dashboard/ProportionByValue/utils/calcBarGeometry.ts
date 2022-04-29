@@ -18,7 +18,7 @@ export default function calcBarGeometry({
 	numOfBars
 }: Props) {
 	let gapBtwBars = DEFAULT_GAP_BTW_BARS;
-	let barWidth = Math.round(
+	let barWidth = Math.floor(
 		(canvasWidth - Y_AXIS_MARGIN - (numOfBars + 1) * gapBtwBars) / numOfBars
 	);
 
@@ -35,7 +35,7 @@ export default function calcBarGeometry({
 	return barData.map(({ ticker, ratio, value }, i) => {
 		const barYPos = yPos({ canvasHeight, value: ratio, maxValue });
 		return {
-			x: Y_AXIS_MARGIN + gapBtwBars * (i + 1) + barWidth * i,
+			x: Math.floor(Y_AXIS_MARGIN + gapBtwBars * (i + 1) + barWidth * i),
 			y: barYPos,
 			width: barWidth,
 			height: barBottomYPos - barYPos,

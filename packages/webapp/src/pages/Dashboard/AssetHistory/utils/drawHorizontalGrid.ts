@@ -1,13 +1,14 @@
 import { Theme } from '@types';
 import { formatCurrency } from '@utils';
+import yPos from './appliedYPos';
 import {
 	NUM_OF_HORIZONTAL_GRID,
 	Y_AXIS_MARGIN,
 	Y_AXIS_LEGEND_GAP,
 	HORIZONTAL_GRID_THICKNESS
 } from '../constants';
+import { crispPixel } from '../../utils';
 import { textColor, gridColor } from '../../colors';
-import yPos from './appliedYPos';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;
@@ -43,13 +44,22 @@ export default function drawHorizontalGrid({
 	let gridVal = minValue;
 	for (let i = 0; i < NUM_OF_HORIZONTAL_GRID; i++) {
 		ctx.moveTo(
-			Y_AXIS_MARGIN + Y_AXIS_LEGEND_GAP + maxTextWidth,
-			yPos({ canvasHeight, value: gridVal, minValue, maxValue })
+			crispPixel(Y_AXIS_MARGIN + Y_AXIS_LEGEND_GAP + maxTextWidth, HORIZONTAL_GRID_THICKNESS),
+			crispPixel(
+				yPos({ canvasHeight, value: gridVal, minValue, maxValue }),
+				HORIZONTAL_GRID_THICKNESS
+			)
 		);
-		ctx.lineTo(gridLength, yPos({ canvasHeight, value: gridVal, minValue, maxValue }));
+		ctx.lineTo(
+			crispPixel(gridLength, HORIZONTAL_GRID_THICKNESS),
+			crispPixel(
+				yPos({ canvasHeight, value: gridVal, minValue, maxValue }),
+				HORIZONTAL_GRID_THICKNESS
+			)
+		);
 		ctx.fillText(
 			formatCurrency(gridVal, 'usd'),
-			legendXPos,
+			Math.floor(legendXPos),
 			yPos({ canvasHeight, value: gridVal, minValue, maxValue })
 		);
 		gridVal += HORIZONTAL_GRID_GAP;

@@ -14,5 +14,5 @@ export default function drawBarRatioText({ ctx, theme, x, y, ratio }: Props) {
 	ctx.textAlign = 'center';
 	ctx.textBaseline = 'bottom';
 	ctx.fillStyle = textColor(theme);
-	ctx.fillText(`${ratio.toFixed(2)}%`, x, y);
+	ctx.fillText(`${ratio.toFixed(2)}%`, Math.floor(x), Math.floor(y));
 }

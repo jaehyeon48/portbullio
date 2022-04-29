@@ -1,7 +1,8 @@
 import { Theme } from '@types';
+import yPos from './appliedYPos';
 import { AXIS_THICKNESS, Y_AXIS_MARGIN } from '../constants';
 import { textColor } from '../../colors';
-import yPos from './appliedYPos';
+import { crispPixel } from '../../utils';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;
@@ -15,8 +16,14 @@ export default function drawAxis({ ctx, theme, maxValue, canvasWidth, canvasHeig
 	ctx.lineWidth = AXIS_THICKNESS;
 	ctx.strokeStyle = textColor(theme);
 	ctx.beginPath();
-	ctx.moveTo(Y_AXIS_MARGIN, 0);
-	ctx.lineTo(Y_AXIS_MARGIN, yPos({ canvasHeight, value: 0, maxValue }));
-	ctx.lineTo(canvasWidth, yPos({ canvasHeight, value: 0, maxValue }));
+	ctx.moveTo(crispPixel(Y_AXIS_MARGIN, AXIS_THICKNESS), crispPixel(0, AXIS_THICKNESS));
+	ctx.lineTo(
+		crispPixel(Y_AXIS_MARGIN, AXIS_THICKNESS),
+		crispPixel(yPos({ canvasHeight, value: 0, maxValue }), AXIS_THICKNESS)
+	);
+	ctx.lineTo(
+		crispPixel(canvasWidth, AXIS_THICKNESS),
+		crispPixel(yPos({ canvasHeight, value: 0, maxValue }), AXIS_THICKNESS)
+	);
 	ctx.stroke();
 }

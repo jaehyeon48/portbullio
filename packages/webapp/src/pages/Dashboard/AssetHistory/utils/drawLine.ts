@@ -1,8 +1,14 @@
 import { AssetChartData, Theme } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
-import { Y_AXIS_LEGEND_GAP, Y_AXIS_MARGIN, CHART_VERTEX_RADIUS } from '../constants';
+import {
+	Y_AXIS_LEGEND_GAP,
+	Y_AXIS_MARGIN,
+	CHART_VERTEX_RADIUS,
+	ASSET_CHART_LINE_THICKNESS
+} from '../constants';
 import { assetChartLineColor } from '../../colors';
+import { crispPixel } from '../../utils';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;
@@ -36,7 +42,7 @@ export default function drawLine({
 		ctx.fillStyle = assetChartLineColor(theme);
 		ctx.beginPath();
 		ctx.arc(
-			xPos,
+			Math.floor(xPos),
 			yPos({ canvasHeight, value: chartData[i].totalAsset, minValue, maxValue }),
 			CHART_VERTEX_RADIUS,
 			0,
@@ -47,10 +53,19 @@ export default function drawLine({
 		if (i > 0) {
 			ctx.beginPath();
 			ctx.strokeStyle = assetChartLineColor(theme);
-			ctx.moveTo(xPos, yPos({ canvasHeight, value: chartData[i].totalAsset, minValue, maxValue }));
+			ctx.moveTo(
+				crispPixel(xPos, ASSET_CHART_LINE_THICKNESS),
+				crispPixel(
+					yPos({ canvasHeight, value: chartData[i].totalAsset, minValue, maxValue }),
+					ASSET_CHART_LINE_THICKNESS
+				)
+			);
 			ctx.lineTo(
-				xPos + verticalGridGap,
-				yPos({ canvasHeight, value: chartData[i - 1].totalAsset, minValue, maxValue })
+				crispPixel(xPos + verticalGridGap, ASSET_CHART_LINE_THICKNESS),
+				crispPixel(
+					yPos({ canvasHeight, value: chartData[i - 1].totalAsset, minValue, maxValue }),
+					ASSET_CHART_LINE_THICKNESS
+				)
 			);
 			ctx.stroke();
 		}

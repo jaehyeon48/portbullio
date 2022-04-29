@@ -1,5 +1,3 @@
-import crispPixel from './crispPixel';
-
 interface YPosAppliedProps {
 	canvasTopMargin: number;
 	canvasBotMargin: number;
@@ -15,7 +13,7 @@ export interface YPosProps {
 
 export default function yPos({ canvasTopMargin, canvasBotMargin, xAxisMargin }: YPosAppliedProps) {
 	return function ({ canvasHeight, value, minValue = 0, maxValue }: YPosProps) {
-		return crispPixel(
+		return Math.floor(
 			canvasTopMargin -
 				xAxisMargin +
 				(canvasHeight - canvasBotMargin) -

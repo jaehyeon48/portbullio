@@ -1,4 +1,5 @@
 import { Theme } from '@types';
+import yPos from './appliedYPos';
 import {
 	NUM_OF_HORIZONTAL_GRID,
 	Y_AXIS_MARGIN,
@@ -6,7 +7,7 @@ import {
 	HORIZONTAL_GRID_THICKNESS
 } from '../constants';
 import { textColor, gridColor } from '../../colors';
-import yPos from './appliedYPos';
+import { crispPixel } from '../../utils';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;
@@ -31,14 +32,24 @@ export default function drawHorizontalGrid({
 	ctx.textBaseline = 'middle';
 	ctx.textAlign = 'right';
 	ctx.fillStyle = textColor(theme);
-	ctx.fillText('0%', legendXPos, yPos({ canvasHeight, value: 0, maxValue }));
+	ctx.fillText('0%', Math.floor(legendXPos), yPos({ canvasHeight, value: 0, maxValue }));
 	ctx.beginPath();
 
 	let gridVal = HORIZONTAL_GRID_GAP;
 	for (let i = 0; i < NUM_OF_HORIZONTAL_GRID; i++) {
-		ctx.moveTo(Y_AXIS_MARGIN, yPos({ canvasHeight, value: gridVal, maxValue }));
-		ctx.lineTo(canvasWidth, yPos({ canvasHeight, value: gridVal, maxValue }));
-		ctx.fillText(`${gridVal}%`, legendXPos, yPos({ canvasHeight, value: gridVal, maxValue }));
+		ctx.moveTo(
+			crispPixel(Y_AXIS_MARGIN, HORIZONTAL_GRID_THICKNESS),
+			crispPixel(yPos({ canvasHeight, value: gridVal, maxValue }), HORIZONTAL_GRID_THICKNESS)
+		);
+		ctx.lineTo(
+			crispPixel(canvasWidth, HORIZONTAL_GRID_THICKNESS),
+			crispPixel(yPos({ canvasHeight, value: gridVal, maxValue }), HORIZONTAL_GRID_THICKNESS)
+		);
+		ctx.fillText(
+			`${gridVal}%`,
+			Math.floor(legendXPos),
+			yPos({ canvasHeight, value: gridVal, maxValue })
+		);
 		gridVal += HORIZONTAL_GRID_GAP;
 	}
 	ctx.stroke();

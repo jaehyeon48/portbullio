@@ -15,8 +15,8 @@ export default function drawPieChart({ ctx, theme, chartData, x, y, radius }: Pr
 		const curEndArc = prevEndArc + Math.PI * 2 * ratio;
 		ctx.fillStyle = sectorPieChartColors(theme, idx);
 		ctx.beginPath();
-		ctx.moveTo(x, y);
-		ctx.arc(x, y, radius, prevEndArc, curEndArc);
+		ctx.moveTo(Math.floor(x), Math.floor(y));
+		ctx.arc(Math.floor(x), Math.floor(y), radius, prevEndArc, curEndArc);
 		ctx.fill();
 		return curEndArc;
 	}, 0);

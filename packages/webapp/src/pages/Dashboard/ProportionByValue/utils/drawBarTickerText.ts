@@ -21,7 +21,7 @@ export default function drawBarTickerText({ ctx, theme, x, canvasHeight, ticker 
 	ctx.textAlign = 'center';
 	ctx.textBaseline = koreanTickerNames.has(ticker) ? 'top' : 'middle';
 	ctx.fillStyle = textColor(theme);
-	ctx.fillText(ticker, x, tickerTextY);
+	ctx.fillText(ticker, Math.floor(x), Math.floor(tickerTextY));
 }
 
 const koreanTickerNames = new Set(['현금', '기타']);
