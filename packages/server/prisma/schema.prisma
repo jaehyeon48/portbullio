@@ -91,11 +91,11 @@ model StockTransactionLog {
 }
 
 model StockMeta {
-  ticker   String @id @db.VarChar(5)
+  ticker   String @id @db.VarChar(8)
   exchange String @db.VarChar(8)
-  name     String @db.VarChar(100)
+  name     String @db.VarChar(121)
   type     StockType
-  sector   String @db.Text
+  sector   String @db.VarChar(72)
 
   @@map("stock_meta")
   @@index([name], map: "stock_meta_name_index")
@@ -134,8 +134,10 @@ enum StockTransactionType {
 
 enum StockType {
   ad
+  cef
   cs
   et
+  oef
   ps
   rt
   struct
