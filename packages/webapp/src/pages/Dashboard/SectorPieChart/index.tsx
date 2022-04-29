@@ -33,8 +33,9 @@ export default function SectorPieChart({ holdingsList }: Props) {
 	useEffect(() => {
 		if (!pieChartCanvasRef.current) return;
 		const pieChartCanvas = pieChartCanvasRef.current;
-		const ctx = pieChartCanvas.getContext('2d');
+		const ctx = adjustToDpr(pieChartCanvas.getContext('2d'), pieChartCanvas);
 		if (!ctx) return;
+
 		adjustToDpr(ctx, pieChartCanvas);
 		const { clientWidth: canvasWidth, clientHeight: canvasHeight } = pieChartCanvas;
 		const [x, y] = [canvasWidth / 2, canvasHeight / 2];

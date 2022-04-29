@@ -37,10 +37,9 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 	useEffect(() => {
 		if (!barCanvasRef.current) return;
 		const barCanvas = barCanvasRef.current;
-		const ctx = barCanvas.getContext('2d');
+		const ctx = adjustToDpr(barCanvas.getContext('2d'), barCanvas);
 		if (!ctx) return;
 
-		adjustToDpr(ctx, barCanvas);
 		const canvasWidth = barCanvas.clientWidth;
 		const canvasHeight = barCanvas.clientHeight;
 		const barGeometries = calcBarGeometry({

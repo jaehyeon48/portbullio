@@ -34,10 +34,9 @@ export default function AssetHistory({ portfolioId }: Props) {
 	useEffect(() => {
 		if (!assetChartRef.current) return;
 		const assetChartCanvas = assetChartRef.current;
-		const ctx = assetChartCanvas.getContext('2d');
+		const ctx = adjustToDpr(assetChartCanvas.getContext('2d'), assetChartCanvas);
 		if (!ctx) return;
 
-		adjustToDpr(ctx, assetChartCanvas);
 		const canvasWidth = assetChartCanvas.clientWidth;
 		const canvasHeight = assetChartCanvas.clientHeight;
 
