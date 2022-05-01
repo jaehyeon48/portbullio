@@ -1,6 +1,6 @@
 import { ReactNode, useRef } from 'react';
 import { useVerticalScrollBar } from '@hooks/index';
-import { ListItemsContainer, EmptyListNotice } from './styles';
+import * as Style from './styles';
 
 interface Props {
 	isListEmpty: boolean;
@@ -15,21 +15,28 @@ export default function ListItems({
 	maxHeight,
 	children
 }: Props) {
-	const outerContainerRef = useRef<HTMLUListElement>(null);
-	const innerContainerRef = useRef<HTMLDivElement>(null);
+	const outerContainerRef = useRef<HTMLDivElement>(null);
+	const innerContainerRef = useRef<HTMLUListElement>(null);
 	const { VerticalScrollBarThumb, calculateThumbY, verticalThumbH, verticalThumbRef } =
 		useVerticalScrollBar({
 			innerContainerRef,
 			outerContainerRef,
 			outerContainerBorderWidth: 1
 		});
-
 	return (
-		<ListItemsContainer ref={outerContainerRef} onScroll={calculateThumbY} maxHeight={maxHeight}>
+		<Style.ListItemsContainer
+			ref={outerContainerRef}
+			onScroll={calculateThumbY}
+			maxHeight={maxHeight}
+		>
 			<VerticalScrollBarThumb ref={verticalThumbRef} height={verticalThumbH} />
-			<div ref={innerContainerRef}>
-				{isListEmpty ? <EmptyListNotice>{emptyListNoticeMessage}</EmptyListNotice> : children}
-			</div>
-		</ListItemsContainer>
+			<Style.ListItemUl ref={innerContainerRef}>
+				{isListEmpty ? (
+					<Style.EmptyListNotice>{emptyListNoticeMessage}</Style.EmptyListNotice>
+				) : (
+					children
+				)}
+			</Style.ListItemUl>
+		</Style.ListItemsContainer>
 	);
 }

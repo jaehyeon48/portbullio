@@ -119,11 +119,10 @@ export const ListHeaderContainer = styled.div`
 	padding: 0 ${LIST_ITEM_LEFT_RIGHT_PADDING_PX}px 0.5em;
 `;
 
-export const ListItemsContainer = styled.ul<ListItemsContainerProps>`
+export const ListItemsContainer = styled.div<ListItemsContainerProps>`
 	position: relative;
 	width: fit-content;
 	min-width: 100%;
-	list-style-type: none;
 	margin: 0;
 	padding: 0;
 	max-height: ${({ maxHeight }) => maxHeight ?? '50vh'};
@@ -132,6 +131,12 @@ export const ListItemsContainer = styled.ul<ListItemsContainerProps>`
 	::-webkit-scrollbar {
 		width: 0;
 	}
+`;
+
+export const ListItemUl = styled.ul`
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 `;
 
 export const ListItem = styled.li`
