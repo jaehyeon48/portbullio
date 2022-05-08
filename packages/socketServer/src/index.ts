@@ -24,7 +24,8 @@ async function startServer() {
 		{
 			cors: {
 				origin: envConfig.origin
-			}
+			},
+			transports: ['websocket', 'polling']
 		}
 	);
 	await loaders(io);

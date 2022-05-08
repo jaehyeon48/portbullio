@@ -10,7 +10,7 @@ interface ProviderProps {
 
 const socket: Socket<ServerToClientEvents, ClientToServerEvents> = io(
 	envConfig.socketServerUrl as string,
-	{ autoConnect: false }
+	{ autoConnect: false, transports: ['websocket', 'polling'] }
 );
 const SocketIoContext = React.createContext(socket);
 
