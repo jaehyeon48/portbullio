@@ -7,7 +7,7 @@
   "main": "src/index.ts",
   "scripts": {
     "start": "npm run dev",
-    "dev": "SET NODE_ENV=development && nodemon -r tsconfig-paths/register ./src/index.ts",
+    "dev": "SET DEBUG=socket.io* && SET NODE_ENV=development && nodemon -r tsconfig-paths/register ./src/index.ts",
     "prod": "node -r tsconfig-paths/register -r ts-node/register ./src/index.ts",
     "build": "tsc -p .",
     "test": "jest --env=jsdom --watchAll",
