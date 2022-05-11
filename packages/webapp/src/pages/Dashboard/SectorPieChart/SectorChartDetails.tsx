@@ -38,7 +38,7 @@ export default function SectorChartDetails({ chartData, maxRatio, numOfPies }: P
 						<Style.IncludedStocks>{includedStocks.join(', ')}</Style.IncludedStocks>
 						<Style.Ratio>
 							<Style.RatioColorBar width={(ratio / maxRatio) * 100} />
-							<Style.RatioText>{formatNum((ratio * 100).toFixed(2))}%</Style.RatioText>
+							<Style.RatioText>{formatNum(ratio * 100)}%</Style.RatioText>
 						</Style.Ratio>
 					</Style.DetailsItem>
 				))}

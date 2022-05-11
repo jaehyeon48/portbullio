@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import { Holding } from '@portbullio/shared/src/types';
 import { PieChart as PieChartIcon } from '@components/index';
 import { useThemeMode } from '@hooks/index';
-import { getHoldingsTickers } from '@utils';
+import { formatNum, getHoldingsTickers } from '@utils';
 import { SectorInfo, SectorPieChartRatio } from '@types';
 import { ItemHeader, ItemIconContainer, NoticeEmptyHoldingsList } from '../styles';
 import * as Style from './styles';
@@ -78,7 +78,7 @@ export default function SectorPieChart({ holdingsList }: Props) {
 									<Style.LegendListItem key={sector}>
 										<Style.LegendColorBox backgroundColor={sectorPieChartColors(theme, idx)} />
 										<Style.LegendItemText>
-											{translateSectorToKor(sector)}&nbsp;&#40;{(ratio * 100).toFixed(2)}%&#41;
+											{translateSectorToKor(sector)}&nbsp;&#40;{formatNum(ratio * 100)}%&#41;
 										</Style.LegendItemText>
 									</Style.LegendListItem>
 								))}

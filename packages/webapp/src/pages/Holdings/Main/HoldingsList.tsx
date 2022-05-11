@@ -56,14 +56,14 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 							<DynamicCaret width={20} height={20} value={realtimeChangePercent} marginTop={2} />
 							{formatCurrency(realtimeChange * holdingQuantity, 'usd')}&#40;
 							{prefixPlusChar(realtimeChangePercent)}
-							{realtimeChangePercent.toFixed(2)}
+							{formatNum(realtimeChangePercent)}
 							%&#41;
 						</Style.HoldingDailyGainSection>
 						<Style.HoldingTotalGainSection value={totalGain}>
 							<DynamicCaret width={20} height={20} value={totalGain} marginTop={2} />
 							{formatCurrency(totalGain, 'usd')}&#40;
 							{prefixPlusChar(totalGainPercent)}
-							{totalGainPercent.toFixed(2)}
+							{formatNum(totalGainPercent)}
 							%&#41;
 						</Style.HoldingTotalGainSection>
 					</ListItem>

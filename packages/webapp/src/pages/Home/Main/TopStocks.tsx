@@ -1,5 +1,5 @@
 import { TopStockData } from '@portbullio/shared/src/types';
-import { formatCurrency, prefixPlusChar } from '@utils';
+import { formatCurrency, formatNum, prefixPlusChar } from '@utils';
 import TopStocksSkeleton from './TopStocksSkeleton';
 import * as Style from './styles';
 
@@ -18,7 +18,7 @@ export default function TopStocks({ stockList }: Props) {
 						<Style.TopStocksListItemTicker>{ticker}</Style.TopStocksListItemTicker>
 						<Style.TopStocksListItemChangePercent value={changePercent}>
 							{prefixPlusChar(changePercent)}
-							{changePercent.toFixed(2)}%
+							{formatNum(changePercent)}%
 						</Style.TopStocksListItemChangePercent>
 						<Style.TopStocksListItemPrice>
 							{formatCurrency(price, 'usd')}
