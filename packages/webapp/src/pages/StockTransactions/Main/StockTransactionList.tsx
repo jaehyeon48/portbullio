@@ -2,8 +2,7 @@ import { SyntheticEvent } from 'react';
 import { Pencil as PencilIcon, TrashCan as TrashCanIcon } from '@components/Icon';
 import { StockTransactionLog, StockTransactionType } from '@prisma/client';
 import { useModal } from '@hooks/Modal';
-import { DECIMAL_DIGITS } from '@constants/index';
-import { formatDate, formatCurrency, formatNum, truncateDecimalPoint } from '@utils';
+import { formatDate, formatCurrency, formatNum } from '@utils';
 import {
 	ListItems,
 	ListItem,
@@ -140,11 +139,7 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 										height={20}
 										marginTop={0}
 									/>
-									{avgBuyCost &&
-										formatCurrency(
-											truncateDecimalPoint((price - avgBuyCost) * quantity, DECIMAL_DIGITS),
-											'usd'
-										)}
+									{avgBuyCost && formatCurrency((price - avgBuyCost) * quantity, 'usd')}
 									{avgBuyCost &&
 										` (${formatNum(realizedProfitLossPercent, { signDisplay: 'exceptZero' })}%)`}
 								</Style.RealizedProfitAndLossSection>
