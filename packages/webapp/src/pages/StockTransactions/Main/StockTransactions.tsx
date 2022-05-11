@@ -9,13 +9,7 @@ import {
 	ArrowBack as ArrowBackIcon,
 	useSelectedPortfolioId
 } from '@components/index';
-import {
-	formatNum,
-	formatCurrency,
-	getHoldingOfTicker,
-	prefixPlusChar,
-	truncateDecimalPoint
-} from '@utils';
+import { formatNum, formatCurrency, getHoldingOfTicker, truncateDecimalPoint } from '@utils';
 import * as Style from './styles';
 import StockTransactionList from './StockTransactionList';
 import { useStockTransactionLogs } from '../queries';
@@ -63,8 +57,8 @@ export default function StockTransactions() {
 							truncateDecimalPoint(totalRealizedProfitLossAmount, DECIMAL_DIGITS),
 							'usd'
 						)}
-						&nbsp;&#40;{prefixPlusChar(totalRealizedProfitLossPercent)}
-						{formatNum(truncateDecimalPoint(totalRealizedProfitLossPercent, DECIMAL_DIGITS))}%&#41;
+						&nbsp;&#40;
+						{formatNum(totalRealizedProfitLossPercent, { signDisplay: 'exceptZero' })}%&#41;
 					</Style.TotalRealizedProfitLossAmount>
 					<Style.CurrentAvgCost>
 						<span>평단가: </span>
