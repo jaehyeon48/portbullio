@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { NAVBAR_WIDTH } from '@constants/index';
 import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
 
-export const Container = styled.aside`
+export const Container = styled.nav`
 	display: flex;
 	flex-direction: column;
 	position: sticky;
