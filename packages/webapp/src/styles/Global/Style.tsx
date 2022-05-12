@@ -208,4 +208,8 @@ export default createGlobalStyle`
     position:absolute;
     z-index: 99;
   }
+
+  .navbar-dropdown-opened {
+    overflow: hidden;
+  }
 `;

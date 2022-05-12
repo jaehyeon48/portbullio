@@ -1,18 +1,24 @@
 import { SyntheticEvent, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import mainLogoLight from '@assets/images/mainLogoLight.webp';
 import mainLogoDark from '@assets/images/mainLogoDark.webp';
-import { AvatarImage } from '@components/index';
-import * as Icon from '@components/Icon';
 import { AuthPage, LogOutPage } from '@pages/index';
-import { useModal, useAuth, useThemeMode } from '@hooks/index';
-import NavbarDropdown from './NavbarDropdown';
+import { useModal, useAuth, useThemeMode, useEmitter } from '@hooks/index';
 import * as Style from './styles';
+import ProfileDropdown from './ProfileDropdown';
+import NavDropdown from './NavDropdown';
+import AvatarImage from '../AvatarImage';
+import * as Icon from '../Icon';
+import SearchStocks from '../SearchStocks';
 
 const navbarLogoWidth = 76;
 const navbarLogoHeight = 50;
 
 export default function Navbar() {
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const navigate = useNavigate();
+	const Emitter = useEmitter();
+	const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false);
+	const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
 	const { openModal } = useModal();
 	const isAuthenticated = useAuth();
 	const [currentTheme] = useThemeMode();
@@ -26,6 +32,22 @@ export default function Navbar() {
 		};
 	}, []);
 
+	useEffect(() => {
+		function closeNavDropdownOnLogOut() {
+			closeNavDropdown();
+		}
+
+		Emitter.on('LOG_OUT', closeNavDropdownOnLogOut);
+
+		return () => {
+			Emitter.off('LOG_OUT', closeNavDropdownOnLogOut);
+		};
+	}, [Emitter]);
+
+	function routeToStockPage(ticker: string) {
+		navigate(`/stock/${ticker}/chart`);
+	}
+
 	function handleOpenLogInModal(e: SyntheticEvent) {
 		openModal(e, <AuthPage />);
 	}
@@ -34,20 +56,30 @@ export default function Navbar() {
 		openModal(e, <LogOutPage />);
 	}
 
-	function handleOpenNavDropdown() {
-		setIsDropdownOpen(true);
+	function handleOpenProfileDropdown() {
+		setIsProfileDropdownOpen(true);
+	}
+
+	function toggleNavDropdown() {
+		setIsNavDropdownOpen(prev => !prev);
+		document.body.classList.toggle('navbar-dropdown-opened');
+	}
+
+	function closeNavDropdown() {
+		setIsNavDropdownOpen(false);
+		document.body.classList.remove('navbar-dropdown-opened');
 	}
 
 	function handleCloseNavDropdown(e: Event) {
 		const target = e.target as HTMLElement;
 		if (target.closest('#nav-profile-button')) return;
-		setIsDropdownOpen(false);
+		setIsProfileDropdownOpen(false);
 	}
 
 	return (
 		<Style.Container>
 			<Style.Top alignItems="center" justifyContent="center">
-				<Style.NavbarLink to="/">
+				<Style.NavbarLink to="/" onClick={closeNavDropdown}>
 					<img
 						src={logoSrc}
 						alt="Navbar main logo"
@@ -56,9 +88,12 @@ export default function Navbar() {
 					/>
 				</Style.NavbarLink>
 			</Style.Top>
-			<Style.Middle flexDirection="column" alignItems="center" justifyContent="space-evenly">
+			<Style.Middle>
+				<Style.NavSearchStockContainer>
+					<SearchStocks onResultClick={routeToStockPage} />
+				</Style.NavSearchStockContainer>
 				{isAuthenticated && (
-					<>
+					<Style.NavLinksContainer>
 						<Style.NavbarLink to="/dashboard">
 							<Icon.Dashboard />
 							<p>대시보드</p>
@@ -75,29 +110,42 @@ export default function Navbar() {
 							<Icon.Coins />
 							<p>현금</p>
 						</Style.NavbarLink>
-					</>
+					</Style.NavLinksContainer>
 				)}
 			</Style.Middle>
 			<Style.Bottom alignItems="center" justifyContent="center">
 				{isAuthenticated ? (
-					<Style.Button
-						id="nav-profile-button"
-						aria-label="User profile button"
-						type="button"
-						onClick={handleOpenNavDropdown}
-					>
-						<Style.ProfileImageContainer>
-							<AvatarImage userIconWidth={36} userIconHeight={36} />
-						</Style.ProfileImageContainer>
-					</Style.Button>
+					<>
+						<Style.NavBurgerButton
+							type="button"
+							aria-label="Toggle navbar dropdown"
+							isNavDropdownOpened={isNavDropdownOpen}
+							onClick={toggleNavDropdown}
+						>
+							<Icon.BurgerButton width={40} height={40} />
+						</Style.NavBurgerButton>
+						<Style.ProfileButton
+							id="nav-profile-button"
+							aria-label="User profile button"
+							type="button"
+							onClick={handleOpenProfileDropdown}
+						>
+							<Style.ProfileImageContainer>
+								<AvatarImage userIconWidth={36} userIconHeight={36} />
+							</Style.ProfileImageContainer>
+						</Style.ProfileButton>
+					</>
 				) : (
-					<Style.Button type="button" onClick={handleOpenLogInModal}>
+					<Style.LoginButton type="button" onClick={handleOpenLogInModal}>
 						<Icon.SignIn />
 						<p>로그인</p>
-					</Style.Button>
+					</Style.LoginButton>
 				)}
 			</Style.Bottom>
-			{isDropdownOpen && <NavbarDropdown logOutFn={handleOpenLogOutModal} />}
+			{isProfileDropdownOpen && <ProfileDropdown logOutFn={handleOpenLogOutModal} />}
+			{isNavDropdownOpen && (
+				<NavDropdown logOutFn={handleOpenLogOutModal} toggleNavDropdown={toggleNavDropdown} />
+			)}
 		</Style.Container>
 	);
 }
