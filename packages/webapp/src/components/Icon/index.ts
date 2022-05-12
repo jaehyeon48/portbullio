@@ -34,3 +34,4 @@ export { default as MoneySack } from './MoneySack';
 export { default as PieChart } from './PieChart';
 export { default as CurveLineChart } from './CurveLineChart';
 export { default as Document } from './Document';
+export { default as BurgerButton } from './BurgerButton';

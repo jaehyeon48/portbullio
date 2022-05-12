@@ -1,9 +1,14 @@
 import styled, { css } from 'styled-components';
 import { Link, NavLink } from 'react-router-dom';
-import { NAVBAR_WIDTH } from '@constants/index';
+import { NAVBAR_WIDTH, MOBILE_NAVBAR_HEIGHT_PX } from '@constants/index';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
 
-export const Container = styled.aside`
+interface NavBurgerButtonProps {
+	isNavDropdownOpened: boolean;
+}
+
+export const Container = styled.nav`
 	display: flex;
 	flex-direction: column;
 	position: sticky;
@@ -12,6 +17,15 @@ export const Container = styled.aside`
 	width: ${NAVBAR_WIDTH}px;
 	height: 100vh;
 	z-index: 2;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		position: fixed;
+		top: 0;
+		width: 100vw;
+		height: ${MOBILE_NAVBAR_HEIGHT_PX}px;
+		flex-direction: row;
+		align-items: center;
+	}
 `;
 
 export const Top = styled.div`
@@ -23,16 +37,42 @@ export const Top = styled.div`
 		position: absolute;
 		top: 24px;
 	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		width: 25%;
+		min-width: 73px;
+		height: 100%;
+	}
 `;
 
 export const Middle = styled.div`
-	${flexMixin}
 	height: 85%;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		width: 80%;
+		height: 100%;
+	}
 `;
 
 export const Bottom = styled.div`
 	${flexMixin}
 	height: 12%;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		width: 20%;
+		height: 100%;
+	}
+`;
+
+export const NavLinksContainer = styled.div`
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		display: none;
+	}
 `;
 
 export const NavbarLink = styled(NavLink)`
@@ -44,14 +84,46 @@ export const NavbarLink = styled(NavLink)`
 	${navbarIconMixin};
 `;
 
-export const Button = styled.button`
+export const LoginButton = styled.button`
 	${buttonMixin};
 	${navbarIconMixin};
 	${flexCenter};
 	flex-direction: column;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		& > svg {
+			width: 32px;
+			height: 32px;
+		}
+	}
 `;
 
-export const DropdownContainer = styled.div`
+export const ProfileButton = styled.button`
+	${buttonMixin};
+	${flexCenter};
+	flex-direction: column;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		display: none;
+	}
+`;
+
+export const NavBurgerButton = styled.button<NavBurgerButtonProps>`
+	${buttonMixin};
+	${navbarIconMixin};
+	display: none;
+	${({ isNavDropdownOpened }) => isNavDropdownOpened && 'transform: rotate(90deg);'}
+
+	& > svg {
+		${({ isNavDropdownOpened }) => isNavDropdownOpened && 'stroke: var(--primary);'}
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		display: block;
+	}
+`;
+
+export const ProfileDropdownContainer = styled.div`
 	position: absolute;
 	display: flex;
 	flex-direction: column;
@@ -72,7 +144,7 @@ export const DropdownContainer = styled.div`
 	}
 `;
 
-const dropdownButtonStyle = css`
+const profileDropdownButtonStyle = css`
 	color: var(--baseTextColor);
 	${buttonMixin};
 	padding: 10px 16px;
@@ -84,12 +156,12 @@ const dropdownButtonStyle = css`
 	}
 `;
 
-export const DropdownButton = styled.button`
-	${dropdownButtonStyle};
+export const ProfileDropdownButton = styled.button`
+	${profileDropdownButtonStyle};
 `;
 
 export const ProfilePageLink = styled(Link)`
-	${dropdownButtonStyle};
+	${profileDropdownButtonStyle};
 	text-align: center;
 	text-decoration: none;
 `;
@@ -107,4 +179,55 @@ export const ProfileImageContainer = styled.div`
 	& > svg {
 		fill: var(--gray);
 	}
+`;
+
+export const NavSearchStockContainer = styled.div`
+	display: none;
+	z-index: 2;
+	height: 100%;
+	padding: 0 14px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		display: flex;
+		align-items: center;
+	}
+`;
+
+export const NavDropdownContainer = styled.div`
+	position: absolute;
+	top: ${MOBILE_NAVBAR_HEIGHT_PX}px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	height: calc(100vh - ${MOBILE_NAVBAR_HEIGHT_PX}px);
+	background-color: var(--cardBgColor);
+	z-index: 2;
+`;
+
+export const NavDropdownLink = styled(Link)`
+	width: 100%;
+	text-decoration: none;
+	color: var(--baseTextColor);
+	border-bottom: 1px solid var(--navbarDropdownBorderColor);
+	padding: 12px 16px;
+`;
+
+export const NavDropdownLogOutButton = styled.button`
+	${buttonMixin};
+	background-color: var(--primary);
+	color: var(--white);
+	border-radius: 4px;
+	margin: 30px auto;
+	padding: 8px 12px;
+	width: 80%;
+`;
+
+export const NavDropdownUsernameContainer = styled.div`
+	padding: 8px;
+`;
+
+export const NavDropdownUsername = styled.span`
+	font-weight: 700;
+	color: var(--primary);
 `;

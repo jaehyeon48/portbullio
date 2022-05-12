@@ -32,7 +32,13 @@ export default function SearchStocks({ onResultClick }: Props) {
 	}, []);
 
 	useEffect(() => {
+		let shouldCancel = false;
+		if (shouldCancel) return () => {};
 		querySymbol(searchQuery, setSearchResults);
+
+		return () => {
+			shouldCancel = true;
+		};
 	}, [searchQuery]);
 
 	function closeSearchList(e: Event) {
