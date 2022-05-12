@@ -110,3 +110,5 @@ dist
 packages/session
 
 docker-db-configs
+
+bundle-report.html

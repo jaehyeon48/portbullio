@@ -10,6 +10,12 @@ export default merge(common, {
 	plugins: [
 		new DotenvWebpackPlugin({
 			path: path.resolve(dirname(fileURLToPath(import.meta.url)), '.env')
+		}),
+		new BundleAnalyzerPlugin({
+			analyzerMode: 'static',
+			reportFilename: '../bundle-report.html',
+			openAnalyzer: false,
+			defaultSizes: 'gzip'
 		})
 	]
 });
