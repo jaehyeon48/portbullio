@@ -17,7 +17,7 @@ export interface HorizontalScrollBarThumbProps {
 	width: number;
 }
 
-type StockType = 'ad' | 'cs' | 'et' | 'ps' | 'rt' | 'struct' | 'ut' | 'wt';
+type StockType = 'ad' | 'cef' | 'cs' | 'et' | 'oef' | 'ps' | 'rt' | 'struct' | 'ut' | 'wt';
 
 export interface SearchSymbolItem {
 	ticker: string;

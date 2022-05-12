@@ -46,8 +46,10 @@ export default function SearchResultList({ searchQuery, searchResults, onResultC
 
 const stockTypeKor = {
 	ad: 'ADR',
+	cef: '폐쇄형 펀드',
 	cs: '보통주',
 	et: 'ETF',
+	oef: '개방형 펀드',
 	ps: '우선주',
 	rt: '신주인수권',
 	struct: '구조화 상품',
