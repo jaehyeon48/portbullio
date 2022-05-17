@@ -15,7 +15,7 @@ export default function Home() {
 
 	return (
 		<>
-			<Style.Section justifyContent="space-evenly">
+			<Style.UpperSection>
 				<Style.HeroImageContainer>
 					<HeroImage />
 				</Style.HeroImageContainer>
@@ -26,8 +26,8 @@ export default function Home() {
 					</Style.Header>
 					<HomeMainButton authText="내 포트폴리오" unAuthText="시작하기" />
 				</Style.HeaderContainer>
-			</Style.Section>
-			<Style.Section margin="5em auto 8em" justifyContent="space-evenly">
+			</Style.UpperSection>
+			<Style.MidSection>
 				<IndexInfo
 					indexName="다우 존스"
 					indexValue={Number(majorIndicesData?.DJI?.price ?? 0)}
@@ -46,8 +46,8 @@ export default function Home() {
 					indexValueChange={Number(majorIndicesData?.IXIC?.change ?? 0)}
 					indexValueChangePercent={Number(majorIndicesData?.IXIC?.changePercent ?? 0)}
 				/>
-			</Style.Section>
-			<Style.Section margin="0 auto 5em" justifyContent="space-evenly">
+			</Style.MidSection>
+			<Style.LowerSection>
 				<Style.TopStocksListSection>
 					<Style.TopStocksListHeader to="/most-actives">
 						<span>거래량 상위</span>
@@ -72,7 +72,7 @@ export default function Home() {
 					<TopStocks stockList={topLosers?.slice(0, 5)} />
 					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
-			</Style.Section>
+			</Style.LowerSection>
 		</>
 	);
 }

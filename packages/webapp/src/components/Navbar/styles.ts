@@ -18,7 +18,7 @@ export const Container = styled.nav`
 	height: 100vh;
 	z-index: 2;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		position: fixed;
 		top: 0;
 		width: 100vw;
@@ -38,7 +38,7 @@ export const Top = styled.div`
 		top: 24px;
 	}
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		width: 25%;
 		min-width: 73px;
 		height: 100%;
@@ -48,7 +48,7 @@ export const Top = styled.div`
 export const Middle = styled.div`
 	height: 85%;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		width: 80%;
 		height: 100%;
 	}
@@ -58,7 +58,7 @@ export const Bottom = styled.div`
 	${flexMixin}
 	height: 12%;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		width: 20%;
 		height: 100%;
 	}
@@ -70,7 +70,7 @@ export const NavLinksContainer = styled.div`
 	flex-direction: column;
 	justify-content: space-evenly;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		display: none;
 	}
 `;
@@ -90,7 +90,7 @@ export const LoginButton = styled.button`
 	${flexCenter};
 	flex-direction: column;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		& > svg {
 			width: 32px;
 			height: 32px;
@@ -103,7 +103,7 @@ export const ProfileButton = styled.button`
 	${flexCenter};
 	flex-direction: column;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		display: none;
 	}
 `;
@@ -118,7 +118,7 @@ export const NavBurgerButton = styled.button<NavBurgerButtonProps>`
 		${({ isNavDropdownOpened }) => isNavDropdownOpened && 'stroke: var(--primary);'}
 	}
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		display: block;
 	}
 `;
@@ -187,7 +187,7 @@ export const NavSearchStockContainer = styled.div`
 	height: 100%;
 	padding: 0 14px;
 
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
 		display: flex;
 		align-items: center;
 	}

@@ -1,6 +1,7 @@
 import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 export default {
 	entry: path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'index.tsx'),

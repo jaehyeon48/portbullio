@@ -124,8 +124,8 @@ export const ListItemTickerSection = styled.span`
 `;
 
 export const ListItemPriceSection = styled.span`
-	${priceColorMixin};
 	${priceSectionStyle};
+	color: var(--baseTextColor);
 `;
 
 export const ListItemChangeSection = styled.span`
