@@ -8,7 +8,6 @@ import {
 	ListItem,
 	EmptyListNotice,
 	StickyNote as StickyNoteIcon,
-	DynamicCaret,
 	useSelectedPortfolioId
 } from '@components/index';
 import * as Style from './styles';
@@ -133,7 +132,6 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 									</Style.MemoOpenButton>
 								</Style.MemoSection>
 								<Style.RealizedProfitAndLossSection value={avgBuyCost ? price - avgBuyCost : 0}>
-									<DynamicCaret value={avgBuyCost ? price - avgBuyCost : 0} />
 									{avgBuyCost &&
 										formatCurrency((price - avgBuyCost) * quantity, 'usd', {
 											signDisplay: 'never'
