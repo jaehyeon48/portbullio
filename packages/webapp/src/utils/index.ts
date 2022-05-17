@@ -12,3 +12,4 @@ export { default as datetimeLocalFormat } from './datetimeLocalFormat';
 export { default as calcTotalCashAmount } from './calcTotalCashAmount';
 export { default as getHoldingsTickers } from './getHoldingsTickers';
 export { default as abbreviateNumber } from './abbreviateNumber';
+export { default as debounce } from './debounce';
