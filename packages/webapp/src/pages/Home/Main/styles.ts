@@ -211,9 +211,8 @@ export const IndexPriceChange = styled.span`
 		font-size: 14px;
 
 		& svg {
-			width: 16px;
-			height: 16px;
-			margin-top: 2px;
+			width: 12px;
+			height: 12px;
 		}
 	}
 `;

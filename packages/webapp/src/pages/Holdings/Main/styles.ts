@@ -1,6 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 import { buttonMixin, priceColorMixin } from '@styles/Mixins';
+
+const priceColorSectionStyle = css`
+	${priceColorMixin};
+	display: flex;
+	align-items: center;
+`;
 
 export const HoldingTickerSection = styled.div`
 	min-width: 75px;
@@ -18,10 +24,8 @@ export const HoldingDetailsOpenButton = styled(Link)`
 `;
 
 export const HoldingCurrentPriceSection = styled.div`
-	display: flex;
-
+	${priceColorSectionStyle};
 	min-width: 230px;
-	${priceColorMixin};
 `;
 
 export const HoldingAvgPriceSection = styled.div`
@@ -37,15 +41,11 @@ export const HoldingTotalValueSection = styled.div`
 `;
 
 export const HoldingDailyGainSection = styled.div`
-	display: flex;
-	${priceColorMixin};
-
+	${priceColorSectionStyle};
 	min-width: 230px;
 `;
 
 export const HoldingTotalGainSection = styled.div`
-	display: flex;
-	${priceColorMixin};
-
+	${priceColorSectionStyle};
 	min-width: 220px;
 `;

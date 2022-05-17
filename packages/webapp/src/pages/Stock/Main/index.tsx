@@ -49,7 +49,7 @@ export default function StockMain() {
 					</Style.CurrentPrice>
 					<Style.PriceChangeContainer>
 						<Style.PriceChange aria-label="Price change">
-							<DynamicCaret value={stockOverviewData?.change ?? 0} width={24} height={24} />
+							<DynamicCaret value={stockOverviewData?.change ?? 0} />
 							{formatNum(stockOverviewData?.change ?? 0)}
 						</Style.PriceChange>
 						&#40;{formatNum(stockOverviewData?.changePercent ?? 0)}%&#41;

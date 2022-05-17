@@ -22,7 +22,7 @@ export default function IndexInfo({
 				<Style.IndexPriceContainer>
 					<Style.IndexPrice>{formatNum(indexValue)}</Style.IndexPrice>
 					<Style.IndexPriceChange>
-						<DynamicCaret value={indexValueChangePercent} width={20} height={20} />
+						<DynamicCaret value={indexValueChangePercent} />
 						{formatNum(indexValueChange)}
 					</Style.IndexPriceChange>
 				</Style.IndexPriceContainer>

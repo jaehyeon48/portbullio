@@ -29,15 +29,15 @@ export default function MostGainersFullList() {
 								<Style.TopStocksFullListItemLink to={`/stock/${ticker}/chart`}>
 									<Style.ListItemTickerSection>{ticker}</Style.ListItemTickerSection>
 									<Style.ListItemPriceSection value={change}>
-										<DynamicCaret width={20} height={20} value={change} marginTop={2} />
+										<DynamicCaret value={change} />
 										{formatCurrency(price, 'usd')}
 									</Style.ListItemPriceSection>
 									<Style.ListItemChangeSection value={change}>
-										<DynamicCaret width={20} height={20} value={change} marginTop={2} />
+										<DynamicCaret value={change} />
 										{formatCurrency(change, 'usd', { signDisplay: 'never' })}
 									</Style.ListItemChangeSection>
 									<Style.ListItemChangePercentSection value={change}>
-										<DynamicCaret width={20} height={20} value={change} marginTop={2} />
+										<DynamicCaret value={change} />
 										{formatNum(changePercent, { signDisplay: 'never' })}%
 									</Style.ListItemChangePercentSection>
 								</Style.TopStocksFullListItemLink>
