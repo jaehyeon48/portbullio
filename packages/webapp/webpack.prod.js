@@ -2,6 +2,7 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import DotenvWebpackPlugin from 'dotenv-webpack';
 import { merge } from 'webpack-merge';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 
 import common from './webpack.common.js';
 
