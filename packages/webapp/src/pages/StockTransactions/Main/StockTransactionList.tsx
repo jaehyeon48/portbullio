@@ -134,7 +134,10 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 								</Style.MemoSection>
 								<Style.RealizedProfitAndLossSection value={avgBuyCost ? price - avgBuyCost : 0}>
 									<DynamicCaret value={avgBuyCost ? price - avgBuyCost : 0} />
-									{avgBuyCost && formatCurrency((price - avgBuyCost) * quantity, 'usd')}
+									{avgBuyCost &&
+										formatCurrency((price - avgBuyCost) * quantity, 'usd', {
+											signDisplay: 'never'
+										})}
 									{avgBuyCost &&
 										` (${formatNum(realizedProfitLossPercent, { signDisplay: 'exceptZero' })}%)`}
 								</Style.RealizedProfitAndLossSection>

@@ -23,7 +23,7 @@ export default function IndexInfo({
 					<Style.IndexPrice>{formatNum(indexValue)}</Style.IndexPrice>
 					<Style.IndexPriceChange>
 						<DynamicCaret value={indexValueChangePercent} />
-						{formatNum(indexValueChange)}
+						{formatNum(indexValueChange, { signDisplay: 'never' })}
 					</Style.IndexPriceChange>
 				</Style.IndexPriceContainer>
 				<Style.IndexChangePercent>

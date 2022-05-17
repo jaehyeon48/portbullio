@@ -40,7 +40,7 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 						</Style.HoldingDetailsSection>
 						<Style.HoldingCurrentPriceSection value={realtimeChange}>
 							<DynamicCaret value={realtimeChange} />
-							{formatCurrency(realtimePrice, 'usd')}&#40;
+							{formatCurrency(realtimePrice, 'usd', { signDisplay: 'never' })}&#40;
 							{formatNum(realtimeChange, { signDisplay: 'exceptZero' })}&#41;
 						</Style.HoldingCurrentPriceSection>
 						<Style.HoldingAvgPriceSection>
@@ -54,13 +54,14 @@ export default function HoldingsList({ holdingsList, isLoading }: Props) {
 						</Style.HoldingTotalValueSection>
 						<Style.HoldingDailyGainSection value={realtimeChangePercent}>
 							<DynamicCaret value={realtimeChangePercent} />
-							{formatCurrency(realtimeChange * holdingQuantity, 'usd')}&#40;
+							{formatCurrency(realtimeChange * holdingQuantity, 'usd', { signDisplay: 'never' })}
+							&#40;
 							{formatNum(realtimeChangePercent, { signDisplay: 'exceptZero' })}
 							%&#41;
 						</Style.HoldingDailyGainSection>
 						<Style.HoldingTotalGainSection value={totalGain}>
 							<DynamicCaret value={totalGain} />
-							{formatCurrency(totalGain, 'usd')}&#40;
+							{formatCurrency(totalGain, 'usd', { signDisplay: 'never' })}&#40;
 							{formatNum(totalGainPercent, { signDisplay: 'exceptZero' })}
 							%&#41;
 						</Style.HoldingTotalGainSection>

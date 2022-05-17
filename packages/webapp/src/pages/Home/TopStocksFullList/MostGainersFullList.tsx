@@ -30,7 +30,7 @@ export default function MostGainersFullList() {
 									<Style.ListItemTickerSection>{ticker}</Style.ListItemTickerSection>
 									<Style.ListItemPriceSection value={change}>
 										<DynamicCaret value={change} />
-										{formatCurrency(price, 'usd')}
+										{formatCurrency(price, 'usd', { signDisplay: 'never' })}
 									</Style.ListItemPriceSection>
 									<Style.ListItemChangeSection value={change}>
 										<DynamicCaret value={change} />
