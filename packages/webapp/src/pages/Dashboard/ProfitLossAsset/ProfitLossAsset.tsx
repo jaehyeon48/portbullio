@@ -34,11 +34,8 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 					{formatCurrency(dailyProfitLoss, 'usd')}
 				</Style.ProfitLossAssetAmount>
 				<Style.ProfitLossAssetPercent value={dailyProfitLoss}>
-					<DynamicCaret value={dailyProfitLoss} />
-					{totalCost === 0
-						? 0
-						: formatNum((dailyProfitLoss / totalCost) * 100, { signDisplay: 'never' })}
-					%
+					<DynamicCaret value={dailyProfitLoss} width={18} height={18} marginTop={2} />
+					{totalCost === 0 ? 0 : formatNum((dailyProfitLoss / totalCost) * 100)}%
 				</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 			<Style.ProfitLossAssetItem>
@@ -50,11 +47,8 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 					{formatCurrency(totalProfitLoss, 'usd')}
 				</Style.ProfitLossAssetAmount>
 				<Style.ProfitLossAssetPercent value={totalProfitLoss}>
-					<DynamicCaret value={totalProfitLoss} />
-					{totalCost === 0
-						? 0
-						: formatNum((totalProfitLoss / totalCost) * 100, { signDisplay: 'never' })}
-					%
+					<DynamicCaret value={totalProfitLoss} width={18} height={18} marginTop={2} />
+					{totalCost === 0 ? 0 : formatNum((totalProfitLoss / totalCost) * 100)}%
 				</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 			<Style.ProfitLossAssetItem>

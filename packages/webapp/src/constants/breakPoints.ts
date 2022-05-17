@@ -2,7 +2,6 @@ interface BreakPoints {
 	mobile: number;
 	mobileLandScape: number;
 	tablet: number;
-	laptopSmall: number;
 	tabletLandScape: number;
 	laptop: number;
 }
@@ -12,7 +11,6 @@ export const WIDTH_BREAK_POINT_PX: BreakPoints = {
 	mobile: 414, // 414x736
 	mobileLandScape: 640, // 640x360(360x640)
 	tablet: 810, // 810x1080
-	laptopSmall: 1024, // 1024x768
 	tabletLandScape: 1280, // 1280x800(800x1280)
 	laptop: 1536 // 1536x864
 };

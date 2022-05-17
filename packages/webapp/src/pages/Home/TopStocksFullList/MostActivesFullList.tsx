@@ -28,15 +28,16 @@ export default function MostActivesFullList() {
 							<Style.TopStocksFullListItem key={ticker} as="li" aria-label="Top actives list item">
 								<Style.TopStocksFullListItemLink to={`/stock/${ticker}/chart`}>
 									<Style.ListItemTickerSection>{ticker}</Style.ListItemTickerSection>
-									<Style.ListItemPriceSection>
+									<Style.ListItemPriceSection value={change}>
+										<DynamicCaret width={20} height={20} value={change} marginTop={2} />
 										{formatCurrency(price, 'usd')}
 									</Style.ListItemPriceSection>
 									<Style.ListItemChangeSection value={change}>
-										<DynamicCaret value={change} />
+										<DynamicCaret width={20} height={20} value={change} marginTop={2} />
 										{formatCurrency(change, 'usd', { signDisplay: 'never' })}
 									</Style.ListItemChangeSection>
 									<Style.ListItemChangePercentSection value={change}>
-										<DynamicCaret value={change} />
+										<DynamicCaret width={20} height={20} value={change} marginTop={2} />
 										{formatNum(changePercent, { signDisplay: 'never' })}%
 									</Style.ListItemChangePercentSection>
 								</Style.TopStocksFullListItemLink>
