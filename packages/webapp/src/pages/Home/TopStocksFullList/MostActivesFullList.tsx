@@ -28,9 +28,8 @@ export default function MostActivesFullList() {
 							<Style.TopStocksFullListItem key={ticker} as="li" aria-label="Top actives list item">
 								<Style.TopStocksFullListItemLink to={`/stock/${ticker}/chart`}>
 									<Style.ListItemTickerSection>{ticker}</Style.ListItemTickerSection>
-									<Style.ListItemPriceSection value={change}>
-										<DynamicCaret value={change} />
-										{formatCurrency(price, 'usd', { signDisplay: 'never' })}
+									<Style.ListItemPriceSection>
+										{formatCurrency(price, 'usd')}
 									</Style.ListItemPriceSection>
 									<Style.ListItemChangeSection value={change}>
 										<DynamicCaret value={change} />
