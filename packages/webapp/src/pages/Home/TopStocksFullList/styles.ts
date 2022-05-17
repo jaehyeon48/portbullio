@@ -89,7 +89,7 @@ export const ListHeaderPriceChangePercentSection = styled.span`
 
 export const TopStocksFullListContainer = styled.div`
 	margin: 0 auto;
-	padding: 0 20px;
+	padding: 0 20px 14px;
 	max-width: 800px;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
