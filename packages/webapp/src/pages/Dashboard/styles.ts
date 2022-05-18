@@ -197,7 +197,7 @@ export const DetailListRatioColorBar = styled.div<RatioColorBarProps>`
 export const DetailListRatioText = styled.p`
 	position: absolute;
 	top: 3px;
-	left: 4px;
+	left: 7px;
 	z-index: 1;
 `;
 
