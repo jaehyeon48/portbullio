@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import Card from '@components/Card';
-import { CANVAS_PADDING_PX, ITEM_UPPER_LOWER_PADDING_PX } from './constants';
+import { ITEM_UPPER_LOWER_PADDING_PX } from './constants';
 
 const DETAIL_LIST_INDEX_ITEM_WIDTH_PX = 130;
 const DETAIL_LIST_DATA_ITEM_WIDTH_PX = 200;
@@ -15,6 +15,10 @@ interface RatioColorBarProps {
 	width: number;
 }
 
+interface DetailsListContainerProps {
+	baseHeight: number;
+}
+
 const detailListItemStyle = css`
 	padding: 4px 6px;
 `;
@@ -26,6 +30,10 @@ export const DashboardContainer = styled.div`
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		padding: 20px 2px;
+	}
 `;
 
 export const ItemIconContainer = styled.div<ItemIconBgColorProp>`
@@ -65,6 +73,10 @@ export const PortfolioSelectContainer = styled.div`
 	& > select {
 		margin: 0;
 	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		margin: 0 auto;
+	}
 `;
 
 export const SelectNumOfItemsContainer = styled.div`
@@ -96,6 +108,10 @@ export const ProportionAndSectorChartSection = styled.section`
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		flex-direction: column;
 	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		gap: 40px;
+	}
 `;
 
 export const ProportionAndSectorChartContainer = styled(Card)`
@@ -103,7 +119,7 @@ export const ProportionAndSectorChartContainer = styled(Card)`
 	flex-direction: column;
 	width: 65%;
 	height: 100%;
-	padding: ${CANVAS_PADDING_PX}px;
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 4px;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		width: 100%;
@@ -113,19 +129,27 @@ export const ProportionAndSectorChartContainer = styled(Card)`
 export const DetailsContainer = styled(Card)`
 	width: 35%;
 	height: 100%;
-	padding: ${CANVAS_PADDING_PX}px 4px;
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 4px;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		width: 100%;
 		height: 310px;
 	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		height: 262px;
+	}
 `;
 
-export const DetailsListContainer = styled.div`
-	height: 365px;
+export const DetailsListContainer = styled.div<DetailsListContainerProps>`
+	height: ${({ baseHeight }) => baseHeight}px;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		height: 230px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		height: 180px;
 	}
 `;
 

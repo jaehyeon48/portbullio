@@ -17,13 +17,19 @@ export const PieChartContainer = styled.div`
 `;
 
 export const PieChartCanvas = styled.canvas`
-	aspect-ratio: 1 / 1;
-	padding: ${CANVAS_PADDING_PX * 7}px;
-	width: 100%;
-	height: 410px;
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	padding: ${CANVAS_PADDING_PX}px;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
-		height: 380px;
+		width: 280px;
+		height: 280px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		width: 240px;
+		height: 240px;
 	}
 `;
 
@@ -32,10 +38,13 @@ export const LegendContainer = styled.div`
 	display: flex;
 	align-items: center;
 	font-size: 14px;
+	max-width: 310px;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
 		font-size: 13px;
 		width: 100%;
+		max-width: none;
+		margin-top: 12px;
 		justify-content: center;
 	}
 `;
