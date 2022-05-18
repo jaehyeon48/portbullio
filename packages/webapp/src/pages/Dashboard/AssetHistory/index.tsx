@@ -141,8 +141,11 @@ export default function AssetHistory({ portfolioId }: Props) {
 				<Style.AssetHistoryChart
 					ref={assetChartRef}
 					onMouseDown={enableGrabbedState}
+					onPointerDown={enableGrabbedState}
 					onMouseUp={disableGrabbedState}
+					onPointerUp={disableGrabbedState}
 					onMouseMove={slideChart}
+					onPointerMove={slideChart}
 				/>
 			)}
 		</Style.AssetHistoryContainer>
