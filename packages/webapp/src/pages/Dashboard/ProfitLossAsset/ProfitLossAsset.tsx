@@ -8,7 +8,8 @@ import {
 	MoneySack as MoneySackIcon
 } from '@components/index';
 import { calcTotalAssets, calcTotalCost, calcDailyProfitLoss, calcTotalProfitLoss } from './utils';
-import * as Style from '../styles';
+import { ItemHeader, ItemIconContainer } from '../styles';
+import * as Style from './style';
 
 interface Props {
 	holdingsList: Holding[];
@@ -26,10 +27,10 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 	return (
 		<Style.ProfitLossAssetContainer>
 			<Style.ProfitLossAssetItem>
-				<Style.ItemIconContainer bgColor="gray">
+				<ItemIconContainer bgColor="gray">
 					<LineChartAscIcon width={24} height={24} />
-				</Style.ItemIconContainer>
-				<Style.ItemHeader>오늘 손익</Style.ItemHeader>
+				</ItemIconContainer>
+				<ItemHeader>오늘 손익</ItemHeader>
 				<Style.ProfitLossAssetAmount value={dailyProfitLoss}>
 					{formatCurrency(dailyProfitLoss, 'usd')}
 				</Style.ProfitLossAssetAmount>
@@ -42,10 +43,10 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 				</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 			<Style.ProfitLossAssetItem>
-				<Style.ItemIconContainer bgColor="gray">
+				<ItemIconContainer bgColor="gray">
 					<BarChartArrowAscIcon width={24} height={24} />
-				</Style.ItemIconContainer>
-				<Style.ItemHeader>총 손익</Style.ItemHeader>
+				</ItemIconContainer>
+				<ItemHeader>총 손익</ItemHeader>
 				<Style.ProfitLossAssetAmount value={totalProfitLoss}>
 					{formatCurrency(totalProfitLoss, 'usd')}
 				</Style.ProfitLossAssetAmount>
@@ -58,13 +59,14 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 				</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 			<Style.ProfitLossAssetItem>
-				<Style.ItemIconContainer bgColor="gray">
+				<ItemIconContainer bgColor="gray">
 					<MoneySackIcon width={24} height={24} />
-				</Style.ItemIconContainer>
-				<Style.ItemHeader>총 자산</Style.ItemHeader>
+				</ItemIconContainer>
+				<ItemHeader>총 자산</ItemHeader>
 				<Style.ProfitLossAssetAmount>
 					{formatCurrency(totalAssets, 'usd')}
 				</Style.ProfitLossAssetAmount>
+				<Style.ProfitLossAssetPercent>&nbsp;</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 		</Style.ProfitLossAssetContainer>
 	);

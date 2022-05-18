@@ -68,6 +68,7 @@ const OuterContainer = styled.div`
 	scrollbar-width: none;
 	::-webkit-scrollbar {
 		width: 0;
+		height: 0;
 	}
 `;
 
