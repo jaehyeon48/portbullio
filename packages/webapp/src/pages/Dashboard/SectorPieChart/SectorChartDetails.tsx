@@ -1,9 +1,8 @@
 import { SectorPieChartRatio } from '@types';
-import { ListItems, Document as DocumentIcon } from '@components/index';
+import { ListContainer, ListItems, Document as DocumentIcon } from '@components/index';
 import { formatNum } from '@utils';
-import { ItemHeader, ItemIconContainer } from '../styles';
+import * as Style from '../styles';
 import { translateSectorToKor } from './utils';
-import * as Style from './styles';
 
 interface Props {
 	chartData: SectorPieChartRatio[];
@@ -14,38 +13,40 @@ interface Props {
 export default function SectorChartDetails({ chartData, maxRatio, numOfPies }: Props) {
 	return (
 		<Style.DetailsContainer>
-			<ItemIconContainer bgColor="blue">
+			<Style.ItemIconContainer bgColor="blue">
 				<DocumentIcon width={26} height={26} />
-			</ItemIconContainer>
-			<ItemHeader>섹터 구성 상세 내용</ItemHeader>
-			<Style.DetailsListHeaders>
-				<Style.DetailsListSectorHeader>섹터</Style.DetailsListSectorHeader>
-				<Style.DetailsListIncludedStocksHeader>구성 종목</Style.DetailsListIncludedStocksHeader>
-				<Style.DetailsListRatioHeader>비중</Style.DetailsListRatioHeader>
-			</Style.DetailsListHeaders>
-			<Style.DetailsListContainer>
-				<ListItems
-					isListEmpty={chartData.length === 0}
-					emptyListNoticeMessage="보유 종목이 없습니다."
-					maxHeight="100%"
-				>
-					{chartData.map(({ sector, includedStocks, ratio }, idx) => (
-						<Style.DetailsItem key={sector}>
-							<Style.Sector>
-								<p>{translateSectorToKor(sector)}</p>
-								{chartData.length !== numOfPies && idx >= numOfPies - 1 && (
-									<Style.OthersCategoryNotice>기타</Style.OthersCategoryNotice>
-								)}
-							</Style.Sector>
-							<Style.IncludedStocks>{includedStocks.join(', ')}</Style.IncludedStocks>
-							<Style.Ratio>
-								<Style.RatioColorBar width={(ratio / maxRatio) * 100} />
-								<Style.RatioText>{formatNum(ratio * 100)}%</Style.RatioText>
-							</Style.Ratio>
-						</Style.DetailsItem>
-					))}
-				</ListItems>
-			</Style.DetailsListContainer>
+			</Style.ItemIconContainer>
+			<Style.ItemHeader>섹터 구성 상세 내용</Style.ItemHeader>
+			<ListContainer>
+				<Style.DetailsListHeaders>
+					<Style.DetailListIndexItem>섹터</Style.DetailListIndexItem>
+					<Style.DetailListDataItem>구성 종목</Style.DetailListDataItem>
+					<Style.DetailListRatioItem>비중</Style.DetailListRatioItem>
+				</Style.DetailsListHeaders>
+				<Style.DetailsListContainer>
+					<ListItems
+						isListEmpty={chartData.length === 0}
+						emptyListNoticeMessage="보유 종목이 없습니다."
+						maxHeight="100%"
+					>
+						{chartData.map(({ sector, includedStocks, ratio }, idx) => (
+							<Style.DetailsListItem key={sector}>
+								<Style.DetailListIndexItem>
+									<p>{translateSectorToKor(sector)}</p>
+									{chartData.length !== numOfPies && idx >= numOfPies - 1 && (
+										<Style.OthersCategoryNotice>기타</Style.OthersCategoryNotice>
+									)}
+								</Style.DetailListIndexItem>
+								<Style.DetailListDataItem>{includedStocks.join(', ')}</Style.DetailListDataItem>
+								<Style.DetailListRatioItem>
+									<Style.DetailListRatioColorBar width={(ratio / maxRatio) * 100} />
+									<Style.DetailListRatioText>{formatNum(ratio * 100)}%</Style.DetailListRatioText>
+								</Style.DetailListRatioItem>
+							</Style.DetailsListItem>
+						))}
+					</ListItems>
+				</Style.DetailsListContainer>
+			</ListContainer>
 		</Style.DetailsContainer>
 	);
 }

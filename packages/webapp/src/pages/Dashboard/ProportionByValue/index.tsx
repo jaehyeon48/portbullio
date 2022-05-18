@@ -4,7 +4,13 @@ import { ClientStockRealtimeData, Holding } from '@portbullio/shared/src/types';
 import { useThemeMode } from '@hooks/index';
 import { BarChartAsc as BarChartAscIcon } from '@components/index';
 import { calcTotalCashAmount } from '@utils';
-import { ItemHeader, ItemIconContainer, NoticeEmptyHoldingsList } from '../styles';
+import {
+	ItemHeader,
+	ItemIconContainer,
+	NoticeEmptyHoldingsList,
+	ProportionAndSectorChartContainer,
+	ProportionAndSectorChartSection
+} from '../styles';
 import * as Style from './styles';
 import { adjustToDpr } from '../utils';
 import { useGetCanvasGeometryOnResize } from '../hooks';
@@ -80,8 +86,8 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 	}
 
 	return (
-		<Style.ProportionByValueSection>
-			<Style.ProportionByValueChartContainer>
+		<ProportionAndSectorChartSection>
+			<ProportionAndSectorChartContainer>
 				{!isHoldingsEmpty() && (
 					<SelectNumOfItems
 						numOfItems={holdingsList.length + 1}
@@ -103,12 +109,12 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 				) : (
 					<Style.ProportionByValueChartCanvas ref={barCanvasRef} />
 				)}
-			</Style.ProportionByValueChartContainer>
+			</ProportionAndSectorChartContainer>
 			<DetailsPage
 				chartData={originalBarData}
 				maxRatio={originalBarData.at(0)?.ratio ?? 0}
 				numOfBars={numOfBars}
 			/>
-		</Style.ProportionByValueSection>
+		</ProportionAndSectorChartSection>
 	);
 }

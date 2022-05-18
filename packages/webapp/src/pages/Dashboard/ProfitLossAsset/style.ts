@@ -1,14 +1,17 @@
 import styled from 'styled-components';
 import Card from '@components/Card';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import { priceColorMixin } from '@styles/Mixins';
-import { ITEM_UPPER_LOWER_PADDING_PX } from '../styles';
-
-const PROFIT_LOSS_ASSET_ITEM_HEIGHT_PX = 134;
+import { ITEM_UPPER_LOWER_PADDING_PX } from '../constants';
 
 export const ProfitLossAssetContainer = styled.section`
 	display: flex;
 	justify-content: space-evenly;
 	gap: 30px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		flex-direction: column;
+	}
 `;
 
 export const ProfitLossAssetItem = styled(Card)`
@@ -16,7 +19,12 @@ export const ProfitLossAssetItem = styled(Card)`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	height: ${PROFIT_LOSS_ASSET_ITEM_HEIGHT_PX}px;
+	justify-content: space-between;
+	height: 134px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		height: 126px;
+	}
 `;
 
 export const ProfitLossAssetAmount = styled.div`
@@ -24,10 +32,12 @@ export const ProfitLossAssetAmount = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 17px;
-	padding: 0 5%;
 	font-size: 24px;
 	font-weight: 500;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tabletLandScape}px) {
+		font-size: 20px;
+	}
 `;
 
 export const ProfitLossAssetPercent = styled.div`
@@ -36,5 +46,4 @@ export const ProfitLossAssetPercent = styled.div`
 	align-items: center;
 	justify-content: center;
 	text-align: center;
-	margin-top: 14px;
 `;

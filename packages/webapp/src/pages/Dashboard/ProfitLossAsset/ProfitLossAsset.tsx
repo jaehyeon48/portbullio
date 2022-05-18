@@ -9,7 +9,7 @@ import {
 } from '@components/index';
 import { calcTotalAssets, calcTotalCost, calcDailyProfitLoss, calcTotalProfitLoss } from './utils';
 import { ItemHeader, ItemIconContainer } from '../styles';
-import * as Style from './styles';
+import * as Style from './style';
 
 interface Props {
 	holdingsList: Holding[];
@@ -66,6 +66,7 @@ export default function ProfitLossAsset({ holdingsList, realtimeData, cashTransa
 				<Style.ProfitLossAssetAmount>
 					{formatCurrency(totalAssets, 'usd')}
 				</Style.ProfitLossAssetAmount>
+				<Style.ProfitLossAssetPercent>&nbsp;</Style.ProfitLossAssetPercent>
 			</Style.ProfitLossAssetItem>
 		</Style.ProfitLossAssetContainer>
 	);

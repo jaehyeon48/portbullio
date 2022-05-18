@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Card from '@components/Card';
-import { ITEM_UPPER_LOWER_PADDING_PX, CANVAS_PADDING_PX } from '../styles';
+import { CANVAS_PADDING_PX, ITEM_UPPER_LOWER_PADDING_PX } from '../constants';
 
 const ASSET_HISTORY_CONTAINER_HEIGHT_PX = 420;
 

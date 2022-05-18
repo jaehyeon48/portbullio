@@ -3,7 +3,13 @@ import { Holding } from '@portbullio/shared/src/types';
 import { PieChart as PieChartIcon } from '@components/index';
 import { useThemeMode } from '@hooks/index';
 import { formatNum, getHoldingsTickers } from '@utils';
-import { ItemHeader, ItemIconContainer, NoticeEmptyHoldingsList } from '../styles';
+import {
+	ItemHeader,
+	ItemIconContainer,
+	NoticeEmptyHoldingsList,
+	ProportionAndSectorChartContainer,
+	ProportionAndSectorChartSection
+} from '../styles';
 import * as Style from './styles';
 import { adjustToDpr } from '../utils';
 import {
@@ -64,8 +70,8 @@ export default function SectorPieChart({ holdingsList }: Props) {
 	}
 
 	return (
-		<Style.SectorPieChartSection>
-			<Style.SectorPieChartContainer>
+		<ProportionAndSectorChartSection>
+			<ProportionAndSectorChartContainer>
 				{!isSectorsEmpty() && (
 					<SelectNumOfItems
 						numOfItems={sectorMap.size}
@@ -101,12 +107,12 @@ export default function SectorPieChart({ holdingsList }: Props) {
 						</Style.LegendContainer>
 					</Style.PieChartContainer>
 				)}
-			</Style.SectorPieChartContainer>
+			</ProportionAndSectorChartContainer>
 			<DetailsPage
 				chartData={sectorRatios}
 				maxRatio={sectorRatios.at(0)?.ratio ?? 0}
 				numOfPies={numOfPies}
 			/>
-		</Style.SectorPieChartSection>
+		</ProportionAndSectorChartSection>
 	);
 }
