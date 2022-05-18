@@ -7,6 +7,7 @@ import { calcTotalCashAmount } from '@utils';
 import { ItemHeader, ItemIconContainer, NoticeEmptyHoldingsList } from '../styles';
 import * as Style from './styles';
 import { adjustToDpr } from '../utils';
+import { useGetCanvasGeometryOnResize } from '../hooks';
 import { MAX_NUM_OF_BARS } from './constants';
 import DetailsPage from './ProportionChartDetails';
 import {
@@ -33,6 +34,11 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 	const originalBarData = transformToBarData(realtimeData, holdingsList, cashTransactions);
 	const barData = truncateToNumOfBars(originalBarData, numOfBars);
 	const maxRatio = barData.at(0)?.ratio ?? 0;
+	const [barCanvasGeometry, setBarCanvasGeometry] = useState({
+		width: barCanvasRef.current?.clientWidth,
+		height: barCanvasRef.current?.clientHeight
+	});
+	useGetCanvasGeometryOnResize({ canvasRef: barCanvasRef, setStateFn: setBarCanvasGeometry });
 
 	useEffect(() => {
 		if (!barCanvasRef.current) return;
@@ -40,8 +46,8 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 		const ctx = adjustToDpr(barCanvas.getContext('2d'), barCanvas);
 		if (!ctx) return;
 
-		const canvasWidth = barCanvas.clientWidth;
-		const canvasHeight = barCanvas.clientHeight;
+		const canvasWidth = barCanvasGeometry.width ?? barCanvas.clientWidth;
+		const canvasHeight = barCanvasGeometry.height ?? barCanvas.clientHeight;
 		const barGeometries = calcBarGeometry({
 			barData,
 			maxValue: maxRatio,
@@ -67,7 +73,7 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 		});
 
 		drawBars({ ctx, theme, barData: barGeometries, canvasHeight });
-	}, [maxRatio, theme, barData, numOfBars]);
+	}, [maxRatio, theme, barData, numOfBars, barCanvasGeometry]);
 
 	function isHoldingsEmpty() {
 		return numOfBars === 1 && totalCashAmount <= 0;

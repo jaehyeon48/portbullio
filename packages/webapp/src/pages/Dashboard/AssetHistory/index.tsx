@@ -5,6 +5,7 @@ import * as Style from './styles';
 import { useChartDataBuffer } from './hooks';
 import { adjustToDpr } from '../utils';
 import { drawHorizontalGrid, drawLine, drawVerticalGrid } from './utils';
+import { useGetCanvasGeometryOnResize } from '../hooks';
 import { NUM_OF_HORIZONTAL_GRID } from './constants';
 import { ItemHeader, ItemIconContainer, NoticeEmptyHoldingsList } from '../styles';
 
@@ -26,6 +27,14 @@ export default function AssetHistory({ portfolioId }: Props) {
 	const chartData = chartDataBuffer.slice(currentWindow.s, currentWindow.e + 1);
 	const maxTotalAsset = Math.max(...chartData.map(({ totalAsset }) => totalAsset));
 	const minTotalAsset = Math.min(...chartData.map(({ totalAsset }) => totalAsset));
+	const [assetChartCanvasGeometry, setAssetChartCanvasGeometry] = useState({
+		width: assetChartRef.current?.clientWidth,
+		height: assetChartRef.current?.clientHeight
+	});
+	useGetCanvasGeometryOnResize({
+		canvasRef: assetChartRef,
+		setStateFn: setAssetChartCanvasGeometry
+	});
 
 	useEffect(() => {
 		setCurrentWindow({ s: 0, e: COUNT - 1 });
@@ -37,9 +46,8 @@ export default function AssetHistory({ portfolioId }: Props) {
 		const ctx = adjustToDpr(assetChartCanvas.getContext('2d'), assetChartCanvas);
 		if (!ctx) return;
 
-		const canvasWidth = assetChartCanvas.clientWidth;
-		const canvasHeight = assetChartCanvas.clientHeight;
-
+		const canvasWidth = assetChartCanvasGeometry.width ?? assetChartCanvas.clientWidth;
+		const canvasHeight = assetChartCanvasGeometry.height ?? assetChartCanvas.clientHeight;
 		const minMaxDiff = (maxTotalAsset - minTotalAsset) / (NUM_OF_HORIZONTAL_GRID - 1);
 		const adjustedMaxValue =
 			minMaxDiff < 1 ? minTotalAsset + (NUM_OF_HORIZONTAL_GRID - 1) : maxTotalAsset;
@@ -74,7 +82,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 			chartData,
 			numOfVerticalGrids: COUNT
 		});
-	}, [theme, chartData, minTotalAsset, maxTotalAsset]);
+	}, [theme, chartData, minTotalAsset, maxTotalAsset, assetChartCanvasGeometry]);
 
 	const isGrabbedChart = useRef(false);
 	const startXPos = useRef(0);

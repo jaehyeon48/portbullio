@@ -14,6 +14,7 @@ import {
 	translateSectorToKor
 } from './utils';
 import { useSectors } from './queries';
+import { useGetCanvasGeometryOnResize } from '../hooks';
 import SelectNumOfItems from '../SelectNumOfItems';
 import DetailsPage from './SectorChartDetails';
 
@@ -34,6 +35,14 @@ export default function SectorPieChart({ holdingsList }: Props) {
 	const [numOfPies, setNumOfPies] = useState(Math.min(sectorMap.size, MAX_NUM_OF_PIES));
 	const sectorRatios = calcSectorRatios(sectorMap, tickers.length);
 	const sectorChartData = convertToSectorChartData(sectorRatios, numOfPies);
+	const [sectorPieChartCanvasGeometry, setSectorPieChartCanvasGeometry] = useState({
+		width: pieChartCanvasRef.current?.clientWidth,
+		height: pieChartCanvasRef.current?.clientHeight
+	});
+	useGetCanvasGeometryOnResize({
+		canvasRef: pieChartCanvasRef,
+		setStateFn: setSectorPieChartCanvasGeometry
+	});
 
 	useEffect(() => {
 		if (!pieChartCanvasRef.current) return;
@@ -42,12 +51,13 @@ export default function SectorPieChart({ holdingsList }: Props) {
 		if (!ctx) return;
 
 		adjustToDpr(ctx, pieChartCanvas);
-		const { clientWidth: canvasWidth, clientHeight: canvasHeight } = pieChartCanvas;
+		const canvasWidth = sectorPieChartCanvasGeometry.width ?? pieChartCanvas.clientWidth;
+		const canvasHeight = sectorPieChartCanvasGeometry.height ?? pieChartCanvas.clientHeight;
 		const [x, y] = [canvasWidth / 2, canvasHeight / 2];
 		const radius = Math.min(canvasWidth, canvasHeight) / 2;
 
 		drawPieChart({ ctx, theme, chartData: sectorChartData, x, y, radius });
-	}, [theme, sectorChartData]);
+	}, [theme, sectorChartData, sectorPieChartCanvasGeometry]);
 
 	function isSectorsEmpty() {
 		return sectorMap.size === 0;
