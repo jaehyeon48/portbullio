@@ -1,12 +1,10 @@
 import styled from 'styled-components';
-import Card from '@components/Card';
 
 interface ItemIconBgColorProp {
 	bgColor: 'gray' | 'blue';
 }
 
 export const ITEM_UPPER_LOWER_PADDING_PX = 8;
-const PIE_CHART_CONTAINER_HEIGHT_PX = 400;
 export const CANVAS_PADDING_PX = 10;
 
 export const DashboardContainer = styled.div`
@@ -51,11 +49,6 @@ export const PortfolioSelectContainer = styled.div`
 	& > select {
 		margin: 0;
 	}
-`;
-
-export const DividendPieChartContainer = styled(Card)`
-	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	height: ${PIE_CHART_CONTAINER_HEIGHT_PX}px;
 `;
 
 export const SelectNumOfItemsContainer = styled.div`
