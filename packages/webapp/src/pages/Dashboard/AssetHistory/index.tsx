@@ -48,6 +48,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 
 		const canvasWidth = assetChartCanvasGeometry.width ?? assetChartCanvas.clientWidth;
 		const canvasHeight = assetChartCanvasGeometry.height ?? assetChartCanvas.clientHeight;
+		const viewWidth = window.innerWidth;
 		const minMaxDiff = (maxTotalAsset - minTotalAsset) / (NUM_OF_HORIZONTAL_GRID - 1);
 		const adjustedMaxValue =
 			minMaxDiff < 1 ? minTotalAsset + (NUM_OF_HORIZONTAL_GRID - 1) : maxTotalAsset;
@@ -66,6 +67,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 			theme,
 			minValue: minTotalAsset,
 			maxValue: adjustedMaxValue,
+			viewWidth,
 			canvasWidth,
 			canvasHeight,
 			chartData,
