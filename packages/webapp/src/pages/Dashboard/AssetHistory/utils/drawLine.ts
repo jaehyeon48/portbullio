@@ -1,6 +1,7 @@
 import { AssetChartData, Theme } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
+import { assetChartValueLegendFont } from './chartFont';
 import {
 	Y_AXIS_LEGEND_GAP,
 	Y_AXIS_MARGIN,
@@ -31,7 +32,7 @@ export default function drawLine({
 	chartData,
 	numOfVerticalGrids
 }: Props) {
-	ctx.font = 'bold 14px NotoSansKR';
+	ctx.font = assetChartValueLegendFont(canvasWidth);
 
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 	let xPos = maxTextWidth + Y_AXIS_MARGIN + Y_AXIS_LEGEND_GAP;

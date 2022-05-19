@@ -1,6 +1,7 @@
 import { Theme, AssetChartData } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
+import { assetChartDateFont, assetChartValueLegendFont } from './chartFont';
 import {
 	VERTICAL_GRID_THICKNESS,
 	X_AXIS_LEGEND_GAP,
@@ -31,7 +32,7 @@ export default function drawVerticalGrid({
 	chartData,
 	numOfVerticalGrids
 }: Props) {
-	ctx.font = 'bold 14px NotoSansKR';
+	ctx.font = assetChartValueLegendFont(canvasWidth);
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 	const verticalGridGap =
 		(canvasWidth - maxTextWidth - Y_AXIS_MARGIN * 3 - Y_AXIS_LEGEND_GAP) / (numOfVerticalGrids - 1);
@@ -39,7 +40,7 @@ export default function drawVerticalGrid({
 	ctx.lineWidth = VERTICAL_GRID_THICKNESS;
 	ctx.strokeStyle = gridColor(theme);
 	ctx.textAlign = 'center';
-	ctx.font = '12px NotoSansKR';
+	ctx.font = assetChartDateFont(canvasWidth);
 	ctx.beginPath();
 
 	let gridXPos = maxTextWidth + Y_AXIS_MARGIN + Y_AXIS_LEGEND_GAP;
