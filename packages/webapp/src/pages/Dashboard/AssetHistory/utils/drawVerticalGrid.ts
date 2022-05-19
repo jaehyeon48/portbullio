@@ -35,7 +35,7 @@ export default function drawVerticalGrid({
 	chartData,
 	numOfVerticalGrids
 }: Props) {
-	ctx.font = assetChartValueLegendFont(canvasWidth);
+	ctx.font = assetChartValueLegendFont(viewWidth);
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 	const verticalGridGap =
 		(canvasWidth - maxTextWidth - Y_AXIS_MARGIN * 3 - Y_AXIS_LEGEND_GAP) / (numOfVerticalGrids - 1);

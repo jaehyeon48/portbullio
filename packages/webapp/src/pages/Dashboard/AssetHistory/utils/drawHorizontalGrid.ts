@@ -16,6 +16,7 @@ interface Props {
 	theme: Theme;
 	minValue: number;
 	maxValue: number;
+	viewWidth: number;
 	canvasWidth: number;
 	canvasHeight: number;
 }
@@ -25,10 +26,11 @@ export default function drawHorizontalGrid({
 	theme,
 	minValue,
 	maxValue,
+	viewWidth,
 	canvasWidth,
 	canvasHeight
 }: Props) {
-	ctx.font = assetChartValueLegendFont(canvasWidth);
+	ctx.font = assetChartValueLegendFont(viewWidth);
 
 	const HORIZONTAL_GRID_GAP = (maxValue - minValue) / (NUM_OF_HORIZONTAL_GRID - 1);
 	const legendXPos = Y_AXIS_MARGIN - Y_AXIS_LEGEND_GAP;

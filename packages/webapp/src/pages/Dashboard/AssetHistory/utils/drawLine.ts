@@ -14,6 +14,7 @@ import { crispPixel } from '../../utils';
 interface Props {
 	ctx: CanvasRenderingContext2D;
 	theme: Theme;
+	viewWidth: number;
 	canvasWidth: number;
 	canvasHeight: number;
 	minValue: number;
@@ -25,6 +26,7 @@ interface Props {
 export default function drawLine({
 	ctx,
 	theme,
+	viewWidth,
 	canvasWidth,
 	canvasHeight,
 	minValue,
@@ -32,7 +34,7 @@ export default function drawLine({
 	chartData,
 	numOfVerticalGrids
 }: Props) {
-	ctx.font = assetChartValueLegendFont(canvasWidth);
+	ctx.font = assetChartValueLegendFont(viewWidth);
 
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 	let xPos = maxTextWidth + Y_AXIS_MARGIN + Y_AXIS_LEGEND_GAP;

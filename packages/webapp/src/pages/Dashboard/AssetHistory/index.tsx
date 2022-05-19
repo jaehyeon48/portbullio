@@ -58,6 +58,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 			theme,
 			minValue: minTotalAsset,
 			maxValue: adjustedMaxValue,
+			viewWidth,
 			canvasWidth,
 			canvasHeight
 		});
@@ -79,6 +80,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 			theme,
 			minValue: minTotalAsset,
 			maxValue: adjustedMaxValue,
+			viewWidth,
 			canvasWidth,
 			canvasHeight,
 			chartData,
