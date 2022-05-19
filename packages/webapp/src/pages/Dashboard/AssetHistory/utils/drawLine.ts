@@ -2,12 +2,7 @@ import { AssetChartData, Theme } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
 import { assetChartValueLegendFont } from './chartFont';
-import {
-	Y_AXIS_LEGEND_GAP,
-	Y_AXIS_MARGIN,
-	CHART_VERTEX_RADIUS,
-	ASSET_CHART_LINE_THICKNESS
-} from '../constants';
+import { Y_AXIS_LEGEND_GAP, Y_AXIS_MARGIN, ASSET_CHART_LINE_THICKNESS } from '../constants';
 import { assetChartLineColor } from '../../colors';
 import { crispPixel } from '../../utils';
 
@@ -42,20 +37,10 @@ export default function drawLine({
 		(canvasWidth - maxTextWidth - Y_AXIS_MARGIN * 3 - Y_AXIS_LEGEND_GAP) / (numOfVerticalGrids - 1);
 
 	for (let i = chartData.length - 1; i >= 0; i--) {
-		ctx.fillStyle = assetChartLineColor(theme);
-		ctx.beginPath();
-		ctx.arc(
-			Math.floor(xPos),
-			yPos({ canvasHeight, value: chartData[i].totalAsset, minValue, maxValue }),
-			CHART_VERTEX_RADIUS,
-			0,
-			2 * Math.PI
-		);
-		ctx.fill();
-
 		if (i > 0) {
 			ctx.beginPath();
 			ctx.strokeStyle = assetChartLineColor(theme);
+			ctx.lineWidth = ASSET_CHART_LINE_THICKNESS;
 			ctx.moveTo(
 				crispPixel(xPos, ASSET_CHART_LINE_THICKNESS),
 				crispPixel(
