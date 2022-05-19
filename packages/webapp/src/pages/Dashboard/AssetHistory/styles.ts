@@ -1,16 +1,21 @@
 import styled from 'styled-components';
 import Card from '@components/Card';
-import { CANVAS_PADDING_PX, ITEM_UPPER_LOWER_PADDING_PX } from '../constants';
-
-const ASSET_HISTORY_CONTAINER_HEIGHT_PX = 420;
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
+import { ITEM_UPPER_LOWER_PADDING_PX } from '../constants';
 
 export const AssetHistoryContainer = styled(Card)`
 	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-	height: ${ASSET_HISTORY_CONTAINER_HEIGHT_PX}px;
 `;
 
 export const AssetHistoryChart = styled.canvas`
 	width: 100%;
-	height: calc(100% - ${ITEM_UPPER_LOWER_PADDING_PX * 2}px - 2px);
-	padding: ${CANVAS_PADDING_PX}px;
+	height: 380px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		height: 300px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		height: 260px;
+	}
 `;

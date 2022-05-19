@@ -7,7 +7,7 @@ export function textColor(theme: Theme) {
 }
 
 export function gridColor(theme: Theme) {
-	return theme === 'light' ? `hsl(210, 11%, 50%)` : `hsl(210, 11%, 70%)`;
+	return theme === 'light' ? `hsl(210, 11%, 85%)` : `hsl(210, 11%, 30%)`;
 }
 
 export function assetChartLineColor(theme: Theme) {

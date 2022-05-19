@@ -1,6 +1,7 @@
 import { Theme } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
+import { assetChartValueLegendFont } from './chartFont';
 import {
 	NUM_OF_HORIZONTAL_GRID,
 	Y_AXIS_MARGIN,
@@ -15,6 +16,7 @@ interface Props {
 	theme: Theme;
 	minValue: number;
 	maxValue: number;
+	viewWidth: number;
 	canvasWidth: number;
 	canvasHeight: number;
 }
@@ -24,14 +26,15 @@ export default function drawHorizontalGrid({
 	theme,
 	minValue,
 	maxValue,
+	viewWidth,
 	canvasWidth,
 	canvasHeight
 }: Props) {
-	ctx.font = 'bold 14px NotoSansKR';
+	ctx.font = assetChartValueLegendFont(viewWidth);
 
 	const HORIZONTAL_GRID_GAP = (maxValue - minValue) / (NUM_OF_HORIZONTAL_GRID - 1);
 	const legendXPos = Y_AXIS_MARGIN - Y_AXIS_LEGEND_GAP;
-	const gridLength = canvasWidth - Y_AXIS_MARGIN * 2;
+	const gridLength = canvasWidth - Y_AXIS_MARGIN * 0.5;
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 
 	ctx.lineWidth = HORIZONTAL_GRID_THICKNESS;

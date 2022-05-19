@@ -24,7 +24,7 @@ export default function ProportionChartDetails({ chartData, maxRatio, numOfBars 
 					<Style.DetailListDataItem>평가 금액</Style.DetailListDataItem>
 					<Style.DetailListRatioItem>비중</Style.DetailListRatioItem>
 				</Style.DetailsListHeaders>
-				<Style.DetailsListContainer>
+				<Style.DetailsListContainer baseHeight={365}>
 					<ListItems
 						isListEmpty={chartData.length === 0}
 						emptyListNoticeMessage="보유 종목이 없습니다."

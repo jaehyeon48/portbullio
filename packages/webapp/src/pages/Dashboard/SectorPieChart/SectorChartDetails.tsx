@@ -23,7 +23,7 @@ export default function SectorChartDetails({ chartData, maxRatio, numOfPies }: P
 					<Style.DetailListDataItem>구성 종목</Style.DetailListDataItem>
 					<Style.DetailListRatioItem>비중</Style.DetailListRatioItem>
 				</Style.DetailsListHeaders>
-				<Style.DetailsListContainer>
+				<Style.DetailsListContainer baseHeight={255}>
 					<ListItems
 						isListEmpty={chartData.length === 0}
 						emptyListNoticeMessage="보유 종목이 없습니다."
