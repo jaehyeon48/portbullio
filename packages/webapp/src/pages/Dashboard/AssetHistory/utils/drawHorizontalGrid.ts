@@ -34,7 +34,7 @@ export default function drawHorizontalGrid({
 
 	const HORIZONTAL_GRID_GAP = (maxValue - minValue) / (NUM_OF_HORIZONTAL_GRID - 1);
 	const legendXPos = Y_AXIS_MARGIN - Y_AXIS_LEGEND_GAP;
-	const gridLength = canvasWidth - Y_AXIS_MARGIN * 2;
+	const gridLength = canvasWidth - Y_AXIS_MARGIN * 0.5;
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 
 	ctx.lineWidth = HORIZONTAL_GRID_THICKNESS;

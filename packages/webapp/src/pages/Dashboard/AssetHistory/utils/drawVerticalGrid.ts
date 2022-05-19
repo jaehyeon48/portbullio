@@ -38,7 +38,8 @@ export default function drawVerticalGrid({
 	ctx.font = assetChartValueLegendFont(viewWidth);
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 	const verticalGridGap =
-		(canvasWidth - maxTextWidth - Y_AXIS_MARGIN * 3 - Y_AXIS_LEGEND_GAP) / (numOfVerticalGrids - 1);
+		(canvasWidth - maxTextWidth - Y_AXIS_MARGIN * 1.5 - Y_AXIS_LEGEND_GAP) /
+		(numOfVerticalGrids - 1);
 
 	ctx.lineWidth = VERTICAL_GRID_THICKNESS;
 	ctx.strokeStyle = gridColor(theme);
@@ -66,6 +67,10 @@ export default function drawVerticalGrid({
 			);
 
 			if (i < chartData.length) {
+				if (i === chartData.length - 1) {
+					ctx.textAlign = 'right';
+					gridXPos += 4;
+				}
 				ctx.fillText(
 					formatChartDateText(chartData.at(-(i + 1))!.createdAt),
 					Math.floor(gridXPos),

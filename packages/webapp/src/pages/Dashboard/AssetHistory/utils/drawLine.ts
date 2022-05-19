@@ -34,7 +34,8 @@ export default function drawLine({
 	const maxTextWidth = ctx.measureText(formatCurrency(maxValue, 'usd')).width;
 	let xPos = maxTextWidth + Y_AXIS_MARGIN + Y_AXIS_LEGEND_GAP;
 	const verticalGridGap =
-		(canvasWidth - maxTextWidth - Y_AXIS_MARGIN * 3 - Y_AXIS_LEGEND_GAP) / (numOfVerticalGrids - 1);
+		(canvasWidth - maxTextWidth - Y_AXIS_MARGIN * 1.5 - Y_AXIS_LEGEND_GAP) /
+		(numOfVerticalGrids - 1);
 
 	for (let i = chartData.length - 1; i >= 0; i--) {
 		if (i > 0) {

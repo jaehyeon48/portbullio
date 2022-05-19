@@ -31,8 +31,12 @@ export const DashboardContainer = styled.div`
 	flex-direction: column;
 	gap: 40px;
 
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		padding: 20px 14px 30px;
+	}
+
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
-		padding: 20px 2px;
+		padding: 20px 4px 40px;
 	}
 `;
 

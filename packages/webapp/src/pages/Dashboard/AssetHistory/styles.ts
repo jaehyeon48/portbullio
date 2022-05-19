@@ -9,9 +9,13 @@ export const AssetHistoryContainer = styled(Card)`
 
 export const AssetHistoryChart = styled.canvas`
 	width: 100%;
-	height: 410px;
+	height: 380px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		height: 300px;
+	}
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
-		height: 360px;
+		height: 260px;
 	}
 `;
