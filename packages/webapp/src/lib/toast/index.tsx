@@ -46,6 +46,7 @@ class Toast {
 			<>
 				{positions.map(pos => (
 					<Toasts
+						key={pos}
 						position={pos}
 						messages={this.#messages.get(pos) as Message[]}
 						closeMessage={this.#closeMessage.bind(this)}
@@ -94,6 +95,7 @@ class Toast {
 			<>
 				{positions.map(pos => (
 					<Toasts
+						key={pos}
 						position={pos}
 						messages={this.#messages.get(pos) as Message[]}
 						closeMessage={this.#closeMessage.bind(this)}
@@ -124,6 +126,7 @@ class Toast {
 			<>
 				{positions.map(pos => (
 					<Toasts
+						key={pos}
 						position={pos}
 						messages={this.#messages.get(pos) as Message[]}
 						closeMessage={this.#closeMessage.bind(this)}
@@ -154,6 +157,7 @@ class Toast {
 			<>
 				{positions.map(pos => (
 					<Toasts
+						key={pos}
 						position={pos}
 						messages={this.#messages.get(pos) as Message[]}
 						closeMessage={this.#closeMessage.bind(this)}
@@ -184,6 +188,7 @@ class Toast {
 			<>
 				{positions.map(pos => (
 					<Toasts
+						key={pos}
 						position={pos}
 						messages={this.#messages.get(pos) as Message[]}
 						closeMessage={this.#closeMessage.bind(this)}
