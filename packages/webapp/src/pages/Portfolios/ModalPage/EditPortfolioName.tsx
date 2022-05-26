@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
 import { TextInput } from '@components/Form';
-import toast from '@lib/toast';
 import { CloseModalFn } from '@types';
 import * as Style from './styles';
 import useEditPortfolioName from '../queries/useEditPortfolioName';
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function EditPortfolioName({ prevName, portfolioId, closeFunction }: Props) {
+	const toast = useToast();
 	const [newPortfolioName, setNewPortfolioName] = useState(prevName);
 	const editPortfolioNameMutation = useEditPortfolioName();
 

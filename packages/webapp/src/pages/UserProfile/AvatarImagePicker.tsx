@@ -1,13 +1,14 @@
 import { SyntheticEvent, useRef, useState, useEffect } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
 import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import DeleteConfirmTriggerButton from './DeleteConfirmTriggerButton';
 import UploadButton from './UploadButton';
 import { useUpdateAvatar, useDeleteAvatar } from './queries';
 
 export default function AvatarImagePicker() {
+	const toast = useToast();
 	const imageInputRef = useRef<HTMLInputElement>(null);
 	const [isUploadingImage, setIsUploadingImage] = useState(false);
 	const [newAvatarImage, setNewAvatarImage] = useState<File | null>(null);

@@ -1,9 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { CashTransactionType } from '@prisma/client';
 import { TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, datetimeLocalFormat } from '@utils';
-import toast from '@lib/toast';
 import { useEditCashTransaction } from '../queries';
 import * as Style from './styles';
 
@@ -26,6 +26,7 @@ export default function EditCashTransaction({
 	initialInputs,
 	closeFunction
 }: Props) {
+	const toast = useToast();
 	const editCashTransactionMutation = useEditCashTransaction(portfolioId);
 	const [transactionTypeInput, setTransactionTypeInput] = useState<CashTransactionType>(
 		initialInputs.type

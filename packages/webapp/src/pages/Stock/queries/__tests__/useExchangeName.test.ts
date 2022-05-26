@@ -8,7 +8,7 @@ test(`useExchangeName test case1: search query='AAPL'`, async () => {
 	});
 	await waitFor(() => result.current.isSuccess);
 	expect(result.current.data).toBe('Nasdaq');
-});
+}, 5000);
 
 test(`useExchangeName test case2: search query='BA'`, async () => {
 	const { result, waitFor } = renderHook(() => useExchangeName('BA'), {
@@ -16,7 +16,7 @@ test(`useExchangeName test case2: search query='BA'`, async () => {
 	});
 	await waitFor(() => result.current.isSuccess);
 	expect(result.current.data).toBe('NYSE');
-});
+}, 5000);
 
 test(`useExchangeName test case3: search query='AAMC'`, async () => {
 	const { result, waitFor } = renderHook(() => useExchangeName('AAMC'), {
@@ -24,7 +24,7 @@ test(`useExchangeName test case3: search query='AAMC'`, async () => {
 	});
 	await waitFor(() => result.current.isSuccess);
 	expect(result.current.data).toBe('AMEX');
-});
+}, 5000);
 
 test(`useExchangeName test case4: search query='AAAU'`, async () => {
 	const { result, waitFor } = renderHook(() => useExchangeName('AAAU'), {
@@ -32,7 +32,7 @@ test(`useExchangeName test case4: search query='AAAU'`, async () => {
 	});
 	await waitFor(() => result.current.isSuccess);
 	expect(result.current.data).toBe('BATS');
-});
+}, 5000);
 
 test(`useExchangeName test case5: search query='AAAU'`, async () => {
 	const { result, waitFor } = renderHook(() => useExchangeName('AAA'), {
@@ -40,7 +40,7 @@ test(`useExchangeName test case5: search query='AAAU'`, async () => {
 	});
 	await waitFor(() => result.current.isSuccess);
 	expect(result.current.data).toBe('NYSEArca');
-});
+}, 5000);
 
 test(`useExchangeName test case6: search query='FOTXY'`, async () => {
 	const { result, waitFor } = renderHook(() => useExchangeName('FOTXY'), {
@@ -48,7 +48,7 @@ test(`useExchangeName test case6: search query='FOTXY'`, async () => {
 	});
 	await waitFor(() => result.current.isSuccess);
 	expect(result.current.data).toBe('OTC');
-});
+}, 5000);
 
 test(`useExchangeName test case7: invalid ticker`, async () => {
 	const { result, waitFor } = renderHook(() => useExchangeName('AAPL123'), {
@@ -56,4 +56,4 @@ test(`useExchangeName test case7: invalid ticker`, async () => {
 	});
 	await waitFor(() => result.current.isSuccess);
 	expect(result.current.data).toStrictEqual({ message: 'Cannot find exchange name' });
-});
+}, 5000);

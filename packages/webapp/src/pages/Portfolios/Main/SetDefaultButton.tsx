@@ -1,5 +1,5 @@
 import { RefetchOptions, RefetchQueryFilters, QueryObserverResult } from 'react-query';
-import toast from '@lib/toast';
+import { useToast } from 'super-simple-react-toast';
 import { CircleCheck as CircleCheckIcon, CircleCross as CircleCrossIcon } from '@components/Icon';
 import { DefaultPortfolioButton } from './styles';
 import { useEditDefaultPortfolio } from '../queries';
@@ -23,6 +23,7 @@ export default function SetDefaultButton({
 	isError,
 	refetch
 }: Props) {
+	const toast = useToast();
 	const editDefaultPortfolioMutation = useEditDefaultPortfolio();
 
 	async function handleEditDefaultPortfolio() {

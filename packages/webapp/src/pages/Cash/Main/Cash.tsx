@@ -1,15 +1,16 @@
 import { SyntheticEvent } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { ListQueryErrorBoundary, PortfolioSelect, useSelectedPortfolioId } from '@components/index';
 import { useModal, useTitle, useCashTransactionList } from '@hooks/index';
 import { formatCurrency, calcTotalCashAmount } from '@utils';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import CashTransactionList from './CashTransactionList';
 import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
 
 export default function Cash() {
+	const toast = useToast();
 	useTitle(`Portbullio - 현금 거래내역`);
 	const portfolioId = useSelectedPortfolioId();
 	const cashTransactions = useCashTransactionList(portfolioId);

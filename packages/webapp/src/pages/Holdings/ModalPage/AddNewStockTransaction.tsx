@@ -1,8 +1,8 @@
 import { SyntheticEvent, useState } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { StockTransactionType } from '@prisma/client';
 import { SearchStocks, TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
-import toast from '@lib/toast';
 import { useHoldingsList, useCashTransactionList } from '@hooks/ReactQuery';
 import {
 	isValidRealNumber,
@@ -21,6 +21,7 @@ interface Props {
 }
 
 export default function AddNewStockTransaction({ portfolioId, closeFunction }: Props) {
+	const toast = useToast();
 	const holdingsList = useHoldingsList(portfolioId);
 	const cashList = useCashTransactionList(portfolioId);
 	const addStockTransactionMutation = useAddStockTransaction();

@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { CloseModalFn } from '@types';
 import { Textarea } from '@components/Form';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import { useEditCashTransactionMemo } from '../queries';
 
@@ -18,6 +18,7 @@ export default function CashMemoEdit({
 	closeFunction,
 	memo
 }: Props) {
+	const toast = useToast();
 	const [memoContent, setMemoContent] = useState(memo ?? '');
 	const editMemoMutation = useEditCashTransactionMemo(portfolioId);
 

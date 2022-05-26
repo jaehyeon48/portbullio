@@ -1,4 +1,5 @@
 import { ReactNode } from 'react';
+import { Toast, ToastProvider } from 'super-simple-react-toast';
 import {
 	AuthContextProvider,
 	EventEmitterProvider,
@@ -14,24 +15,28 @@ interface Props {
 	connectSocket?: boolean;
 }
 
+const toast = new Toast(document.getElementById('toast-root'));
+
 export default function ContextAPIProviders({
 	children,
 	authContextInitialValue,
 	connectSocket
 }: Props) {
 	return (
-		<AuthContextProvider initialValue={authContextInitialValue}>
-			<EventEmitterProvider>
-				<IsMarketOpenContextProvider>
-					<RealtimeDataContextProvider>
-						<SelectedPortfolioIdContextProvider>
-							<SocketIoContextProvider shouldConnect={connectSocket}>
-								{children}
-							</SocketIoContextProvider>
-						</SelectedPortfolioIdContextProvider>
-					</RealtimeDataContextProvider>
-				</IsMarketOpenContextProvider>
-			</EventEmitterProvider>
-		</AuthContextProvider>
+		<ToastProvider toastInstance={toast}>
+			<AuthContextProvider initialValue={authContextInitialValue}>
+				<EventEmitterProvider>
+					<IsMarketOpenContextProvider>
+						<RealtimeDataContextProvider>
+							<SelectedPortfolioIdContextProvider>
+								<SocketIoContextProvider shouldConnect={connectSocket}>
+									{children}
+								</SocketIoContextProvider>
+							</SelectedPortfolioIdContextProvider>
+						</RealtimeDataContextProvider>
+					</IsMarketOpenContextProvider>
+				</EventEmitterProvider>
+			</AuthContextProvider>
+		</ToastProvider>
 	);
 }

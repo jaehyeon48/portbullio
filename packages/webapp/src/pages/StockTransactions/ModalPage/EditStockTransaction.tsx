@@ -1,9 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { StockTransactionType } from '@prisma/client';
 import { TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, isValidInteger, getHoldingOfTicker, datetimeLocalFormat } from '@utils';
-import toast from '@lib/toast';
 import { useHoldingsList } from '@hooks/ReactQuery';
 import { useEditStockTransaction } from '../queries';
 import * as Style from './styles';
@@ -29,6 +29,7 @@ export default function EditStockTransaction({
 	initialInputs,
 	closeFunction
 }: Props) {
+	const toast = useToast();
 	const holdingsList = useHoldingsList(portfolioId);
 	const editStockTransactionMutation = useEditStockTransaction();
 	const [transactionTypeInput, setTransactionTypeInput] = useState<StockTransactionType>(

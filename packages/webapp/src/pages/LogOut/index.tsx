@@ -1,9 +1,9 @@
 import { SyntheticEvent } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useToast } from 'super-simple-react-toast';
 import { CloseModalFn } from '@types';
 import { logOut } from '@api/auth';
 import { useEmitter } from '@hooks/index';
-import toast from '@lib/toast';
 import * as Style from './styles';
 
 interface Props {
@@ -11,6 +11,7 @@ interface Props {
 }
 
 export default function Logout({ closeFunction }: Props) {
+	const toast = useToast();
 	const location = useLocation();
 	const Emitter = useEmitter();
 

@@ -1,6 +1,6 @@
 import { useLayoutEffect } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { checkAuth } from '@api/auth';
-import toast from '@lib/toast';
 import { useAuthUpdate } from '@hooks/index';
 
 interface Props {
@@ -9,6 +9,7 @@ interface Props {
 }
 
 export default function useCheckSession({ routePath, requireLoginMessage = false }: Props) {
+	const toast = useToast();
 	const setAuth = useAuthUpdate();
 
 	useLayoutEffect(() => {
@@ -25,5 +26,5 @@ export default function useCheckSession({ routePath, requireLoginMessage = false
 		}
 
 		tryLogIn();
-	}, [setAuth, requireLoginMessage, routePath]);
+	}, [toast, setAuth, requireLoginMessage, routePath]);
 }

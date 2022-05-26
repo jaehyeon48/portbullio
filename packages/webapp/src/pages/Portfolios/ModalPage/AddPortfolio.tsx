@@ -1,9 +1,9 @@
 import { SyntheticEvent, useEffect, useState } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
 import { PortfolioPrivacy } from '@prisma/client';
 import { TextInput } from '@components/Form';
 import { LockClose, LockOpen } from '@components/Icon';
-import toast from '@lib/toast';
 import { CloseModalFn } from '@types';
 import useCreatePortfolio from '../queries/useCreatePortfolio';
 import * as Style from './styles';
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function AddPortfolio({ closeFunction }: Props) {
+	const toast = useToast();
 	const [newName, setNewName] = useState('');
 	const [privacy, setPrivacy] = useState<PortfolioPrivacy>('public');
 	const [isNameLengthOverflow, setIsNameLengthOverflow] = useState(false);
