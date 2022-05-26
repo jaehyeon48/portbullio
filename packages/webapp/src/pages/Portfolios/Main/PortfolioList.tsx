@@ -1,9 +1,9 @@
 import { SyntheticEvent } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { PortfolioPrivacy, Portfolio } from '@prisma/client';
 import * as Icon from '@components/Icon';
 import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
 import { useModal, useDefaultPortfolioId } from '@hooks/index';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import SetDefaultButton from './SetDefaultButton';
 import EditPortfolioName from '../ModalPage/EditPortfolioName';
@@ -16,6 +16,7 @@ interface Props {
 }
 
 export default function PortfolioList({ portfolioList, isLoading }: Props) {
+	const toast = useToast();
 	const { openModal, closeModal } = useModal();
 	const defaultPortfolioId = useDefaultPortfolioId();
 	const editPortfolioPrivacyMutation = useEditPortfolioPrivacy();

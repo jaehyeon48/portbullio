@@ -1,6 +1,7 @@
 import { ReactElement } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
+import { Toast, ToastProvider } from 'super-simple-react-toast';
 import { ContextAPIProviders } from '@components/index';
 
 interface WrapperProps {
@@ -10,14 +11,17 @@ interface WrapperProps {
 }
 
 const queryClient = new QueryClient();
+const toast = new Toast(document.body);
 
 function CustomWrapper({ children, authValue = false, connectSocket = false }: WrapperProps) {
 	return (
 		<BrowserRouter>
 			<QueryClientProvider client={queryClient}>
-				<ContextAPIProviders authContextInitialValue={authValue} connectSocket={connectSocket}>
-					{children}
-				</ContextAPIProviders>
+				<ToastProvider toastInstance={toast}>
+					<ContextAPIProviders authContextInitialValue={authValue} connectSocket={connectSocket}>
+						{children}
+					</ContextAPIProviders>
+				</ToastProvider>
 			</QueryClientProvider>
 		</BrowserRouter>
 	);

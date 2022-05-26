@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { CloseModalFn } from '@src/types';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import { useDeleteCashTransaction } from '../queries';
 
@@ -15,6 +15,7 @@ export default function DeleteCashTransactionConfirm({
 	portfolioId,
 	closeFunction
 }: Props) {
+	const toast = useToast();
 	const deleteCashTransactionMutation = useDeleteCashTransaction(portfolioId);
 
 	function handleDeleteTransaction(e: SyntheticEvent) {

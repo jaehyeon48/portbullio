@@ -1,16 +1,17 @@
 import { SyntheticEvent } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import * as Icon from '@components/Icon';
 import * as ListPage from '@components/ListPage';
 import { PortfolioSelect, ListQueryErrorBoundary, useSelectedPortfolioId } from '@components/index';
 import { useModal, useTitle, useHoldingsList } from '@hooks/index';
 import { formatNum } from '@utils';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
 import AddNewStockTransaction from '../ModalPage/AddNewStockTransaction';
 
 export default function Holdings() {
 	useTitle('Portbullio - 내 종목');
+	const toast = useToast();
 	const portfolioId = useSelectedPortfolioId();
 	const holdingsList = useHoldingsList(portfolioId);
 	const { openModal } = useModal();

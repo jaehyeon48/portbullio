@@ -1,10 +1,10 @@
 import { SyntheticEvent } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { useSelectedPortfolioId } from '@components/SelectPortfolio';
 import { StockTransactionType } from '@prisma/client';
 import { CloseModalFn } from '@src/types';
 import { useHoldingsList } from '@hooks/ReactQuery';
 import { getHoldingOfTicker } from '@utils';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import { useDeleteStockTransaction } from '../queries';
 
@@ -23,6 +23,7 @@ export default function DeleteStockTransactionConfirm({
 	quantityToDelete,
 	closeFunction
 }: Props) {
+	const toast = useToast();
 	const portfolioId = useSelectedPortfolioId();
 	const holdingsList = useHoldingsList(portfolioId);
 	const deleteStockTransactionMutation = useDeleteStockTransaction();

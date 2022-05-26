@@ -1,9 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { CashTransactionType } from '@prisma/client';
 import { TextInput } from '@components/index';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, datetimeLocalFormat } from '@utils';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import { useAddCashTransaction } from '../queries';
 
@@ -13,6 +13,7 @@ interface Props {
 }
 
 export default function AddCashTransaction({ portfolioId, closeFunction }: Props) {
+	const toast = useToast();
 	const addCashTransactionMutation = useAddCashTransaction();
 	const [transactionTypeInput, setTransactionTypeInput] = useState<CashTransactionType>('deposit');
 	const [amountInput, setAmountInput] = useState('');

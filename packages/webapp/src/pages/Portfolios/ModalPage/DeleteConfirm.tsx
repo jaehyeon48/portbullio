@@ -1,6 +1,6 @@
 import { SyntheticEvent } from 'react';
+import { useToast } from 'super-simple-react-toast';
 import { CloseModalFn } from '@src/types';
-import toast from '@lib/toast';
 import * as Style from './styles';
 import { useDeletePortfolio } from '../queries';
 
@@ -17,6 +17,7 @@ export default function DeleteConfirm({
 	portfolioName,
 	isDefaultPortfolio
 }: Props) {
+	const toast = useToast();
 	const deletePortfolioMutation = useDeletePortfolio();
 
 	async function handleDeletePortfolio(e: SyntheticEvent) {
