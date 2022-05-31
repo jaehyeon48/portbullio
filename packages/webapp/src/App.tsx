@@ -29,7 +29,6 @@ function App(): ReactElement {
 		<EventEmitterListeners>
 			<Global.CSSReset />
 			<Global.GlobalStyles />
-			<Global.ToastColors />
 			<Routes>
 				<Route path="/" element={<Page.BaseLayout />}>
 					<Route path="/" element={<Page.TopStocksDataContextWrapper />}>

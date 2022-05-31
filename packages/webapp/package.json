@@ -61,7 +61,7 @@
     "react-router-dom": "^6.2.1",
     "socket.io-client": "^4.4.1",
     "styled-components": "^5.3.3",
-    "super-simple-react-toast": "^1.1.0",
+    "super-simple-react-toast": "^1.1.2",
     "uuid": "^8.3.2",
     "webpack-bundle-analyzer": "^4.5.0"
   }
