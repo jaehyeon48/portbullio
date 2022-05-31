@@ -1,4 +1,4 @@
-export default function throttle(cb: any, limit: number) {
+export default function debounce(cb: any, limit: number) {
 	let timer: NodeJS.Timeout;
 	return (...args: any) => {
 		clearTimeout(timer);
