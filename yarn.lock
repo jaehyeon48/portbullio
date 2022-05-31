@@ -11199,10 +11199,10 @@ styled-components@^5.3.3:
     shallowequal "^1.1.0"
     supports-color "^5.5.0"
 
-super-simple-react-toast@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/super-simple-react-toast/-/super-simple-react-toast-1.1.0.tgz#38f36fe190f52d7bd0f2474aba1f1caae40d4683"
-  integrity sha512-BYT7N0/pBGGxggNonPGD3r+LNTnMVNMvNLbCoCsWVDq+xybuCiZNqwY1pbi95BNxMYZSdy2zeL3lVWaNvNiY9g==
+super-simple-react-toast@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/super-simple-react-toast/-/super-simple-react-toast-1.1.2.tgz#4405b1825015d9d9dfc98abcae89c4049606d534"
+  integrity sha512-JmNOtYNnlezOuPnbz6r0g2PuAg4ZyLHAIZJ/8bAwQMbIrguHV5dJRHhl9nBzWzDyGWRcZ4J+XlSJFJHauImUDw==
 
 supports-color@^5.3.0, supports-color@^5.5.0:
   version "5.5.0"
