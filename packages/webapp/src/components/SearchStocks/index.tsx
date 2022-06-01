@@ -34,6 +34,7 @@ export default function SearchStocks({ onResultClick }: Props) {
 	useEffect(() => {
 		let shouldCancel = false;
 		if (shouldCancel) return () => {};
+		if (searchQuery === '') return () => {};
 		querySymbol(searchQuery, setSearchResults);
 
 		return () => {

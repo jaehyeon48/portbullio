@@ -9,7 +9,6 @@ interface ResponseType {
 export default async function searchTickers(query: string): Promise<SearchSymbolItem[]> {
 	const { apiServerUrl } = envConfig;
 
-	if (query === '') return [];
 	try {
 		const { data } = (await axios.get(
 			`${apiServerUrl}/stock/query?search=${query}`
