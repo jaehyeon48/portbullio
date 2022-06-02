@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useLayoutEffect } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { getAssetChartData } from '@api/user';
 import { AssetChartData } from '@types';
 
@@ -17,13 +17,13 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 	const isReachedEnd = useRef(false);
 	const isLoadingData = useRef(false);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		lastDataIdx.current = 0;
 		isReachedEnd.current = false;
 		isLoadingData.current = false;
 	}, [portfolioId]);
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		if (isLoadingData.current) return;
 
 		(async () => {
