@@ -13,12 +13,12 @@ interface Props {
 
 export default function useChartDataBuffer({ portfolioId, count, currentWindow }: Props) {
 	const [chartDataBuffer, setChartDataBuffer] = useState<AssetChartData[]>([]);
-	const lastDataIdx = useRef(0);
+	const triggerPoint = useRef(0);
 	const isReachedEnd = useRef(false);
 	const isLoadingData = useRef(false);
 
 	useEffect(() => {
-		lastDataIdx.current = 0;
+		triggerPoint.current = 0;
 		isReachedEnd.current = false;
 		isLoadingData.current = false;
 	}, [portfolioId]);
@@ -38,16 +38,16 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 
 			isLoadingData.current = false;
 			if (initialChartData.length < count * 2) isReachedEnd.current = true;
-			lastDataIdx.current =
+			triggerPoint.current =
 				initialChartData.length >= count ? count - 1 : initialChartData.length - 1;
 		})();
 	}, [portfolioId, count]);
 
 	useEffect(() => {
 		if (chartDataBuffer.length === 0) return;
-		if (lastDataIdx.current === 0) return;
+		if (triggerPoint.current === 0) return;
 		if (isLoadingData.current) return;
-		if (currentWindow.e <= lastDataIdx.current) return;
+		if (currentWindow.e <= triggerPoint.current) return;
 		if (isReachedEnd.current) return;
 
 		(async () => {
@@ -62,7 +62,7 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 
 			isLoadingData.current = false;
 			if (additionalChartData.length < count) isReachedEnd.current = true;
-			lastDataIdx.current += count;
+			triggerPoint.current += count;
 		})();
 	}, [chartDataBuffer, currentWindow, portfolioId, count]);
 
