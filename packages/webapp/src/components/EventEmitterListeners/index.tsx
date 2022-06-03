@@ -1,4 +1,4 @@
-import { ReactNode, useLayoutEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useEmitter, useAuthUpdate } from '@hooks/index';
 
 interface Props {
@@ -9,7 +9,7 @@ export default function EventEmitterListeners({ children }: Props) {
 	const setAuth = useAuthUpdate();
 	const Emitter = useEmitter();
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		function handleSetAuthToFalse() {
 			setAuth(false);
 		}
