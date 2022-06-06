@@ -11,7 +11,8 @@ const AuthContext = React.createContext<boolean | null>(null);
 const AuthUpdateContext = React.createContext<AuthUpdateState | null>(null);
 
 export function AuthContextProvider({ children, initialValue = false }: ProviderProps) {
-	const [isAuthenticated, setIsAuthenticated] = React.useState(initialValue);
+	const initialSession = !!document.cookie.split('; ').find(row => row.startsWith('ust='));
+	const [isAuthenticated, setIsAuthenticated] = React.useState(initialValue || initialSession);
 
 	return (
 		<AuthContext.Provider value={isAuthenticated}>
