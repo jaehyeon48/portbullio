@@ -61,6 +61,8 @@ jobs:
   deploy_api_server:
     if: github.event.pull_request.merged == true && contains(github.event.pull_request.labels.*.name, 'backend')
     runs-on: ubuntu-latest
+    env:
+      wd: ./packages/server
 
     steps:
       - name: Checkout source code
@@ -102,6 +104,7 @@ jobs:
           echo AWS_IDENTITY_POOL_ID=${{ secrets.AWS_IDENTITY_POOL_ID }} >> .env
           echo AWS_REGION=${{ secrets.AWS_REGION }} >> .env
           echo AWS_S3_BUCKET_NAME=${{ secrets.AWS_S3_BUCKET_NAME }} >> .env
+        working-directory: ${{ env.wd }}
 
       - name: Login to DockerHub
         uses: docker/login-action@v2
