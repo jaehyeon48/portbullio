@@ -6,7 +6,7 @@ import { AuthPage, LogOutPage } from '@pages/index';
 import { useModal, useAuth, useThemeMode, useEmitter } from '@hooks/index';
 import * as Style from './styles';
 import ProfileDropdown from './ProfileDropdown';
-import NavDropdown from './NavDropdown';
+import MobileNavMenu from './MobileNavMenu';
 import AvatarImage from '../AvatarImage';
 import * as Icon from '../Icon';
 import SearchStocks from '../SearchStocks';
@@ -60,14 +60,14 @@ export default function Navbar() {
 		setIsProfileDropdownOpen(true);
 	}
 
-	function toggleNavDropdown() {
+	function toggleMobileNavMenu() {
 		setIsNavDropdownOpen(prev => !prev);
-		document.body.classList.toggle('navbar-dropdown-opened');
+		document.body.classList.toggle('mobile-nav-opened');
 	}
 
 	function closeNavDropdown() {
 		setIsNavDropdownOpen(false);
-		document.body.classList.remove('navbar-dropdown-opened');
+		document.body.classList.remove('mobile-nav-opened');
 	}
 
 	function handleCloseNavDropdown(e: Event) {
@@ -120,7 +120,7 @@ export default function Navbar() {
 							type="button"
 							aria-label="Toggle navbar dropdown"
 							isNavDropdownOpened={isNavDropdownOpen}
-							onClick={toggleNavDropdown}
+							onClick={toggleMobileNavMenu}
 						>
 							<Icon.BurgerButton width={40} height={40} />
 						</Style.NavBurgerButton>
@@ -144,7 +144,7 @@ export default function Navbar() {
 			</Style.Bottom>
 			{isProfileDropdownOpen && <ProfileDropdown logOutFn={handleOpenLogOutModal} />}
 			{isNavDropdownOpen && (
-				<NavDropdown logOutFn={handleOpenLogOutModal} toggleNavDropdown={toggleNavDropdown} />
+				<MobileNavMenu logOutFn={handleOpenLogOutModal} toggleMobileNavMenu={toggleMobileNavMenu} />
 			)}
 		</Style.Container>
 	);

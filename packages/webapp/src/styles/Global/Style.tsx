@@ -209,7 +209,7 @@ export default createGlobalStyle`
     z-index: 99;
   }
 
-  .navbar-dropdown-opened {
+  .mobile-nav-opened {
     overflow: hidden;
   }
 `;
