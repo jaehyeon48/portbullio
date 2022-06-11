@@ -5,7 +5,7 @@ import mainLogoDark from '@assets/images/mainLogoDark.webp';
 import { AuthPage, LogOutPage } from '@pages/index';
 import { useModal, useAuth, useThemeMode, useEmitter } from '@hooks/index';
 import * as Style from './styles';
-import ProfileDropdown from './ProfileDropdown';
+import NavProfileDropdown from './NavProfileDropdown';
 import MobileNavMenu from './MobileNavMenu';
 import AvatarImage from '../AvatarImage';
 import * as Icon from '../Icon';
@@ -18,7 +18,7 @@ export default function Navbar() {
 	const navigate = useNavigate();
 	const Emitter = useEmitter();
 	const [isNavDropdownOpen, setIsNavDropdownOpen] = useState(false);
-	const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
+	const [isNavProfileDropdownOpen, setIsNavProfileDropdownOpen] = useState(false);
 	const { openModal } = useModal();
 	const isAuthenticated = useAuth();
 	const [currentTheme] = useThemeMode();
@@ -56,8 +56,8 @@ export default function Navbar() {
 		openModal(e, <LogOutPage />);
 	}
 
-	function handleOpenProfileDropdown() {
-		setIsProfileDropdownOpen(true);
+	function handleOpenNavProfileDropdown() {
+		setIsNavProfileDropdownOpen(true);
 	}
 
 	function toggleMobileNavMenu() {
@@ -73,7 +73,7 @@ export default function Navbar() {
 	function handleCloseNavDropdown(e: Event) {
 		const target = e.target as HTMLElement;
 		if (target.closest('#nav-profile-button')) return;
-		setIsProfileDropdownOpen(false);
+		setIsNavProfileDropdownOpen(false);
 	}
 
 	return (
@@ -128,7 +128,7 @@ export default function Navbar() {
 							id="nav-profile-button"
 							aria-label="User profile button"
 							type="button"
-							onClick={handleOpenProfileDropdown}
+							onClick={handleOpenNavProfileDropdown}
 						>
 							<Style.ProfileImageContainer>
 								<AvatarImage userIconWidth={36} userIconHeight={36} />
@@ -142,7 +142,7 @@ export default function Navbar() {
 					</Style.LoginButton>
 				)}
 			</Style.Bottom>
-			{isProfileDropdownOpen && <ProfileDropdown logOutFn={handleOpenLogOutModal} />}
+			{isNavProfileDropdownOpen && <NavProfileDropdown logOutFn={handleOpenLogOutModal} />}
 			{isNavDropdownOpen && (
 				<MobileNavMenu logOutFn={handleOpenLogOutModal} toggleMobileNavMenu={toggleMobileNavMenu} />
 			)}

@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { Link, NavLink } from 'react-router-dom';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 import { NAVBAR_WIDTH, MOBILE_NAVBAR_HEIGHT_PX } from '@constants/index';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import { flexMixin, flexCenter, navbarIconMixin, buttonMixin } from '@styles/Mixins';
@@ -123,47 +123,16 @@ export const NavBurgerButton = styled.button<NavBurgerButtonProps>`
 	}
 `;
 
-export const ProfileDropdownContainer = styled.div`
-	position: absolute;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	background-color: var(--navbarBgColor);
-	border: 1px solid var(--navbarDropdownBorderColor);
-	border-radius: 4px;
-	left: ${NAVBAR_WIDTH - 8}px;
-	bottom: 34px;
+export const NavSearchStockContainer = styled.div`
+	display: none;
+	z-index: 2;
+	height: 100%;
+	padding: 0 14px;
 
-	&::after {
-		content: '◀';
-		position: absolute;
-		left: -13px;
-		bottom: 6px;
-		z-index: 1;
-		color: var(--navbarDropdownBorderColor);
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		display: flex;
+		align-items: center;
 	}
-`;
-
-const profileDropdownButtonStyle = css`
-	color: var(--baseTextColor);
-	${buttonMixin};
-	padding: 10px 16px;
-	width: 120px;
-
-	&:hover {
-		background-color: var(--primary);
-		color: var(--white);
-	}
-`;
-
-export const ProfileDropdownButton = styled.button`
-	${profileDropdownButtonStyle};
-`;
-
-export const ProfilePageLink = styled(Link)`
-	${profileDropdownButtonStyle};
-	text-align: center;
-	text-decoration: none;
 `;
 
 export const ProfileImageContainer = styled.div`
@@ -178,17 +147,5 @@ export const ProfileImageContainer = styled.div`
 
 	& > svg {
 		fill: var(--gray);
-	}
-`;
-
-export const NavSearchStockContainer = styled.div`
-	display: none;
-	z-index: 2;
-	height: 100%;
-	padding: 0 14px;
-
-	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
-		display: flex;
-		align-items: center;
 	}
 `;
