@@ -13,7 +13,7 @@ test('Should have a user profile image component', () => {
 	expect(screen.getByTestId('user-profile-image')).toBeInTheDocument();
 });
 
-test('Should have a delete confirm message after clicking delete avatar button', () => {
+test('Should have a delete confirm message after clicking delete avatar button', async () => {
 	render(
 		<CustomWrapper>
 			<UserSettings />
@@ -21,7 +21,7 @@ test('Should have a delete confirm message after clicking delete avatar button',
 	);
 
 	userEvent.click(screen.getByRole('button', { name: /이미지 삭제/ }));
-	expect(screen.getByText('정말 이미지를 삭제하시겠습니까?')).toBeInTheDocument();
+	expect(await screen.findByText('정말 이미지를 삭제하시겠습니까?')).toBeInTheDocument();
 	expect(screen.getByRole('button', { name: '취소' })).toBeInTheDocument();
 	expect(screen.getByRole('button', { name: '삭제' })).toBeInTheDocument();
 });

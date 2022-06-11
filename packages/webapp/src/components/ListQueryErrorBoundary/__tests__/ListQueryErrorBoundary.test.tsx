@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { CustomWrapper } from '@lib/testingLibrary/react';
 import ListQueryErrorBoundary from '../index';
@@ -32,7 +32,7 @@ describe('ListQueryErrorBoundary layout test', () => {
 		expect(screen.getByText('자식 컴포넌트를 렌더링 해야 합니다.')).toBeInTheDocument();
 	});
 
-	test('Should trigger a refetch button', () => {
+	test('Should trigger a refetch button', async () => {
 		const refetchFnMock = jest.fn();
 		render(
 			<CustomWrapper>
@@ -47,6 +47,8 @@ describe('ListQueryErrorBoundary layout test', () => {
 		);
 
 		userEvent.click(screen.getByRole('button', { name: /재요청/ }));
-		expect(refetchFnMock).toBeCalled();
+		await waitFor(() => {
+			expect(refetchFnMock).toBeCalled();
+		});
 	});
 });

@@ -61,19 +61,3 @@ test('Should render profile dropdown', async () => {
 	expect(await screen.findByText('프로필 설정')).toBeInTheDocument();
 	expect(await screen.findByLabelText('Logout')).toBeInTheDocument();
 });
-
-test('Open and close mobile navbar dropdown by clicking burger button', async () => {
-	render(
-		<CustomWrapper authValue>
-			<Navbar />
-		</CustomWrapper>
-	);
-
-	expect(document.body).not.toHaveClass('navbar-dropdown-opened');
-
-	userEvent.click(await screen.findByLabelText('Toggle navbar dropdown'));
-	expect(document.body).toHaveClass('navbar-dropdown-opened');
-
-	userEvent.click(await screen.findByLabelText('Toggle navbar dropdown'));
-	expect(document.body).not.toHaveClass('navbar-dropdown-opened');
-});
