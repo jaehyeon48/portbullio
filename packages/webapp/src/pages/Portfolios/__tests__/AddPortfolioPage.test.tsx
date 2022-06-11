@@ -66,7 +66,7 @@ test('Should show error message when the name input length is greater than 20', 
 		'this is a long text which length is greater than 20 (actually it is 72)!'
 	);
 
-	expect(await screen.findByText('*이름은 최대 20자까지 가능합니다.')).toBeInTheDocument();
+	expect(await screen.findByText('*이름은 20자 이하여야 합니다.')).toBeInTheDocument();
 });
 
 test('Should NOT show error message when the name input length is less than or equal to 20', () => {
