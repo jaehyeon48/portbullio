@@ -1,5 +1,7 @@
 import { HoldingsRatio } from '@types';
-import { ListContainer, ListItems, Document as DocumentIcon } from '@components/index';
+import { Document as DocumentIcon } from '@components/Icons';
+import ListContainer from '@components/ListPage/ListContainer';
+import ListItems from '@components/ListPage/ListItems';
 import { formatNum, formatCurrency } from '@utils';
 import * as Style from '../styles';
 

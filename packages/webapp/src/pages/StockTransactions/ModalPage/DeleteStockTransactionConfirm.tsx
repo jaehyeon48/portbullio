@@ -1,12 +1,12 @@
 import { SyntheticEvent } from 'react';
 import { useToast } from 'super-simple-react-toast';
-import { useSelectedPortfolioId } from '@components/SelectPortfolio';
 import { StockTransactionType } from '@prisma/client';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio/useSelectedPortfolioId';
+import useHoldingsList from '@hooks/ReactQuery/useHoldingsList';
 import { CloseModalFn } from '@src/types';
-import { useHoldingsList } from '@hooks/ReactQuery';
 import { getHoldingOfTicker } from '@utils';
 import * as Style from './styles';
-import { useDeleteStockTransaction } from '../queries';
+import useDeleteStockTransaction from '../queries/useDeleteStockTransaction';
 
 interface Props {
 	stockTransactionId: number;

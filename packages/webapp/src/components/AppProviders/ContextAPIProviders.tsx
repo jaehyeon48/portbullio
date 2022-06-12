@@ -1,12 +1,10 @@
 import { ReactNode } from 'react';
 import { Toast, ToastProvider } from 'super-simple-react-toast';
-import {
-	AuthContextProvider,
-	EventEmitterProvider,
-	SocketIoContextProvider,
-	RealtimeDataContextProvider,
-	IsMarketOpenContextProvider
-} from '@hooks/index';
+import { AuthContextProvider } from '@hooks/Auth';
+import { EventEmitterProvider } from '@hooks/EventEmitter';
+import { IsMarketOpenContextProvider } from '@hooks/isMarketOpen';
+import { RealtimeDataContextProvider } from '@hooks/realtimeData';
+import { SocketIoContextProvider } from '@hooks/socketIo';
 import { SelectedPortfolioIdContextProvider } from '../SelectPortfolio/useSelectedPortfolioId';
 
 interface Props {

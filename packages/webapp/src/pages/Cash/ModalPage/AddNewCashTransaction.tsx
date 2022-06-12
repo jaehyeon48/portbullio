@@ -1,11 +1,11 @@
 import { SyntheticEvent, useState } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { CashTransactionType } from '@prisma/client';
-import { TextInput } from '@components/index';
+import TextInput from '@components/Form/TextInput';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, datetimeLocalFormat } from '@utils';
 import * as Style from './styles';
-import { useAddCashTransaction } from '../queries';
+import useAddCashTransaction from '../queries/useAddCashTransaction';
 
 interface Props {
 	portfolioId: number;

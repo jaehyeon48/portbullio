@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { CloseModalFn } from '@src/types';
 import * as Style from './styles';
-import { useDeletePortfolio } from '../queries';
+import useDeletePortfolio from '../queries/useDeletePortfolio';
 
 interface Props {
 	closeFunction?: CloseModalFn;

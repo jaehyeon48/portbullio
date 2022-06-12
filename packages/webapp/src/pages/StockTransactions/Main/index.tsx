@@ -1,17 +1,17 @@
 import { useParams, Navigate } from 'react-router-dom';
 import { StockTransactionLog } from '@prisma/client';
-import * as ListPage from '@components/ListPage';
-import { usePortfolioList, useHoldingsList, useTitle } from '@hooks/index';
-import {
-	ListQueryErrorBoundary,
-	Filter as FilterIcon,
-	ArrowBack as ArrowBackIcon,
-	useSelectedPortfolioId
-} from '@components/index';
+import { Filter as FilterIcon, ArrowBack as ArrowBackIcon } from '@components/Icons';
+import ListContainer from '@components/ListPage/ListContainer';
+import * as ListPageStyle from '@components/ListPage/styles';
+import ListQueryErrorBoundary from '@components/ListQueryErrorBoundary';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio/useSelectedPortfolioId';
+import useHoldingsList from '@hooks/ReactQuery/useHoldingsList';
+import usePortfolioList from '@hooks/ReactQuery/usePortfolioList';
+import useTitle from '@hooks/Title';
 import { formatNum, formatCurrency, getHoldingOfTicker } from '@utils';
-import * as Style from './styles';
 import StockTransactionList from './StockTransactionList';
-import { useStockTransactionLogs } from '../queries';
+import * as Style from './styles';
+import useStockTransactionLogs from '../queries/useStockTransactionLogs';
 
 export default function StockTransactions() {
 	const { ticker } = useParams() as { ticker: string };
@@ -32,23 +32,23 @@ export default function StockTransactions() {
 
 	return (
 		<>
-			<ListPage.UpperSection maxWidth="1440px">
+			<ListPageStyle.UpperSection maxWidth="1440px">
 				<Style.SubHeader>
 					{portfolioList.data?.filter(el => el.id === portfolioId)[0]?.name}의
 				</Style.SubHeader>
-				<ListPage.MainHeader>{ticker} 거래내역</ListPage.MainHeader>
-				<ListPage.NumOfItems data-testid="num-of-holdings">
+				<ListPageStyle.MainHeader>{ticker} 거래내역</ListPageStyle.MainHeader>
+				<ListPageStyle.NumOfItems data-testid="num-of-holdings">
 					{formatNum(stockTransactionList.data?.length ?? 0)}개
-				</ListPage.NumOfItems>
-				<ListPage.UpperSectionButtonContainer>
-					<ListPage.SearchFilterButton type="button">
+				</ListPageStyle.NumOfItems>
+				<ListPageStyle.UpperSectionButtonContainer>
+					<ListPageStyle.SearchFilterButton type="button">
 						<FilterIcon width={20} height={20} />
 						필터
-					</ListPage.SearchFilterButton>
+					</ListPageStyle.SearchFilterButton>
 					<Style.BackToHoldingsPageButton to="/holdings">
 						<ArrowBackIcon width={16} height={16} />내 종목 페이지로
 					</Style.BackToHoldingsPageButton>
-				</ListPage.UpperSectionButtonContainer>
+				</ListPageStyle.UpperSectionButtonContainer>
 				<Style.TotalRealizedProfitLossSection>
 					<Style.TotalRealizedProfitLossAmount value={totalRealizedProfitLossAmount}>
 						<span>총 실현손익: </span>
@@ -61,10 +61,10 @@ export default function StockTransactions() {
 						{formatCurrency(holdingInfo?.avgCost ?? 0, 'usd')}
 					</Style.CurrentAvgCost>
 				</Style.TotalRealizedProfitLossSection>
-			</ListPage.UpperSection>
-			<ListPage.LowerSection maxWidth="1250px">
-				<ListPage.ListContainer>
-					<ListPage.ListHeaderContainer>
+			</ListPageStyle.UpperSection>
+			<ListPageStyle.LowerSection maxWidth="1250px">
+				<ListContainer>
+					<ListPageStyle.ListHeaderContainer>
 						<Style.DateSection>날짜</Style.DateSection>
 						<Style.TransactionTypeSection>종류</Style.TransactionTypeSection>
 						<Style.PriceSection>가격</Style.PriceSection>
@@ -72,7 +72,7 @@ export default function StockTransactions() {
 						<Style.MemoSection>메모</Style.MemoSection>
 						<Style.RealizedProfitAndLossSection>실현손익</Style.RealizedProfitAndLossSection>
 						<Style.StockTransactionActionsSection />
-					</ListPage.ListHeaderContainer>
+					</ListPageStyle.ListHeaderContainer>
 					<ListQueryErrorBoundary
 						errorMessage="에러가 발생했습니다."
 						isError={stockTransactionList.isError}
@@ -83,8 +83,8 @@ export default function StockTransactions() {
 							isLoading={stockTransactionList.isLoading}
 						/>
 					</ListQueryErrorBoundary>
-				</ListPage.ListContainer>
-			</ListPage.LowerSection>
+				</ListContainer>
+			</ListPageStyle.LowerSection>
 		</>
 	);
 }

@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import { getAssetChartData } from '@api/user';
+import getAssetChartData from '@api/user/getAssetChartData';
 import { AssetChartData } from '@types';
 
 interface Props {

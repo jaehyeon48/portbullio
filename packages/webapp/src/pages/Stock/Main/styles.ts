@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { Card } from '@components/index';
-import { priceColorMixin } from '@styles/Mixins';
+import Card from '@components/Card';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
-import { stockPageBaseFontStyle } from '../styles';
+import { priceColorMixin } from '@styles/Mixins';
 import { MAIN_SECTION_HEIGHT_PX, STOCK_INFO_PANEL_WIDTH_PX } from '../constants';
+import { stockPageBaseFontStyle } from '../styles';
 
 const STOCK_LINK_INDICATOR_HEIGHT = '3px';
 

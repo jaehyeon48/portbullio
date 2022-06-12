@@ -1,8 +1,8 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { CashTransactionLog } from '@prisma/client';
-import { addCashTransaction, AddCashTransactionArgs } from '@api/cash';
+import { addCashTransaction, AddCashTransactionArgs } from '@api/cash/addCashTransaction';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { sortByDate } from '@utils';
-import { portfolioKeys } from '@lib/index';
 
 export default function useAddCashTransaction() {
 	const queryClient = useQueryClient();

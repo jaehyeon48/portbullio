@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { RealtimeDataProperties } from '@portbullio/shared/src/types';
-import { useEmitter } from '@hooks/index';
+import { useEmitter } from '@hooks/EventEmitter';
 import { useSocketIo } from '@hooks/socketIo';
 
 export default function useStockOverviewData(ticker: string) {

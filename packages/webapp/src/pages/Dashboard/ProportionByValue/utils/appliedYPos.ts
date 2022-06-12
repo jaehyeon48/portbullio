@@ -1,5 +1,5 @@
-import { yPos } from '../../utils';
 import { CANVAS_TOP_MARGIN, CANVAS_BOT_MARGIN, X_AXIS_MARGIN } from '../constants';
+import yPos from '../../utils/yPos';
 
 export const appliedYPos = yPos({
 	canvasTopMargin: CANVAS_TOP_MARGIN,

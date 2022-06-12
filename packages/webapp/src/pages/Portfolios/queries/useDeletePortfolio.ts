@@ -1,7 +1,7 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { Portfolio } from '@prisma/client';
-import { deletePortfolio, DeletePortfolioArgs } from '@api/portfolio';
-import { portfolioKeys } from '@lib/index';
+import { deletePortfolio, DeletePortfolioArgs } from '@api/portfolio/deletePortfolio';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 
 export default function useDeletePortfolio() {
 	const queryClient = useQueryClient();

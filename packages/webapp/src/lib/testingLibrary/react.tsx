@@ -2,7 +2,7 @@ import { ReactElement } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
 import { Toast, ToastProvider } from 'super-simple-react-toast';
-import { ContextAPIProviders } from '@components/index';
+import ContextAPIProviders from '@components/AppProviders/ContextAPIProviders';
 
 interface WrapperProps {
 	children: ReactElement;

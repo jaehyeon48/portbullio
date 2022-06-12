@@ -4,7 +4,7 @@ import yPos from './appliedYPos';
 import { assetChartValueLegendFont } from './chartFont';
 import { Y_AXIS_LEGEND_GAP, Y_AXIS_MARGIN, ASSET_CHART_LINE_THICKNESS } from '../constants';
 import { assetChartLineColor } from '../../colors';
-import { crispPixel } from '../../utils';
+import crispPixel from '../../utils/crispPixel';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;

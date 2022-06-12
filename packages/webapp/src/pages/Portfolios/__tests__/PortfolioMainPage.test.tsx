@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { CustomWrapper } from '@lib/testingLibrary/react';
-import Portfolios from '../Main/Portfolios';
+import Portfolios from '../Main';
 
 describe('Portfolio main page layout', () => {
 	test('Should have a "내 포트폴리오" header', () => {

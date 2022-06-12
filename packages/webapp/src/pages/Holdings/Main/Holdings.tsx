@@ -1,9 +1,14 @@
 import { SyntheticEvent } from 'react';
 import { useToast } from 'super-simple-react-toast';
-import * as Icon from '@components/Icon';
-import * as ListPage from '@components/ListPage';
-import { PortfolioSelect, ListQueryErrorBoundary, useSelectedPortfolioId } from '@components/index';
-import { useModal, useTitle, useHoldingsList } from '@hooks/index';
+import * as Icon from '@components/Icons';
+import ListContainer from '@components/ListPage/ListContainer';
+import * as ListPageStyle from '@components/ListPage/styles';
+import ListQueryErrorBoundary from '@components/ListQueryErrorBoundary';
+import SelectPortfolio from '@components/SelectPortfolio';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio/useSelectedPortfolioId';
+import { useModal } from '@hooks/Modal';
+import useTitle from '@hooks/Title';
+import useHoldingsList from '@hooks/ReactQuery/useHoldingsList';
 import { formatNum } from '@utils';
 import * as Style from './styles';
 import HoldingsList from './HoldingsList';
@@ -26,29 +31,29 @@ export default function Holdings() {
 
 	return (
 		<>
-			<ListPage.UpperSection maxWidth="1500px">
-				<ListPage.MainHeader>보유종목</ListPage.MainHeader>
-				<ListPage.NumOfItems data-testid="num-of-holdings">
+			<ListPageStyle.UpperSection maxWidth="1500px">
+				<ListPageStyle.MainHeader>보유종목</ListPageStyle.MainHeader>
+				<ListPageStyle.NumOfItems data-testid="num-of-holdings">
 					{formatNum(holdingsList.data?.length ?? 0)}개
-				</ListPage.NumOfItems>
-				<ListPage.UpperSectionButtonContainer>
-					<PortfolioSelect />
-					<ListPage.SearchFilterButton type="button">
+				</ListPageStyle.NumOfItems>
+				<ListPageStyle.UpperSectionButtonContainer>
+					<SelectPortfolio />
+					<ListPageStyle.SearchFilterButton type="button">
 						<Icon.Filter width={20} height={20} />
 						필터
-					</ListPage.SearchFilterButton>
-					<ListPage.AddItemButton type="button" onClick={openAddNewStockTransactionModal}>
+					</ListPageStyle.SearchFilterButton>
+					<ListPageStyle.AddItemButton type="button" onClick={openAddNewStockTransactionModal}>
 						<Icon.Plus width={20} height={20} />새 거래내역 추가
-					</ListPage.AddItemButton>
-				</ListPage.UpperSectionButtonContainer>
-				<ListPage.SearchInputContainer>
-					<ListPage.SearchInput placeholder="보유종목 검색..." />
+					</ListPageStyle.AddItemButton>
+				</ListPageStyle.UpperSectionButtonContainer>
+				<ListPageStyle.SearchInputContainer>
+					<ListPageStyle.SearchInput placeholder="보유종목 검색..." />
 					<Icon.Search width={26} height={26} />
-				</ListPage.SearchInputContainer>
-			</ListPage.UpperSection>
-			<ListPage.LowerSection maxWidth="1500px">
-				<ListPage.ListContainer>
-					<ListPage.ListHeaderContainer>
+				</ListPageStyle.SearchInputContainer>
+			</ListPageStyle.UpperSection>
+			<ListPageStyle.LowerSection maxWidth="1500px">
+				<ListContainer>
+					<ListPageStyle.ListHeaderContainer>
 						<Style.HoldingTickerSection>티커</Style.HoldingTickerSection>
 						<Style.HoldingDetailsSection />
 						<Style.HoldingCurrentPriceSection>현재가</Style.HoldingCurrentPriceSection>
@@ -57,7 +62,7 @@ export default function Holdings() {
 						<Style.HoldingTotalValueSection>평가금액</Style.HoldingTotalValueSection>
 						<Style.HoldingDailyGainSection>일일 손익</Style.HoldingDailyGainSection>
 						<Style.HoldingTotalGainSection>총 손익</Style.HoldingTotalGainSection>
-					</ListPage.ListHeaderContainer>
+					</ListPageStyle.ListHeaderContainer>
 					<ListQueryErrorBoundary
 						errorMessage="에러가 발생했습니다."
 						isError={holdingsList.isError}
@@ -65,8 +70,8 @@ export default function Holdings() {
 					>
 						<HoldingsList holdingsList={holdingsList.data} isLoading={holdingsList.isLoading} />
 					</ListQueryErrorBoundary>
-				</ListPage.ListContainer>
-			</ListPage.LowerSection>
+				</ListContainer>
+			</ListPageStyle.LowerSection>
 		</>
 	);
 }

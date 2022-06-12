@@ -1,4 +1,4 @@
-import { useTitle } from '@hooks/Title';
+import useTitle from '@hooks/Title';
 import * as Style from './style';
 
 export default function NotFound() {

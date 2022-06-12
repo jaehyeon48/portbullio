@@ -1,8 +1,11 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { Portfolio } from '@prisma/client';
-import { editPortfolioPrivacy, EditPortfolioPrivacyArgs } from '@api/portfolio';
+import {
+	editPortfolioPrivacy,
+	EditPortfolioPrivacyArgs
+} from '@api/portfolio/editPortfolioPrivacy';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { updateArray } from '@utils';
-import { portfolioKeys } from '@lib/index';
 
 export default function useEditPortfolioPrivacy() {
 	const queryClient = useQueryClient();

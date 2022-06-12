@@ -1,11 +1,11 @@
 import { SyntheticEvent, useState } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { CashTransactionType } from '@prisma/client';
-import { TextInput } from '@components/index';
+import TextInput from '@components/Form/TextInput';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, datetimeLocalFormat } from '@utils';
-import { useEditCashTransaction } from '../queries';
 import * as Style from './styles';
+import useEditCashTransaction from '../queries/useEditCashTransaction';
 
 interface InitialInputValues {
 	amount: number;

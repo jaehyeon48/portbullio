@@ -1,12 +1,17 @@
 import { SyntheticEvent } from 'react';
 import { useToast } from 'super-simple-react-toast';
-import * as Icon from '@components/Icon';
-import * as ListPage from '@components/ListPage';
-import { ListQueryErrorBoundary, PortfolioSelect, useSelectedPortfolioId } from '@components/index';
-import { useModal, useTitle, useCashTransactionList } from '@hooks/index';
+import * as Icon from '@components/Icons';
+import ListContainer from '@components/ListPage/ListContainer';
+import * as ListPageStyle from '@components/ListPage/styles';
+import ListQueryErrorBoundary from '@components/ListQueryErrorBoundary';
+import SelectPortfolio from '@components/SelectPortfolio';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio/useSelectedPortfolioId';
+import { useModal } from '@hooks/Modal';
+import useCashTransactionList from '@hooks/ReactQuery/useCashTransactionList';
+import useTitle from '@hooks/Title';
 import { formatCurrency, calcTotalCashAmount } from '@utils';
-import * as Style from './styles';
 import CashTransactionList from './CashTransactionList';
+import * as Style from './styles';
 import AddNewCashTransaction from '../ModalPage/AddNewCashTransaction';
 
 export default function Cash() {
@@ -29,39 +34,39 @@ export default function Cash() {
 
 	return (
 		<>
-			<ListPage.UpperSection maxWidth="1440px">
-				<ListPage.MainHeader>내 현금</ListPage.MainHeader>
-				<ListPage.NumOfItems data-testid="num-of-my-cash-transactions">
+			<ListPageStyle.UpperSection maxWidth="1440px">
+				<ListPageStyle.MainHeader>내 현금</ListPageStyle.MainHeader>
+				<ListPageStyle.NumOfItems data-testid="num-of-my-cash-transactions">
 					{cashTransactions.data?.length ?? 0}개
-				</ListPage.NumOfItems>
-				<ListPage.UpperSectionButtonContainer>
-					<PortfolioSelect />
-					<ListPage.SearchFilterButton type="button">
+				</ListPageStyle.NumOfItems>
+				<ListPageStyle.UpperSectionButtonContainer>
+					<SelectPortfolio />
+					<ListPageStyle.SearchFilterButton type="button">
 						<Icon.Filter width={20} height={20} />
 						필터
-					</ListPage.SearchFilterButton>
-					<ListPage.AddItemButton type="button" onClick={openAddCashTransactionModal}>
+					</ListPageStyle.SearchFilterButton>
+					<ListPageStyle.AddItemButton type="button" onClick={openAddCashTransactionModal}>
 						<Icon.Plus width={20} height={20} />새 현금내역 추가
-					</ListPage.AddItemButton>
-				</ListPage.UpperSectionButtonContainer>
-				<ListPage.SearchInputContainer>
-					<ListPage.SearchInput placeholder="현금 거래내역 검색..." />
+					</ListPageStyle.AddItemButton>
+				</ListPageStyle.UpperSectionButtonContainer>
+				<ListPageStyle.SearchInputContainer>
+					<ListPageStyle.SearchInput placeholder="현금 거래내역 검색..." />
 					<Icon.Search width={26} height={26} />
-				</ListPage.SearchInputContainer>
-			</ListPage.UpperSection>
-			<ListPage.LowerSection maxWidth="950px">
+				</ListPageStyle.SearchInputContainer>
+			</ListPageStyle.UpperSection>
+			<ListPageStyle.LowerSection maxWidth="950px">
 				<Style.TotalCashAmountSection value={totalCashAmount}>
 					<span>현금 합계: </span>
 					{formatCurrency(totalCashAmount, 'usd')}
 				</Style.TotalCashAmountSection>
-				<ListPage.ListContainer>
-					<ListPage.ListHeaderContainer>
+				<ListContainer>
+					<ListPageStyle.ListHeaderContainer>
 						<Style.DateSection>날짜</Style.DateSection>
 						<Style.CashTypeSection>종류</Style.CashTypeSection>
 						<Style.AmountSection>금액</Style.AmountSection>
 						<Style.MemoSection>메모</Style.MemoSection>
 						<Style.ActionsSection />
-					</ListPage.ListHeaderContainer>
+					</ListPageStyle.ListHeaderContainer>
 					<ListQueryErrorBoundary
 						errorMessage="에러가 발생했습니다."
 						isError={cashTransactions.isError}
@@ -73,8 +78,8 @@ export default function Cash() {
 							isLoading={cashTransactions.isLoading}
 						/>
 					</ListQueryErrorBoundary>
-				</ListPage.ListContainer>
-			</ListPage.LowerSection>
+				</ListContainer>
+			</ListPageStyle.LowerSection>
 		</>
 	);
 }

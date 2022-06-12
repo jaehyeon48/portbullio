@@ -1,11 +1,13 @@
 import { SyntheticEvent, useRef, useState, useEffect } from 'react';
 import { useToast } from 'super-simple-react-toast';
-import { AddImage as AddImageIcon, AvatarImage } from '@components/index';
 import { AVATAR_MIME_TYPES } from '@portbullio/shared/src/constants/index';
-import * as Style from './styles';
+import AvatarImage from '@components/AvatarImage';
+import { AddImage as AddImageIcon } from '@components/Icons';
 import DeleteConfirmTriggerButton from './DeleteConfirmTriggerButton';
 import UploadButton from './UploadButton';
-import { useUpdateAvatar, useDeleteAvatar } from './queries';
+import * as Style from './styles';
+import useDeleteAvatar from './queries/useDeleteAvatar';
+import useUpdateAvatar from './queries/useUpdateAvatar';
 
 export default function AvatarImagePicker() {
 	const toast = useToast();

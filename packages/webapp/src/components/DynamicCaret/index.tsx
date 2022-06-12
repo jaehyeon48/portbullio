@@ -1,5 +1,4 @@
-import CaretUp from '../Icon/CaretUp';
-import CaretDown from '../Icon/CaretDown';
+import { CaretUp, CaretDown } from '../Icons';
 
 interface Props {
 	value: number;

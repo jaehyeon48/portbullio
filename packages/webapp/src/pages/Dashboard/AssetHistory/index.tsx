@@ -1,13 +1,15 @@
 import { useRef, useState, useEffect, MouseEvent } from 'react';
-import { useThemeMode } from '@hooks/index';
-import { CurveLineChart as CurveLineChartIcon } from '@components/Icon';
-import * as Style from './styles';
-import { useChartDataBuffer } from './hooks';
-import { adjustToDpr } from '../utils';
-import { drawHorizontalGrid, drawLine, drawVerticalGrid } from './utils';
-import { useGetCanvasGeometryOnResize } from '../hooks';
+import { CurveLineChart as CurveLineChartIcon } from '@components/Icons';
+import useThemeMode from '@hooks/Theme';
 import { NUM_OF_HORIZONTAL_GRID } from './constants';
+import useChartDataBuffer from './hooks/useChartDataBuffer';
+import * as Style from './styles';
+import drawHorizontalGrid from './utils/drawHorizontalGrid';
+import drawLine from './utils/drawLine';
+import drawVerticalGrid from './utils/drawVerticalGrid';
+import useGetCanvasGeometryOnResize from '../hooks/useGetCanvasGeometryOnResize';
 import { ItemHeader, ItemIconContainer, NoticeEmptyHoldingsList } from '../styles';
+import adjustToDpr from '../utils/adjustToDpr';
 
 interface Props {
 	portfolioId: number;

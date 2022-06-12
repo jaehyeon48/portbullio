@@ -1,8 +1,8 @@
 import { Theme } from '@types';
 import yPos from './appliedYPos';
-import { AXIS_THICKNESS, Y_AXIS_MARGIN } from '../constants';
 import { textColor } from '../../colors';
-import { crispPixel } from '../../utils';
+import { AXIS_THICKNESS, Y_AXIS_MARGIN } from '../constants';
+import crispPixel from '../../utils/crispPixel';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;

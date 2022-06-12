@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { MajorIndices } from '@portbullio/shared/src/types';
-import { useSocketIo } from '@hooks/index';
+import { useSocketIo } from '@hooks/socketIo';
 
 export default function useMajorIndicesData(): MajorIndices | undefined {
 	const [majorIndicesData, setMajorIndicesData] = useState<MajorIndices>();

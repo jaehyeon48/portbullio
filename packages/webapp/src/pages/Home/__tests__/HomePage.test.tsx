@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { CustomWrapper } from '@lib/testingLibrary/react';
 import Home from '../Main';
-import { TopStocksDataContextProvider } from '../context';
+import { TopStocksDataContextProvider } from '../context/TopStocksData';
 
 describe('Home page', () => {
 	test('Should have a main hero image', () => {

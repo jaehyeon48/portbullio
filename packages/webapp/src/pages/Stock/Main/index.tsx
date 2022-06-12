@@ -1,13 +1,14 @@
 import { SyntheticEvent, useEffect } from 'react';
 import { Outlet, useParams, useNavigate } from 'react-router-dom';
-import { DynamicCaret } from '@components/index';
-import { useTitle } from '@hooks/Title';
+import searchTickers from '@api/stock/searchTickers';
+import DynamicCaret from '@components/DynamicCaret';
+import useTitle from '@hooks/Title';
 import { formatNum } from '@utils';
-import { searchTickers } from '@api/stock';
-import * as Style from './styles';
-import { useCompanyName, useExchangeName } from '../queries';
-import { useSubscribeStockOverviewData } from '../hooks';
 import StockInfoPanel from './StockInfoPanel';
+import * as Style from './styles';
+import useCompanyName from '../queries/useCompanyName';
+import useExchangeName from '../queries/useExchangeName';
+import useSubscribeStockOverviewData from '../hooks/useSubscribeStockOverviewData';
 
 export default function StockMain() {
 	const navigate = useNavigate();

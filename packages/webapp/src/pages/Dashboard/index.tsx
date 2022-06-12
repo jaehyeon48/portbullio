@@ -1,10 +1,14 @@
-import { PortfolioSelect, useSelectedPortfolioId } from '@components/index';
-import { useTitle, useHoldingsList, useRealtimeData, useCashTransactionList } from '@hooks/index';
-import { DashboardContainer, PortfolioSelectContainer } from './styles';
-import ProfitLossAsset from './ProfitLossAsset/ProfitLossAsset';
+import SelectPortfolio from '@components/SelectPortfolio';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio/useSelectedPortfolioId';
+import useTitle from '@hooks/Title';
+import useCashTransactionList from '@hooks/ReactQuery/useCashTransactionList';
+import useHoldingsList from '@hooks/ReactQuery/useHoldingsList';
+import { useRealtimeData } from '@hooks/realtimeData';
+import AssetHistory from './AssetHistory';
+import ProfitLossAsset from './ProfitLossAsset';
 import ProportionByValue from './ProportionByValue';
 import SectorPieChart from './SectorPieChart';
-import AssetHistory from './AssetHistory';
+import { DashboardContainer, PortfolioSelectContainer } from './styles';
 
 export default function Dashboard() {
 	const portfolioId = useSelectedPortfolioId();
@@ -17,7 +21,7 @@ export default function Dashboard() {
 		<DashboardContainer>
 			<PortfolioSelectContainer>
 				<span>현재 포트폴리오: </span>
-				<PortfolioSelect />
+				<SelectPortfolio />
 			</PortfolioSelectContainer>
 			<ProfitLossAsset
 				holdingsList={holdingsList.data ?? []}

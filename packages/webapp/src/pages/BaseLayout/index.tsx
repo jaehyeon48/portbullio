@@ -1,7 +1,9 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import Footer from '@components/Footer';
+import Navbar from '@components/Navbar';
+import SearchStocks from '@components/SearchStocks';
 import { MOBILE_NAVBAR_HEIGHT_PX, NAVBAR_WIDTH, WIDTH_BREAK_POINT_PX } from '@constants/index';
-import { Navbar, SearchStocks, Footer } from '@components/index';
 
 export default function BaseLayout() {
 	const navigate = useNavigate();

@@ -1,6 +1,6 @@
 import { ReactNode, MouseEvent, useRef } from 'react';
-import { useHorizontalScrollBar } from '@hooks/ScrollBar';
 import styled from 'styled-components';
+import useHorizontalScrollBar from '@hooks/ScrollBar/useHorizontalScrollBar';
 
 interface Props {
 	children: ReactNode;

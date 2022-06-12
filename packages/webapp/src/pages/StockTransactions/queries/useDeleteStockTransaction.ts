@@ -1,8 +1,11 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { StockTransactionLog } from '@prisma/client';
 import { Holding } from '@portbullio/shared/src/types';
-import { deleteStockTransaction, DeleteStockTransactionArgs } from '@api/holdings';
-import { portfolioKeys } from '@lib/index';
+import { StockTransactionLog } from '@prisma/client';
+import {
+	deleteStockTransaction,
+	DeleteStockTransactionArgs
+} from '@api/holdings/deleteStockTransaction';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { updateArray, sortByString } from '@utils';
 
 export default function useDeleteStockTransaction() {

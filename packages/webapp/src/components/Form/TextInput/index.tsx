@@ -1,5 +1,5 @@
 import { ChangeEventHandler } from 'react';
-import { ExclamationMark } from '@components/index';
+import { ExclamationMark } from '@components/Icons';
 import * as Style from '../styles';
 
 type TextInputType =

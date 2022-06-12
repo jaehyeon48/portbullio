@@ -1,7 +1,7 @@
 import { SyntheticEvent, useState } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { MAX_PORTFOLIO_NAME_LENGTH } from '@portbullio/shared/src/constants';
-import { TextInput } from '@components/Form';
+import TextInput from '@components/Form/TextInput';
 import { CloseModalFn } from '@types';
 import * as Style from './styles';
 import useEditPortfolioName from '../queries/useEditPortfolioName';

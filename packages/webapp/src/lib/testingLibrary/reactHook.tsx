@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { ReactNode } from 'react';
 import { QueryClient, QueryClientProvider, setLogger } from 'react-query';
-import { ContextAPIProviders } from '@components/index';
+import ContextAPIProviders from '@components/AppProviders/ContextAPIProviders';
 
 setLogger({
 	log: console.log,

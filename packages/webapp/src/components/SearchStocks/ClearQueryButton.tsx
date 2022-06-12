@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Times as TimesIcon } from '@components/Icon';
+import { Times as TimesIcon } from '@components/Icons';
 import { ClearQueryBtn } from './styles';
 
 interface Props {

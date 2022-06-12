@@ -1,6 +1,6 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { userKeys } from '@lib/index';
-import { editUserProfile, EditUserProfileArgs } from '@api/user';
+import { editUserProfile, EditUserProfileArgs } from '@api/user/editUserProfile';
+import { userKeys } from '@lib/reactQuery/queryKeyFactories';
 
 export default function useEditProfile() {
 	const queryClient = useQueryClient();

@@ -1,9 +1,10 @@
 import { SyntheticEvent, useState } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { StockTransactionType } from '@prisma/client';
-import { SearchStocks, TextInput } from '@components/index';
-import { CloseModalFn } from '@types';
-import { useHoldingsList, useCashTransactionList } from '@hooks/ReactQuery';
+import TextInput from '@components/Form/TextInput';
+import SearchStocks from '@components/SearchStocks';
+import useHoldingsList from '@hooks/ReactQuery/useHoldingsList';
+import useCashTransactionList from '@hooks/ReactQuery/useCashTransactionList';
 import {
 	isValidRealNumber,
 	isValidInteger,
@@ -12,8 +13,9 @@ import {
 	calcTotalCashAmount,
 	formatCurrency
 } from '@utils';
+import { CloseModalFn } from '@types';
 import * as Style from './styles';
-import { useAddStockTransaction } from '../queries';
+import useAddStockTransaction from '../queries/useAddStockTransaction';
 
 interface Props {
 	portfolioId: number;

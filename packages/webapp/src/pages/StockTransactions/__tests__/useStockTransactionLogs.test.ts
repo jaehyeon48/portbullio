@@ -1,6 +1,6 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { createHookQueryWrapper } from '@lib/testingLibrary/reactHook';
-import { useStockTransactionLogs } from '../queries';
+import useStockTransactionLogs from '../queries/useStockTransactionLogs';
 
 test('useStockTransactionLogs test', async () => {
 	const { result, waitFor } = renderHook(() => useStockTransactionLogs(1, 'AAPL'), {

@@ -1,9 +1,9 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { StockTransactionLog } from '@prisma/client';
 import { Holding } from '@portbullio/shared/src/types';
-import { editStockTransaction, EditStockTransactionArgs } from '@api/holdings';
+import { StockTransactionLog } from '@prisma/client';
+import { editStockTransaction, EditStockTransactionArgs } from '@api/holdings/editStockTransaction';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { updateArray, sortByString, sortByDate } from '@utils';
-import { portfolioKeys } from '@lib/index';
 
 export default function useEditStockTransaction() {
 	const queryClient = useQueryClient();

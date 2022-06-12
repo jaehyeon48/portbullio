@@ -1,7 +1,8 @@
-import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
-import DynamicCaret from '@components/DynamicCaret';
 import { Holding } from '@portbullio/shared/src/types';
-import { useRealtimeData } from '@hooks/index';
+import DynamicCaret from '@components/DynamicCaret';
+import ListItems from '@components/ListPage/ListItems';
+import { ListItem, EmptyListNotice } from '@components/ListPage/styles';
+import { useRealtimeData } from '@hooks/realtimeData';
 import { formatNum, formatCurrency } from '@utils';
 import * as Style from './styles';
 

@@ -1,6 +1,7 @@
 import { SyntheticEvent } from 'react';
-import { useAuth, useModal } from '@hooks/index';
-import { AuthPage } from '@pages/index';
+import { useAuth } from '@hooks/Auth';
+import { useModal } from '@hooks/Modal';
+import AuthPage from '@pages/Auth';
 import { LinkButton, Button } from './styles';
 
 interface Props {

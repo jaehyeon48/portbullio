@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Times } from '@components/Icon';
+import { Times } from '@components/Icons';
 import { CloseModalFn } from '@types';
 import * as Style from './styles';
 

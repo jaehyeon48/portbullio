@@ -1,9 +1,20 @@
 import { useRef, useEffect, useState } from 'react';
 import { CashTransactionLog } from '@prisma/client';
 import { ClientStockRealtimeData, Holding } from '@portbullio/shared/src/types';
-import { useThemeMode } from '@hooks/index';
-import { BarChartAsc as BarChartAscIcon } from '@components/index';
+import { BarChartAsc as BarChartAscIcon } from '@components/Icons';
+import useThemeMode from '@hooks/Theme';
 import { calcTotalCashAmount } from '@utils';
+import ProportionChartDetailsPage from './ProportionChartDetails';
+import { MAX_NUM_OF_BARS } from './constants';
+import * as Style from './styles';
+import calcBarGeometry from './utils/calcBarGeometry';
+import drawAxis from './utils/drawAxis';
+import drawBars from './utils/drawBars';
+import drawHorizontalGrid from './utils/drawHorizontalGrid';
+import transformToBarData from './utils/transformToBarData';
+import truncateToNumOfBars from './utils/truncateToNumOfBars';
+import useGetCanvasGeometryOnResize from '../hooks/useGetCanvasGeometryOnResize';
+import SelectNumOfItems from '../SelectNumOfItems';
 import {
 	ItemHeader,
 	ItemIconContainer,
@@ -11,20 +22,7 @@ import {
 	ProportionAndSectorChartContainer,
 	ProportionAndSectorChartSection
 } from '../styles';
-import * as Style from './styles';
-import { adjustToDpr } from '../utils';
-import { useGetCanvasGeometryOnResize } from '../hooks';
-import { MAX_NUM_OF_BARS } from './constants';
-import DetailsPage from './ProportionChartDetails';
-import {
-	drawAxis,
-	drawHorizontalGrid,
-	drawBars,
-	calcBarGeometry,
-	transformToBarData,
-	truncateToNumOfBars
-} from './utils';
-import SelectNumOfItems from '../SelectNumOfItems';
+import adjustToDpr from '../utils/adjustToDpr';
 
 interface Props {
 	holdingsList: Holding[];
@@ -110,7 +108,7 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 					<Style.ProportionByValueChartCanvas ref={barCanvasRef} />
 				)}
 			</ProportionAndSectorChartContainer>
-			<DetailsPage
+			<ProportionChartDetailsPage
 				chartData={originalBarData}
 				maxRatio={originalBarData.at(0)?.ratio ?? 0}
 				numOfBars={numOfBars}

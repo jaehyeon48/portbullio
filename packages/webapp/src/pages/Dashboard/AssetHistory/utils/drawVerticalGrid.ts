@@ -3,14 +3,14 @@ import { Theme, AssetChartData } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
 import { assetChartDateFont, assetChartValueLegendFont } from './chartFont';
+import { textColor, gridColor } from '../../colors';
 import {
 	VERTICAL_GRID_THICKNESS,
 	X_AXIS_LEGEND_GAP,
 	Y_AXIS_LEGEND_GAP,
 	Y_AXIS_MARGIN
 } from '../constants';
-import { crispPixel } from '../../utils';
-import { textColor, gridColor } from '../../colors';
+import crispPixel from '../../utils/crispPixel';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
-import { useRealtimeDataUpdate } from '@hooks/index';
-import { useSocketIo } from './useSocketIo';
+import { useRealtimeDataUpdate } from '@hooks/realtimeData';
+import { useSocketIo } from './index';
 
 export default function useSocketListeners() {
 	const socket = useSocketIo();

@@ -1,19 +1,19 @@
 import { SyntheticEvent } from 'react';
-import { Pencil as PencilIcon, TrashCan as TrashCanIcon } from '@components/Icon';
+import {
+	Pencil as PencilIcon,
+	TrashCan as TrashCanIcon,
+	StickyNote as StickyNoteIcon
+} from '@components/Icons';
 import { StockTransactionLog, StockTransactionType } from '@prisma/client';
+import ListItems from '@components/ListPage/ListItems';
+import { EmptyListNotice, ListItem } from '@components/ListPage/styles';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio/useSelectedPortfolioId';
 import { useModal } from '@hooks/Modal';
 import { formatDate, formatCurrency, formatNum } from '@utils';
-import {
-	ListItems,
-	ListItem,
-	EmptyListNotice,
-	StickyNote as StickyNoteIcon,
-	useSelectedPortfolioId
-} from '@components/index';
 import * as Style from './styles';
 import StockMemoEditPage from '../ModalPage/StockMemoEdit';
 import EditStockTransactionPage from '../ModalPage/EditStockTransaction';
-import DeleteConfirmPage from '../ModalPage/DeleteStockTransactionConfirm';
+import DeleteStockTransactionConfirmPage from '../ModalPage/DeleteStockTransactionConfirm';
 
 interface Props {
 	stockTransactionList: StockTransactionLog[] | undefined;
@@ -89,7 +89,7 @@ export default function StockTransactionList({ stockTransactionList, isLoading }
 	}: OpenDeleteModalProps) {
 		openModal(
 			e,
-			<DeleteConfirmPage
+			<DeleteStockTransactionConfirmPage
 				stockTransactionId={stockTransactionId}
 				ticker={ticker}
 				quantityToDelete={quantityToDelete}

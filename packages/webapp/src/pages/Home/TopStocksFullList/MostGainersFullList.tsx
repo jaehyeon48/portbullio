@@ -1,7 +1,9 @@
-import { DynamicCaret, ListContainer, ListItems } from '@components/index';
+import DynamicCaret from '@components/DynamicCaret';
+import ListContainer from '@components/ListPage/ListContainer';
+import ListItems from '@components/ListPage/ListItems';
 import { formatNum, formatCurrency } from '@utils';
 import * as Style from './styles';
-import { useTopStocksData } from '../hooks';
+import useTopStocksData from '../hooks/useTopStocksData';
 
 export default function MostGainersFullList() {
 	const { topGainers } = useTopStocksData();

@@ -1,16 +1,33 @@
 import { ReactElement } from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
+import EventEmitterListeners from '@components/EventEmitterListeners';
+import PrivateRoute from '@components/PrivateRoute';
+import { useAuth } from '@hooks/Auth';
+import useCheckSession from '@hooks/checkSession';
+import { useEmitter } from '@hooks/EventEmitter';
+import useThemeMode from '@hooks/Theme';
+import useSocketListeners from '@hooks/socketIo/useSocketListeners';
+import useSubscribeTickers from '@hooks/socketIo/useSubscribeTickers';
+import AuthErrorPage from '@pages/Auth/AuthError';
+import PageBaseLayout from '@pages/BaseLayout';
+import CashMainPage from '@pages/Cash/Main';
+import DashboardPage from '@pages/Dashboard';
+import HoldingsPage from '@pages/Holdings';
+import HomeMainPage from '@pages/Home/Main';
+import MostActivesFullListPage from '@pages/Home/TopStocksFullList/MostActivesFullList';
+import MostGainersFullListPage from '@pages/Home/TopStocksFullList/MostGainersFullList';
+import MostLosersFullListPage from '@pages/Home/TopStocksFullList/MostLosersFullList';
+import TopStocksDataContextWrapper from '@pages/Home/context/TopStocksDataContextWrapper';
+import NotFoundPage from '@pages/NotFound/404';
+import InvalidTickerPage from '@pages/NotFound/InvalidTicker';
+import PortfoliosPage from '@pages/Portfolios/Main';
+import StockMainPage from '@pages/Stock/Main';
+import StockChartPage from '@pages/Stock/StockChart';
+import StockTransactionsPage from '@pages/StockTransactions/Main';
+import UserProfilePage from '@pages/UserProfile';
+import WelcomePage from '@pages/Welcome';
+
 import * as Global from '@styles/Global';
-import * as Page from '@pages/index';
-import { EventEmitterListeners, PrivateRoute } from '@components/index';
-import {
-	useCheckSession,
-	useAuth,
-	useThemeMode,
-	useSocketListeners,
-	useSubscribeTickers,
-	useEmitter
-} from '@hooks/index';
 
 function App(): ReactElement {
 	useCheckSession({ routePath: '/' });
@@ -30,23 +47,23 @@ function App(): ReactElement {
 			<Global.CSSReset />
 			<Global.GlobalStyles />
 			<Routes>
-				<Route path="/" element={<Page.BaseLayout />}>
-					<Route path="/" element={<Page.TopStocksDataContextWrapper />}>
-						<Route index element={<Page.HomeMainPage />} />
-						<Route path="most-actives" element={<Page.MostActivesFullListPage />} />
-						<Route path="most-gainers" element={<Page.MostGainersFullListPage />} />
-						<Route path="most-losers" element={<Page.MostLosersFullListPage />} />
+				<Route path="/" element={<PageBaseLayout />}>
+					<Route path="/" element={<TopStocksDataContextWrapper />}>
+						<Route index element={<HomeMainPage />} />
+						<Route path="most-actives" element={<MostActivesFullListPage />} />
+						<Route path="most-gainers" element={<MostGainersFullListPage />} />
+						<Route path="most-losers" element={<MostLosersFullListPage />} />
 					</Route>
-					<Route path="auth-error" element={<Page.AuthError />} />
-					<Route path="welcome" element={<Page.WelcomePage />} />
-					<Route path="stock/:ticker" element={<Page.StockMainPage />}>
-						<Route path="chart" element={<Page.StockChartPage />} />
+					<Route path="auth-error" element={<AuthErrorPage />} />
+					<Route path="welcome" element={<WelcomePage />} />
+					<Route path="stock/:ticker" element={<StockMainPage />}>
+						<Route path="chart" element={<StockChartPage />} />
 					</Route>
 					<Route
 						path="dashboard"
 						element={
 							<PrivateRoute isAllowed={isAuthenticated}>
-								<Page.DashboardPage />
+								<DashboardPage />
 							</PrivateRoute>
 						}
 					/>
@@ -54,7 +71,7 @@ function App(): ReactElement {
 						path="holdings"
 						element={
 							<PrivateRoute isAllowed={isAuthenticated}>
-								<Page.HoldingsPage />
+								<HoldingsPage />
 							</PrivateRoute>
 						}
 					/>
@@ -62,7 +79,7 @@ function App(): ReactElement {
 						path="stock-transactions/:ticker"
 						element={
 							<PrivateRoute isAllowed={isAuthenticated}>
-								<Page.StockTransactionsPage />
+								<StockTransactionsPage />
 							</PrivateRoute>
 						}
 					/>
@@ -70,7 +87,7 @@ function App(): ReactElement {
 						path="portfolios"
 						element={
 							<PrivateRoute isAllowed={isAuthenticated}>
-								<Page.PortfoliosPage />
+								<PortfoliosPage />
 							</PrivateRoute>
 						}
 					/>
@@ -78,7 +95,7 @@ function App(): ReactElement {
 						path="cash"
 						element={
 							<PrivateRoute isAllowed={isAuthenticated}>
-								<Page.CashPage />
+								<CashMainPage />
 							</PrivateRoute>
 						}
 					/>
@@ -86,13 +103,13 @@ function App(): ReactElement {
 						path="profile"
 						element={
 							<PrivateRoute isAllowed={isAuthenticated}>
-								<Page.UserProfilePage />
+								<UserProfilePage />
 							</PrivateRoute>
 						}
 					/>
 				</Route>
-				<Route path="/invalid-ticker" element={<Page.InvalidTickerPage />} />
-				<Route path="*" element={<Page.NotFoundPage />} />
+				<Route path="/invalid-ticker" element={<InvalidTickerPage />} />
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 		</EventEmitterListeners>
 	);

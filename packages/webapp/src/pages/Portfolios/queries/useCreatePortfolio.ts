@@ -1,7 +1,7 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { Portfolio } from '@prisma/client';
-import { createPortfolio, CreatePortfolioArgs } from '@api/portfolio';
-import { portfolioKeys } from '@lib/index';
+import { createPortfolio, CreatePortfolioArgs } from '@api/portfolio/createPortfolio';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 
 export default function useCreatePortfolio() {
 	const queryClient = useQueryClient();

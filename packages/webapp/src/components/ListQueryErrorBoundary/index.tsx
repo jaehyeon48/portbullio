@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { RefetchOptions, RefetchQueryFilters, QueryObserverResult } from 'react-query';
 import styled from 'styled-components';
-import { Reset as ResetIcon } from '@components/Icon';
+import { Reset as ResetIcon } from '@components/Icons';
 import { buttonMixin } from '@styles/Mixins';
 
 interface Props {

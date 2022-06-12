@@ -1,7 +1,8 @@
 import { useQuery, useQueryClient } from 'react-query';
 import { Holding } from '@portbullio/shared/src/types';
-import { portfolioKeys } from '@lib/index';
-import { getAllHoldings, getSectors } from '@api/index';
+import getAllHoldings from '@api/holdings/getAllHoldings';
+import getSectors from '@api/stock/getSectors';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 
 export default function useHoldingsList(portfolioId: number) {
 	const queryClient = useQueryClient();
