@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 import { v4 as uuid } from 'uuid';
-import { useVerticalScrollBar } from '@hooks/ScrollBar';
+import useVerticalScrollBar from '@hooks/ScrollBar/useVerticalScrollBar';
 import { SearchSymbolItem } from '@types';
-import * as Style from './styles';
 import MatchWord from './MatchWord';
+import * as Style from './styles';
 
 interface Props {
 	searchQuery: string;

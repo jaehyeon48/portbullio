@@ -1,14 +1,16 @@
 import { SyntheticEvent } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { PortfolioPrivacy, Portfolio } from '@prisma/client';
-import * as Icon from '@components/Icon';
-import { ListItems, ListItem, EmptyListNotice } from '@components/ListPage';
-import { useModal, useDefaultPortfolioId } from '@hooks/index';
-import * as Style from './styles';
+import * as Icon from '@components/Icons';
+import ListItems from '@components/ListPage/ListItems';
+import { EmptyListNotice, ListItem } from '@components/ListPage/styles';
+import { useModal } from '@hooks/Modal';
+import useDefaultPortfolioId from '@hooks/ReactQuery/useDefaultPortfolioId';
 import SetDefaultButton from './SetDefaultButton';
-import EditPortfolioName from '../ModalPage/EditPortfolioName';
+import * as Style from './styles';
 import DeleteConfirm from '../ModalPage/DeleteConfirm';
-import { useEditPortfolioPrivacy } from '../queries/index';
+import EditPortfolioName from '../ModalPage/EditPortfolioName';
+import useEditPortfolioPrivacy from '../queries/useEditPortfolioPrivacy';
 
 interface Props {
 	portfolioList: Portfolio[] | undefined;

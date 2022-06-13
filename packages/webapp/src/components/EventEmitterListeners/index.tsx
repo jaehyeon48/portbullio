@@ -1,5 +1,6 @@
 import { ReactNode, useEffect } from 'react';
-import { useEmitter, useAuthUpdate } from '@hooks/index';
+import { useAuthUpdate } from '@hooks/Auth';
+import { useEmitter } from '@hooks/EventEmitter';
 
 interface Props {
 	children: ReactNode;

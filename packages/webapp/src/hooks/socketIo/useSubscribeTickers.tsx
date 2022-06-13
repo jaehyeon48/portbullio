@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useEmitter } from '@hooks/index';
-import { useSelectedPortfolioId } from '@components/index';
+import { useSelectedPortfolioId } from '@components/SelectPortfolio/useSelectedPortfolioId';
+import { useEmitter } from '@hooks/EventEmitter';
 import { getHoldingsTickers } from '@utils';
+import { useSocketIo } from './index';
+import useHoldingsList from '../ReactQuery/useHoldingsList';
 import { useRealtimeData } from '../realtimeData';
-import { useHoldingsList } from '../ReactQuery';
-import { useSocketIo } from './useSocketIo';
 
 export default function useSubscribeTickers() {
 	const Emitter = useEmitter();

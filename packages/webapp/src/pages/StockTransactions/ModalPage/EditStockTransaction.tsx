@@ -1,12 +1,12 @@
 import { SyntheticEvent, useState } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { StockTransactionType } from '@prisma/client';
-import { TextInput } from '@components/index';
+import TextInput from '@components/Form/TextInput';
+import useHoldingsList from '@hooks/ReactQuery/useHoldingsList';
 import { CloseModalFn } from '@types';
 import { isValidRealNumber, isValidInteger, getHoldingOfTicker, datetimeLocalFormat } from '@utils';
-import { useHoldingsList } from '@hooks/ReactQuery';
-import { useEditStockTransaction } from '../queries';
 import * as Style from './styles';
+import useEditStockTransaction from '../queries/useEditStockTransaction';
 
 interface InitialInputValues {
 	ticker: string;

@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { editStockTransactionMemo, EditStockTransactionMemoArgs } from '@api/holdings';
 import { StockTransactionLog } from '@prisma/client';
+import {
+	editStockTransactionMemo,
+	EditStockTransactionMemoArgs
+} from '@api/holdings/editStockTransactionMemo';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { updateArray } from '@utils';
-import { portfolioKeys } from '@lib/index';
 
 export default function useEditStockTransactionMemo(portfolioId: number, ticker: string) {
 	const queryClient = useQueryClient();

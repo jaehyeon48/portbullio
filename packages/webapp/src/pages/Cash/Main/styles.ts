@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { memoButtonMixin, priceColorMixin } from '@styles/Mixins';
-import { listActionButtonStyle, Card } from '@components/index';
+import Card from '@components/Card';
+import { listActionButtonStyle } from '@components/ListPage/styles';
 
 export const TotalCashAmountSection = styled(Card)`
 	${priceColorMixin};

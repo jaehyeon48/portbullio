@@ -1,13 +1,13 @@
 import { Theme } from '@types';
 import yPos from './appliedYPos';
+import { textColor, gridColor } from '../../colors';
 import {
 	NUM_OF_HORIZONTAL_GRID,
 	Y_AXIS_MARGIN,
 	Y_AXIS_LEGEND_GAP,
 	HORIZONTAL_GRID_THICKNESS
 } from '../constants';
-import { textColor, gridColor } from '../../colors';
-import { crispPixel } from '../../utils';
+import crispPixel from '../../utils/crispPixel';
 
 interface Props {
 	ctx: CanvasRenderingContext2D;

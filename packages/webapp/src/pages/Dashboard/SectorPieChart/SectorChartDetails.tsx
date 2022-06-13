@@ -1,8 +1,10 @@
 import { SectorPieChartRatio } from '@types';
-import { ListContainer, ListItems, Document as DocumentIcon } from '@components/index';
+import { Document as DocumentIcon } from '@components/Icons';
+import ListContainer from '@components/ListPage/ListContainer';
+import ListItems from '@components/ListPage/ListItems';
 import { formatNum } from '@utils';
+import translateSectorToKor from './utils/translateSectorToKor';
 import * as Style from '../styles';
-import { translateSectorToKor } from './utils';
 
 interface Props {
 	chartData: SectorPieChartRatio[];

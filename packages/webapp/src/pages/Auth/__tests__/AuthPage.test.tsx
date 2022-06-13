@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { CustomWrapper } from '@lib/testingLibrary/react';
-import { AuthPage } from '../index';
+import AuthPage from '../index';
 
 test('Should have a logo image', async () => {
 	render(

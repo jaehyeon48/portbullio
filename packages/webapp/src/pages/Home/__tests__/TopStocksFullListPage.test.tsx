@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { CustomWrapper } from '@lib/testingLibrary/react';
-import { TopStocksDataContextProvider } from '../context/TopStocksDataContextProvider';
+import { TopStocksDataContextProvider } from '../context/TopStocksData';
 import MostActivesFullListPage from '../TopStocksFullList/MostActivesFullList';
 import MostGainersFullListPage from '../TopStocksFullList/MostGainersFullList';
 import MostLosersFullListPage from '../TopStocksFullList/MostLosersFullList';

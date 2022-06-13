@@ -1,9 +1,9 @@
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
 import { useToast } from 'super-simple-react-toast';
-import { portfolioKeys } from '@lib/index';
+import getDefaultPortfolio from '@api/portfolio/getDefaultPortfolio';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { useAuth } from '@hooks/Auth';
-import { getDefaultPortfolio } from '@api/portfolio';
-import { useEffect } from 'react';
 
 export default function useDefaultPortfolioId(showErrorMessage = true) {
 	const toast = useToast();

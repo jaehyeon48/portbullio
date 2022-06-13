@@ -1,6 +1,6 @@
 import envConfig from '@configs/env';
-import { User as UserIcon } from '@components/Icon';
-import { useAvatarUrl } from '@hooks/ReactQuery';
+import { User as UserIcon } from '@components/Icons';
+import useAvatarUrl from '@hooks/ReactQuery/useAvatarUrl';
 import Image from './styles';
 
 interface Props {

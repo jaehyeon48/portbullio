@@ -1,4 +1,4 @@
-import { useUserProfile } from '@hooks/ReactQuery';
+import useUserProfile from '@hooks/ReactQuery/useUserProfile';
 import * as Style from './styles';
 
 interface Props {

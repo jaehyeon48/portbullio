@@ -1,10 +1,10 @@
 import { useState, useEffect, SyntheticEvent, Dispatch } from 'react';
 import { searchTickers } from '@api/stock';
-import { Search as SearchIcon } from '@components/Icon';
-import { asyncThrottleAndDebounce } from '@utils';
+import { Search as SearchIcon } from '@components/Icons';
 import { SearchSymbolItem } from '@types';
-import SearchResultList from './SearchResultList';
+import { asyncThrottleAndDebounce } from '@utils';
 import ClearQueryButton from './ClearQueryButton';
+import SearchResultList from './SearchResultList';
 import * as Style from './styles';
 
 interface Props {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { usePortfolioList } from '@hooks/index';
+import usePortfolioList from '@hooks/ReactQuery/usePortfolioList';
 import { useSelectedPortfolioId, useSelectedPortfolioIdUpdate } from './useSelectedPortfolioId';
 
 interface SelectMarginProps {

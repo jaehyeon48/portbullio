@@ -1,11 +1,12 @@
-import { AngleRight } from '@components/index';
-import { useTitle } from '@hooks/index';
+import { AngleRight } from '@components/Icons';
+import useTitle from '@hooks/Title';
 import HeroImage from './HeroImage';
-import * as Style from './styles';
-import TopStocks from './TopStocks';
 import HomeMainButton from './HomeMainButton';
 import IndexInfo from './IndexInfo';
-import { useMajorIndicesData, useTopStocksData } from '../hooks';
+import TopStocks from './TopStocks';
+import * as Style from './styles';
+import useMajorIndicesData from '../hooks/useMajorIndicesData';
+import useTopStocksData from '../hooks/useTopStocksData';
 
 export default function Home() {
 	const majorIndicesData = useMajorIndicesData();

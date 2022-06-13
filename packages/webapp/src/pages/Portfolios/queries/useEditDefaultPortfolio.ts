@@ -1,6 +1,9 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { editDefaultPortfolio, EditDefaultPortfolioArgs } from '@api/portfolio';
-import { portfolioKeys } from '@lib/index';
+import {
+	editDefaultPortfolio,
+	EditDefaultPortfolioArgs
+} from '@api/portfolio/editDefaultPortfolio';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 
 export default function useEditDefaultPortfolio() {
 	const queryClient = useQueryClient();

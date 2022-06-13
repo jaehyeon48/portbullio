@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import buttonMixin from '@styles/Mixins/buttonMixin';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
-import { listActionButtonStyle } from '@components/ListPage';
+import { listActionButtonStyle } from '@components/ListPage/styles';
 
 interface SetDefaultButtonProps {
 	isDefault: boolean;

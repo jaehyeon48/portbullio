@@ -1,6 +1,7 @@
 import { useState, SyntheticEvent, ReactNode } from 'react';
 import ReactDOM from 'react-dom';
-import { AppProviders, Modal } from '@components/index';
+import AppProviders from '@components/AppProviders';
+import Modal from '@components/Modal';
 import { GLOBAL_SCROLLBAR_WIDTH } from '@constants/index';
 import { CloseModalFn } from '@types';
 

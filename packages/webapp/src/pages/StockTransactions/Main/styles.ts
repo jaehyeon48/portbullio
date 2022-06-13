@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import Card from '@components/Card';
+import { listActionButtonStyle } from '@components/ListPage/styles';
 import { buttonMixin, priceColorMixin, memoButtonMixin } from '@styles/Mixins';
-import { listActionButtonStyle, Card } from '@components/index';
 
 export const TotalRealizedProfitLossSection = styled(Card)`
 	padding: 7px 5px;

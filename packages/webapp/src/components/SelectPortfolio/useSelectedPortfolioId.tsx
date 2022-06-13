@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useDefaultPortfolioId } from '@hooks/ReactQuery';
+import useDefaultPortfolioId from '@hooks/ReactQuery/useDefaultPortfolioId';
 
 type PortfolioIdUpdateFn = (e: React.SyntheticEvent) => void;
 

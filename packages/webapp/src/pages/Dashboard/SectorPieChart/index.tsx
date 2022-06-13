@@ -1,8 +1,19 @@
 import { useRef, useEffect, useState } from 'react';
 import { Holding } from '@portbullio/shared/src/types';
-import { PieChart as PieChartIcon } from '@components/index';
-import { useThemeMode } from '@hooks/index';
+import { PieChart as PieChartIcon } from '@components/Icons';
+import useThemeMode from '@hooks/Theme';
 import { formatNum, getHoldingsTickers } from '@utils';
+import SectorChartDetailsPage from './SectorChartDetails';
+import useSectors from './queries/useSectors';
+import * as Style from './styles';
+import calcSectorRatios from './utils/calcSectorRatios';
+import convertToSectorChartData from './utils/convertToSectorChartData';
+import drawPieChart from './utils/drawPieChart';
+import initializeSectorMap from './utils/initializeSectorMap';
+import translateSectorToKor from './utils/translateSectorToKor';
+import useGetCanvasGeometryOnResize from '../hooks/useGetCanvasGeometryOnResize';
+import SelectNumOfItems from '../SelectNumOfItems';
+import { sectorPieChartColors } from '../colors';
 import {
 	ItemHeader,
 	ItemIconContainer,
@@ -10,21 +21,7 @@ import {
 	ProportionAndSectorChartContainer,
 	ProportionAndSectorChartSection
 } from '../styles';
-import * as Style from './styles';
-import { adjustToDpr } from '../utils';
-import {
-	calcSectorRatios,
-	convertToSectorChartData,
-	drawPieChart,
-	initializeSectorMap,
-	translateSectorToKor
-} from './utils';
-import { useSectors } from './queries';
-import { useGetCanvasGeometryOnResize } from '../hooks';
-import SelectNumOfItems from '../SelectNumOfItems';
-import DetailsPage from './SectorChartDetails';
-
-import { sectorPieChartColors } from '../colors';
+import adjustToDpr from '../utils/adjustToDpr';
 
 const MAX_NUM_OF_PIES = 7;
 
@@ -108,7 +105,7 @@ export default function SectorPieChart({ holdingsList }: Props) {
 					</Style.PieChartContainer>
 				)}
 			</ProportionAndSectorChartContainer>
-			<DetailsPage
+			<SectorChartDetailsPage
 				chartData={sectorRatios}
 				maxRatio={sectorRatios.at(0)?.ratio ?? 0}
 				numOfPies={numOfPies}

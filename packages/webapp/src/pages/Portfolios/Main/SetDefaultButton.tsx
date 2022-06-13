@@ -1,8 +1,8 @@
 import { RefetchOptions, RefetchQueryFilters, QueryObserverResult } from 'react-query';
 import { useToast } from 'super-simple-react-toast';
-import { CircleCheck as CircleCheckIcon, CircleCross as CircleCrossIcon } from '@components/Icon';
+import { CircleCheck as CircleCheckIcon, CircleCross as CircleCrossIcon } from '@components/Icons';
 import { DefaultPortfolioButton } from './styles';
-import { useEditDefaultPortfolio } from '../queries';
+import useEditDefaultPortfolio from '../queries/useEditDefaultPortfolio';
 
 interface Props {
 	defaultPortfolioId: number | undefined;

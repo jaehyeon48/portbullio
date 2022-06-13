@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { TradingViewWidget } from '@components/index';
-import { useThemeMode } from '@hooks/index';
+import TradingViewWidget from '@components/TradingViewWidget';
+import useThemeMode from '@hooks/Theme';
 import * as Style from './styles';
 
 export default function StockChart() {

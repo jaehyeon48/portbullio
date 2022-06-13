@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { TopActives, TopGainers, TopLosers } from '@portbullio/shared/src/types';
-import { useSocketIo } from '@hooks/index';
-import * as TopStocksContext from '../context';
+import { useSocketIo } from '@hooks/socketIo';
+import * as TopStocksContext from '../context/TopStocksData';
 
 interface TopStocksDataHookReturnValue {
 	topActives: TopActives | undefined;

@@ -1,4 +1,4 @@
-import { DynamicCaret } from '@components/index';
+import DynamicCaret from '@components/DynamicCaret';
 import { formatNum } from '@utils';
 import * as Style from './styles';
 

@@ -1,9 +1,9 @@
 import { SyntheticEvent } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useToast } from 'super-simple-react-toast';
+import logOut from '@api/auth/logOut';
+import { useEmitter } from '@hooks/EventEmitter';
 import { CloseModalFn } from '@types';
-import { logOut } from '@api/auth';
-import { useEmitter } from '@hooks/index';
 import * as Style from './styles';
 
 interface Props {

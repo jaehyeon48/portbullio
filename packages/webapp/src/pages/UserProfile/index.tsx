@@ -1,10 +1,11 @@
 import { useState, SyntheticEvent, useEffect } from 'react';
 import { useToast } from 'super-simple-react-toast';
-import { Textarea, TextInput } from '@components/index';
-import { useUserProfile } from '@hooks/ReactQuery';
+import Textarea from '@components/Form/Textarea';
+import TextInput from '@components/Form/TextInput';
+import useUserProfile from '@hooks/ReactQuery/useUserProfile';
 import AvatarImagePicker from './AvatarImagePicker';
 import * as Style from './styles';
-import { useEditProfile } from './queries';
+import useEditProfile from './queries/useEditProfile';
 
 export default function UserProfile() {
 	const toast = useToast();

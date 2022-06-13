@@ -1,5 +1,5 @@
 import { ReactNode, useRef } from 'react';
-import { useVerticalScrollBar } from '@hooks/index';
+import useVerticalScrollBar from '@hooks/ScrollBar/useVerticalScrollBar';
 import * as Style from './styles';
 
 interface Props {

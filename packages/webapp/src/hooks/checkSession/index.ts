@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { useToast } from 'super-simple-react-toast';
-import { checkAuth } from '@api/auth';
-import { useAuthUpdate } from '@hooks/index';
+import checkAuth from '@api/auth/checkAuth';
+import { useAuthUpdate } from '@hooks/Auth';
 
 interface Props {
 	routePath: string;

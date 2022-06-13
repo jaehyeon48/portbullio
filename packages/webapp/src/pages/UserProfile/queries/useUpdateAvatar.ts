@@ -1,5 +1,5 @@
 import { useQueryClient, useMutation } from 'react-query';
-import { uploadAvatar } from '@api/user';
+import uploadAvatar from '@api/user/uploadAvatar';
 
 export default function useUpdateAvatar() {
 	const queryClient = useQueryClient();

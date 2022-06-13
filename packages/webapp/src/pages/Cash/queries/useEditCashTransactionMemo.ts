@@ -1,8 +1,11 @@
 import { useMutation, useQueryClient } from 'react-query';
-import { editCashTransactionMemo, EditCashTransactionMemoArgs } from '@api/cash';
 import { CashTransactionLog } from '@prisma/client';
+import {
+	editCashTransactionMemo,
+	EditCashTransactionMemoArgs
+} from '@api/cash/editCashTransactionMemo';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { updateArray } from '@utils';
-import { portfolioKeys } from '@lib/index';
 
 export default function useEditCashTransactionMemo(portfolioId: number) {
 	const queryClient = useQueryClient();

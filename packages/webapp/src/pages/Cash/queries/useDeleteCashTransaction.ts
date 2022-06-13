@@ -1,7 +1,7 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { CashTransactionLog } from '@prisma/client';
-import { deleteCashTransaction } from '@api/cash';
-import { portfolioKeys } from '@lib/index';
+import deleteCashTransaction from '@api/cash/deleteCashTransaction';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { sortByDate } from '@utils';
 
 export default function useDeleteStockTransaction(portfolioId: number) {

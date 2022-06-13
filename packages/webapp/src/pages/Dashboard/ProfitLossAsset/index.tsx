@@ -1,15 +1,18 @@
 import { CashTransactionLog } from '@prisma/client';
 import { ClientStockRealtimeData, Holding } from '@portbullio/shared/src/types';
-import { formatNum, formatCurrency, calcTotalCashAmount } from '@utils';
+import DynamicCaret from '@components/DynamicCaret';
 import {
-	DynamicCaret,
 	LineChartAsc as LineChartAscIcon,
 	BarChartArrowAsc as BarChartArrowAscIcon,
 	MoneySack as MoneySackIcon
-} from '@components/index';
-import { calcTotalAssets, calcTotalCost, calcDailyProfitLoss, calcTotalProfitLoss } from './utils';
-import { ItemHeader, ItemIconContainer } from '../styles';
+} from '@components/Icons';
+import { formatNum, formatCurrency, calcTotalCashAmount } from '@utils';
 import * as Style from './style';
+import calcDailyProfitLoss from './utils/calcDailyProfitLoss';
+import calcTotalAssets from './utils/calcTotalAssets';
+import calcTotalCost from './utils/calcTotalCost';
+import calcTotalProfitLoss from './utils/calcTotalProfitLoss';
+import { ItemHeader, ItemIconContainer } from '../styles';
 
 interface Props {
 	holdingsList: Holding[];

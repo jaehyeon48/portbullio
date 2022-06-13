@@ -1,8 +1,8 @@
 import { useQueryClient, useMutation } from 'react-query';
 import { Portfolio } from '@prisma/client';
-import { editPortfolioName, EditPortfolioNameArgs } from '@api/portfolio';
+import { editPortfolioName, EditPortfolioNameArgs } from '@api/portfolio/editPortfolioName';
+import { portfolioKeys } from '@lib/reactQuery/queryKeyFactories';
 import { updateArray } from '@utils';
-import { portfolioKeys } from '@lib/index';
 
 export default function useEditPortfolioName() {
 	const queryClient = useQueryClient();

@@ -2,7 +2,7 @@ import { SyntheticEvent } from 'react';
 import { useToast } from 'super-simple-react-toast';
 import { CloseModalFn } from '@src/types';
 import * as Style from './styles';
-import { useDeleteCashTransaction } from '../queries';
+import useDeleteCashTransaction from '../queries/useDeleteCashTransaction';
 
 interface Props {
 	cashTransactionId: number;

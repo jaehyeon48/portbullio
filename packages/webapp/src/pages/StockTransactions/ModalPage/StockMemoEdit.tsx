@@ -1,9 +1,9 @@
 import { SyntheticEvent, useState } from 'react';
 import { useToast } from 'super-simple-react-toast';
+import Textarea from '@components/Form/Textarea';
 import { CloseModalFn } from '@types';
-import { Textarea } from '@components/Form';
 import * as Style from './styles';
-import { useEditStockTransactionMemo } from '../queries';
+import useEditStockTransactionMemo from '../queries/useEditStockTransactionMemo';
 
 interface Props {
 	portfolioId: number;
