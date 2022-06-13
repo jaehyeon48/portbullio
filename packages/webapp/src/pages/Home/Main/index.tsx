@@ -55,7 +55,6 @@ export default function Home() {
 						<AngleRight />
 					</Style.TopStocksListHeader>
 					<TopStocks stockList={topActives?.slice(0, 5)} />
-					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
 					<Style.TopStocksListHeader to="/most-gainers">
@@ -63,7 +62,6 @@ export default function Home() {
 						<AngleRight />
 					</Style.TopStocksListHeader>
 					<TopStocks stockList={topGainers?.slice(0, 5)} />
-					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 				<Style.TopStocksListSection>
 					<Style.TopStocksListHeader to="/most-losers">
@@ -71,7 +69,6 @@ export default function Home() {
 						<AngleRight />
 					</Style.TopStocksListHeader>
 					<TopStocks stockList={topLosers?.slice(0, 5)} />
-					<Style.TopStocksListItems />
 				</Style.TopStocksListSection>
 			</Style.LowerSection>
 		</>
