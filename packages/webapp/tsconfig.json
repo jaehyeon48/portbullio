@@ -3,7 +3,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "jsx": "react-jsx",
-    "module": "es6",
+    "module": "esnext",
     "noEmit": true,
     "composite": true,
     "paths": {

@@ -26,6 +26,11 @@ export default {
 			'@lib': path.resolve(dirname(fileURLToPath(import.meta.url)), 'src', 'lib')
 		}
 	},
+	optimization: {
+		splitChunks: {
+			chunks: 'all'
+		}
+	},
 	module: {
 		rules: [
 			{
