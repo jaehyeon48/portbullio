@@ -17,6 +17,20 @@ export default merge(common, {
 		open: true,
 		https: true
 	},
+	module: {
+		rules: [
+			{
+				test: /\.(js|jsx|ts|tsx)$/,
+				use: {
+					loader: 'babel-loader',
+					options: {
+						plugins: ['babel-plugin-styled-components']
+					}
+				},
+				exclude: /node_modules/
+			}
+		]
+	},
 	plugins: [
 		new DotenvWebpackPlugin({
 			path: path.resolve(dirname(fileURLToPath(import.meta.url)), '.dev.env')
