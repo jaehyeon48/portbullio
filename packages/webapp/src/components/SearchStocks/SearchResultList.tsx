@@ -12,8 +12,8 @@ interface Props {
 }
 
 export default function SearchResultList({ searchQuery, searchResults, onResultClick }: Props) {
-	const outerContainerRef = useRef<HTMLUListElement>(null);
-	const innerContainerRef = useRef<HTMLDivElement>(null);
+	const outerContainerRef = useRef<HTMLDivElement>(null);
+	const innerContainerRef = useRef<HTMLUListElement>(null);
 	const { VerticalScrollBarThumb, calculateThumbY, verticalThumbH, verticalThumbRef } =
 		useVerticalScrollBar({
 			innerContainerRef,
@@ -24,9 +24,9 @@ export default function SearchResultList({ searchQuery, searchResults, onResultC
 	return (
 		<Style.SearchResultContainer ref={outerContainerRef} onScroll={calculateThumbY}>
 			<VerticalScrollBarThumb ref={verticalThumbRef} height={verticalThumbH} />
-			<div ref={innerContainerRef}>
+			<Style.SearchResultList ref={innerContainerRef}>
 				{searchResults.map(({ ticker, name, exchange, type }) => (
-					<Style.SearchListItem
+					<Style.SearchResultListItem
 						id="search-list-item"
 						key={`${ticker}${uuid()}`}
 						onClick={() => onResultClick(ticker, name)}
@@ -37,9 +37,9 @@ export default function SearchResultList({ searchQuery, searchResults, onResultC
 							<Style.SearchResultType>{stockTypeKor[type]}-</Style.SearchResultType>
 							<Style.SearchResultExchange>{exchange}</Style.SearchResultExchange>
 						</Style.SearchResultLowerSection>
-					</Style.SearchListItem>
+					</Style.SearchResultListItem>
 				))}
-			</div>
+			</Style.SearchResultList>
 		</Style.SearchResultContainer>
 	);
 }

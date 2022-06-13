@@ -35,15 +35,12 @@ export const Input = styled.input`
 	}
 `;
 
-export const SearchResultContainer = styled.ul`
+export const SearchResultContainer = styled.div`
 	position: absolute;
 	z-index: 2;
 	top: 34px;
 	left: 0px;
 	width: 100%;
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
 	max-height: 300px;
 	overflow-y: scroll;
 	background-color: var(--navbarBgColor);
@@ -54,7 +51,13 @@ export const SearchResultContainer = styled.ul`
 	}
 `;
 
-export const SearchListItem = styled.li`
+export const SearchResultList = styled.ul`
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+`;
+
+export const SearchResultListItem = styled.li`
 	display: flex;
 	flex-direction: column;
 	padding: 8px 3px;
