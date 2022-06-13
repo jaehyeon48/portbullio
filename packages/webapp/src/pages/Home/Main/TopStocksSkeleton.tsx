@@ -4,7 +4,7 @@ import * as Style from './styles';
 
 export default function TopStocksSkeleton() {
 	return (
-		<>
+		<Style.TopStocksListItems>
 			{[0, 1, 2, 3, 4].map(key => (
 				<Style.TopStocksListItem key={key} as="li">
 					<SkeletonWrapper>
@@ -14,7 +14,7 @@ export default function TopStocksSkeleton() {
 					</SkeletonWrapper>
 				</Style.TopStocksListItem>
 			))}
-		</>
+		</Style.TopStocksListItems>
 	);
 }
 

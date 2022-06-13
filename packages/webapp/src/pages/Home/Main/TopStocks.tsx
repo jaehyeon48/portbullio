@@ -11,7 +11,7 @@ export default function TopStocks({ stockList }: Props) {
 	if (!stockList) return <TopStocksSkeleton />;
 
 	return (
-		<>
+		<Style.TopStocksListItems>
 			{stockList.map(({ ticker, changePercent, price }) => (
 				<Style.TopStocksListItem key={ticker} as="li" bgColorOnHover>
 					<Style.TopStocksListItemLink to={`stock/${ticker}/chart`}>
@@ -25,6 +25,6 @@ export default function TopStocks({ stockList }: Props) {
 					</Style.TopStocksListItemLink>
 				</Style.TopStocksListItem>
 			))}
-		</>
+		</Style.TopStocksListItems>
 	);
 }
