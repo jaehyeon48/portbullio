@@ -22,10 +22,13 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 		triggerPoint.current = 0;
 		isReachedEnd.current = false;
 		isInitialLoading.current = true;
+		setIsLoadingData(true);
+		setChartDataBuffer([]);
 	}, [portfolioId]);
 
 	useEffect(() => {
 		if (!isInitialLoading.current) return;
+		if (chartDataBuffer.length > 0) return;
 
 		(async () => {
 			const initialChartData = await getAssetChartData({
@@ -37,11 +40,15 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 
 			isInitialLoading.current = false;
 			setIsLoadingData(false);
-			if (initialChartData.length < count * 2) isReachedEnd.current = true;
+			if (initialChartData.length < count * 2) {
+				isReachedEnd.current = true;
+			} else {
+				isReachedEnd.current = false;
+			}
 			triggerPoint.current =
 				initialChartData.length >= count ? count - 1 : initialChartData.length - 1;
 		})();
-	}, [portfolioId, count]);
+	}, [portfolioId, count, chartDataBuffer]);
 
 	useEffect(() => {
 		if (chartDataBuffer.length === 0) return;
