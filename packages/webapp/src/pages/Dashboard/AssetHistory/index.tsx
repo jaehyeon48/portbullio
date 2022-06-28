@@ -21,7 +21,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 	const [theme] = useThemeMode();
 	const assetChartRef = useRef<HTMLCanvasElement>(null);
 	const [currentWindow, setCurrentWindow] = useState({ s: 0, e: COUNT - 1 });
-	const { chartDataBuffer, isReachedEnd } = useChartDataBuffer({
+	const { chartDataBuffer, isReachedEnd, isLoadingData } = useChartDataBuffer({
 		portfolioId,
 		count: COUNT,
 		currentWindow
@@ -110,6 +110,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 	function slideChart(e: MouseEvent<HTMLCanvasElement>) {
 		if (!isGrabbedChart.current) return;
 		if (!assetChartRef.current) return;
+		if (isLoadingData.current) return;
 
 		e.preventDefault();
 		const dx = startXPos.current - e.clientX;
