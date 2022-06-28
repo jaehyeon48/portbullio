@@ -27,9 +27,10 @@ export default function AssetHistory({ portfolioId }: Props) {
 		count: COUNT,
 		currentWindow
 	});
-	const chartData = chartDataBuffer.slice(currentWindow.s, currentWindow.e + 1);
-	const maxTotalAsset = Math.max(...chartData.map(({ totalAsset }) => totalAsset));
-	const minTotalAsset = Math.min(...chartData.map(({ totalAsset }) => totalAsset));
+	const chartDataBufferEntries = Object.entries(chartDataBuffer);
+	const chartData = chartDataBufferEntries.slice(currentWindow.s, currentWindow.e + 1);
+	const maxTotalAsset = Math.max(...chartData.map(([, { totalAsset }]) => totalAsset));
+	const minTotalAsset = Math.min(...chartData.map(([, { totalAsset }]) => totalAsset));
 	const [assetChartCanvasGeometry, setAssetChartCanvasGeometry] = useState({
 		width: assetChartRef.current?.clientWidth,
 		height: assetChartRef.current?.clientHeight
@@ -120,7 +121,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 
 		if (dx < 0) {
 			setCurrentWindow(prev => {
-				if (isReachedEnd.current && prev.e >= chartDataBuffer.length - 1) {
+				if (isReachedEnd.current && prev.e >= chartDataBufferEntries.length - 1) {
 					return prev;
 				}
 				return { s: prev.s + 1, e: prev.e + 1 };
@@ -135,8 +136,28 @@ export default function AssetHistory({ portfolioId }: Props) {
 		}
 	}
 
-	function isChartDataEmpty() {
-		return chartData.length === 0;
+	function renderChartUI() {
+		if (chartData.length === 0) {
+			if (isLoadingData) {
+				return <NoticeEmptyHoldingsList>차트 데이터 로딩 중...</NoticeEmptyHoldingsList>;
+			}
+			return <NoticeEmptyHoldingsList>차트 데이터가 존재하지 않습니다.</NoticeEmptyHoldingsList>;
+		}
+
+		return (
+			<>
+				<Style.AssetHistoryChart ref={assetChartRef} />
+				<LoadingNotificationCanvas
+					isLoadingData={isLoadingData}
+					onMouseDown={enableGrabbedState}
+					onPointerDown={enableGrabbedState}
+					onMouseUp={disableGrabbedState}
+					onPointerUp={disableGrabbedState}
+					onMouseMove={slideChart}
+					onPointerMove={slideChart}
+				/>
+			</>
+		);
 	}
 
 	return (
@@ -145,22 +166,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 				<CurveLineChartIcon width={32} height={32} />
 			</ItemIconContainer>
 			<ItemHeader>자산 추이</ItemHeader>
-			{isChartDataEmpty() ? (
-				<NoticeEmptyHoldingsList>차트 데이터가 존재하지 않습니다.</NoticeEmptyHoldingsList>
-			) : (
-				<Style.ChartContainer>
-					<Style.AssetHistoryChart ref={assetChartRef} />
-					<LoadingNotificationCanvas
-						isLoadingData={isLoadingData}
-						onMouseDown={enableGrabbedState}
-						onPointerDown={enableGrabbedState}
-						onMouseUp={disableGrabbedState}
-						onPointerUp={disableGrabbedState}
-						onMouseMove={slideChart}
-						onPointerMove={slideChart}
-					/>
-				</Style.ChartContainer>
-			)}
+			<Style.ChartContainer>{renderChartUI()}</Style.ChartContainer>
 		</Style.AssetHistoryContainer>
 	);
 }

@@ -62,14 +62,48 @@ export default function SectorPieChart({ holdingsList }: Props) {
 		drawPieChart({ ctx, theme, chartData: sectorChartData, x, y, radius });
 	}, [theme, sectorChartData, sectorPieChartCanvasGeometry]);
 
-	function isSectorsEmpty() {
+	function isSectorDataEmpty() {
 		return sectorMap.size === 0;
+	}
+
+	function renderChartUI() {
+		if (sectors.isLoading) {
+			return <NoticeEmptyHoldingsList height="300px">차트 로딩 중...</NoticeEmptyHoldingsList>;
+		}
+
+		if (isSectorDataEmpty()) {
+			return (
+				<NoticeEmptyHoldingsList height="300px">
+					표시할 섹터가 없습니다.
+					<br />
+					보유 종목을 추가해 주세요.
+				</NoticeEmptyHoldingsList>
+			);
+		}
+
+		return (
+			<>
+				<Style.PieChartCanvas ref={pieChartCanvasRef} />
+				<Style.LegendContainer>
+					<Style.LegendList>
+						{sectorChartData.map(({ sector, ratio }, idx) => (
+							<Style.LegendListItem key={sector}>
+								<Style.LegendColorBox backgroundColor={sectorPieChartColors(theme, idx)} />
+								<Style.LegendItemText>
+									{translateSectorToKor(sector)}&nbsp;&#40;{formatNum(ratio * 100)}%&#41;
+								</Style.LegendItemText>
+							</Style.LegendListItem>
+						))}
+					</Style.LegendList>
+				</Style.LegendContainer>
+			</>
+		);
 	}
 
 	return (
 		<ProportionAndSectorChartSection>
 			<ProportionAndSectorChartContainer>
-				{!isSectorsEmpty() && (
+				{!isSectorDataEmpty() && (
 					<SelectNumOfItems
 						numOfItems={sectorMap.size}
 						maxNumOfOptions={MAX_NUM_OF_PIES}
@@ -83,27 +117,7 @@ export default function SectorPieChart({ holdingsList }: Props) {
 					<PieChartIcon width={32} height={32} />
 				</ItemIconContainer>
 				<ItemHeader>섹터 구성</ItemHeader>
-				{isSectorsEmpty() ? (
-					<NoticeEmptyHoldingsList>
-						표시할 섹터가 없습니다. 보유 종목을 추가해 주세요.
-					</NoticeEmptyHoldingsList>
-				) : (
-					<Style.PieChartContainer>
-						<Style.PieChartCanvas ref={pieChartCanvasRef} />
-						<Style.LegendContainer>
-							<Style.LegendList>
-								{sectorChartData.map(({ sector, ratio }, idx) => (
-									<Style.LegendListItem key={sector}>
-										<Style.LegendColorBox backgroundColor={sectorPieChartColors(theme, idx)} />
-										<Style.LegendItemText>
-											{translateSectorToKor(sector)}&nbsp;&#40;{formatNum(ratio * 100)}%&#41;
-										</Style.LegendItemText>
-									</Style.LegendListItem>
-								))}
-							</Style.LegendList>
-						</Style.LegendContainer>
-					</Style.PieChartContainer>
-				)}
+				<Style.PieChartContainer>{renderChartUI()}</Style.PieChartContainer>
 			</ProportionAndSectorChartContainer>
 			<SectorChartDetailsPage
 				chartData={sectorRatios}

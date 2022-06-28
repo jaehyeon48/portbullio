@@ -7,11 +7,12 @@ interface LegendColorBoxProps {
 }
 
 export const PieChartContainer = styled.div`
-	height: 100%;
+	height: 300px;
 	display: flex;
 	justify-content: space-evenly;
 
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		height: 100%;
 		flex-direction: column;
 	}
 `;

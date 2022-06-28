@@ -1,5 +1,5 @@
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
-import { Theme, AssetChartData } from '@types';
+import { Theme } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
 import { assetChartDateFont, assetChartValueLegendFont } from './chartFont';
@@ -10,6 +10,7 @@ import {
 	Y_AXIS_LEGEND_GAP,
 	Y_AXIS_MARGIN
 } from '../constants';
+import { ChartBufferData } from '../types';
 import crispPixel from '../../utils/crispPixel';
 
 interface Props {
@@ -20,7 +21,7 @@ interface Props {
 	canvasHeight: number;
 	minValue: number;
 	maxValue: number;
-	chartData: AssetChartData[];
+	chartData: ChartBufferData[];
 	numOfVerticalGrids: number;
 }
 
@@ -72,7 +73,7 @@ export default function drawVerticalGrid({
 					gridXPos += 4;
 				}
 				ctx.fillText(
-					formatChartDateText(chartData.at(-(i + 1))!.createdAt),
+					formatChartDateText(chartData.at(-(i + 1))![0]),
 					Math.floor(gridXPos),
 					yPos({ canvasHeight, value: minValue, minValue, maxValue }) + X_AXIS_LEGEND_GAP
 				);
