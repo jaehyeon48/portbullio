@@ -32,6 +32,7 @@ export default function Dashboard() {
 				holdingsList={holdingsList.data ?? []}
 				realtimeData={realtimeData}
 				cashTransactions={cashTransactions.data ?? []}
+				isLoadingData={holdingsList.isLoading}
 			/>
 			<SectorPieChart holdingsList={holdingsList.data ?? []} />
 			<AssetHistory portfolioId={portfolioId} />

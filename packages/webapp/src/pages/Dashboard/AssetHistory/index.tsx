@@ -144,7 +144,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 		}
 
 		return (
-			<Style.ChartContainer>
+			<>
 				<Style.AssetHistoryChart ref={assetChartRef} />
 				<LoadingNotificationCanvas
 					isLoadingData={isLoadingData}
@@ -155,7 +155,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 					onMouseMove={slideChart}
 					onPointerMove={slideChart}
 				/>
-			</Style.ChartContainer>
+			</>
 		);
 	}
 
@@ -165,7 +165,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 				<CurveLineChartIcon width={32} height={32} />
 			</ItemIconContainer>
 			<ItemHeader>자산 추이</ItemHeader>
-			{renderChartUI()}
+			<Style.ChartContainer>{renderChartUI()}</Style.ChartContainer>
 		</Style.AssetHistoryContainer>
 	);
 }

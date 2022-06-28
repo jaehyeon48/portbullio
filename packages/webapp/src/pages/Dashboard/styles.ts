@@ -99,9 +99,12 @@ export const Select = styled.select`
 	border-radius: 2px;
 `;
 
-export const NoticeEmptyHoldingsList = styled.div`
-	margin-top: 30px;
-	text-align: center;
+export const NoticeEmptyHoldingsList = styled.p<{ height?: number | string }>`
+	width: 100%;
+	height: ${({ height }) => height ?? '100%'};
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
 
 export const ProportionAndSectorChartSection = styled.section`

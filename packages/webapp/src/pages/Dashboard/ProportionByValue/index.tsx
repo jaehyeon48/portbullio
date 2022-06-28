@@ -17,8 +17,8 @@ import useGetCanvasGeometryOnResize from '../hooks/useGetCanvasGeometryOnResize'
 import SelectNumOfItems from '../SelectNumOfItems';
 import {
 	ItemHeader,
-	ItemIconContainer,
 	NoticeEmptyHoldingsList,
+	ItemIconContainer,
 	ProportionAndSectorChartContainer,
 	ProportionAndSectorChartSection
 } from '../styles';
@@ -28,9 +28,15 @@ interface Props {
 	holdingsList: Holding[];
 	realtimeData: ClientStockRealtimeData;
 	cashTransactions: CashTransactionLog[];
+	isLoadingData: boolean;
 }
 
-export default function ProportionByValue({ holdingsList, realtimeData, cashTransactions }: Props) {
+export default function ProportionByValue({
+	holdingsList,
+	realtimeData,
+	cashTransactions,
+	isLoadingData
+}: Props) {
 	const [theme] = useThemeMode();
 	const barCanvasRef = useRef<HTMLCanvasElement>(null);
 	const totalCashAmount = calcTotalCashAmount(cashTransactions);
@@ -80,7 +86,23 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 	}, [maxRatio, theme, barData, numOfBars, barCanvasGeometry]);
 
 	function isHoldingsEmpty() {
-		return numOfBars === 1 && totalCashAmount <= 0;
+		return holdingsList.length === 0 && totalCashAmount <= 0;
+	}
+
+	function renderChartUI() {
+		if (isLoadingData) {
+			return <NoticeEmptyHoldingsList>차트 로딩 중...</NoticeEmptyHoldingsList>;
+		}
+
+		if (isHoldingsEmpty()) {
+			return (
+				<NoticeEmptyHoldingsList>
+					표시할 종목이 없습니다. 보유 종목 혹은 현금 거래내역을 추가해 주세요.
+				</NoticeEmptyHoldingsList>
+			);
+		}
+
+		return <Style.ProportionByValueChartCanvas ref={barCanvasRef} />;
 	}
 
 	return (
@@ -100,13 +122,9 @@ export default function ProportionByValue({ holdingsList, realtimeData, cashTran
 					<BarChartAscIcon width={20} height={20} />
 				</ItemIconContainer>
 				<ItemHeader>종목 구성</ItemHeader>
-				{isHoldingsEmpty() ? (
-					<NoticeEmptyHoldingsList>
-						표시할 종목이 없습니다. 보유 종목 혹은 현금 거래내역을 추가해 주세요.
-					</NoticeEmptyHoldingsList>
-				) : (
-					<Style.ProportionByValueChartCanvas ref={barCanvasRef} />
-				)}
+				<Style.ProportionByValueChartContainer>
+					{renderChartUI()}
+				</Style.ProportionByValueChartContainer>
 			</ProportionAndSectorChartContainer>
 			<ProportionChartDetailsPage
 				chartData={originalBarData}
