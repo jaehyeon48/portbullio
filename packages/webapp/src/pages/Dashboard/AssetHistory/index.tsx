@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect, MouseEvent } from 'react';
 import { CurveLineChart as CurveLineChartIcon } from '@components/Icons';
 import useThemeMode from '@hooks/Theme';
+import LoadingNotificationCanvas from './LoadingNotificationCanvas';
 import { NUM_OF_HORIZONTAL_GRID } from './constants';
 import useChartDataBuffer from './hooks/useChartDataBuffer';
 import * as Style from './styles';
@@ -94,23 +95,25 @@ export default function AssetHistory({ portfolioId }: Props) {
 	const startXPos = useRef(0);
 	function enableGrabbedState(e: MouseEvent<HTMLCanvasElement>) {
 		if (!assetChartRef.current) return;
+		const target = e.target as HTMLCanvasElement;
 
 		isGrabbedChart.current = true;
-		assetChartRef.current.style.cursor = 'grabbing';
+		target.style.cursor = 'grabbing';
 		startXPos.current = e.clientX;
 	}
 
-	function disableGrabbedState() {
+	function disableGrabbedState(e: MouseEvent<HTMLCanvasElement>) {
 		if (!assetChartRef.current) return;
+		const target = e.target as HTMLCanvasElement;
 
 		isGrabbedChart.current = false;
-		assetChartRef.current.style.cursor = 'default';
+		target.style.cursor = 'default';
 	}
 
 	function slideChart(e: MouseEvent<HTMLCanvasElement>) {
 		if (!isGrabbedChart.current) return;
 		if (!assetChartRef.current) return;
-		if (isLoadingData.current) return;
+		if (isLoadingData) return;
 
 		e.preventDefault();
 		const dx = startXPos.current - e.clientX;
@@ -145,15 +148,18 @@ export default function AssetHistory({ portfolioId }: Props) {
 			{isChartDataEmpty() ? (
 				<NoticeEmptyHoldingsList>차트 데이터가 존재하지 않습니다.</NoticeEmptyHoldingsList>
 			) : (
-				<Style.AssetHistoryChart
-					ref={assetChartRef}
-					onMouseDown={enableGrabbedState}
-					onPointerDown={enableGrabbedState}
-					onMouseUp={disableGrabbedState}
-					onPointerUp={disableGrabbedState}
-					onMouseMove={slideChart}
-					onPointerMove={slideChart}
-				/>
+				<Style.ChartContainer>
+					<Style.AssetHistoryChart ref={assetChartRef} />
+					<LoadingNotificationCanvas
+						isLoadingData={isLoadingData}
+						onMouseDown={enableGrabbedState}
+						onPointerDown={enableGrabbedState}
+						onMouseUp={disableGrabbedState}
+						onPointerUp={disableGrabbedState}
+						onMouseMove={slideChart}
+						onPointerMove={slideChart}
+					/>
+				</Style.ChartContainer>
 			)}
 		</Style.AssetHistoryContainer>
 	);
