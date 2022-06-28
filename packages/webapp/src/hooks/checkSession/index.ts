@@ -19,10 +19,10 @@ export default function useCheckSession({ routePath, requireLoginMessage = false
 		async function tryLogIn() {
 			const now = Date.now();
 			if (now - lastCalledTime < THROTTLE_LIMIT) return;
+			lastCalledTime = now;
 			const { userId, isInitialLogin } = await checkAuth();
 
 			setAuth(!!userId);
-			lastCalledTime = now;
 			if (requireLoginMessage && !userId) {
 				toast.error({ message: '세션이 만료되었습니다. 다시 로그인해주세요.' });
 			}
