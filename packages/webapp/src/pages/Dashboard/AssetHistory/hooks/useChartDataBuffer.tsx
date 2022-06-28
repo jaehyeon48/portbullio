@@ -66,5 +66,5 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 		})();
 	}, [chartDataBuffer, currentWindow, portfolioId, count]);
 
-	return { chartDataBuffer, isReachedEnd };
+	return { chartDataBuffer, isReachedEnd, isLoadingData };
 }
