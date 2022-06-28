@@ -1,13 +1,9 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Card from '@components/Card';
 import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import { ITEM_UPPER_LOWER_PADDING_PX } from '../constants';
 
-export const AssetHistoryContainer = styled(Card)`
-	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
-`;
-
-export const AssetHistoryChart = styled.canvas`
+export const assetHistoryChartLayout = css`
 	width: 100%;
 	height: 380px;
 
@@ -18,4 +14,20 @@ export const AssetHistoryChart = styled.canvas`
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
 		height: 260px;
 	}
+`;
+
+export const AssetHistoryContainer = styled(Card)`
+	padding: ${ITEM_UPPER_LOWER_PADDING_PX}px 0;
+`;
+
+export const AssetHistoryChart = styled.canvas`
+	${assetHistoryChartLayout};
+	position: absolute;
+	top: 0;
+	left: 0;
+`;
+
+export const ChartContainer = styled.div`
+	position: relative;
+	${assetHistoryChartLayout};
 `;
