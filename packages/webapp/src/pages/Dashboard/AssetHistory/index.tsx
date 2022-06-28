@@ -27,9 +27,10 @@ export default function AssetHistory({ portfolioId }: Props) {
 		count: COUNT,
 		currentWindow
 	});
-	const chartData = chartDataBuffer.slice(currentWindow.s, currentWindow.e + 1);
-	const maxTotalAsset = Math.max(...chartData.map(({ totalAsset }) => totalAsset));
-	const minTotalAsset = Math.min(...chartData.map(({ totalAsset }) => totalAsset));
+	const chartDataBufferEntries = Object.entries(chartDataBuffer);
+	const chartData = chartDataBufferEntries.slice(currentWindow.s, currentWindow.e + 1);
+	const maxTotalAsset = Math.max(...chartData.map(([, { totalAsset }]) => totalAsset));
+	const minTotalAsset = Math.min(...chartData.map(([, { totalAsset }]) => totalAsset));
 	const [assetChartCanvasGeometry, setAssetChartCanvasGeometry] = useState({
 		width: assetChartRef.current?.clientWidth,
 		height: assetChartRef.current?.clientHeight
@@ -120,7 +121,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 
 		if (dx < 0) {
 			setCurrentWindow(prev => {
-				if (isReachedEnd.current && prev.e >= chartDataBuffer.length - 1) {
+				if (isReachedEnd.current && prev.e >= chartDataBufferEntries.length - 1) {
 					return prev;
 				}
 				return { s: prev.s + 1, e: prev.e + 1 };

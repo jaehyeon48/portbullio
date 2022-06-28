@@ -1,9 +1,10 @@
-import { AssetChartData, Theme } from '@types';
+import { Theme } from '@types';
 import { formatCurrency } from '@utils';
 import yPos from './appliedYPos';
 import { assetChartValueLegendFont } from './chartFont';
 import { Y_AXIS_LEGEND_GAP, Y_AXIS_MARGIN, ASSET_CHART_LINE_THICKNESS } from '../constants';
 import { assetChartLineColor } from '../../colors';
+import { ChartBufferData } from '../types';
 import crispPixel from '../../utils/crispPixel';
 
 interface Props {
@@ -14,7 +15,7 @@ interface Props {
 	canvasHeight: number;
 	minValue: number;
 	maxValue: number;
-	chartData: AssetChartData[];
+	chartData: ChartBufferData[];
 	numOfVerticalGrids: number;
 }
 
@@ -45,14 +46,14 @@ export default function drawLine({
 			ctx.moveTo(
 				crispPixel(xPos, ASSET_CHART_LINE_THICKNESS),
 				crispPixel(
-					yPos({ canvasHeight, value: chartData[i].totalAsset, minValue, maxValue }),
+					yPos({ canvasHeight, value: chartData[i][1].totalAsset, minValue, maxValue }),
 					ASSET_CHART_LINE_THICKNESS
 				)
 			);
 			ctx.lineTo(
 				crispPixel(xPos + verticalGridGap, ASSET_CHART_LINE_THICKNESS),
 				crispPixel(
-					yPos({ canvasHeight, value: chartData[i - 1].totalAsset, minValue, maxValue }),
+					yPos({ canvasHeight, value: chartData[i - 1][1].totalAsset, minValue, maxValue }),
 					ASSET_CHART_LINE_THICKNESS
 				)
 			);
