@@ -135,8 +135,28 @@ export default function AssetHistory({ portfolioId }: Props) {
 		}
 	}
 
-	function isChartDataEmpty() {
-		return chartData.length === 0;
+	function renderChartUI() {
+		if (chartData.length === 0) {
+			if (isLoadingData) {
+				return <NoticeEmptyHoldingsList>차트 데이터 로딩 중...</NoticeEmptyHoldingsList>;
+			}
+			return <NoticeEmptyHoldingsList>차트 데이터가 존재하지 않습니다.</NoticeEmptyHoldingsList>;
+		}
+
+		return (
+			<Style.ChartContainer>
+				<Style.AssetHistoryChart ref={assetChartRef} />
+				<LoadingNotificationCanvas
+					isLoadingData={isLoadingData}
+					onMouseDown={enableGrabbedState}
+					onPointerDown={enableGrabbedState}
+					onMouseUp={disableGrabbedState}
+					onPointerUp={disableGrabbedState}
+					onMouseMove={slideChart}
+					onPointerMove={slideChart}
+				/>
+			</Style.ChartContainer>
+		);
 	}
 
 	return (
@@ -145,22 +165,7 @@ export default function AssetHistory({ portfolioId }: Props) {
 				<CurveLineChartIcon width={32} height={32} />
 			</ItemIconContainer>
 			<ItemHeader>자산 추이</ItemHeader>
-			{isChartDataEmpty() ? (
-				<NoticeEmptyHoldingsList>차트 데이터가 존재하지 않습니다.</NoticeEmptyHoldingsList>
-			) : (
-				<Style.ChartContainer>
-					<Style.AssetHistoryChart ref={assetChartRef} />
-					<LoadingNotificationCanvas
-						isLoadingData={isLoadingData}
-						onMouseDown={enableGrabbedState}
-						onPointerDown={enableGrabbedState}
-						onMouseUp={disableGrabbedState}
-						onPointerUp={disableGrabbedState}
-						onMouseMove={slideChart}
-						onPointerMove={slideChart}
-					/>
-				</Style.ChartContainer>
-			)}
+			{renderChartUI()}
 		</Style.AssetHistoryContainer>
 	);
 }
