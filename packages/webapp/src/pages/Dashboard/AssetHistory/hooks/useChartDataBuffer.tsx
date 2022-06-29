@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import getAssetChartData from '@api/user/getAssetChartData';
+import usePortfolioList from '@hooks/ReactQuery/usePortfolioList';
 import { AssetChartData } from '@types';
 import { NormalizedAssetChartData } from '../types';
 import normalizeData from '../utils/normalizeData';
@@ -16,6 +17,7 @@ interface Props {
 export default function useChartDataBuffer({ portfolioId, count, currentWindow }: Props) {
 	const [chartDataBuffer, setChartDataBuffer] = useState<NormalizedAssetChartData>({});
 	const [isLoadingData, setIsLoadingData] = useState(true);
+	const numOfPortfolios = usePortfolioList().data?.length;
 	const isCurrentlyFetching = useRef(false);
 	const triggerPoint = useRef(0);
 	const isReachedEnd = useRef(false);
@@ -35,7 +37,7 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 		if (!isInitialLoading.current) return;
 		if (lastChartData.current) return;
 		if (isCurrentlyFetching.current) return;
-		if (portfolioId < 0) return;
+		if (numOfPortfolios === undefined || (numOfPortfolios > 0 && portfolioId < 0)) return;
 
 		(async () => {
 			isCurrentlyFetching.current = true;
@@ -59,7 +61,7 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 			triggerPoint.current =
 				initialChartDataLength >= count ? count - 1 : initialChartDataLength - 1;
 		})();
-	}, [portfolioId, count]);
+	}, [portfolioId, count, numOfPortfolios]);
 
 	useEffect(() => {
 		if (!lastChartData.current) return;
