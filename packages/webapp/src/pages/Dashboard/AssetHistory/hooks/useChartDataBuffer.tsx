@@ -35,6 +35,7 @@ export default function useChartDataBuffer({ portfolioId, count, currentWindow }
 		if (!isInitialLoading.current) return;
 		if (lastChartData.current) return;
 		if (isCurrentlyFetching.current) return;
+		if (portfolioId < 0) return;
 
 		(async () => {
 			isCurrentlyFetching.current = true;
