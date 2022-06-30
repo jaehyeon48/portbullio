@@ -44,7 +44,7 @@ export default (): express.Router => {
 					res,
 					name: 'ust',
 					value: 'y',
-					options: { httpOnly: false, maxAge: Number(envConfig.maxCookieAge ?? 0) }
+					options: { httpOnly: false }
 				});
 				cookieService.issueCookie({
 					res,
@@ -66,7 +66,7 @@ export default (): express.Router => {
 				res,
 				name: 'ust',
 				value: 'y',
-				options: { httpOnly: false, maxAge: Number(envConfig.maxCookieAge ?? 0) }
+				options: { httpOnly: false }
 			});
 			cookieService.issueCookie({
 				res,
