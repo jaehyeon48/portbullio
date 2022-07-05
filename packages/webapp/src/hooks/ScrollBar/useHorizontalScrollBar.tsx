@@ -73,27 +73,20 @@ export default function useHorizontalScrollBar({
 	const originalThumbW = useRef(-1);
 	const [thumbW, setThumbWidth] = useState(0);
 
-	useEffect(() => {
-		let intervalId: NodeJS.Timer;
-		function initThumbWidth() {
-			if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) return;
-			clearInterval(intervalId);
-			const { clientWidth: outerW } = outerContainerRef.current;
-			const { clientWidth: innerW } = innerContainerRef.current;
-			if (innerW <= outerW) {
-				setThumbWidth(0);
-				return;
-			}
-
-			const thumbWCandidate = outerW ** 2 / innerW;
-			if (thumbWCandidate < MIN_THUMB_W) originalThumbW.current = thumbWCandidate;
-			setThumbWidth(thumbWCandidate < MIN_THUMB_W ? MIN_THUMB_W : thumbWCandidate);
+	const calculateThumbWidth = useCallback(() => {
+		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) return;
+		const { clientWidth: outerW } = outerContainerRef.current;
+		const { clientWidth: innerW } = innerContainerRef.current;
+		if (innerW <= outerW) {
+			setThumbWidth(0);
+			return;
 		}
 
-		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
-			intervalId = setInterval(initThumbWidth, 1);
-		} else initThumbWidth();
-	});
+		const thumbWCandidate = outerW ** 2 / innerW;
+		if (thumbWCandidate < MIN_THUMB_W) originalThumbW.current = thumbWCandidate;
+		else originalThumbW.current = -1;
+		setThumbWidth(thumbWCandidate < MIN_THUMB_W ? MIN_THUMB_W : thumbWCandidate);
+	}, [outerContainerRef, innerContainerRef]);
 
 	const calculateThumbX = useCallback(() => {
 		if (!thumbRef.current) return;
@@ -128,8 +121,20 @@ export default function useHorizontalScrollBar({
 	}, [thumbW, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
 
 	useEffect(() => {
+		calculateThumbWidth();
+	});
+
+	useEffect(() => {
 		calculateThumbX();
 	}, [calculateThumbX]);
+
+	useEffect(() => {
+		window.addEventListener('resize', calculateThumbWidth);
+
+		return () => {
+			window.removeEventListener('resize', calculateThumbWidth);
+		};
+	}, [calculateThumbWidth]);
 
 	return {
 		calculateThumbX,
