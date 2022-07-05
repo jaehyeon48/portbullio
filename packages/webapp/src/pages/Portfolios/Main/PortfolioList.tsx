@@ -95,7 +95,7 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 							isError={defaultPortfolioId.isError}
 							refetch={defaultPortfolioId.refetch}
 						/>
-						<div>
+						<Style.PortfolioActionButtons>
 							<Style.EditNameButton
 								type="button"
 								onClick={e => openEditPortfolioModal(e, id, name)}
@@ -110,7 +110,7 @@ export default function PortfolioList({ portfolioList, isLoading }: Props) {
 								<Icon.TrashCan width={16} height={16} />
 								삭제
 							</Style.DeletePortfolioButton>
-						</div>
+						</Style.PortfolioActionButtons>
 					</Style.PortfolioActionSection>
 				</ListItem>
 			))}
