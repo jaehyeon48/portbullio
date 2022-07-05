@@ -38,13 +38,15 @@ export default function Holdings() {
 				</ListPageStyle.NumOfItems>
 				<ListPageStyle.UpperSectionButtonContainer>
 					<SelectPortfolio />
-					<ListPageStyle.SearchFilterButton type="button">
-						<Icon.Filter width={20} height={20} />
-						필터
-					</ListPageStyle.SearchFilterButton>
-					<ListPageStyle.AddItemButton type="button" onClick={openAddNewStockTransactionModal}>
-						<Icon.Plus width={20} height={20} />새 거래내역 추가
-					</ListPageStyle.AddItemButton>
+					<ListPageStyle.UpperSectionButtons>
+						<ListPageStyle.SearchFilterButton type="button">
+							<Icon.Filter width={20} height={20} />
+							필터
+						</ListPageStyle.SearchFilterButton>
+						<ListPageStyle.AddItemButton type="button" onClick={openAddNewStockTransactionModal}>
+							<Icon.Plus width={20} height={20} />새 거래내역 추가
+						</ListPageStyle.AddItemButton>
+					</ListPageStyle.UpperSectionButtons>
 				</ListPageStyle.UpperSectionButtonContainer>
 				<ListPageStyle.SearchInputContainer>
 					<ListPageStyle.SearchInput placeholder="보유종목 검색..." />

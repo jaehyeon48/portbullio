@@ -41,13 +41,15 @@ export default function Cash() {
 				</ListPageStyle.NumOfItems>
 				<ListPageStyle.UpperSectionButtonContainer>
 					<SelectPortfolio />
-					<ListPageStyle.SearchFilterButton type="button">
-						<Icon.Filter width={20} height={20} />
-						필터
-					</ListPageStyle.SearchFilterButton>
-					<ListPageStyle.AddItemButton type="button" onClick={openAddCashTransactionModal}>
-						<Icon.Plus width={20} height={20} />새 현금내역 추가
-					</ListPageStyle.AddItemButton>
+					<ListPageStyle.UpperSectionButtons>
+						<ListPageStyle.SearchFilterButton type="button">
+							<Icon.Filter width={20} height={20} />
+							필터
+						</ListPageStyle.SearchFilterButton>
+						<ListPageStyle.AddItemButton type="button" onClick={openAddCashTransactionModal}>
+							<Icon.Plus width={20} height={20} />새 현금내역 추가
+						</ListPageStyle.AddItemButton>
+					</ListPageStyle.UpperSectionButtons>
 				</ListPageStyle.UpperSectionButtonContainer>
 				<ListPageStyle.SearchInputContainer>
 					<ListPageStyle.SearchInput placeholder="현금 거래내역 검색..." />

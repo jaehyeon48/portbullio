@@ -10,6 +10,10 @@ interface SetDefaultButtonProps {
 
 export const PortfolioNameSection = styled.div`
 	min-width: 310px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		min-width: 280px;
+	}
 `;
 
 export const PortfolioPrivacySection = styled.div`
@@ -24,13 +28,15 @@ export const PortfolioActionSection = styled.div`
 	justify-content: space-evenly;
 	min-width: 300px;
 
-	& > div {
-		display: flex;
-	}
-
 	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptop}px) {
 		justify-content: space-between;
 	}
+`;
+
+export const PortfolioActionButtons = styled.div`
+	display: flex;
+	min-width: 200px;
+	margin-left: 20px;
 `;
 
 export const DefaultPortfolioButton = styled.button<SetDefaultButtonProps>`

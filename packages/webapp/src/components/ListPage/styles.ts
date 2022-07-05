@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import buttonMixin from '@styles/Mixins/buttonMixin';
 
 interface ListItemsContainerProps {
@@ -32,17 +33,53 @@ export const MainHeader = styled.h1`
 	font-size: 48px;
 	font-weight: 700;
 	line-height: 1.2;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		padding-top: 20px;
+		font-size: 40px;
+		text-align: center;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.tablet}px) {
+		font-size: 36px;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobile}px) {
+		font-size: 32px;
+	}
 `;
 
 export const NumOfItems = styled.p`
 	margin: 0;
 	color: var(--stockPageTextSubColor);
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		text-align: center;
+	}
 `;
 
 export const UpperSectionButtonContainer = styled.div`
 	display: flex;
 	justify-content: end;
 	margin-bottom: 12px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.laptopSmall}px) {
+		padding-top: 30px;
+		text-align: center;
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		flex-direction: column;
+	}
+`;
+
+export const UpperSectionButtons = styled.div`
+	display: flex;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		padding: 24px 0 12px;
+		justify-content: center;
+	}
 `;
 
 const listPageButtonStyle = css`
@@ -146,6 +183,10 @@ export const ListItem = styled.li`
 
 	& + & {
 		border-top: 1px solid var(--baseBorderColor);
+	}
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		font-size: 14px;
 	}
 `;
 
