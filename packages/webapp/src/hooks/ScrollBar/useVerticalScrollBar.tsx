@@ -79,6 +79,7 @@ export default function useVerticalScrollBar({
 
 		const thumbHCandidate = outerH ** 2 / innerH;
 		if (thumbHCandidate < MIN_THUMB_H) originalThumbH.current = thumbHCandidate;
+		else originalThumbH.current = -1;
 		setThumbHeight(thumbHCandidate < MIN_THUMB_H ? MIN_THUMB_H : thumbHCandidate);
 	}, [innerContainerRef, outerContainerRef]);
 
@@ -122,6 +123,14 @@ export default function useVerticalScrollBar({
 	useEffect(() => {
 		calculateThumbY();
 	}, [calculateThumbY]);
+
+	useEffect(() => {
+		window.addEventListener('resize', calculateThumbHeight);
+
+		return () => {
+			window.removeEventListener('resize', calculateThumbHeight);
+		};
+	}, [calculateThumbHeight]);
 
 	return {
 		calculateThumbY,
