@@ -28,13 +28,15 @@ export default function Portfolios() {
 					{portfolios.data?.length ?? 0}개
 				</ListPageStyle.NumOfItems>
 				<ListPageStyle.UpperSectionButtonContainer>
-					<ListPageStyle.SearchFilterButton type="button">
-						<Icon.Filter width={20} height={20} />
-						필터
-					</ListPageStyle.SearchFilterButton>
-					<ListPageStyle.AddItemButton type="button" onClick={openAddPortfolioModal}>
-						<Icon.Plus width={20} height={20} />새 포트폴리오 추가
-					</ListPageStyle.AddItemButton>
+					<ListPageStyle.UpperSectionButtons>
+						<ListPageStyle.SearchFilterButton type="button">
+							<Icon.Filter width={20} height={20} />
+							필터
+						</ListPageStyle.SearchFilterButton>
+						<ListPageStyle.AddItemButton type="button" onClick={openAddPortfolioModal}>
+							<Icon.Plus width={20} height={20} />새 포트폴리오 추가
+						</ListPageStyle.AddItemButton>
+					</ListPageStyle.UpperSectionButtons>
 				</ListPageStyle.UpperSectionButtonContainer>
 				<ListPageStyle.SearchInputContainer>
 					<ListPageStyle.SearchInput placeholder="포트폴리오 검색..." />

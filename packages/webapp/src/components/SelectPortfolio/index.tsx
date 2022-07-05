@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { WIDTH_BREAK_POINT_PX } from '@constants/breakPoints';
 import usePortfolioList from '@hooks/ReactQuery/usePortfolioList';
 import { useSelectedPortfolioId, useSelectedPortfolioIdUpdate } from './useSelectedPortfolioId';
 
@@ -33,6 +34,10 @@ export const Select = styled.select<SelectMarginProps>`
 	color: var(--baseTextColor);
 	outline: none;
 	border-radius: 2px;
+
+	@media screen and (max-width: ${WIDTH_BREAK_POINT_PX.mobileLandScape}px) {
+		padding: 4px 0;
+	}
 `;
 
 export const PlaceHolderOption = styled.option`
