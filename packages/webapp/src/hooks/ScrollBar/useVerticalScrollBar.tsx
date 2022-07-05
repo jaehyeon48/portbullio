@@ -90,46 +90,6 @@ export default function useVerticalScrollBar({
 		} else initThumbHeight();
 	});
 
-	useEffect(() => {
-		let intervalId: NodeJS.Timer;
-		function initThumbY() {
-			if (!thumbRef.current) return;
-			if (!outerContainerRef.current) return;
-			if (!innerContainerRef.current) return;
-
-			const { clientHeight: outerH } = outerContainerRef.current;
-			const { clientHeight: innerH } = innerContainerRef.current;
-			const { top: outerTop } = outerContainerRef.current.getBoundingClientRect();
-			const { top: innerTop } = innerContainerRef.current.getBoundingClientRect();
-
-			const revisedThumbScrollY =
-				originalThumbH.current === -1
-					? calculateRevisedThumbH({
-							outerTop,
-							innerTop,
-							outerH,
-							innerH,
-							outerContainerBorderWidth,
-							thumbH
-					  })
-					: calculateRevisedThumbH({
-							outerTop,
-							innerTop,
-							outerH,
-							innerH,
-							thumbH: originalThumbH.current,
-							outerContainerBorderWidth,
-							isRevisedToMinH: true
-					  });
-			thumbRef.current.style.transform = `translateY(${revisedThumbScrollY}px)`;
-			clearInterval(intervalId);
-		}
-
-		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
-			intervalId = setInterval(initThumbY, 1);
-		} else initThumbY();
-	}, [thumbH, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
-
 	const calculateThumbY = useCallback(() => {
 		if (!thumbRef.current) return;
 		if (!outerContainerRef.current) return;
