@@ -73,67 +73,20 @@ export default function useHorizontalScrollBar({
 	const originalThumbW = useRef(-1);
 	const [thumbW, setThumbWidth] = useState(0);
 
-	useEffect(() => {
-		let intervalId: NodeJS.Timer;
-		function initThumbWidth() {
-			if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) return;
-			clearInterval(intervalId);
-			const { clientWidth: outerW } = outerContainerRef.current;
-			const { clientWidth: innerW } = innerContainerRef.current;
-			if (innerW <= outerW) {
-				setThumbWidth(0);
-				return;
-			}
-
-			const thumbWCandidate = outerW ** 2 / innerW;
-			if (thumbWCandidate < MIN_THUMB_W) originalThumbW.current = thumbWCandidate;
-			setThumbWidth(thumbWCandidate < MIN_THUMB_W ? MIN_THUMB_W : thumbWCandidate);
+	const calculateThumbWidth = useCallback(() => {
+		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) return;
+		const { clientWidth: outerW } = outerContainerRef.current;
+		const { clientWidth: innerW } = innerContainerRef.current;
+		if (innerW <= outerW) {
+			setThumbWidth(0);
+			return;
 		}
 
-		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
-			intervalId = setInterval(initThumbWidth, 1);
-		} else initThumbWidth();
-	});
-
-	useEffect(() => {
-		let intervalId: NodeJS.Timer;
-		function initThumbX() {
-			if (!thumbRef.current) return;
-			if (!outerContainerRef.current) return;
-			if (!innerContainerRef.current) return;
-
-			const { clientWidth: outerW } = outerContainerRef.current;
-			const { clientWidth: innerW } = innerContainerRef.current;
-			const { left: outerLeft } = outerContainerRef.current.getBoundingClientRect();
-			const { left: innerLeft } = innerContainerRef.current.getBoundingClientRect();
-
-			const revisedThumbScrollX =
-				originalThumbW.current === -1
-					? calculateRevisedThumbW({
-							outerLeft,
-							innerLeft,
-							outerW,
-							innerW,
-							outerContainerBorderWidth,
-							thumbW
-					  })
-					: calculateRevisedThumbW({
-							outerLeft,
-							innerLeft,
-							outerW,
-							innerW,
-							thumbW: originalThumbW.current,
-							outerContainerBorderWidth,
-							isRevisedToMinW: true
-					  });
-			thumbRef.current.style.transform = `translateX(${revisedThumbScrollX}px)`;
-			clearInterval(intervalId);
-		}
-
-		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
-			intervalId = setInterval(initThumbX, 1);
-		} else initThumbX();
-	}, [thumbW, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
+		const thumbWCandidate = outerW ** 2 / innerW;
+		if (thumbWCandidate < MIN_THUMB_W) originalThumbW.current = thumbWCandidate;
+		else originalThumbW.current = -1;
+		setThumbWidth(thumbWCandidate < MIN_THUMB_W ? MIN_THUMB_W : thumbWCandidate);
+	}, [outerContainerRef, innerContainerRef]);
 
 	const calculateThumbX = useCallback(() => {
 		if (!thumbRef.current) return;
@@ -166,6 +119,22 @@ export default function useHorizontalScrollBar({
 				  });
 		thumbRef.current.style.transform = `translateX(${revisedThumbScrollX}px)`;
 	}, [thumbW, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
+
+	useEffect(() => {
+		calculateThumbWidth();
+	});
+
+	useEffect(() => {
+		calculateThumbX();
+	}, [calculateThumbX]);
+
+	useEffect(() => {
+		window.addEventListener('resize', calculateThumbWidth);
+
+		return () => {
+			window.removeEventListener('resize', calculateThumbWidth);
+		};
+	}, [calculateThumbWidth]);
 
 	return {
 		calculateThumbX,

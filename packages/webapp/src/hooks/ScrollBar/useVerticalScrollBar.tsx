@@ -68,67 +68,20 @@ export default function useVerticalScrollBar({
 	const originalThumbH = useRef(-1);
 	const [thumbH, setThumbHeight] = useState(0);
 
-	useEffect(() => {
-		let intervalId: NodeJS.Timer;
-		function initThumbHeight() {
-			if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) return;
-			clearInterval(intervalId);
-			const { clientHeight: outerH } = outerContainerRef.current;
-			const { clientHeight: innerH } = innerContainerRef.current;
-			if (innerH <= outerH) {
-				setThumbHeight(0);
-				return;
-			}
-
-			const thumbHCandidate = outerH ** 2 / innerH;
-			if (thumbHCandidate < MIN_THUMB_H) originalThumbH.current = thumbHCandidate;
-			setThumbHeight(thumbHCandidate < MIN_THUMB_H ? MIN_THUMB_H : thumbHCandidate);
+	const calculateThumbHeight = useCallback(() => {
+		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) return;
+		const { clientHeight: outerH } = outerContainerRef.current;
+		const { clientHeight: innerH } = innerContainerRef.current;
+		if (innerH <= outerH) {
+			setThumbHeight(0);
+			return;
 		}
 
-		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
-			intervalId = setInterval(initThumbHeight, 1);
-		} else initThumbHeight();
-	});
-
-	useEffect(() => {
-		let intervalId: NodeJS.Timer;
-		function initThumbY() {
-			if (!thumbRef.current) return;
-			if (!outerContainerRef.current) return;
-			if (!innerContainerRef.current) return;
-
-			const { clientHeight: outerH } = outerContainerRef.current;
-			const { clientHeight: innerH } = innerContainerRef.current;
-			const { top: outerTop } = outerContainerRef.current.getBoundingClientRect();
-			const { top: innerTop } = innerContainerRef.current.getBoundingClientRect();
-
-			const revisedThumbScrollY =
-				originalThumbH.current === -1
-					? calculateRevisedThumbH({
-							outerTop,
-							innerTop,
-							outerH,
-							innerH,
-							outerContainerBorderWidth,
-							thumbH
-					  })
-					: calculateRevisedThumbH({
-							outerTop,
-							innerTop,
-							outerH,
-							innerH,
-							thumbH: originalThumbH.current,
-							outerContainerBorderWidth,
-							isRevisedToMinH: true
-					  });
-			thumbRef.current.style.transform = `translateY(${revisedThumbScrollY}px)`;
-			clearInterval(intervalId);
-		}
-
-		if (!outerContainerRef.current || !innerContainerRef.current || !thumbRef.current) {
-			intervalId = setInterval(initThumbY, 1);
-		} else initThumbY();
-	}, [thumbH, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
+		const thumbHCandidate = outerH ** 2 / innerH;
+		if (thumbHCandidate < MIN_THUMB_H) originalThumbH.current = thumbHCandidate;
+		else originalThumbH.current = -1;
+		setThumbHeight(thumbHCandidate < MIN_THUMB_H ? MIN_THUMB_H : thumbHCandidate);
+	}, [innerContainerRef, outerContainerRef]);
 
 	const calculateThumbY = useCallback(() => {
 		if (!thumbRef.current) return;
@@ -164,8 +117,20 @@ export default function useVerticalScrollBar({
 	}, [thumbH, innerContainerRef, outerContainerRef, outerContainerBorderWidth]);
 
 	useEffect(() => {
+		calculateThumbHeight();
+	});
+
+	useEffect(() => {
 		calculateThumbY();
 	}, [calculateThumbY]);
+
+	useEffect(() => {
+		window.addEventListener('resize', calculateThumbHeight);
+
+		return () => {
+			window.removeEventListener('resize', calculateThumbHeight);
+		};
+	}, [calculateThumbHeight]);
 
 	return {
 		calculateThumbY,
